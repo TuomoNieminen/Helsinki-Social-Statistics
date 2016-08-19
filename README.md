@@ -1,8 +1,7 @@
-# DataCamp Template Course
+
+# Helsinki Social Statistics
 <a href=https://www.datacamp.com//teach/repositories/65844921/go target="_blank"><img src="https://s3.amazonaws.com/assets.datacamp.com/img/github/content-engineering-repos/course_button.png" width="150"></a>
 <a href=https://www.datacamp.com//teach/repositories target="_blank"><img src="https://s3.amazonaws.com/assets.datacamp.com/img/github/content-engineering-repos/dashboard_button.png" width="150"></a>
-
-This an automatically generated <a href=https://www.datacamp.com target="_blank">DataCamp</a> course. You can start from these template files to create your own course.
 
 Changes you make to this GitHub repository are automatically reflected in the linked DataCamp course. This means that you can enjoy all the advantages of version control, collaboration, issue handling ... of GitHub.
 
@@ -23,7 +22,9 @@ A DataCamp course consists of two types of files:
 
 To learn more about the structure of a DataCamp course, check out the <a href=https://www.datacamp.com//teach/documentation#tab_course_structure target="_blank">documentation</a>.
 
-Every DataCamp exercise consists of different parts, read up about them <a href=https://www.datacamp.com//teach/documentation#tab_code_exercises target="_blank">here</a>. A very important part about DataCamp exercises is to provide automated personalized feedback to students. In R, these so-called Submission Correctness Tests (SCTs) are written with the <a href=https://github.com/datacamp/testwhat target="_blank">`testwhat`</a> package. SCTs for Python exercises are coded up with <a href=https://github.com/datacamp/pythonwhat target="_blank">`pythonwhat`</a>. Check out the GitHub repositories' wiki pages for more information and examples.
+Every DataCamp exercise consists of different parts, read up about them <a href=https://www.datacamp.com//teach/documentation#tab_code_exercises target="_blank">here</a>. A very important part about DataCamp exercises is to provide automated personalized feedback to students. In R, these so-called Submission Correctness Tests (SCTs) are written with the <a href=https://github.com/datacamp/testwhat target="_blank">`testwhat`</a> package. Check out the GitHub repositories' wiki pages for more information and examples.
+
+You can also use the exercise_template.Rmd to get started on creating exercises for this Helsinki Social Statistics course.
 
 Want to learn more? Check out the <a href=https://www.datacamp.com//teach/documentation target="_blank">documentation</a> on teaching at DataCamp.
 
