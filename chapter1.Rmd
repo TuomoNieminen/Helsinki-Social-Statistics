@@ -349,7 +349,7 @@ success_msg("Great job! Now let's use some real functions!")
 
 ```
 
---- type:MultipleChoiceExercise lang:r xp:100 skills:1
+--- type:MultipleChoiceExercise lang:r xp:100 skills:1 key:8d2100f40a
 
 ## Meet the data
 
