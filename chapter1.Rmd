@@ -286,7 +286,7 @@ During this course you will operate on ready-made functions, but for clarity we 
 - Create object 'ans' by directly assigning the output of add_k() to it. Call add_k() with value = 10 and k = 5.
 
 *** =hint
-- The answer is of the form: `ans <- add_k(arguments here)`
+- The answer is of the form: `ans <- add_k(arguments and their values here)`
 
 *** =pre_exercise_code
 ```{r}
@@ -300,7 +300,7 @@ add_k <- function(value, k = 5) {
 *** =sample_code
 ```{r}
 
-# Below is a definition of a function: add_k(). It is a simple function with two arguments 'value' and 'k', one of which has a default value.
+# Create a simple function with two arguments, of which 'k' has a default value.
 add_k <- function(value, k = 5) {
   newvalue <- value + k
   newvalue
@@ -311,7 +311,7 @@ add_k(value = 5)
 add_k(value = 5, k = -4)
 
 # If you give the arguments in the right order, you don't have to state which is which.
-add_k(5, -4) # is equivalent to
+add_k(5, -4)
 add_k(k = -4, value = 5)
 
 # Call add_k() to create the object 'ans'.
@@ -327,7 +327,7 @@ add_k(value = 5)
 add_k(value = 5, k = -4)
 
 # If you give the arguments in the right order, you don't have to state which is which.
-add_k(5, -4) # is equivalent to
+add_k(5, -4)
 add_k(k = -4, value = 5)
 
 # Call add_k() to create the object 'ans'.
@@ -345,13 +345,13 @@ test_object("ans")
 
 test_error()
 
-success_msg("Great job! Now let's use some real functions!")
+success_msg("Great job!")
 
 ```
 
 --- type:MultipleChoiceExercise lang:r xp:100 skills:1 key:8d2100f40a
 
-## Meet the data
+## Meet your data
 
 In future exercises, we will be doing some data science using a dataset that was collected from the students of this course in 2014. 
 
