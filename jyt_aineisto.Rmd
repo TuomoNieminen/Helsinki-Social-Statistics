@@ -1,0 +1,65 @@
+---
+title: "JYT aineisto"
+author: "Emma Kämäräinen"
+date: "22 elokuuta 2016"
+output: 
+  html_document:
+  fig.height: 12
+  fig.width: 16
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r }
+setwd("C:\\Users\\emmak\\OneDrive\\DataCamp\\JYTOPKYS")
+
+jyt<-read.table("JYTOPKYS-data.txt", sep="\t", header=TRUE)
+
+
+
+dim(jyt)
+str(jyt)
+summary(jyt)
+
+n<-function(lkm){
+  par(las=1)
+  maara<-length(lkm)-sum(is.na(lkm))
+  mtext(paste("N =", maara), adj=0)
+  mtext(paste("Missing =", sum(is.na(lkm))), adj=0, line=-1)
+  par(las=2)
+}
+
+for(i in 2:length(names(jyt))){
+  par(cex=.8)
+  barplot(table(jyt[,i]), main=names(jyt)[i], col="lightblue", 
+          border="lightblue")
+  n(jyt[,i])
+}
+```
+
+# hajontakuvia
+
+```{r, fig.height=15, fig.width=20}
+par(cex=1.5)
+pairs(sapply(jyt[,2:7], jitter), main="1. Kysymys")
+pairs(sapply(jyt[,8:15], jitter), main="2. Kysymys")
+```
+
+```{r, fig.height=18, fig.width=22}
+par(cex=1.5)
+pairs(sapply(jyt[,16:25], jitter), main="3. Kysymys")
+```
+
+# yksittäisiä kuvia 
+
+```{r}
+plot(jitter(jyt$q3j), jyt$osa1h)
+plot(jyt$kurssit, jyt$osa1h)
+
+plot(jitter(jyt$q3b), jyt$ika)
+
+plot(jitter(jyt$q3d), jitter(jyt$q3h))
+cor(jyt$q3d, jyt$q3h)
+```
