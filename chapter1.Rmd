@@ -8,7 +8,7 @@ description : Basics of R, the amazing statistical programming language.
 
 R is a programming language designed for statistical analysis. R is completely open source and all analysis done with R are reproduciple and easy to share. R is very flexible and powerful and always includes implementations of the latest research. 
 
-Because of these reasons, R is a very popular language among the scientific community. R is however also widely [used]("http://blog.revolutionanalytics.com/2014/05/companies-using-r-in-2014.html") for data analysis and visualisations by companies such as Google, Facebook, Twitter and Reaktor. R is perfect for data science.
+Because of these reasons, R is a very popular language among the scientific community. R is however also widely [used](http://blog.revolutionanalytics.com/2014/05/companies-using-r-in-2014.html) for data analysis and visualisations by companies such as Google, Facebook, Twitter and Reaktor. R is perfect for data science.
 
 Researchers and experts often use programming to visualize and explore data and implement new methods. The purpose of this course is to expose you to the basics of programming and statistical analysis with R.
 
@@ -355,7 +355,7 @@ success_msg("Great job! Now let's use some real functions!")
 
 In future exercises, we will be doing some data science using a dataset that was collected from the students of this course in 2014. 
 
-The students filled out [this short questionnaire]("https://github.com/TuomoNieminen/Helsinki-Social-Statistics/blob/master/data/ASSIST-2014-FI-0-20140903.pdf"). Please go ahead and read both pages of the pdf in the above link and then come back and answer the question below.
+The students filled out [this short questionnaire](https://github.com/TuomoNieminen/Helsinki-Social-Statistics/blob/master/data/ASSIST-2014-FI-0-20140903.pdf). Please go ahead and read both pages of the pdf in the above link and then come back and answer the question below.
 
 How many numbered sections does the questionnaire have?
 
