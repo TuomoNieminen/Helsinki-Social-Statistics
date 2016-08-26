@@ -1,0 +1,108 @@
+JYTOPKYS-aineiston metatiedot (syksy 2016)
+
+Kimmo Vehkalahti: ASSIST 2014 - Vaihe 1 (baseline), N=262
+Kurssi: Johdatus yhteiskuntatilastotieteeseen, syksy 2014,
+opetusta ja oppimista koskeva kyselytutkimus, joka tehtiin
+Opettajien akatemian mahdollistamana kv tutkimusprojektina.
+
+Muuttujien nimet ja lyhyet kuvaukset (ks. myös lomake):
+
+id       yksikäsitteinen tunniste (juokseva numero)
+q1a      varmistamista, että muistaa asiat hyvin
+q1b      kehittymistä ihmisenä
+q1c      tiedon rakentelua tosiasioiden pohjalta
+q1d      kykyä käyttää omaksuttua tietoa
+q1e      uusien asioiden ja tietojen ymmärtämistä
+q1f      uusien merkitysten näkemistä asioissa
+q2a      L:kertovat tarkasti, mitä muistiinpanoja on syytä tehdä
+q2b      L:rohkaisevat ajattelemaan ja tuovat esiin omaa ajatteluaan
+q2c      T:opiskelija voi näyttää perehtyneensä oppimateriaaleihin
+q2d      T:luentomuistiinpanot riittävät tentin läpäisemiseen
+q2e      K:osoitetaan hyvin selvästi, mitkä kirjat pitää lukea
+q2f      K:kannustetaan lukemaan runsaasti aiheesta itsenäisesti
+q2g      k:haastavat ja selittävät asioita laajemmin kuin luennot
+q2h      k:sisältävät täsmällisiä faktoja ja helposti opittavia tietoja
+q3a      Koen osaavani tilastotiedettä
+q3b      Tilastotieteestä tulee olemaan hyötyä työelämässä
+q3c      Olen kiinnostunut ymmärtämään tilastotiedettä
+q3d      Pärjäsin hyvin koulun matematiikassa
+q3e      Olen kiinnostunut oppimaan tilastotiedettä
+q3f      Koen epävarmuutta tilastotieteen tehtävien kanssa
+q3g      Pidän tilastotieteestä
+q3h      Tilastotiede pelottaa minua
+q3i      Luotan matemaattisiin taitoihini
+q3j      Tilastotiede on hyödyksi tulevissa opinnoissani
+ika      itse ilmoitettu ikä vuosina
+sukup    sukupuoli (N=nainen, M=mies)
+pituus   pituus (cm)
+kenka    kengännumero
+kasi     kätisyys (O=oikeakätinen, V=vasenkätinen)
+koneon   kannettava tietokone (O=on, E=ei)
+kone     mikä näistä (M=Mac, W=Windows, L=Linux)
+opalku   yliopisto-opintojen aloitusvuosi (esim. 14=2014, 95=1995)
+kurssit  monelleko kurssille ilm. periodissa 1
+osa1h    montako h ajatellut käyttää osan 1 opiskeluun
+toita    opiskelun ohessa töitä (T=teen, E=en)
+optyo    haittaako/tukeeko opiskelua (H=haittaa,T=tukee,S=H+T)
+tahti    miten usein töitä (S=satunnaisesti,N=säännöllisesti)
+tyovko   töitä tunteina viikossa (vapaamuotoinen)
+
+Mittareiden taustaa:
+
+Mittarit 1 ja 2 vastaavat osia A ja C ASSIST-lomakkeessa
+(Approaches and Study Skills Inventory for Students)
+http://www.etl.tla.ed.ac.uk/publications.html#measurement
+ja 3:n pohjana on SATS (Survey of Attitudes Toward Statistics)
+http://www.evaluationandstatistics.com/
+
+Tutkimuksessa keskeisimmällä sijalla ollut mittari (ASSIST B)
+puuttuu datasta, koska se sisältyi vasta vaiheisiin 2 ja 3,
+jotka kerättiin myöhemmin e-lomakkeilla. Alkuperäisen mittarin
+(52 osiota) sijaan tutkimuksessa käytettiin tutkimusryhmän
+aiemmin lyhentämää versiota, johon kuului vain 32 osiota.
+
+Mittarien 1-3 suomennokset: Kimmo Vehkalahti ja Liisa Myyry.
+Taustoista osa on muiden maiden kanssa yhteisiä, osa omia.
+Kengännumero yms. on kerätty tarkoituksella opetuskäyttöön.
+
+JYTOPKYS-data.txt sisältää kaikkien 262 vastaajan tiedot.
+Opiskelijanumero on korvattu anonyymilla tunnisteella (id)
+ja tieto pääaineesta on jätetty pois. Suurin osa vastaajista
+oli Helsingin yliopiston valtiotieteellisestä tiedekunnasta.
+Puuttuvat tiedot on merkitty koodilla "NA" (Not Applicable).
+
+Aineisto tulee vapaaseen opetuskäyttöön syksyn 2016 kurssilla.
+
+--------------------------------------------------------------
+
+Summamuuttujien muodostamissäännöt (mittarit: A=1, C=2, D=3)
+in English (see the web links above for more information):
+
+Aa + Ac + Ad
+Learning as Reproducing
+Ab + Ae + Af
+Learning as Transforming
+
+(B: omitted from here)
+
+Ca + Cd + Ce + Ch
+Transmitting information (related to a surface approach)
+Cb + Cc + Cf + Cg
+Supporting understanding (related to a deep approach)
+
+OBS! Below, Df and Dh must be reversed first!
+
+Da + Df (REV!)
+Confidence in doing statistics
+Db + Dj
+Value of statistics
+Dc + De
+Interest in statistics
+Dd + Di
+Confidence in doing math
+Dg + Dh (REV!)
+Affect toward statistics
+Da + Db + Dc + Dd + De + Df (REV!) + Dg + Dh (REV!) + Di + Dj
+Global attitude toward statistics
+
+
