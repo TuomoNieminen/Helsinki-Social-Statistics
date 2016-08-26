@@ -5,47 +5,47 @@ Kurssi: Johdatus yhteiskuntatilastotieteeseen, syksy 2014,
 opetusta ja oppimista koskeva kyselytutkimus, joka tehtiin
 Opettajien akatemian mahdollistamana kv tutkimusprojektina.
 
-Muuttujien nimet ja lyhyet kuvaukset (ks. myˆs lomake):
+Muuttujien nimet ja lyhyet kuvaukset (ks. my√∂s lomake):
 
-id       yksik‰sitteinen tunniste (juokseva numero)
-q1a      varmistamista, ett‰ muistaa asiat hyvin
-q1b      kehittymist‰ ihmisen‰
+id       yksik√§sitteinen tunniste (juokseva numero)
+q1a      varmistamista, ett√§ muistaa asiat hyvin
+q1b      kehittymist√§ ihmisen√§
 q1c      tiedon rakentelua tosiasioiden pohjalta
-q1d      kyky‰ k‰ytt‰‰ omaksuttua tietoa
-q1e      uusien asioiden ja tietojen ymm‰rt‰mist‰
-q1f      uusien merkitysten n‰kemist‰ asioissa
-q2a      L:kertovat tarkasti, mit‰ muistiinpanoja on syyt‰ tehd‰
+q1d      kyky√§ k√§ytt√§√§ omaksuttua tietoa
+q1e      uusien asioiden ja tietojen ymm√§rt√§mist√§
+q1f      uusien merkitysten n√§kemist√§ asioissa
+q2a      L:kertovat tarkasti, mit√§ muistiinpanoja on syyt√§ tehd√§
 q2b      L:rohkaisevat ajattelemaan ja tuovat esiin omaa ajatteluaan
-q2c      T:opiskelija voi n‰ytt‰‰ perehtyneens‰ oppimateriaaleihin
-q2d      T:luentomuistiinpanot riitt‰v‰t tentin l‰p‰isemiseen
-q2e      K:osoitetaan hyvin selv‰sti, mitk‰ kirjat pit‰‰ lukea
-q2f      K:kannustetaan lukemaan runsaasti aiheesta itsen‰isesti
-q2g      k:haastavat ja selitt‰v‰t asioita laajemmin kuin luennot
-q2h      k:sis‰lt‰v‰t t‰sm‰llisi‰ faktoja ja helposti opittavia tietoja
-q3a      Koen osaavani tilastotiedett‰
-q3b      Tilastotieteest‰ tulee olemaan hyˆty‰ tyˆel‰m‰ss‰
-q3c      Olen kiinnostunut ymm‰rt‰m‰‰n tilastotiedett‰
-q3d      P‰rj‰sin hyvin koulun matematiikassa
-q3e      Olen kiinnostunut oppimaan tilastotiedett‰
-q3f      Koen ep‰varmuutta tilastotieteen teht‰vien kanssa
-q3g      Pid‰n tilastotieteest‰
+q2c      T:opiskelija voi n√§ytt√§√§ perehtyneens√§ oppimateriaaleihin
+q2d      T:luentomuistiinpanot riitt√§v√§t tentin l√§p√§isemiseen
+q2e      K:osoitetaan hyvin selv√§sti, mitk√§ kirjat pit√§√§ lukea
+q2f      K:kannustetaan lukemaan runsaasti aiheesta itsen√§isesti
+q2g      k:haastavat ja selitt√§v√§t asioita laajemmin kuin luennot
+q2h      k:sis√§lt√§v√§t t√§sm√§llisi√§ faktoja ja helposti opittavia tietoja
+q3a      Koen osaavani tilastotiedett√§
+q3b      Tilastotieteest√§ tulee olemaan hy√∂ty√§ ty√∂el√§m√§ss√§
+q3c      Olen kiinnostunut ymm√§rt√§m√§√§n tilastotiedett√§
+q3d      P√§rj√§sin hyvin koulun matematiikassa
+q3e      Olen kiinnostunut oppimaan tilastotiedett√§
+q3f      Koen ep√§varmuutta tilastotieteen teht√§vien kanssa
+q3g      Pid√§n tilastotieteest√§
 q3h      Tilastotiede pelottaa minua
 q3i      Luotan matemaattisiin taitoihini
-q3j      Tilastotiede on hyˆdyksi tulevissa opinnoissani
-ika      itse ilmoitettu ik‰ vuosina
+q3j      Tilastotiede on hy√∂dyksi tulevissa opinnoissani
+ika      itse ilmoitettu ik√§ vuosina
 sukup    sukupuoli (N=nainen, M=mies)
 pituus   pituus (cm)
-kenka    keng‰nnumero
-kasi     k‰tisyys (O=oikeak‰tinen, V=vasenk‰tinen)
+kenka    keng√§nnumero
+kasi     k√§tisyys (O=oikeak√§tinen, V=vasenk√§tinen)
 koneon   kannettava tietokone (O=on, E=ei)
-kone     mik‰ n‰ist‰ (M=Mac, W=Windows, L=Linux)
+kone     mik√§ n√§ist√§ (M=Mac, W=Windows, L=Linux)
 opalku   yliopisto-opintojen aloitusvuosi (esim. 14=2014, 95=1995)
 kurssit  monelleko kurssille ilm. periodissa 1
-osa1h    montako h ajatellut k‰ytt‰‰ osan 1 opiskeluun
-toita    opiskelun ohessa tˆit‰ (T=teen, E=en)
+osa1h    montako h ajatellut k√§ytt√§√§ osan 1 opiskeluun
+toita    opiskelun ohessa t√∂it√§ (T=teen, E=en)
 optyo    haittaako/tukeeko opiskelua (H=haittaa,T=tukee,S=H+T)
-tahti    miten usein tˆit‰ (S=satunnaisesti,N=s‰‰nnˆllisesti)
-tyovko   tˆit‰ tunteina viikossa (vapaamuotoinen)
+tahti    miten usein t√∂it√§ (S=satunnaisesti,N=s√§√§nn√∂llisesti)
+tyovko   t√∂it√§ tunteina viikossa (vapaamuotoinen)
 
 Mittareiden taustaa:
 
@@ -55,27 +55,27 @@ http://www.etl.tla.ed.ac.uk/publications.html#measurement
 ja 3:n pohjana on SATS (Survey of Attitudes Toward Statistics)
 http://www.evaluationandstatistics.com/
 
-Tutkimuksessa keskeisimm‰ll‰ sijalla ollut mittari (ASSIST B)
-puuttuu datasta, koska se sis‰ltyi vasta vaiheisiin 2 ja 3,
-jotka ker‰ttiin myˆhemmin e-lomakkeilla. Alkuper‰isen mittarin
-(52 osiota) sijaan tutkimuksessa k‰ytettiin tutkimusryhm‰n
-aiemmin lyhent‰m‰‰ versiota, johon kuului vain 32 osiota.
+Tutkimuksessa keskeisimm√§ll√§ sijalla ollut mittari (ASSIST B)
+puuttuu datasta, koska se sis√§ltyi vasta vaiheisiin 2 ja 3,
+jotka ker√§ttiin my√∂hemmin e-lomakkeilla. Alkuper√§isen mittarin
+(52 osiota) sijaan tutkimuksessa k√§ytettiin tutkimusryhm√§n
+aiemmin lyhent√§m√§√§ versiota, johon kuului vain 32 osiota.
 
 Mittarien 1-3 suomennokset: Kimmo Vehkalahti ja Liisa Myyry.
-Taustoista osa on muiden maiden kanssa yhteisi‰, osa omia.
-Keng‰nnumero yms. on ker‰tty tarkoituksella opetusk‰yttˆˆn.
+Taustoista osa on muiden maiden kanssa yhteisi√§, osa omia.
+Keng√§nnumero yms. on ker√§tty tarkoituksella opetusk√§ytt√∂√∂n.
 
-JYTOPKYS-data.txt sis‰lt‰‰ kaikkien 262 vastaajan tiedot.
+JYTOPKYS-data.txt sis√§lt√§√§ kaikkien 262 vastaajan tiedot.
 Opiskelijanumero on korvattu anonyymilla tunnisteella (id)
-ja tieto p‰‰aineesta on j‰tetty pois. Suurin osa vastaajista
-oli Helsingin yliopiston valtiotieteellisest‰ tiedekunnasta.
+ja tieto p√§√§aineesta on j√§tetty pois. Suurin osa vastaajista
+oli Helsingin yliopiston valtiotieteellisest√§ tiedekunnasta.
 Puuttuvat tiedot on merkitty koodilla "NA" (Not Applicable).
 
-Aineisto tulee vapaaseen opetusk‰yttˆˆn syksyn 2016 kurssilla.
+Aineisto tulee vapaaseen opetusk√§ytt√∂√∂n syksyn 2016 kurssilla.
 
 --------------------------------------------------------------
 
-Summamuuttujien muodostamiss‰‰nnˆt (mittarit: A=1, C=2, D=3)
+Summamuuttujien muodostamiss√§√§nn√∂t (mittarit: A=1, C=2, D=3)
 in English (see the web links above for more information):
 
 Aa + Ac + Ad
