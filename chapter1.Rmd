@@ -16,11 +16,24 @@ Researchers and experts often use programming to visualize and explore data and 
 *** =pre_exercise_code
 ```{r}
 # pre exercise code here
+data_url <- "https://raw.githubusercontent.com/TuomoNieminen/Helsinki-Social-Statistics/master/data/JYTOPKYS-data.txt"
+JYT <- read.table(data_url, sep="\t", header=TRUE)
+with(JYT, 
+     plot(kenka, pituus, col = sukup))
 ```
 
 *** =sample_code
 ```{r}
-# Insert a motivating example (graph) here.  Could be a scatterplot with for example sex or some other simple factor separated by color.
+# This is a very simple showing some of the power of R.
+
+# Load a dataset of 2014 JYT course students from the web and store the data by creating an object named 'JYT'.
+data_url <- "https://raw.githubusercontent.com/TuomoNieminen/Helsinki-Social-Statistics/master/data/JYTOPKYS-data.txt"
+JYT <- read.table(data_url, sep="\t", header=TRUE)
+
+# Plot shoesize versus hight using functions with() and plot(). Indicate sex by color using the col argument of plot().
+with(JYT, 
+     plot(x = kenka, y = pituus, col = sukup))
+
 ```
 
 *** =solution
@@ -32,16 +45,7 @@ Researchers and experts often use programming to visualize and explore data and 
 ```{r}
 # submission correctness tests
 
-# example tests:
-# test_output_contains("output")
-# test_object("object_name")
-# test_function("function_name", args=c("arg1"))
-
-# test if the students code produces an error
-test_error()
-
-# Final message the student will see upon completing the exercise
-success_msg("Good work!")
+success_msg("Ok, let's get started! Move on to the first exercise.")
 
 ```
 
@@ -342,5 +346,43 @@ test_object("ans")
 test_error()
 
 success_msg("Great job! Now let's use some real functions!")
+
+```
+
+--- type:MultipleChoiceExercise lang:r xp:100 skills:1
+
+## Meet the data
+
+In future exercises, we will be doing some data science using a dataset that was collected from the students of this course in 2014. 
+
+The students filled out [this short questionnaire]("https://github.com/TuomoNieminen/Helsinki-Social-Statistics/blob/master/data/ASSIST-2014-FI-0-20140903.pdf"). Please go ahead and read both pages of the pdf in the above link and then come back and answer the question below.
+
+How many numbered sections does the questionnaire have?
+
+*** =instructions
+- two
+- four
+- seven
+- fourteen
+
+*** =hint
+- if the link does not work, the url is:  https://github.com/TuomoNieminen/Helsinki-Social-Statistics/blob/master/data/ASSIST-2014-FI-0-20140903.pdf
+- What is the number of the last section with background questions?
+
+
+*** =pre_exercise_code
+```{r}
+# pre exercise code here
+```
+
+*** =sct
+```{r}
+# submission correctness tests
+msg1 <- msg3 <- msg4 <- "Try again"
+msg2 <- "Yes, correct!"
+test_mc(correct = 2, feedback_msgs = c(msg1, msg2, msg3, msg4))
+
+# Final message the student will see upon completing the exercise
+success_msg("Great work! Next time we'll explore the data :)")
 
 ```
