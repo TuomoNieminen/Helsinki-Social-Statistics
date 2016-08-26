@@ -1,0 +1,338 @@
+---
+title       : R and statistics
+description : Basics of R, the amazing statistical programming language.
+
+--- type:NormalExercise lang:r xp:50 skills:1
+
+## What is R?
+
+R is a programming language designed for statistical analysis. R is completely open source and all analysis done with R are reproduciple and easy to share. R is very flexible and powerful and always includes implementations of the latest research. 
+
+Because of these reasons, R is a very popular language among the scientific community. R is however also widely [used]("http://blog.revolutionanalytics.com/2014/05/companies-using-r-in-2014.html") for data analysis and visualisations by companies such as Google, Facebook, Twitter and Reaktor. R is perfect for data science.
+
+Researchers and experts often use programming to visualize and explore data and implement new methods. The purpose of this course is to expose you to the basics of programming and statistical analysis with R.
+
+
+*** =pre_exercise_code
+```{r}
+# pre exercise code here
+```
+
+*** =sample_code
+```{r}
+# Insert a motivating example (graph) here.  Could be a scatterplot with for example sex or some other simple factor separated by color.
+```
+
+*** =solution
+```{r}
+#solution code here
+```
+
+*** =sct
+```{r}
+# submission correctness tests
+
+# example tests:
+# test_output_contains("output")
+# test_object("object_name")
+# test_function("function_name", args=c("arg1"))
+
+# test if the students code produces an error
+test_error()
+
+# Final message the student will see upon completing the exercise
+success_msg("Good work!")
+
+```
+
+--- type:NormalExercise lang:r xp:100 skills:1
+## Basic tools
+
+On your right you see the R editor area - the script - and below that the R console. The editor area is just a simple text editor where you write R code.
+
+The way to use these two is to first write code to the editor area and then to tell R that you want to execute a line of code by pressing `Ctrl + Enter`. This executes the line where your cursor currently is. Input and output will then appear in the console.
+
+Here at DataCamp you can also execute everything in the editor by pressing 'Submit answer', after which DataCamp will do some magic to check if you have correctly completed the exercise.
+
+Try it!
+  
+*** =instructions
+- Type "Hello world!" in the editor area. Use quotation marks.
+- Press `Ctrl + Enter´ to execute your "Hello world!" - code
+- Click 'Submit answer' when done.
+
+*** =hint
+- Remember to use quotation marks.
+
+
+*** =pre_exercise_code
+```{r}
+# no pec
+```
+
+
+*** =sample_code
+```{r}
+# This is the R editor!
+
+# A hashtag at the beginning of the line defines the line as a comment
+
+# Write code below
+
+
+
+# Below is the R console, where you will see output
+```
+
+*** =solution
+```{r}
+# This is the R editor!
+
+# A hashtag at the beginning of the line defines the line as a comment
+
+# write your code below
+"Hello world!"
+
+
+# Below is the R console, where you will see output
+```
+
+*** =sct
+```{r}
+
+test_student_typed("Hello world!", incorrect_msg="Please type 'Hello world!' in the editor.")
+
+test_error()
+
+# Final message the student will see upon completing the exercise
+success_msg("Great work! You have now executed your first line of code :)")
+
+```
+
+
+--- type:NormalExercise xp:100 skills:1
+## Arithmetics with R
+
+Let's continue with something simple. R can do amazing things like scrape websites and draw beautiful graphics but it can also do basic calculations. Consider the following arithmetic operators:
+
+- Addition: `+`
+- Subtraction: `-`
+- Multiplication: `*`
+- Division: `/`
+- Exponentiation: `^`
+
+The `^` operator raises the number to its left to the power of the number to its right: for example `3^2` is 9. With this knowledge, follow the instructions below to complete the exercise.
+
+*** =instructions
+- Type `2^5` in the editor to calculate 2 to the power 5.
+- Use `Ctrl + Enter` to run the line and/or click 'Submit answer' and have a look at the R output in the console.
+- Note how the `#` symbol is used to add comments.
+
+
+*** =pre_exercise_code
+```{r}
+# no pec
+```
+
+*** =sample_code
+```{r}
+# An addition
+5 + 5 
+
+# A subtraction
+5 - 5 
+
+# A multiplication
+3 * 5
+
+ # A division
+(5 + 5) / 2 
+
+# Exponentiation
+
+
+
+```
+
+*** =solution
+```{r}
+# An addition
+5 + 5
+
+# A subtraction
+5 - 5 
+
+# A multiplication
+3 * 5
+
+ # A division
+(5 + 5) / 2 
+
+# Exponentiation
+2 ^ 5
+
+```
+
+*** =sct
+```{r}
+
+test_output_contains("2^5", incorrect_msg = "The exponentiation example is not correct. Please write `2 ^ 5` on a new line.")
+
+success_msg("Great work! Head over to the next exercise.")
+```
+
+--- type:NormalExercise lang:r xp:100 skills:1
+## Objects
+
+Here's where things start to get interesting. In R you can create and operate on things called *objects*. 
+An object is something that can store information such as numerical values and names. Once an object is created, it will be stored in memory and the information it contains will be available to you later.
+
+Objects are created using the assign operator: `<-`. The value of an object can be printed by typing it's name.
+
+
+*** =instructions
+- Execute the lines that create and operate on `my_hello_object` and `my_numeric_object`.
+- Assign your name or nickname to `my_name`. Use quotation marks.
+- Assign a positive message to yourself to `my_message`. Use quotation marks.
+- Click 'Submit answer'.
+
+*** =hint
+- Remember that `Ctrl + Enter` executes a single row.
+
+*** =pre_exercise_code
+```{r}
+# no pec
+```
+
+
+*** =sample_code
+```{r}
+
+# Create an object
+my_hello_object <- "Hi there!"
+
+# Print the contents of the object
+my_hello_object
+
+# Create another object
+my_numeric_object <- 5 + 5
+
+# Do further calculations with the object
+my_numeric_object / 5
+
+# Override the value of an object by assigning a new value to it
+my_hello_object <- my_numeric_object
+my_hello_object
+
+# Create objects my_name and my_message here. Use quotation marks.
+my_name <- 
+my_message <- 
+
+```
+
+*** =solution
+```{r}
+
+# Create an object
+my_hello_object <- "Hi there!"
+
+# Print the contents of the object
+my_hello_object
+
+# Create another object
+my_numeric_object <- 5 + 5
+
+# Do further calculations with the object
+my_numeric_object / 5
+
+# Override the value of an object by assigning a new value to it
+my_hello_object <- my_numeric_object
+my_hello_object
+
+# Create objects my_name and my_message here. Use quotation marks.
+my_name <- "Tuomo"
+my_message <- "You are awsome!"
+
+```
+
+*** =sct
+```{r}
+
+test_object("my_name", eval = F, incorrect_msg = "Did you assign your name to `my_name`?")
+
+test_object("my_message", eval = F, incorrect_msg = "Did you assign a message to `my_message`?")
+
+test_error()
+
+success_msg(paste0("Great job ", my_name, ". ", my_message, "!"))
+
+```
+
+--- type:NormalExercise lang:r xp:150 skills:1
+## Functions and arguments
+
+In R you operate on objects using *functions*. A function is a special kind of object that can be *called* by typing it's name and giving it the necessary *arguments* inside parenthesis. This is how you're actually going to do all the magic.
+
+During this course you will operate on ready-made functions, but for clarity we will look at the definition of a simple function.
+
+
+*** =instructions
+- Study the definition of the add_k() function.
+- Execute the function calls that are defined.
+- Create object 'ans' by directly assigning the output of add_k() to it. Call add_k() with value = 10 and k = 5.
+
+*** =hint
+- The answer is of the form: `ans <- add_k(arguments here)`
+
+*** =pre_exercise_code
+```{r}
+add_k <- function(value, k = 5) {
+  newvalue <- value + k
+  newvalue
+  }
+```
+
+
+*** =sample_code
+```{r}
+
+# Below is a definition of a function: add_k(). It is a simple function with two arguments 'value' and 'k', one of which has a default value.
+add_k <- function(value, k = 5) {
+  newvalue <- value + k
+  newvalue
+  }
+
+# Call the add_k function twice.
+add_k(value = 5)
+add_k(value = 5, k = -4)
+
+# If you give the arguments in the right order, you don't have to state which is which.
+add_k(5, -4) # is equivalent to
+add_k(k = -4, value = 5)
+
+# Call add_k() to create the object 'ans'.
+ans <- 
+
+```
+
+*** =solution
+```{r}
+
+# Call add_k() to create the object 'ans'.
+ans <- add_k(value = 10)
+
+```
+
+*** =sct
+```{r}
+
+# tests
+
+test_function("add_k",args=c("value","k"))
+test_object("ans")
+
+test_error()
+
+success_msg("Great job! Now let's use some real functions!")
+
+```
