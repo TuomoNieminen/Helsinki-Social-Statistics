@@ -1,7 +1,8 @@
 title            : Helsinki Social Statistics
 instructors      :
- - tuomo.a.nieminen@gmail.com
-description      : This is an automatically generated demo course which will help you on your way to create an awesome DataCamp course.
-university       : DataCamp
+ - tuomo.a.nieminen@helsinki.fi
+ - emma.kamarainen@helsinki.fi
+description      : This is a data science module for the University of Helsinki statistics MOOC.
+university       : University of Helsinki
 difficulty_level : 2
-time_needed      : 1 hour
+time_needed      : 12 hours
