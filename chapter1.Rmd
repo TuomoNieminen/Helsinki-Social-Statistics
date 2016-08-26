@@ -2,7 +2,7 @@
 title       : R and statistics
 description : Basics of R, the amazing statistical programming language.
 
---- type:NormalExercise lang:r xp:50 skills:1
+--- type:NormalExercise lang:r xp:50 skills:1 key:168121d0f0
 
 ## What is R?
 
@@ -45,7 +45,7 @@ success_msg("Good work!")
 
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1
+--- type:NormalExercise lang:r xp:100 skills:1 key:35ad6c43ec
 ## Basic tools
 
 On your right you see the R editor area - the script - and below that the R console. The editor area is just a simple text editor where you write R code.
@@ -110,7 +110,7 @@ success_msg("Great work! You have now executed your first line of code :)")
 ```
 
 
---- type:NormalExercise lang:r xp:100 skills:1
+--- type:NormalExercise lang:r xp:100 skills:1 key:b0a54af3ff
 ## Arithmetics with R
 
 Let's continue with something simple. R can do amazing things like scrape websites and draw beautiful graphics but it can also do basic calculations. Consider the following arithmetic operators:
@@ -181,7 +181,7 @@ test_output_contains("2^5", incorrect_msg = "The exponentiation example is not c
 success_msg("Great work! Head over to the next exercise.")
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1
+--- type:NormalExercise lang:r xp:100 skills:1 key:856fab934f
 ## Objects
 
 Here's where things start to get interesting. In R you can create and operate on things called *objects*. 
@@ -268,7 +268,7 @@ success_msg(paste0("Great job ", my_name, ". ", my_message, "!"))
 
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1
+--- type:NormalExercise lang:r xp:100 skills:1 key:b81cdce659
 ## Functions and arguments
 
 In R you operate on objects using *functions*. A function is a special kind of object that can be *called* by typing it's name and giving it the necessary *arguments* inside parenthesis. This is how you're actually going to do all the magic.
