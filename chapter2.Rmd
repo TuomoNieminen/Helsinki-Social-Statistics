@@ -1,0 +1,215 @@
+---
+title       : R data and variable types
+description : Quick overview to R data and variable types.
+
+--- type:NormalExercise lang:r xp:100 skills:1
+## Data types in R (1)
+
+There are different data types in R. The most commonly used are
+- Numbers and decimal values are called numeric
+- Text or character values are called characters
+- Boolean values (`TRUE` or `FALSE`) are called logical
+
+*** =instructions
+- Create character object `my_initials` by assigning your initials in it.
+- Assign the number 10.5 in `my_numeric_object`. Note that the decimal separator in R is dot instead of comma. 
+- Create the object `my_boolean` by executing the line. Note that when creating boolean values, no quotation marks are needed.
+- Change the value of `my_boolean` to `TRUE`
+- str()?
+
+*** =hint
+- When creating a character object, remember to use quotation marks.
+- Dot is the decimal mark in R:  `2.5` is decimal number but `2,5` means a different thing!
+- Remember that `Ctrl + Enter` executes a single row.
+
+*** =pre_exercise_code
+```{r}
+```
+
+*** =sample_code
+```{r}
+# Create objects with different data types
+my_initials<-
+my_numeric_object<-
+my_boolean<-FALSE
+
+# Change the value of my_boolean to TRUE
+
+
+```
+
+*** =solution
+```{r}
+# Create objects with different data types
+my_initials<-"E.K."
+my_numeric_object<-10.5
+my_boolean<-FALSE
+
+# Change the value of my_boolean
+my_boolean<-TRUE
+```
+
+*** =sct
+```{r}
+test_student_typed("my_boolean<-TRUE", not_typed_msg="Something is not quite right with my_boolean")
+test_object("my_initials")
+test_student_typed("my_numeric_object<-10.5", not_typed_msg="Object my_numeric is incorrect")
+
+# test if the students code produces an error
+test_error()
+
+# Final message the student will see upon completing the exercise
+success_msg("Good work!")
+
+```
+
+--- type:NormalExercise lang:r xp:100 skills:1
+## Data types in R (2)
+
+- Factors and `cut()`
+
+*** =instructions
+- 
+
+*** =hint
+- 
+
+*** =pre_exercise_code
+```{r}
+```
+
+*** =sample_code
+```{r}
+```
+
+*** =solution
+```{r}
+```
+
+*** =sct
+```{r}
+# test if the students code produces an error
+test_error()
+
+# Final message the student will see upon completing the exercise
+success_msg("Good work!")
+
+```
+
+--- type:NormalExercise lang:r xp:100 skills:1
+## Data frames
+
+The most common object to operate on is the `data frame` object, which stores data in tabular form.
+
+In R, the basic idea is to use *functions* to operate on objects. Here you will get to apply some functions that are helpful for inspecting data: `head()` and `str()`.
+
+*** =instructions
+- Execute the function `head()` and see the results
+- Inspect the data types in the `JYT` data with the function `str()`
+
+*** =hint
+- The data is stored in object `JYT`
+
+*** =pre_exercise_code
+```{r}
+source("functions.R")
+JYT<-getdata()
+```
+
+*** =sample_code
+```{r}
+# Let's view the first 6 students from the course participants data
+head(JYT)
+
+# View the data types in the JYT data
+
+
+```
+
+*** =solution
+```{r}
+# Let's view the first 6 students from the course participants data
+head(JYT)
+
+# View the data types in the JYT data
+str(JYT)
+```
+
+*** =sct
+```{r}
+test_function("head")
+test_function("str")
+
+# test if the students code produces an error
+test_error()
+
+# Final message the student will see upon completing the exercise
+success_msg("Good work!")
+
+```
+
+--- type:NormalExercise lang:r xp:100 skills:1
+## Histogram
+
+
+*** =instructions
+- 
+
+*** =hint
+- 
+
+*** =pre_exercise_code
+```{r}
+```
+
+*** =sample_code
+```{r}
+```
+
+*** =solution
+```{r}
+```
+
+*** =sct
+```{r}
+# test if the students code produces an error
+test_error()
+
+# Final message the student will see upon completing the exercise
+success_msg("Good work!")
+
+```
+
+--- type:NormalExercise lang:r xp:100 skills:1
+## Barplot
+
+
+*** =instructions
+- 
+
+*** =hint
+- 
+
+*** =pre_exercise_code
+```{r}
+```
+
+*** =sample_code
+```{r}
+```
+
+*** =solution
+```{r}
+```
+
+*** =sct
+```{r}
+# test if the students code produces an error
+test_error()
+
+# Final message the student will see upon completing the exercise
+success_msg("Good work!")
+
+```
+
+
