@@ -268,7 +268,7 @@ success_msg(paste0("Great job ", my_name, ". ", my_message, "!"))
 
 ```
 
---- type:NormalExercise lang:r xp:150 skills:1
+--- type:NormalExercise lang:r xp:100 skills:1
 ## Functions and arguments
 
 In R you operate on objects using *functions*. A function is a special kind of object that can be *called* by typing it's name and giving it the necessary *arguments* inside parenthesis. This is how you're actually going to do all the magic.
