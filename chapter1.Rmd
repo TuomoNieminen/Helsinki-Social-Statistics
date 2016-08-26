@@ -58,7 +58,7 @@ Try it!
   
 *** =instructions
 - Type "Hello world!" in the editor area. Use quotation marks.
-- Press `Ctrl + Enter´ to execute your "Hello world!" - code
+- Press `Ctrl + Enter` to execute your "Hello world!" - code
 - Click 'Submit answer' when done.
 
 *** =hint
@@ -100,7 +100,7 @@ Try it!
 *** =sct
 ```{r}
 
-test_student_typed("Hello world!", incorrect_msg="Please type 'Hello world!' in the editor.")
+test_student_typed("Hello world!", not_typed_msg="Please type 'Hello world!' in the editor.")
 
 test_error()
 
@@ -110,7 +110,7 @@ success_msg("Great work! You have now executed your first line of code :)")
 ```
 
 
---- type:NormalExercise xp:100 skills:1
+--- type:NormalExercise lang:r xp:100 skills:1
 ## Arithmetics with R
 
 Let's continue with something simple. R can do amazing things like scrape websites and draw beautiful graphics but it can also do basic calculations. Consider the following arithmetic operators:
@@ -302,7 +302,7 @@ add_k <- function(value, k = 5) {
   newvalue
   }
 
-# Call the add_k function twice.
+# Call the add_k() function twice.
 add_k(value = 5)
 add_k(value = 5, k = -4)
 
@@ -317,6 +317,14 @@ ans <-
 
 *** =solution
 ```{r}
+
+# Call the add_k() function twice.
+add_k(value = 5)
+add_k(value = 5, k = -4)
+
+# If you give the arguments in the right order, you don't have to state which is which.
+add_k(5, -4) # is equivalent to
+add_k(k = -4, value = 5)
 
 # Call add_k() to create the object 'ans'.
 ans <- add_k(value = 10)
