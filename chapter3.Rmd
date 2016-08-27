@@ -1,0 +1,303 @@
+---
+title       : Describing and exploring variability
+description : Variability is at the heart of statistics. In fact, without it the discipline would seize to exist. R offers great tools for exploring the variability in your data.
+
+--- type:NormalExercise lang:r xp:100 skills:1, 3
+## summary() statistics
+
+Some functions in R are very generic. They can take different objects as their first argument and they seem to magically do exactly what you'd hope they do in all situations.
+
+One such example is the `summary()` function.
+
+*** =instructions
+- Execute the code that creates a summary of the `variable` in `df`
+- Then create a summary of `df`
+- `summary()` behaves differently because `variable` and `df` are different kinds of objects.
+
+*** =hint
+- Get the summary of an object by typing summary(object)
+
+*** =pre_exercise_code
+```{r}
+# pec
+```
+
+
+*** =sample_code
+```{r}
+
+# Create a summary of var
+summary(df$var)
+
+# Create a summary of df
+
+
+
+```
+
+*** =solution
+```{r}
+
+# Create a summary of var in df
+summary(df$var)
+
+# Create a summary of df
+summary(df)
+
+
+```
+
+*** =sct
+```{r}
+# tests. 
+test_output_contains("summary(df)", incorrect_msg="Please type in the code to create a summary of `df`")
+
+test_error()
+success_msg("Great job!")
+```
+
+--- type:NormalExercise lang:r xp:100 skills:1
+
+## Help!
+
+How to use help() and ? (and str() )
+
+*** =instructions
+- instruction 1
+- instruction 2
+
+*** =hint
+- hint 1
+- hint 2
+
+
+*** =pre_exercise_code
+```{r}
+# pre exercise code here
+```
+
+*** =sample_code
+```{r}
+# sample code here
+```
+
+*** =solution
+```{r}
+#solution code here
+```
+
+*** =sct
+```{r}
+# submission correctness tests
+
+# example tests:
+# test_output_contains("output")
+# test_object("object_name")
+# test_function("function_name", args=c("arg1"))
+
+# test if the students code produces an error
+test_error()
+
+# Final message the student will see upon completing the exercise
+success_msg("Good work!")
+
+```
+
+
+--- type:NormalExercise lang:r xp:100 skills:1
+
+## Bar plots
+
+Bar plots are useful for visualizing qualitative variables, which in R are usually stored as character-, factor- or boolean data types.
+
+In base R graphics, the function `barplot()` can be used to draw a bar plot. It's first argument is `height` which is the only mandatory argument. The information for `height` can be computed easily by creating a `summary()` or a `table()` of a factor.
+
+In this exercise you will draw a barplot of `variable` in the data frame `df`. You can use `str()` to see the structure of `df`.
+
+*** =instructions
+- Remind yourself on how to access the column of a data frame and how to create objects.
+- Use `table()` on `variable` in the data frame `df`. What does it show you?
+- Create an object `counts` by assigning the output of `table()` or `summary()` to it.
+- Use the function `barplot()` to draw a bar plot. Use the object you created as the first argument.
+
+*** =hint
+- You can access the columns of a data.frame (df) with the `$` operator: `df$column`.
+- Remember how to create objects using the assign operator `<-`: `object_name <- function()`
+
+
+*** =pre_exercise_code
+```{r}
+# pec
+```
+
+
+*** =sample_code
+```{r}
+# Look at the counts of different levels.
+table(df)
+
+
+# Create object counts that stores the counts
+counts <- NULL
+
+
+# Call barplot() to draw a graph. Use the object you created as an argument.
+
+  
+```
+
+*** =solution
+```{r}
+# Look at the counts of different levels.
+table()
+
+
+# Create object counts that stores the counts
+counts <- table()
+
+
+# Call barplot() to draw a graph. Use the object you created as an argument.
+barplot(counts)
+
+
+
+```
+
+*** =sct
+```{r}
+
+test_function("barplot", args="height")
+
+# test error
+test_error()
+
+# Final message the student will see upon completing the exercise
+success_msg("Excellent work!")
+
+```
+
+--- type:NormalExercise lang:r xp:100 skills:1
+
+## Histograms
+
+Histograms are an excellent way of visualizing the variability of a continuous quantitative variable. Basic histograms can be drawn with the `hist()` function. The first argument of `hist()`, `x` should be a numeric vector of data values.
+
+As with all the plotting functions in R, the `hist()` function can take on many additional arguments which allow for more control over the plot. One simple argument is `col`, which defines the color of the bars.
+
+`col` can be a character string giving the name of the color ("blue", "green", etc). Some possible color names can be found <a target="_blank" href="http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf">here</a> The `breaks` argument can be used to control the approximate number of bins in the histogram.
+
+*** =instructions
+- Create a histogram of 
+- Adjust your code and draw the histogram again using `breaks = 12`.
+- Adjust your code and give your histogram a nice color using the `col` argument. Use quotations marks to define the color name.
+
+
+*** =hint
+- You can access the column of a data frame (df) with the `$` symbol: `df$column_name`.
+- Remember to seperate the arguments of a function with a comma.
+
+
+*** =pre_exercise_code
+```{r}
+# pec
+```
+
+
+*** =sample_code
+```{r}
+
+
+# Draw a histogram of var. Use the additional arguments breaks and col.
+
+histogram(var, col = NULL)
+
+
+
+
+```
+
+*** =solution
+```{r}
+# Draw a histogram of Income in US. Use the additional arguments breaks and col.
+hist(var, breaks = 12, col ="blue")
+
+
+```
+
+*** =sct
+```{r}
+
+test_function("hist", args=c("x","breaks"))
+
+# test error
+test_error()
+
+
+# Final message the student will see upon completing the exercise
+success_msg("Good work!")
+
+```
+
+
+--- type:NormalExercise lang:r xp:150 skills:1
+
+## Box plots
+
+One very good way to visualize the most important summary statistics of a variable is by drawing box plots. A box plot visualizes the 25th, 50th and 75th percentiles (the box), the typical range (the whiskers) and the outliers (the dots) of a variable 
+
+The whiskers extending from the box can be computed by several techniques. The default in R is to extend them to reach to a data point that is no more than 1.5*IQR away from the box, where IQR is the inter quartile range defined as  
+
+`IQR = 75th percentile - 25th percentile`  
+
+Values outside the whiskers can be considered as outliers, unusually distant observations. For more information on IQR, see <a target="_blank" href ="https://en.wikipedia.org/wiki/Interquartile_range"> wikipedia</a>
+
+*** =instructions
+- Draw a `boxplot()` of `var`.
+- Use help() or `?` to find out which argument controls the label of the y axis and the main title.
+- Add a suitable label to the y axis and a main title of your choice.
+
+*** =hint
+- hint1
+
+*** =pre_exercise_code
+```{r}
+# pec
+```
+
+
+*** =sample_code
+```{r}
+# data frame is available
+
+# See the help page of boxplot()
+?boxplot
+
+# Draw a boxplot of var. Add a y axis label and a main title.
+
+
+
+```
+
+*** =solution
+```{r}
+# Draw a boxplot of var. Add a y axis label and a main title.
+boxplot(var, ylab = "", main = "")
+
+
+```
+
+*** =sct
+```{r}
+
+
+test_function("boxplot", args="x")
+
+# test error
+test_error()
+
+
+# Final message the student will see upon completing the exercise
+success_msg("Awsome work!")
+
+```
+
