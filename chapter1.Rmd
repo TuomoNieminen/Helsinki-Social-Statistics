@@ -3,7 +3,6 @@ title       : R and statistics
 description : Basics of R, the amazing statistical programming language.
 
 --- type:NormalExercise lang:r xp:50 skills:1 key:168121d0f0
-
 ## What is R?
 
 R is a programming language designed for statistical analysis. R is completely open source and all analysis done with R are reproduciple and easy to share. R is very flexible and powerful and always includes implementations of the latest research. 
@@ -22,9 +21,9 @@ Researchers and experts often use programming to visualize and explore data and 
 *** =pre_exercise_code
 ```{r}
 # pre exercise code here
-data_url <- "https://raw.githubusercontent.com/TuomoNieminen/Helsinki-Social-Statistics/master/data/JYTOPKYS-data.txt"
-JYT <- read.table(data_url, sep="\t", header=TRUE)
-with(JYT, 
+data_url <- "http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS-data.txt"
+students2014 <- read.table(data_url, sep="\t", header=TRUE)
+with(students2014, 
      plot(kenka, pituus, col = sukup))
 ```
 
@@ -32,12 +31,12 @@ with(JYT,
 ```{r}
 # Below is a very simple example showing some of the power of R.
 
-# Load students 2014 questionnaire data from the web using the function read.table(). Store the data in the object 'JYT'.
-data_url <- "https://raw.githubusercontent.com/TuomoNieminen/Helsinki-Social-Statistics/master/data/JYTOPKYS-data.txt"
-JYT <- read.table(data_url, sep = "\t", header = TRUE)
+# Load data from the web using the function read.table(). Store the data in the object 'students2014'.
+data_url <- "http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS-data.txt"
+students2014 <- read.table(data_url, sep = "\t", header = TRUE)
 
-# Draw a graph of student shoesize versus hight using the function plot(). Indicate sex by color by using the 'col' argument of plot().
-with(JYT, 
+# Draw a graph of shoesize versus hight using the function plot(). Indicate sex by color by using the 'col' argument of plot().
+with(students2014, 
      plot(x = kenka, y = pituus, col = sukup))
 
 ```
@@ -49,10 +48,7 @@ with(JYT,
 
 *** =sct
 ```{r}
-# submission correctness tests
-
-success_msg("Ok, let's get started! Move on to the first exercise.")
-
+success_msg("Great! Move on to the first exercise.")
 ```
 
 --- type:NormalExercise lang:r xp:100 skills:1 key:35ad6c43ec
@@ -87,7 +83,7 @@ Try it!
 
 # A hashtag at the beginning of the line defines the line as a comment
 
-# Write code below
+# Write your code below
 
 
 
@@ -109,19 +105,15 @@ Try it!
 
 *** =sct
 ```{r}
-
 test_student_typed("Hello world!", not_typed_msg="Please type 'Hello world!' in the editor.")
 
 test_error()
-
-# Final message the student will see upon completing the exercise
 success_msg("Great work! You have now executed your first line of code :)")
-
 ```
 
 
 --- type:NormalExercise lang:r xp:100 skills:1 key:b0a54af3ff
-## Arithmetics with R
+## Arithmetics
 
 Let's continue with something simple. R can do amazing things like scrape websites and draw beautiful graphics but it can also do basic calculations. Consider the following arithmetic operators:
 
@@ -185,7 +177,6 @@ The `^` operator raises the number to its left to the power of the number to its
 
 *** =sct
 ```{r}
-
 test_output_contains("2^5", incorrect_msg = "The exponentiation example is not correct. Please write `2 ^ 5` on a new line.")
 
 success_msg("Great work! Head over to the next exercise.")
@@ -267,29 +258,25 @@ my_message <- "You are awsome!"
 
 *** =sct
 ```{r}
-
 test_object("my_name", eval = F, incorrect_msg = "Did you assign your name to `my_name`?")
-
 test_object("my_message", eval = F, incorrect_msg = "Did you assign a message to `my_message`?")
 
 test_error()
-
 success_msg(paste0("Great job ", my_name, ". ", my_message, "!"))
-
 ```
 
 --- type:NormalExercise lang:r xp:100 skills:1 key:b81cdce659
-## Functions and arguments
+## Functions
 
-In R you operate on objects using *functions*. A function is a special kind of object that can be *called* by typing it's name and giving it the necessary *arguments* inside parenthesis. This is how you're actually going to do all the magic.
+In R you operate on objects using *functions*. A function is a special kind of object that can be *called* by typing it's name and giving it the necessary *arguments* inside parenthesis. When a function is called, it will perform an action using it's arguments and usually output something.  
 
-During this course you will operate on ready-made functions, but for clarity we will look at the definition of a simple function.
+Functions are how you're actually going to do all the magic. During this course you will operate on ready-made functions, but for clarity we will look at the definition of a simple function.
 
 
 *** =instructions
 - Study the definition of the add_k() function.
 - Execute the function calls that are defined.
-- Create object 'ans' by directly assigning the output of add_k() to it. Call add_k() with value = 10 and k = 5.
+- Create object 'ans' by directly assigning the output of add_k() to it. Call add_k() with value = 10 and k = 7.
 
 *** =hint
 - The answer is of the form: `ans <- add_k(arguments and their values here)`
@@ -306,21 +293,21 @@ add_k <- function(value, k = 5) {
 *** =sample_code
 ```{r}
 
-# Create a simple function with two arguments, of which 'k' has a default value.
+# Create a simple function with two arguments, of which 'k' has a default value
 add_k <- function(value, k = 5) {
   newvalue <- value + k
   newvalue
   }
 
-# Call the add_k() function twice.
+# Call the add_k() function twice. Multiple arguments are separated with a comma.
 add_k(value = 5)
 add_k(value = 5, k = -4)
 
-# If you give the arguments in the right order, you don't have to state which is which.
+# If you give the arguments in the right order, you don't have to state which is which
 add_k(5, -4)
 add_k(k = -4, value = 5)
 
-# Call add_k() to create the object 'ans'.
+# Call add_k() to create the object 'ans'
 ans <- 
 
 ```
@@ -328,40 +315,35 @@ ans <-
 *** =solution
 ```{r}
 
-# Call the add_k() function twice.
+# Call the add_k() function twice. Multiple arguments are separated with a comma.
 add_k(value = 5)
 add_k(value = 5, k = -4)
 
-# If you give the arguments in the right order, you don't have to state which is which.
+# If you give the arguments in the right order, you don't have to state which is which
 add_k(5, -4)
 add_k(k = -4, value = 5)
 
-# Call add_k() to create the object 'ans'.
-ans <- add_k(value = 10)
+# Call add_k() to create the object 'ans'
+ans <- add_k(value = 10, k = 7)
 
 ```
 
 *** =sct
 ```{r}
-
-# tests
-
 test_function("add_k",args=c("value","k"))
 test_object("ans")
 
 test_error()
-
 success_msg("Great job!")
-
 ```
 
 --- type:MultipleChoiceExercise lang:r xp:100 skills:1 key:8d2100f40a
 
 ## Meet your data
 
-In future exercises, we will be doing some data science using a dataset that was collected from the students of this course in 2014. 
+In future exercises, we will be doing data science using a dataset that was collected in 2014 from the students of the Faculty of Social Sciences in the University of Helsinki. 
 
-The students filled out [this short questionnaire](https://github.com/TuomoNieminen/Helsinki-Social-Statistics/blob/master/data/ASSIST-2014-FI-0-20140903.pdf). Please go ahead and read both pages of the pdf in the above link and then come back and answer the question below.
+The students filled out [this short questionnaire](http://www.helsinki.fi/~kvehkala/JYTmooc/ASSIST-2014-FI-0-20140903.pdf). Please go ahead and read both pages of the pdf in the above link and then come back and answer the question below.
 
 How many numbered sections does the questionnaire have?
 
@@ -372,8 +354,7 @@ How many numbered sections does the questionnaire have?
 - fourteen
 
 *** =hint
-- if the link does not work, the url is:  https://github.com/TuomoNieminen/Helsinki-Social-Statistics/blob/master/data/ASSIST-2014-FI-0-20140903.pdf
-- What is the number of the last section with background questions?
+- if the link does not work, the url is:  http://www.helsinki.fi/~kvehkala/JYTmooc/ASSIST-2014-FI-0-20140903.pdf
 
 
 *** =pre_exercise_code
@@ -389,6 +370,5 @@ msg2 <- "Yes, correct!"
 test_mc(correct = 2, feedback_msgs = c(msg1, msg2, msg3, msg4))
 
 # Final message the student will see upon completing the exercise
-success_msg("Great work! Next time we'll explore the data :)")
-
+success_msg("Great work! Next time we'll explore data from the questionnaire :)")
 ```
