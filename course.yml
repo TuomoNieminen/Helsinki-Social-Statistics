@@ -1,6 +1,7 @@
 title            : Helsinki Social Statistics
-instructors      :
- - tuomo.a.nieminen@gmail.com + emma.kamarainen@helsinki.fi
+instructors      : 
+  - tuomo.a.nieminen@gmail.com
+  - emma.kamarainen@helsinki.fi
 description      : This is a data science module for the University of Helsinki statistics MOOC.
 university       : University of Helsinki
 difficulty_level : 2
