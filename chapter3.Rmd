@@ -2,7 +2,7 @@
 title       : Describing and exploring variability
 description : Variability is at the heart of statistics. In fact, without it the discipline would seize to exist. R offers great tools for exploring the variability in your data.
 
---- type:NormalExercise lang:r xp:100 skills:1, 3
+--- type:NormalExercise lang:r xp:100 skills:1, 3 key:2978bc79da
 ## summary() statistics
 
 Some functions in R are very generic. They can take different objects as their first argument and they seem to magically do exactly what you'd hope they do in all situations.
@@ -56,7 +56,7 @@ test_error()
 success_msg("Great job!")
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1
+--- type:NormalExercise lang:r xp:100 skills:1 key:b26060ee08
 
 ## Help!
 
@@ -104,7 +104,7 @@ success_msg("Good work!")
 ```
 
 
---- type:NormalExercise lang:r xp:100 skills:1
+--- type:NormalExercise lang:r xp:100 skills:1 key:457280046c
 
 ## Bar plots
 
@@ -176,7 +176,7 @@ success_msg("Excellent work!")
 
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1
+--- type:NormalExercise lang:r xp:100 skills:1 key:82217456fa
 
 ## Histograms
 
@@ -239,7 +239,7 @@ success_msg("Good work!")
 ```
 
 
---- type:NormalExercise lang:r xp:150 skills:1
+--- type:NormalExercise lang:r xp:150 skills:1 key:c3d62c54f5
 
 ## Box plots
 
