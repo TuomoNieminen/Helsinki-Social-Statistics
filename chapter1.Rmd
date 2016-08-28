@@ -338,7 +338,7 @@ success_msg("Nice job!")
 ```
 
 
---- type:NormalExercise lang:r xp:100 skills:1 key:b81cdce659
+--- type:NormalExercise lang:r xp:100 skills:1 key:cecbb6b1e8
 ## Function arguments
 
 During this course you will operate on R's ready-made functions, but for clarity we will look at the definition of a simple function and learn how to use it.
