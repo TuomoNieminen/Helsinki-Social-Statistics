@@ -20,24 +20,29 @@ Researchers and experts often use programming to visualize and explore data and 
 
 *** =pre_exercise_code
 ```{r}
-# pre exercise code here
 data_url <- "http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS-data.txt"
+
 students2014 <- read.table(data_url, sep="\t", header=TRUE)
+
 with(students2014, 
      plot(kenka, pituus, col = sukup))
 ```
 
 *** =sample_code
 ```{r}
-# Below is a very simple example showing some of the power of R.
 
-# Load data from the web using the function read.table(). Store the data in the object 'students2014'.
+# Create a character object saving the data location
 data_url <- "http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS-data.txt"
+
+# Load the data with read.table() function
+# Save the data in the object 'students2014'
 students2014 <- read.table(data_url, sep = "\t", header = TRUE)
 
-# Draw a graph of shoesize versus hight using the function plot(). Indicate sex by color by using the 'col' argument of plot().
+# Draw a graph of shoesize versus hight using plot()
+# Indicate sex by color by using the 'col' argument
 with(students2014, 
      plot(x = kenka, y = pituus, col = sukup))
+
 
 ```
 
