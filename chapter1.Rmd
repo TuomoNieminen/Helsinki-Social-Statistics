@@ -12,10 +12,10 @@ Because of these reasons, R is a very popular language among the scientific comm
 Researchers and experts often use programming to visualize and explore data and implement new methods. The purpose of this course is to expose you to the basics of programming and statistical analysis with R.
 
 *** =instructions
-- Study the code written in script.R, which already has been used to produce the graphic next to it.
-- Notice that it would be very easy to draw the same or similar graph again, by re-using the code.
+- Study the code written in script.R, which already has been used to produce the graphic next to  
 - A hashtag marks a line as a comment. Comments make it easier for others and yourself to understand your code.
-- Press 'Submit Answer' and move to the next exercise.
+- Notice that it would be very easy to draw the same or similar graph again, by re-using the code.
+- When done, press 'Submit Answer' and move on to the next exercise.
 
 
 *** =pre_exercise_code
@@ -63,14 +63,14 @@ On your right you see the R editor area - the script - and below that the R cons
 
 The way to use these two is to first write code to the editor area and then to tell R that you want to execute a line of code by pressing `Ctrl + Enter`. This executes the line where your cursor currently is. Input and output will then appear in the console.
 
-Here at DataCamp you can also execute everything in the editor by pressing 'Submit answer', after which DataCamp will do some magic to check if you have correctly completed the exercise.
+Here at DataCamp you can also execute everything in the editor by pressing 'Submit Answer', after which DataCamp will do some magic to check if you have correctly completed the exercise.
 
 Try it!
   
 *** =instructions
 - Type "Hello world!" in the editor area. Use quotation marks.
 - Press `Ctrl + Enter` to execute your "Hello world!" - code
-- Click 'Submit answer' when done.
+- Click 'Submit Answer' when done.
 
 *** =hint
 - Remember to use quotation marks.
@@ -133,7 +133,7 @@ The `^` operator raises the number to its left to the power of the number to its
 *** =instructions
 - Type `2^5` in the editor to calculate 2 to the power 5.
 - Use `Ctrl + Enter` to run the line and/or click 'Submit answer' and have a look at the R output in the console.
-- When done, click 'Submit answer'.
+- When done, click 'Submit Answer'.
 
 
 *** =pre_exercise_code
@@ -200,7 +200,7 @@ Objects are created using the assign operator: `<-`. The value of an object can 
 - Execute the lines that create and operate on `my_hello_object` and `my_numeric_object`.
 - Assign your name or nickname to `my_name`. Use quotation marks.
 - Assign a positive message to yourself to `my_message`. Use quotation marks.
-- Click 'Submit answer'.
+- Click 'Submit Answer'.
 
 *** =hint
 - Remember that `Ctrl + Enter` executes a single row.
@@ -280,7 +280,7 @@ Functions are how you're actually going to do all the magic.
 *** =instructions
 - Study and execute the examples in the R script.
 - Follow the examples and compute the mean age of students.
-- When done, click 'Submit answer'.
+- When done, click 'Submit Answer'.
 
 *** =hint
 - Use the function `mean()` and the object `student_age` like in the example on line 7 of script.R.
