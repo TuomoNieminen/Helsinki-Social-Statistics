@@ -1,6 +1,6 @@
 ---
-title       : Exploring variability
-description : Variability is at the heart of statistics. In fact, without it the discipline would seize to exist. R offers great tools for exploring the variability in your data.
+title       : Looking at the data
+description : Data are everywhere and everything. That's why Statistics is also called Data Science. R offers great tools for looking at the data, behind the numbers.
 
 --- type:NormalExercise lang:r xp:100 skills:1, 3 key:2978bc79da
 ## summary() statistics

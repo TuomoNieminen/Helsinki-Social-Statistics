@@ -1,6 +1,6 @@
 ---
 title       : R and statistics
-description : Basics of R, the amazing statistical programming language.
+description : Basics of R, the amazing statistical programming language. Do not be afraid of the art of programming!
 
 --- type:NormalExercise lang:r xp:50 skills:1 key:168121d0f0
 ## What is R?
@@ -274,19 +274,16 @@ Functions are how you're actually going to do all the magic. During this course 
 
 
 *** =instructions
-- Study the definition of the add_k() function.
-- Execute the function calls that are defined.
-- Create object 'ans' by directly assigning the output of add_k() to it. Call add_k() with value = 10 and k = 7.
+- Study the definition of the `add_k()` function.
+- Execute the function calls that are defined, starting from line 8.
+- Create object `ans` by directly assigning the output of `add_k()` to it. Call `add_k()` with `value = 10` and `k = 7`.
 
 *** =hint
 - The answer is of the form: `ans <- add_k(arguments and their values here)`
 
 *** =pre_exercise_code
 ```{r}
-add_k <- function(value, k = 5) {
-  newvalue <- value + k
-  newvalue
-  }
+add_k <- function(value, k = 5) return(value + k)
 ```
 
 
@@ -294,10 +291,7 @@ add_k <- function(value, k = 5) {
 ```{r}
 
 # Create a simple function with two arguments, of which 'k' has a default value
-add_k <- function(value, k = 5) {
-  newvalue <- value + k
-  newvalue
-  }
+add_k <- function(value, k = 5) return(value + k)
 
 # Call the add_k() function twice. Multiple arguments are separated with a comma.
 add_k(value = 5)

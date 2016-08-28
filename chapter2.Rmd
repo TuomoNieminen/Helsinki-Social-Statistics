@@ -1,6 +1,6 @@
 ---
-title       : R data and variable types
-description : Quick overview to R data and variable types.
+title       : Data types and variable types
+description : Quick overview to R data and variable types. What are the objects? You are the subject.
 
 --- type:NormalExercise lang:r xp:100 skills:1 key:e4360dcfec
 ## Data types in R (1)
