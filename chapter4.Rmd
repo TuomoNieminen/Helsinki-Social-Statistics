@@ -2,7 +2,7 @@
 title       : Exploring variation and dependence
 description : Variation and dependence are at the heart of Statistics. In fact, without variation the discipline would cease to exist. Correlation is not causation, but why?
 
---- type:NormalExercise lang:r xp:100 skills:1
+--- type:NormalExercise lang:r xp:100 skills:1 key:2e25877df1
 
 ## Exercise 1
 
@@ -49,7 +49,7 @@ success_msg("Good work!")
 
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1
+--- type:NormalExercise lang:r xp:100 skills:1 key:74f8535355
 
 ## Exercise 2
 
@@ -96,7 +96,7 @@ success_msg("Good work!")
 
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1
+--- type:NormalExercise lang:r xp:100 skills:1 key:8a451ced6e
 
 ## Exercise 3
 
@@ -143,7 +143,7 @@ success_msg("Good work!")
 
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1
+--- type:NormalExercise lang:r xp:100 skills:1 key:a8a509dfd2
 
 ## Exercise 4
 
@@ -190,7 +190,7 @@ success_msg("Good work!")
 
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1
+--- type:NormalExercise lang:r xp:100 skills:1 key:d66995b6b4
 
 ## Exercise 5
 
