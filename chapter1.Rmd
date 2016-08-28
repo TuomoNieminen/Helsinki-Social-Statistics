@@ -346,14 +346,14 @@ success_msg("Nice job!")
 --- type:NormalExercise lang:r xp:100 skills:1 key:cecbb6b1e8
 ## Function arguments
 
-During this course you will operate on R's ready-made functions, but for clarity we will look at the definition of a simple function and learn how to use it, or *call* it.
+During this course you will operate on R's ready-made functions, but for clarity we will look at the definition of a simple function and learn how to use it, *call* it.
 
 Functions usually have one or more arguments, for which the user can define values when calling the function. Multiple arguments are separated with a comma. The arguments have names, which can and should be used when specifying their values.
 
 The recommended style is to specify all but the first argument by name, when calling a function.
 
 *** =instructions
-- Look at the definition of the `add_k()` function and execute the function calls that are defined, starting from line 8.
+- Look at the definition of the `add_k()` function and execute the function calls that are defined, starting from line 4.
 - Create object `ans` by directly assigning the output of `add_k()` to it. Call `add_k()` with `value = 10` and `k = 7`.
 
 *** =hint
