@@ -34,7 +34,7 @@ with(students2014,
 # Create a character object saving the data location
 data_url <- "http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS-data.txt"
 
-# Load the data with read.table() function
+# Load the data with the read.table() function
 # Save the data in the object 'students2014'
 students2014 <- read.table(data_url, sep = "\t", header = TRUE)
 
@@ -42,6 +42,7 @@ students2014 <- read.table(data_url, sep = "\t", header = TRUE)
 # Indicate sex by color by using the 'col' argument
 with(students2014, 
      plot(x = kenka, y = pituus, col = sukup))
+
 
 
 ```
