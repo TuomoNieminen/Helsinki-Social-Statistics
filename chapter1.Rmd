@@ -92,6 +92,8 @@ Try it!
 
 
 
+
+
 # Below is the R console, where you will see output
 ```
 
@@ -103,6 +105,8 @@ Try it!
 
 # write your code below
 "Hello world!"
+
+
 
 
 # Below is the R console, where you will see output
@@ -197,7 +201,7 @@ Objects are created using the assign operator: `<-`. The value of an object can 
 
 
 *** =instructions
-- Execute the lines that create and operate on `my_hello_object` and `my_numeric_object`.
+- Execute the lines that create and operate on `my_character_object` and `my_numeric_object`.
 - Assign your name or nickname to `my_name`. Use quotation marks.
 - Assign a positive message to yourself to `my_message`. Use quotation marks.
 - Click 'Submit Answer'.
@@ -215,10 +219,10 @@ Objects are created using the assign operator: `<-`. The value of an object can 
 ```{r}
 
 # Create an object
-my_hello_object <- "Hi there!"
+my_character_object <- "Hi there!"
 
 # Print the contents of the object
-my_hello_object
+my_character_object
 
 # Create another object
 my_numeric_object <- 5 + 5
@@ -227,10 +231,10 @@ my_numeric_object <- 5 + 5
 my_numeric_object / 5
 
 # Override the value of an object by assigning a new value to it
-my_hello_object <- my_numeric_object
-my_hello_object
+my_character_object <- my_numeric_object
+my_character_object
 
-# Create objects my_name and my_message here. Use quotation marks.
+# Create character objects my_name and my_message here. Use quotation marks.
 my_name <- 
 my_message <- 
 
@@ -240,10 +244,10 @@ my_message <-
 ```{r}
 
 # Create an object
-my_hello_object <- "Hi there!"
+my_character_object <- "Hi there!"
 
 # Print the contents of the object
-my_hello_object
+my_character_object
 
 # Create another object
 my_numeric_object <- 5 + 5
@@ -252,10 +256,10 @@ my_numeric_object <- 5 + 5
 my_numeric_object / 5
 
 # Override the value of an object by assigning a new value to it
-my_hello_object <- my_numeric_object
-my_hello_object
+my_character_object <- my_numeric_object
+my_character_object
 
-# Create objects my_name and my_message here. Use quotation marks.
+# Create character objects my_name and my_message here. Use quotation marks.
 my_name <- "Tuomo"
 my_message <- "You are awsome!"
 
@@ -269,6 +273,7 @@ test_object("my_message", eval = F, incorrect_msg = "Did you assign a message to
 test_error()
 success_msg(paste0("Great job ", my_name, ". ", my_message, "!"))
 ```
+
 
 --- type:NormalExercise lang:r xp:100 skills:1 key:b81cdce659
 ## Functions
