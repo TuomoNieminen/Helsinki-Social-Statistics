@@ -128,7 +128,7 @@ The `^` operator raises the number to its left to the power of the number to its
 *** =instructions
 - Type `2^5` in the editor to calculate 2 to the power 5.
 - Use `Ctrl + Enter` to run the line and/or click 'Submit answer' and have a look at the R output in the console.
-- Note how the `#` symbol is used to add comments.
+- When done, click 'Submit answer'.
 
 
 *** =pre_exercise_code
@@ -265,17 +265,83 @@ test_error()
 success_msg(paste0("Great job ", my_name, ". ", my_message, "!"))
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1 key:b81cdce659
+--- type:NormalExercise lang:r xp:100 skills:1
 ## Functions
 
-In R you operate on objects using *functions*. A function is a special kind of object that can be *called* by typing it's name and giving it the necessary *arguments* inside parenthesis. When a function is called, it will perform an action using it's arguments and usually output something.  
+In R you operate on objects using *functions*. A function is a special kind of object that can be *called* by typing it's name and giving it the necessary *arguments* inside parenthesis. When a function is called, it will perform an action.
 
-Functions are how you're actually going to do all the magic. During this course you will operate on ready-made functions, but for clarity we will look at the definition of a simple function.
-
+Functions are how you're actually going to do all the magic.
 
 *** =instructions
-- Study the definition of the `add_k()` function.
-- Execute the function calls that are defined, starting from line 8.
+- Study and execute the examples in the R script.
+- Follow the examples and compute the mean age of students.
+- When done, click 'Submit answer'.
+
+*** =hint
+- Use the function `mean()` and the object `student_age` like in the example on line 7 of script.R.
+
+
+*** =pre_exercise_code
+```{r}
+students2014 <- read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS-data.txt", sep="\t", header=TRUE)
+```
+
+*** =sample_code
+```{r}
+# students2014 is available
+
+# Create object student_height
+student_height <- students2014$pituus
+
+# Compute the average height of the students
+mean(student_height)
+
+# Create object student_age
+student_age <- students2014$ika
+
+# Compute the average age of the students
+
+
+
+
+```
+
+*** =solution
+```{r}
+# Create object student_height
+student_height <- students2014$pituus
+
+# Compute the average height of the students
+mean(student_height)
+
+# Create object student_age
+student_age <- students2014$ika
+
+# Compute the average age of the students
+mean(student_age)
+
+
+
+```
+
+*** =sct
+```{r}
+test_function("mean", args=c("x"))
+
+test_error()
+success_msg("Nice job!")
+```
+
+
+--- type:NormalExercise lang:r xp:100 skills:1 key:b81cdce659
+## Function arguments
+
+During this course you will operate on R's ready-made functions, but for clarity we will look at the definition of a simple function and learn how to use it.
+
+Functions usually have one or more arguments, for which the user can define values when calling the function. The function will then perform operations based on those values and usually output something useful. The arguments have names, which can be used when specifying their values.
+
+*** =instructions
+- Look at the definition of the `add_k()` function and execute the function calls that are defined, starting from line 8.
 - Create object `ans` by directly assigning the output of `add_k()` to it. Call `add_k()` with `value = 10` and `k = 7`.
 
 *** =hint
@@ -298,11 +364,13 @@ add_k(value = 5)
 add_k(value = 5, k = -4)
 
 # If you give the arguments in the right order, you don't have to state which is which
-add_k(5, -4)
-add_k(k = -4, value = 5)
+add_k(5, k = -4) # recommended style
+add_k(5, -4)     # not recommended
+add_k(k = -4, value = 5) # not recommended
 
 # Call add_k() to create the object 'ans'
 ans <- 
+
 
 ```
 
@@ -314,11 +382,13 @@ add_k(value = 5)
 add_k(value = 5, k = -4)
 
 # If you give the arguments in the right order, you don't have to state which is which
-add_k(5, -4)
-add_k(k = -4, value = 5)
+add_k(5, k = -4) # recommended style
+add_k(5, -4)     # not recommended
+add_k(k = -4, value = 5) # not recommended
 
 # Call add_k() to create the object 'ans'
-ans <- add_k(value = 10, k = 7)
+ans <- add_k(10, k = 7)
+
 
 ```
 
