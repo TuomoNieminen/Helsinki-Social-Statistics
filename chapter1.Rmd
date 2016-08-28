@@ -31,18 +31,17 @@ with(students2014,
 *** =sample_code
 ```{r}
 
-# Create a character object saving the data location
+# Create character object holding data location
 data_url <- "http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS-data.txt"
 
-# Load the data with the read.table() function
-# Save the data in the object 'students2014'
+# Load data with read.table() function
+# Create data object 'students2014'
 students2014 <- read.table(data_url, sep = "\t", header = TRUE)
 
-# Draw a graph of shoesize versus hight using plot()
-# Indicate sex by color by using the 'col' argument
+# Draw graph of shoesize versus hight using plot()
+# Indicate sex by color with the 'col' argument
 with(students2014, 
      plot(x = kenka, y = pituus, col = sukup))
-
 
 
 ```
