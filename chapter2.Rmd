@@ -292,7 +292,7 @@ success_msg("Good work!")
 
 
 | Scale          | Numeric | Character | Boolean | Factor |
-|----------------|---------|-----------|---------|--------|
+|----------------|:---------:|:-----------:|:---------:|:--------:|
 | Classification |    x    |     x     |    x    |    x   |
 | Ordinal        |    x    |     x     |         |    x   |
 | Measurement    |    x    |           |         |        |
