@@ -291,6 +291,11 @@ success_msg("Good work!")
 ## Data types and variable types/scales (?)
 
 
+| Scale          | Numeric | Character | Boolean | Factor |
+|----------------|---------|-----------|---------|--------|
+| Classification |    x    |     x     |    x    |    x   |
+| Ordinal        |    x    |     x     |         |    x   |
+| Measurement    |    x    |           |         |        |
 
 *** =instructions
 - 
