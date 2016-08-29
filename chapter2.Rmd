@@ -65,18 +65,21 @@ str(my_boolean)
 
 *** =sct
 ```{r}
-test_student_typed("my_boolean <- TRUE", not_typed_msg="Something is not quite right with `my_boolean`.")
+test_student_typed("my_boolean <- TRUE", not_typed_msg="Did you change the value of `my_boolean`?")
 test_object("my_initials", eval=FALSE, incorrect_msg = "Did you assign your initials to `my_initials`?")
 test_student_typed("my_numeric_object <- 10.5", not_typed_msg="Did you assign correct value to  `my_numeric`?")
 
 test_function("str", incorrect_msg = "Did you use the str() to look at the data types?")
+
+test_output_contains("str(my_boolean)", incorrect_msg = "Did you use `str()` to `my_boolean`?")
+test_output_contains("str(my_initials)", incorrect_msg = "Did you use `str()` to `my_initials`?")
+test_output_contains("str(my_numeric_object)", incorrect_msg = "Did you use `str()` to `my_numeric_object`?")
 
 # test if the students code produces an error
 test_error()
 
 # Final message the student will see upon completing the exercise
 success_msg("You're making progress, well done!")
-
 ```
 
 --- type:NormalExercise lang:r xp:100 skills:1 key:9ee1ba578e
@@ -112,7 +115,10 @@ student_age <- students2014$ika
 # Let's use the cut()-function to cut the variable in categories
 student_age_cut <- cut(student_age, breaks = c(15, 25, 35, 45, 55, 65, 75, 85))
 
-# print and inspect the data type of student_age_cut
+# print the contains and inspect the data type of student_age_cut
+
+
+
 ```
 
 *** =solution
@@ -136,6 +142,7 @@ test_student_typed("student_age <- students2014$ika", not_typed_msg="Did you cre
 test_student_typed("student_age_cut <- cut(student_age, breaks = c(15, 25, 35, 45, 55, 65, 75, 85))", not_typed_msg="Did you create the `student_age_cut` object?")
 
 test_function("str", incorrect_msg = "Did you use the str() to look at the factor data type?")
+test_output_contains("str(student_age_cut)", incorrect_msg = "Did you use `str()` to `student_age_cut`?")
 
 # test if the students code produces an error
 test_error()
@@ -205,7 +212,7 @@ boolean_vector <- c(TRUE, FALSE, TRUE, FALSE)
 *** =sct
 ```{r}
 test_object("boolean_vector", eval=FALSE, incorrect_msg = "Did you create `boolean_vector`?")
-
+test_output_contains(("TRUE" | "FALSE"), incorrect_msg = "Does `boolean_vector` have logical values?")
 test_error()
 
 # Final message the student will see upon completing the exercise
