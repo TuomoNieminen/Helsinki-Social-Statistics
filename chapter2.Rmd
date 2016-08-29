@@ -29,9 +29,9 @@ There are different data types in R. The most commonly used are
 *** =sample_code
 ```{r}
 # Create objects with different data types
-my_initials<-
-my_numeric_object<-
-my_boolean<-FALSE
+my_initials <-
+my_numeric_object <-
+my_boolean <- FALSE
 
 # Change the value of my_boolean to TRUE
 
@@ -41,19 +41,19 @@ my_boolean<-FALSE
 *** =solution
 ```{r}
 # Create objects with different data types
-my_initials<-"E.K."
-my_numeric_object<-10.5
-my_boolean<-FALSE
+my_initials <- "E.K."
+my_numeric_object <- 10.5
+my_boolean <- FALSE
 
 # Change the value of my_boolean
-my_boolean<-TRUE
+my_boolean <- TRUE
 ```
 
 *** =sct
 ```{r}
-test_student_typed("my_boolean<-TRUE", not_typed_msg="Something is not quite right with my_boolean")
-test_object("my_initials")
-test_student_typed("my_numeric_object<-10.5", not_typed_msg="Object my_numeric is incorrect")
+test_student_typed("my_boolean<-TRUE", not_typed_msg="Something is not quite right with `my_boolean`.")
+test_object("my_initials", eval=FALSE, incorrect_msg = "Did you assign your initials to `my_initials`?")
+test_student_typed("my_numeric_object<-10.5", not_typed_msg="Did you assign correct value to  `my_numeric`?")
 
 # test if the students code produces an error
 test_error()
@@ -67,6 +67,38 @@ success_msg("Good work!")
 ## Data types in R (2)
 
 - Factors and `cut()`
+
+*** =instructions
+- 
+
+*** =hint
+- 
+
+*** =pre_exercise_code
+```{r}
+```
+
+*** =sample_code
+```{r}
+```
+
+*** =solution
+```{r}
+```
+
+*** =sct
+```{r}
+# test if the students code produces an error
+test_error()
+
+# Final message the student will see upon completing the exercise
+success_msg("Good work!")
+
+```
+
+--- type:NormalExercise lang:r xp:100 skills:1 key:7cc56d2158
+## Vectors
+
 
 *** =instructions
 - 
@@ -148,41 +180,8 @@ success_msg("Good work!")
 
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1 key:7cc56d2158
-## Histogram
-
-
-*** =instructions
-- 
-
-*** =hint
-- 
-
-*** =pre_exercise_code
-```{r}
-```
-
-*** =sample_code
-```{r}
-```
-
-*** =solution
-```{r}
-```
-
-*** =sct
-```{r}
-# test if the students code produces an error
-test_error()
-
-# Final message the student will see upon completing the exercise
-success_msg("Good work!")
-
-```
-
 --- type:NormalExercise lang:r xp:100 skills:1 key:3c0486635f
-## Barplot
-
+## Data types and variable types (?)
 
 *** =instructions
 - 
