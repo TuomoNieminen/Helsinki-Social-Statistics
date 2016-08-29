@@ -6,9 +6,9 @@ description : Quick overview to R data and variable types. What are the objects?
 ## Data types in R (1)
 
 There are different data types in R. The most commonly used are
-- Numbers and decimal values are called numeric
-- Text or character values are called characters
-- Boolean values (`TRUE` or `FALSE`) are called logical
+* Numbers and decimal values are called numeric
+* Text or character values are called characters
+* Boolean values (`TRUE` or `FALSE`) are called logical
 
 *** =instructions
 - Create character object `my_initials` by assigning your initials in it.
@@ -137,21 +137,20 @@ In R, the basic idea is to use *functions* to operate on objects. Here you will 
 
 *** =instructions
 - Execute the function `head()` and see the results
-- Inspect the data types in the `JYT` data with the function `str()`
+- Inspect the data types in the `students2014` data with the function `str()`
 
 *** =hint
-- The data is stored in object `JYT`
+- The data is stored in object `students2014`
 
 *** =pre_exercise_code
 ```{r}
-source("functions.R")
-JYT<-getdata()
+students2014 <- read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS-data.txt", sep="\t", header=TRUE)
 ```
 
 *** =sample_code
 ```{r}
 # Let's view the first 6 students from the course participants data
-head(JYT)
+head(students2014)
 
 # View the data types in the JYT data
 
@@ -161,10 +160,10 @@ head(JYT)
 *** =solution
 ```{r}
 # Let's view the first 6 students from the course participants data
-head(JYT)
+head(students2014)
 
 # View the data types in the JYT data
-str(JYT)
+str(students2014)
 ```
 
 *** =sct
