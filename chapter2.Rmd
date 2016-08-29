@@ -6,9 +6,9 @@ description : Quick overview to R data and variable types. What are the objects?
 ## Data types in R (1)
 
 There are different data types in R. The most commonly used are
-* Numbers and decimal values are called __numeric__
-* Text or character values are called __characters__
-* Boolean values (`TRUE` or `FALSE`) are called __logical__
+- Numbers and decimal values are called **numeric**
+- Text or character values are called **characters**
+- Boolean values (`TRUE` or `FALSE`) are called **logical**
 
 You can use the function `str()` to find out what data type the object is.
 
@@ -147,7 +147,7 @@ success_msg("Good work!")
 --- type:NormalExercise lang:r xp:100 skills:1 key:7cc56d2158
 ## Vectors
 
-You can combine values of the same data type to a __vector__, using the function `c()`. 
+You can combine values of the same data type to a **vector**, using the function `c()`. 
 
 A vector is an object containing multiple elements. Vectors are quite important in R. The columns of a data frame (such as `student2014`) are vectors.
 
@@ -204,7 +204,7 @@ boolean_vector <- c(TRUE, FALSE, TRUE, FALSE)
 *** =sct
 ```{r}
 test_object("boolean_vector", eval=FALSE, incorrect_msg = "Did you create `boolean_vector`?")
-test_correct(class(boolean_vector)=="logical")
+
 test_error()
 
 # Final message the student will see upon completing the exercise
