@@ -212,7 +212,8 @@ boolean_vector <- c(TRUE, FALSE, TRUE, FALSE)
 *** =sct
 ```{r}
 test_object("boolean_vector", eval=FALSE, incorrect_msg = "Did you create `boolean_vector`?")
-test_output_contains(("TRUE" | "FALSE"), incorrect_msg = "Does `boolean_vector` have logical values?")
+ex() %>% check_output("[FALSE|TRUE|T|F]",
+                      missing_msg = "Did you use boolean values in `boolean_vector`?")
 test_error()
 
 # Final message the student will see upon completing the exercise
