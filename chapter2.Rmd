@@ -275,8 +275,9 @@ students2014$kenka
 
 *** =sct
 ```{r}
-test_function("head")
-test_function("str")
+test_function("head", incorrect_msg = "Did you use the head() function?")
+test_function("str", incorrect_msg = "Did you use the str() function?")
+test_output_contains("students2014$kenka", incorrect_msg = "Did you use the $-sign to access the shoe size variable?")
 
 # test if the students code produces an error
 test_error()
@@ -299,13 +300,14 @@ success_msg("Good work!")
 
 *** =pre_exercise_code
 ```{r}
+col1 <- rgb(229, 5, 58, max = 255)
 students2014 <- read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS-data.txt", sep="\t", header=TRUE)
 
-barplot(table(students2014$kone), sub="(M=Mac, W=Windows, L=Linux)")
-barplot((table(students2014$kenka)), main="Shoe sizes")
-hist(students2014$ika, breaks="scott", main="Age")
+barplot(table(students2014$kone), sub="(M=Mac, W=Windows, L=Linux)", col=col1)
+barplot((table(students2014$kenka)), main="Shoe sizes", col=col1)
+hist(students2014$ika, breaks="scott", main="Age", col=col1)
 student_age_cut <- cut(students2014$ika, breaks = c(15, 25, 35, 45, 55, 65, 75, 85))
-plot(student_age_cut, main="student_age_cut")
+plot(student_age_cut, main="student_age_cut", col=col1)
 ```
 
 *** =sample_code
@@ -317,11 +319,11 @@ barplot(table(students2014$kone))
 barplot((table(students2014$kenka)))
 
 # Measurement
-hist(students2014$ika, breaks="scott")
+hist(students2014$ika, breaks = "scott")
 
 # From measurement to ordinal scale
 student_age_cut <- cut(students2014$ika, breaks = c(15, 25, 35, 45, 55, 65, 75, 85))
-plot(student_age_cut, main="student_age_cut")
+plot(student_age_cut, main = "student_age_cut")
 ```
 
 *** =solution
