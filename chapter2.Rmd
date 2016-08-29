@@ -212,8 +212,6 @@ boolean_vector <- c(TRUE, FALSE, TRUE, FALSE)
 *** =sct
 ```{r}
 test_object("boolean_vector", eval=FALSE, incorrect_msg = "Did you create `boolean_vector`?")
-ex() %>% check_output("[FALSE|TRUE|T|F]",
-                      missing_msg = "Did you use boolean values in `boolean_vector`?")
 test_error()
 
 # Final message the student will see upon completing the exercise
@@ -289,7 +287,9 @@ success_msg("Good work!")
 ```
 
 --- type:NormalExercise lang:r xp:100 skills:1 key:3c0486635f
-## Data types and variable types (?)
+## Data types and variable types/scales (?)
+
+
 
 *** =instructions
 - 
@@ -299,10 +299,29 @@ success_msg("Good work!")
 
 *** =pre_exercise_code
 ```{r}
+students2014 <- read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS-data.txt", sep="\t", header=TRUE)
+
+barplot(table(students2014$kone), sub="(M=Mac, W=Windows, L=Linux)")
+barplot((table(students2014$kenka)), main="Shoe sizes")
+hist(students2014$ika, breaks="scott", main="Age")
+student_age_cut <- cut(students2014$ika, breaks = c(15, 25, 35, 45, 55, 65, 75, 85))
+plot(student_age_cut, main="student_age_cut")
 ```
 
 *** =sample_code
 ```{r}
+# Classification
+barplot(table(students2014$kone))
+
+# Ordinal scale
+barplot((table(students2014$kenka)))
+
+# Measurement
+hist(students2014$ika, breaks="scott")
+
+# From measurement to ordinal scale
+student_age_cut <- cut(students2014$ika, breaks = c(15, 25, 35, 45, 55, 65, 75, 85))
+plot(student_age_cut, main="student_age_cut")
 ```
 
 *** =solution
