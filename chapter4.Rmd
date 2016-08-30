@@ -2,97 +2,121 @@
 title       : Exploring variation and dependence
 description : Variation and dependence are at the heart of Statistics. In fact, without variation the discipline would cease to exist. Correlation is not causation, but why?
 
---- type:NormalExercise lang:r xp:100 skills:1 key:2e25877df1
+--- type:NormalExercise lang:r xp:100 skills:1, 3 key:2978bc79da
+## summary() statistics
 
-## Exercise 1
+Some functions in R are very generic. They can take different objects as their first argument and they seem to magically do exactly what you'd hope they do in all situations.
 
-Under construction.
+One such example is the `summary()` function.
 
 *** =instructions
-- instruction 1
-- instruction 2
+- Execute the code that creates a summary of the `variable` in `df`
+- Then create a summary of `df`
+- `summary()` behaves differently because `variable` and `df` are different kinds of objects.
 
 *** =hint
-- hint 1
-- hint 2
-
+- Get the summary of an object by typing summary(object)
 
 *** =pre_exercise_code
 ```{r}
-# pre exercise code here
+# pec
 ```
+
 
 *** =sample_code
 ```{r}
-# sample code here
+
+# Create a summary of var
+summary(df$var)
+
+# Create a summary of df
+
+
+
 ```
 
 *** =solution
 ```{r}
-#solution code here
+
+# Create a summary of var in df
+summary(df$var)
+
+# Create a summary of df
+summary(df)
+
+
 ```
 
 *** =sct
 ```{r}
-# submission correctness tests
+# tests. 
+test_output_contains("summary(df)", incorrect_msg="Please type in the code to create a summary of `df`")
 
-# example tests:
-# test_output_contains("output")
-# test_object("object_name")
-# test_function("function_name", args=c("arg1"))
-
-# test if the students code produces an error
 test_error()
-
-# Final message the student will see upon completing the exercise
-success_msg("Good work!")
-
+success_msg("Great job!")
 ```
 
 --- type:NormalExercise lang:r xp:100 skills:1 key:74f8535355
 
-## Exercise 2
+--- type:NormalExercise lang:r xp:150 skills:1 key:c3d62c54f5
 
-Under construction.
+## Box plots
+
+One very good way to visualize the most important summary statistics of a variable is by drawing box plots. A box plot visualizes the 25th, 50th and 75th percentiles (the box), the typical range (the whiskers) and the outliers (the dots) of a variable 
+
+The whiskers extending from the box can be computed by several techniques. The default in R is to extend them to reach to a data point that is no more than 1.5*IQR away from the box, where IQR is the inter quartile range defined as  
+
+`IQR = 75th percentile - 25th percentile`  
+
+Values outside the whiskers can be considered as outliers, unusually distant observations. For more information on IQR, see <a target="_blank" href ="https://en.wikipedia.org/wiki/Interquartile_range"> wikipedia</a>
 
 *** =instructions
-- instruction 1
-- instruction 2
+- Draw a `boxplot()` of `var`.
+- Use help() or `?` to find out which argument controls the label of the y axis and the main title.
+- Add a suitable label to the y axis and a main title of your choice.
 
 *** =hint
-- hint 1
-- hint 2
-
+- hint1
 
 *** =pre_exercise_code
 ```{r}
-# pre exercise code here
+# pec
 ```
+
 
 *** =sample_code
 ```{r}
-# sample code here
+# data frame is available
+
+# See the help page of boxplot()
+?boxplot
+
+# Draw a boxplot of var. Add a y axis label and a main title.
+
+
+
 ```
 
 *** =solution
 ```{r}
-#solution code here
+# Draw a boxplot of var. Add a y axis label and a main title.
+boxplot(var, ylab = "", main = "")
+
+
 ```
 
 *** =sct
 ```{r}
-# submission correctness tests
 
-# example tests:
-# test_output_contains("output")
-# test_object("object_name")
-# test_function("function_name", args=c("arg1"))
 
-# test if the students code produces an error
+test_function("boxplot", args="x")
+
+# test error
 test_error()
 
+
 # Final message the student will see upon completing the exercise
-success_msg("Good work!")
+success_msg("Awsome work!")
 
 ```
 
