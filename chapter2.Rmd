@@ -5,22 +5,26 @@ description : Quick overview to R data and variable types. What are the objects?
 --- type:NormalExercise lang:r xp:100 skills:1 key:e4360dcfec
 ## Data types in R (1)
 
-There are different data types in R. The most commonly used are
-- Numbers and decimal values are called numeric
-- Text or character values are called characters
-- Boolean values (`TRUE` or `FALSE`) are called logical
+There are different data types in R. The most commonly used are:
+
+- Numbers and decimal values are called **numeric**
+- Text or character values are called **characters**
+- Boolean values (`TRUE` or `FALSE`) are called **logical**
+
+You can use the function `str()` to find out what data type the object is.
 
 *** =instructions
 - Create character object `my_initials` by assigning your initials in it.
 - Assign the number 10.5 in `my_numeric_object`. Note that the decimal separator in R is dot instead of comma. 
 - Create the object `my_boolean` by executing the line. Note that when creating boolean values, no quotation marks are needed.
 - Change the value of `my_boolean` to `TRUE`
-- str()?
+- Inspect the data types with function `str()`.
 
 *** =hint
 - When creating a character object, remember to use quotation marks.
 - Dot is the decimal mark in R:  `2.5` is decimal number but `2,5` means a different thing!
 - Remember that `Ctrl + Enter` executes a single row.
+- You can use `str()` by putting the object name inside the parenthesis.
 
 *** =pre_exercise_code
 ```{r}
@@ -29,11 +33,16 @@ There are different data types in R. The most commonly used are
 *** =sample_code
 ```{r}
 # Create objects with different data types
-my_initials<-
-my_numeric_object<-
-my_boolean<-FALSE
+my_initials <-
+my_numeric_object <-
+my_boolean <- FALSE
 
 # Change the value of my_boolean to TRUE
+
+
+# See how the objects look with the function str()
+
+
 
 
 ```
@@ -41,104 +50,99 @@ my_boolean<-FALSE
 *** =solution
 ```{r}
 # Create objects with different data types
-my_initials<-"E.K."
-my_numeric_object<-10.5
-my_boolean<-FALSE
+my_initials <- "A.B.C."
+my_numeric_object <- 10.5
+my_boolean <- FALSE
 
 # Change the value of my_boolean
-my_boolean<-TRUE
+my_boolean <- TRUE
+
+# See how the objects look with the function str()
+str(my_initials)
+str(my_numeric_object)
+str(my_boolean)
 ```
 
 *** =sct
 ```{r}
-test_student_typed("my_boolean<-TRUE", not_typed_msg="Something is not quite right with my_boolean")
-test_object("my_initials")
-test_student_typed("my_numeric_object<-10.5", not_typed_msg="Object my_numeric is incorrect")
+test_student_typed("my_boolean <- TRUE", not_typed_msg="Did you change the value of `my_boolean`?")
+test_object("my_initials", eval=FALSE, incorrect_msg = "Did you assign your initials to `my_initials`?")
+test_student_typed("my_numeric_object <- 10.5", not_typed_msg="Did you assign correct value to  `my_numeric`?")
+
+test_function("str", incorrect_msg = "Did you use the str() to look at the data types?")
+
+test_output_contains("str(my_boolean)", incorrect_msg = "Did you use `str()` to `my_boolean`?")
+test_output_contains("str(my_initials)", incorrect_msg = "Did you use `str()` to `my_initials`?")
+test_output_contains("str(my_numeric_object)", incorrect_msg = "Did you use `str()` to `my_numeric_object`?")
 
 # test if the students code produces an error
 test_error()
 
 # Final message the student will see upon completing the exercise
-success_msg("Good work!")
-
+success_msg("You're making progress, well done!")
 ```
 
 --- type:NormalExercise lang:r xp:100 skills:1 key:9ee1ba578e
 ## Data types in R (2)
 
-- Factors and `cut()`
+One of R's data types is called factor. It turns (for example) character objects to objects with a numerical encoding and creates corresponding label names.
+
+The function `cut()` can be used to create categories from numerical objects. The function produces a factor object and by default creates label names or levels. The function `cut()` also has a mandatory argument `breaks`, where the break points of the object are assigned.
+
+NA/NULL?
 
 *** =instructions
-- 
+- Create objects `student_age` and `student_age_cut`
+- Print the contents of the `student_age_cut`
+- use `str()` to inspect the object `student_age_cut`
 
 *** =hint
-- 
+- Functions do not work correctly without mandatory arguments.
+- In the `cut()` function the argument `breaks` 
 
 *** =pre_exercise_code
 ```{r}
+students2014 <- read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS-data.txt", sep="\t", header=TRUE)
 ```
 
 *** =sample_code
 ```{r}
-```
+# students2014 is available
 
-*** =solution
-```{r}
-```
+# Let's access the (numerical) age vector of the students2014 and save it to another object.
+student_age <- students2014$ika
 
-*** =sct
-```{r}
-# test if the students code produces an error
-test_error()
+# Let's use the cut()-function to cut the variable in categories
+student_age_cut <- cut(student_age, breaks = c(15, 25, 35, 45, 55, 65, 75, 85))
 
-# Final message the student will see upon completing the exercise
-success_msg("Good work!")
+# print the contains and inspect the data type of student_age_cut
 
-```
-
---- type:NormalExercise lang:r xp:100 skills:1 key:8718babe2e
-## Data frames
-
-The most common object to operate on is the `data frame` object, which stores data in tabular form.
-
-In R, the basic idea is to use *functions* to operate on objects. Here you will get to apply some functions that are helpful for inspecting data: `head()` and `str()`.
-
-*** =instructions
-- Execute the function `head()` and see the results
-- Inspect the data types in the `JYT` data with the function `str()`
-
-*** =hint
-- The data is stored in object `JYT`
-
-*** =pre_exercise_code
-```{r}
-source("functions.R")
-JYT<-getdata()
-```
-
-*** =sample_code
-```{r}
-# Let's view the first 6 students from the course participants data
-head(JYT)
-
-# View the data types in the JYT data
 
 
 ```
 
 *** =solution
 ```{r}
-# Let's view the first 6 students from the course participants data
-head(JYT)
+# students2014 is available
 
-# View the data types in the JYT data
-str(JYT)
+# Let's access the (numerical) age vector of the students2014 and save it to another object.
+student_age <- students2014$ika
+
+# Let's use the cut()-function to cut the variable in categories
+student_age_cut <- cut(student_age, breaks = c(15, 25, 35, 45, 55, 65, 75, 85))
+
+# print and inspect the data type of student_age_cut
+student_age_cut
+str(student_age_cut)
 ```
 
 *** =sct
 ```{r}
-test_function("head")
-test_function("str")
+test_student_typed("student_age <- students2014$ika", not_typed_msg="Did you create the `student_age` object?")
+test_student_typed("student_age_cut <- cut(student_age, breaks = c(15, 25, 35, 45, 55, 65, 75, 85))", not_typed_msg="Did you create the `student_age_cut` object?")
+
+test_function("str", incorrect_msg = "Did you use the str() to look at the factor data type?")
+test_output_contains("str(student_age_cut)", incorrect_msg = "Did you use `str()` to `student_age_cut`?")
 
 # test if the students code produces an error
 test_error()
@@ -149,29 +153,132 @@ success_msg("Good work!")
 ```
 
 --- type:NormalExercise lang:r xp:100 skills:1 key:7cc56d2158
-## Histogram
+## Vectors
 
+You can combine values of the same data type to a **vector**, using the function `c()`. 
+
+A vector is an object containing multiple elements. Vectors are quite important in R. The columns of a data frame (such as `student2014`) are vectors.
+
+In this execrice you will learn how to create your own vector.
 
 *** =instructions
-- 
+- See and execute the examples on how to create a vector with `c()`.
+- Save character vector to `my_vector`.
+- Create vector `boolean_vector` with boolean values.
 
 *** =hint
-- 
+- When creating boolean values, no quotation marks are needed.
+
 
 *** =pre_exercise_code
 ```{r}
 ```
 
+
 *** =sample_code
 ```{r}
+
+# Here we create a vector with numeric elements
+c(2, 3, 4, 5)
+
+# Another one
+c(0.1, 0.2, 5.84, 0.7)
+
+# Let's create one with characters and save it to a object
+my_vector <- c('a', 'b', 'c', 'd')
+
+# Create boolean vector
+
+
 ```
 
 *** =solution
 ```{r}
+
+# Here we create a vector with numeric elements
+c(2, 3, 4, 5)
+
+# Another one
+c(0.1, 0.2, 5.84, 0.7)
+
+# Let's create one with characters and save it to a object
+my_vector <- c('a', 'b', 'c', 'd')
+
+# Create boolean vector
+boolean_vector <- c(TRUE, FALSE, TRUE, FALSE)
+
 ```
 
 *** =sct
 ```{r}
+test_object("boolean_vector", eval=FALSE, incorrect_msg = "Did you create `boolean_vector`?")
+test_error()
+
+# Final message the student will see upon completing the exercise
+success_msg("Creating vectors like a pro. Great work!")
+
+```
+--- type:NormalExercise lang:r xp:100 skills:1 key:8718babe2e
+## Data frames
+
+The most common object to operate on is the `data frame` object, which stores data in tabular form. The columns in data frames are vectors. Data frames can contain multiple vectors with different data types.
+
+In R, the basic idea is to use *functions* to operate on objects. Here you will get to apply some functions that are helpful for inspecting data: `head()` and `str()`.
+
+You will also learn how to access the columns of a data frame using the $-sign.
+
+*** =instructions
+- Execute the function `head()` and see the results
+- Inspect the data types in the `students2014` data with the function `str()`
+- Use the $-sign to access the students shoe size (`kenka`) in `students2014` data
+
+*** =hint
+- The data is stored in object `students2014`
+
+*** =pre_exercise_code
+```{r}
+students2014 <- read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS-data.txt", sep="\t", header=TRUE)
+```
+
+*** =sample_code
+```{r}
+# students2014 is available
+
+# Let's view the first 6 students from the course participants data
+head(students2014)
+
+# View the data types in the students2014 data
+
+
+# You can access the variables in the students2014 data by using the $-sign. For example, you get the age variable of the students with
+students2014$ika
+
+# Access the shoe sizes of the students
+
+
+```
+
+*** =solution
+```{r}
+# Let's view the first 6 students from the course participants data
+head(students2014)
+
+# View the data types in the JYT data
+str(students2014)
+
+# You can access the variables in the students2014 data by using the $-sign. For example, you get the age variable of the students with
+students2014$ika
+
+# Access the shoe sizes of the students
+students2014$kenka
+```
+
+*** =sct
+```{r}
+test_function("head", incorrect_msg = "Did you use the head() function?")
+test_function("str", incorrect_msg = "Did you use the str() function?")
+test_output_contains("students2014$kenka", incorrect_msg = "Did you use the $-sign to access the shoe size variable?")
+
 # test if the students code produces an error
 test_error()
 
@@ -181,8 +288,14 @@ success_msg("Good work!")
 ```
 
 --- type:NormalExercise lang:r xp:100 skills:1 key:3c0486635f
-## Barplot
+## Data types and variable types/scales (?)
 
+
+| Scale          | Numeric | Character | Boolean | Factor |
+|----------------|:---------:|:-----------:|:---------:|:--------:|
+| Classification |    x    |     x     |    x    |    x   |
+| Ordinal        |    x    |     x     |         |    x   |
+| Measurement    |    x    |           |         |        |
 
 *** =instructions
 - 
@@ -192,10 +305,30 @@ success_msg("Good work!")
 
 *** =pre_exercise_code
 ```{r}
+col1 <- rgb(229, 5, 58, max = 255)
+students2014 <- read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS-data.txt", sep="\t", header=TRUE)
+
+barplot(table(students2014$kone), sub="(M=Mac, W=Windows, L=Linux)", col=col1)
+barplot((table(students2014$kenka)), main="Shoe sizes", col=col1)
+hist(students2014$ika, breaks="scott", main="Age", col=col1)
+student_age_cut <- cut(students2014$ika, breaks = c(15, 25, 35, 45, 55, 65, 75, 85))
+plot(student_age_cut, main="student_age_cut", col=col1)
 ```
 
 *** =sample_code
 ```{r}
+# Classification
+barplot(table(students2014$kone))
+
+# Ordinal scale
+barplot((table(students2014$kenka)))
+
+# Measurement
+hist(students2014$ika, breaks = "scott")
+
+# From measurement to ordinal scale
+student_age_cut <- cut(students2014$ika, breaks = c(15, 25, 35, 45, 55, 65, 75, 85))
+plot(student_age_cut, main = "student_age_cut")
 ```
 
 *** =solution
