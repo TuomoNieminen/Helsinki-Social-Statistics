@@ -2,34 +2,54 @@
 title       : Looking at the data
 description : Data are everywhere and everything. That's why Statistics is also called Data Science. R offers great tools for looking at the data, behind the numbers.
 
---- type:NormalExercise lang:r xp:100 skills:1, 3 key:2978bc79da
-## summary() statistics
+--- type:NormalExercise lang:r xp:100 skills:1
+## Brackets have you data[under, control]
 
-Some functions in R are very generic. They can take different objects as their first argument and they seem to magically do exactly what you'd hope they do in all situations.
+It is quite often necessary to access only a part of a dataset. This is called *subsetting* and there are many ways to do it. The best way will depend on the situation and preference.
 
-One such example is the `summary()` function.
+We have already seen that the column of a data frame (df) can be accessed via the `$`-sign. There is another way: the `[ ]`. The brackets are a general way of accessing a part of any data structure in R. 
+
+The brackets are used by giving the locations of the values you wish to access.
+
 
 *** =instructions
-- Execute the code that creates a summary of the `variable` in `df`
-- Then create a summary of `df`
-- `summary()` behaves differently because `variable` and `df` are different kinds of objects.
+- Modify the code so that the object age_height contains all the data of the columns three and four of the data frame students2014.
+
 
 *** =hint
-- Get the summary of an object by typing summary(object)
+- Selecting multiple columns is very similar to selecting multiple rows.
+
 
 *** =pre_exercise_code
 ```{r}
-# pec
-```
+students2014 <- read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS-data.txt", sep="\t", header=TRUE)
+  
+  # keep a couple background variables
+  students2014 <- students2014[,c("sukup","toita","ika","pituus","kenka","kone")]
+  
+  # recode kone -variable NA values as factor levels
+  students2014$kone <- addNA(students2014$kone)
+  
+  # choose rows without missing values
+  students2014 <- students2014[complete.cases(students2014),]
 
+```
 
 *** =sample_code
 ```{r}
+# students2014 is available
 
-# Create a summary of var
-summary(df$var)
+# Look at the rows three to six of the data
+students2014[3:6, ]
 
-# Create a summary of df
+# Look at the value in row 6, column 4
+students2014[6, 4]
+
+# Choose the whole column 3
+student_age <- students2014[, 3]
+
+# Choose all rows in the third and fourth columns
+age_hight <- students2014[, NULL]
 
 
 
@@ -37,30 +57,37 @@ summary(df$var)
 
 *** =solution
 ```{r}
+# students2014 is available
 
-# Create a summary of var in df
-summary(df$var)
+# Look at the rows three to six of the data
+students2014[3:6, ]
 
-# Create a summary of df
-summary(df)
+# Look at the value in row 6, column 4
+students2014[6, 4]
+
+# Choose the whole column 3
+student_age <- students2014[, 3]
+
+# Choose all rows in the third and fourth columns
+age_hight <- students2014[, 3:4]
 
 
 ```
 
 *** =sct
 ```{r}
-# tests. 
-test_output_contains("summary(df)", incorrect_msg="Please type in the code to create a summary of `df`")
+test_object("age_height")
 
 test_error()
-success_msg("Great job!")
+success_msg("Good work!")
 ```
+
 
 --- type:NormalExercise lang:r xp:100 skills:1 key:b26060ee08
 
 ## Help!
 
-How to use help() and ? (and str() )
+How to use help() and ?
 
 *** =instructions
 - instruction 1
@@ -112,7 +139,7 @@ Bar plots are useful for visualizing qualitative variables, which in R are usual
 
 In base R graphics, the function `barplot()` can be used to draw a bar plot. It's first argument is `height` which is the only mandatory argument. The information for `height` can be computed easily by creating a `summary()` or a `table()` of a factor.
 
-In this exercise you will draw a barplot of `variable` in the data frame `df`. You can use `str()` to see the structure of `df`.
+In this exercise you will draw a barplot of `variable` in the data frame `df`.
 
 *** =instructions
 - Remind yourself on how to access the column of a data frame and how to create objects.
