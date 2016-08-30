@@ -61,9 +61,11 @@ success_msg("Great! Move on to the first exercise.")
 
 On your right you see the R editor area - the script - and below that the R console. The editor area is just a simple text editor where you write R code.
 
-The way to use these two is to first write code to the editor area and then to tell R that you want to execute a line of code by pressing `Ctrl + Enter`. This executes the line where your cursor currently is. Input and output will then appear in the console.
+The way to use these two is to first write code to the editor area and then to tell R that you want to execute a line of code by pressing `Ctrl + Enter`. Input and output will then appear in the console, executing the line where your cursor currently is.
 
-Here at DataCamp you can also execute everything in the editor by pressing 'Submit Answer', after which DataCamp will do some magic to check if you have correctly completed the exercise.
+It is also possible to write code directly to the console and use `Enter` to execute, but working with the script area is preferred for documentation.
+
+Here at DataCamp you can also execute everything in the editor area by pressing 'Submit Answer', after which DataCamp will do some magic to check if you have correctly completed the exercise.
 
 Try it!
   
@@ -197,7 +199,7 @@ success_msg("Great work! Head over to the next exercise.")
 Here's where things start to get interesting. In R you can create and operate on things called *objects*. 
 An object is something that can store information such as numerical values and names. Once an object is created, it will be stored in memory and the information it contains will be available to you later.
 
-Objects are created using the assign operator: `<-`. The value of an object can be printed by typing it's name.
+Objects are created using the assign operator: `<-` (`<` + `-`). The value of an object can be printed by typing it's name.
 
 
 *** =instructions
@@ -294,6 +296,16 @@ Functions are how you're actually going to do all the magic.
 *** =pre_exercise_code
 ```{r}
 students2014 <- read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS-data.txt", sep="\t", header=TRUE)
+
+# keep a couple background variables
+students2014 <- students2014[,c("sukup","toita","ika","pituus","kenka","kone")]
+
+# recode kone -variable NA values as factor levels
+students2014$kone <- addNA(students2014$kone)
+
+# choose rows without missing values
+students2014 <- students2014[complete.cases(students2014),]
+
 ```
 
 *** =sample_code
@@ -348,7 +360,7 @@ success_msg("Nice job!")
 
 During this course you will operate on R's ready-made functions, but for clarity we will look at the definition of a simple function and learn how to use it, *call* it.
 
-Functions usually have one or more arguments, for which the user can define values when calling the function. Multiple arguments are separated with a comma. The arguments have names, which can and should be used when specifying their values.
+Functions usually have one or more arguments, for which the user can define values when calling the function. Multiple arguments are separated with a comma. The arguments have names, which can (and often should) be used when specifying their values.
 
 The recommended style is to specify all but the first argument by name, when calling a function.
 
@@ -371,14 +383,13 @@ add_k <- function(value, k = 5) return(value + k)
 # Create a simple function with two arguments, of which 'k' has a default value
 add_k <- function(value, k = 5) return(value + k)
 
-# Call the add_k() function twice. Can you guess the results?
+# Call the add_k() function. Can you guess the result?
 add_k(value = 5)
-add_k(value = 5, k = -4)
 
-# If you give the arguments in the right order, you don't have to state which is which
+# These calls are identical
 add_k(5, k = -4) # recommended style
-add_k(5, -4)     # not recommended
-add_k(k = -4, value = 5) # not recommended
+add_k(5, -4)     # style not recommended
+add_k(k = -4, value = 5) # style not recommended
 
 # Call add_k() to create the object 'ans'
 ans <- 
@@ -389,14 +400,13 @@ ans <-
 *** =solution
 ```{r}
 
-# Call the add_k() function twice. Can you guess the results?
+# Call the add_k() function. Can you guess the result?
 add_k(value = 5)
-add_k(value = 5, k = -4)
 
-# If you give the arguments in the right order, you don't have to state which is which
+# These calls are identical
 add_k(5, k = -4) # recommended style
-add_k(5, -4)     # not recommended
-add_k(k = -4, value = 5) # not recommended
+add_k(5, -4)     # style not recommended
+add_k(k = -4, value = 5) # style not recommended
 
 # Call add_k() to create the object 'ans'
 ans <- add_k(10, k = 7)
@@ -427,6 +437,7 @@ How many numbered sections does the questionnaire have?
 - two
 - four
 - seven
+- ten
 - fourteen
 
 *** =hint
@@ -441,10 +452,10 @@ How many numbered sections does the questionnaire have?
 *** =sct
 ```{r}
 # submission correctness tests
-msg1 <- msg3 <- msg4 <- "Try again"
+msg1 <- msg3 <- msg4 <- msg5 <- "Sorry, not quite."
 msg2 <- "Yes, correct!"
-test_mc(correct = 2, feedback_msgs = c(msg1, msg2, msg3, msg4))
+test_mc(correct = 2, feedback_msgs = c(msg1, msg2, msg3, msg4, msg5))
 
 # Final message the student will see upon completing the exercise
-success_msg("Great work! Next time we'll explore data from the questionnaire :)")
+success_msg("Great work! Next time we'll explore the data :)")
 ```
