@@ -12,7 +12,7 @@ These are always the first things to do after the data is collected and preproce
 
 
 *** =instructions
-- 
+- no exercise, just study the examples and hit 'Submit answer'
 
 
 
@@ -46,18 +46,18 @@ summary(students2014)
 
 *** =sample_code
 ```{r}
-# students2014 is available and layout() has been used. The next three plots will be placed in the same window.
+# students2014 is available and layout() has been called. Three plots will be placed in the same window.
     
-#histogram of heights
+# Histogram of student heights
 hist(students2014$pituus,  main ="Histogram of height", xlab = "height")
 
-# bar plot of operating systems 
+# Bar plot of the students operating systems 
 barplot(table(students2014$kone), main = "Barplot of OS", xlab = "Linux, Mac, Win or none")
   
-# horizontally placed box plot of ages
+# Box plot of student ages
 boxplot(students2014$ika, main = "Boxplot of age", xlab = "ika", horizontal = T)
 
-# take a summary of all the variables in students2014
+# Summary of all the variables in students2014
 summary(students2014)
 
 
