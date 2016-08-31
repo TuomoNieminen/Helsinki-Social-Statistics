@@ -11,7 +11,7 @@ There are different data types in R. The most commonly used are:
 - Text or character values are called **characters**
 - Boolean values (`TRUE` or `FALSE`) are called **logical**
 
-You can use the function `str()` to find out what data type the object is.
+You can use the function `str()` (str is short for structure) to find out what data type the object is.
 
 *** =instructions
 - Create character object `my_initials` by assigning your initials in it.
@@ -153,7 +153,7 @@ success_msg("Good work!")
 ```
 
 --- type:NormalExercise lang:r xp:100 skills:1 key:7cc56d2158
-## Vectors
+## Vectors (1)
 
 You can combine values of the same data type to a **vector**, using the function `c()`. 
 
@@ -164,7 +164,7 @@ In this execrice you will learn how to create your own vector.
 *** =instructions
 - See and execute the examples on how to create a vector with `c()`.
 - Save character vector to `my_vector`.
-- Create vector `boolean_vector` with boolean values.
+- Create vector `boolean_vector` with boolean values `TRUE, FALSE, TRUE, FALSE`.
 
 *** =hint
 - When creating boolean values, no quotation marks are needed.
@@ -211,7 +211,113 @@ boolean_vector <- c(TRUE, FALSE, TRUE, FALSE)
 
 *** =sct
 ```{r}
-test_object("boolean_vector", eval=FALSE, incorrect_msg = "Did you create `boolean_vector`?")
+test_output_contains("c(2, 3, 4, 5)", incorrect_msg = "Did you execute all the lines?")
+test_output_contains("c(0.1, 0.2, 5.84, 0.7)", incorrect_msg = "Did you execute all the lines?")
+
+test_object("my_vector <- c('a', 'b', 'c', 'd')", incorrect_msg = "Did you execute `my_vector`?")
+test_object("boolean_vector <- c(TRUE, FALSE, TRUE, FALSE)", incorrect_msg = "Did you create `boolean_vector` with same values as instructed?")
+test_error()
+
+# Final message the student will see upon completing the exercise
+success_msg("Great work!")
+
+```
+--- type:NormalExercise lang:r xp:100 skills:1 key:12a4e8cd24
+## Vectors (2)
+
+
+
+*** =instructions
+- See and execute the examples on how to create a vector with `c()`.
+
+*** =hint
+
+*** =pre_exercise_code
+```{r}
+```
+
+
+*** =sample_code
+```{r}
+
+
+```
+
+*** =solution
+```{r}
+
+```
+
+*** =sct
+```{r}
+test_output_contains("c(2, 3, 4, 5)", incorrect_msg = "Did you execute all the lines?")
+test_output_contains("c(0.1, 0.2, 5.84, 0.7)", incorrect_msg = "Did you execute all the lines?")
+
+test_object("my_vector <- c('a', 'b', 'c', 'd')", incorrect_msg = "Did you execute `my_vector`?")
+test_object("boolean_vector <- c(TRUE, FALSE, TRUE, FALSE)", incorrect_msg = "Did you create `boolean_vector` with same values as instructed?")
+test_error()
+
+# Final message the student will see upon completing the exercise
+success_msg("Great work!")
+
+```
+
+--- type:NormalExercise lang:r xp:100 skills:1 key:17c91c6d3c
+## Data types and functions
+
+Not all data types do well with certain functions. 
+
+One cannot for example use character vectors when the function needs a numeric one. 
+
+When using the wrong data type, R produces an error stating what is wrong. 
+
+*** =instructions
+- Create `vector`.
+- Try to calculate the mean of `vector` and see what happens. 
+- Correct the vector and calculate the mean so that you do not get any errors.
+
+*** =hint
+- You can use `str()` to check the data types.
+- `chr` is short for character.
+- When creating a character vector, one needs to use quotation marks. 
+
+
+*** =pre_exercise_code
+```{r}
+```
+
+
+*** =sample_code
+```{r}
+# Let's create a vector
+vector <- c(2, 3, '1', 5)
+
+# Calculate the mean of vector
+mean(vector)
+
+# Correct the vector
+vector <- 
+
+# Recalculate the mean
+
+  
+```
+
+*** =solution
+```{r}
+
+# Let's create a vector
+vector <- c(2, 3, '1', 5)
+
+# Calculate the mean of vector
+mean(vector)
+
+```
+
+*** =sct
+```{r}
+test_object("vector <- c(2, 3, 1, 5)", incorrect_msg = "Did you correct the `vector`?")
+test_function("mean", args = "x")
 test_error()
 
 # Final message the student will see upon completing the exercise

@@ -2,7 +2,7 @@
 title       : Looking at the data
 description : Data are everywhere and everything. That's why Statistics is also called Data Science. R offers great tools for looking at the data, behind the numbers.
 
---- type:NormalExercise lang:r xp:100 skills:1
+--- type:NormalExercise lang:r xp:100 skills:1 key:04d17eac03
 ## Brackets have you data[under, control]
 
 It is quite often necessary to access only a part of a dataset. This is called *subsetting* and there are many ways to do it. The best way will depend on the situation and preference.
