@@ -324,7 +324,6 @@ mean(vector)
 ```{r}
 test_object("vector <- c(2, 3, 1, 5)", incorrect_msg = "Did you correct the `vector`?")
 test_function("mean", args = "x")
-test_output_contains("mean(vector)", incorrect_msg = "Did you calculate the mean?")
 test_error()
 
 # Final message the student will see upon completing the exercise
