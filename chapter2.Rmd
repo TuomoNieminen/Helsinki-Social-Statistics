@@ -312,12 +312,6 @@ vector <- c(2, 3, '1', 5)
 # Calculate the mean of vector
 mean(vector)
 
-# Correct the vector
-vector <- c(2, 3, 1, 5)
-
-# Recalculate the mean
-mean(vector)
-
 ```
 
 *** =sct
