@@ -225,12 +225,10 @@ success_msg("Great work!")
 --- type:NormalExercise lang:r xp:100 skills:1 key:12a4e8cd24
 ## Vectors (2)
 
-
-
 *** =instructions
-- See and execute the examples on how to create a vector with `c()`.
-
+- 
 *** =hint
+-
 
 *** =pre_exercise_code
 ```{r}
@@ -294,12 +292,6 @@ vector <- c(2, 3, '1', 5)
 
 # Calculate the mean of vector
 mean(vector)
-
-# Correct the vector
-vector <- 
-
-# Recalculate the mean
-
   
 ```
 
