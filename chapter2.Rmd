@@ -222,7 +222,7 @@ test_error()
 success_msg("Great work!")
 
 ```
---- type:NormalExercise lang:r xp:100 skills:1 key:7cc56d2158
+--- type:NormalExercise lang:r xp:100 skills:1 key:12a4e8cd24
 ## Vectors (2)
 
 
@@ -262,7 +262,7 @@ success_msg("Great work!")
 
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1 key:7cc56d2158
+--- type:NormalExercise lang:r xp:100 skills:1 key:17c91c6d3c
 ## Data types and functions
 
 Not all data types do well with certain functions. 
