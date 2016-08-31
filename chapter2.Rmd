@@ -246,6 +246,7 @@ names[1]
 # The third and fourth value in the vector
 names[c(3,4)]
 
+
 ```
 
 *** =solution
