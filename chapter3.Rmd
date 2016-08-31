@@ -6,13 +6,15 @@ description : Data are everywhere and everything. That's why Statistics is also 
 
 ## Getting intimate with the data
 
-In this section, you will learn how to get familiar with thedata by zooming in on it, visualizing it and summarizing it.
+In this section, you will learn how to get familiar with your data by zooming in on it, visualizing it and summarizing it.
 
 These are always the first things to do after the data is collected and preprocessed (cleaned).
 
 
 *** =instructions
-- no exercise, just study the examples and hit 'Submit answer'
+- Take a look at the examples, you will learn more about all of them in the next exercises.
+- Execute the line that produces summaries of all the variables in `students2014`.
+- Click 'Submit Answer'.
 
 
 
@@ -39,8 +41,6 @@ barplot(table(students2014$kone), main = "Barplot of OS", xlab = "Linux, Mac, Wi
 # horizontally placed box plot of ages
 boxplot(students2014$ika, main = "Boxplot of age", xlab = "ika", horizontal = T)
 
-# take a summary of all the variables in students2014
-summary(students2014)
 
 ```
 
@@ -51,13 +51,13 @@ summary(students2014)
 # Histogram of student heights
 hist(students2014$pituus,  main ="Histogram of height", xlab = "height")
 
-# Bar plot of the students operating systems 
+# Bar plot of operating systems 
 barplot(table(students2014$kone), main = "Barplot of OS", xlab = "Linux, Mac, Win or none")
   
 # Box plot of student ages
 boxplot(students2014$ika, main = "Boxplot of age", xlab = "ika", horizontal = T)
 
-# Summary of all the variables in students2014
+# Summaries of all variables
 summary(students2014)
 
 
@@ -65,11 +65,15 @@ summary(students2014)
 
 *** =solution
 ```{r}
-#solution code here
+# Summaries of all variables
+summary(students2014)
 ```
 
 *** =sct
 ```{r}
+
+test_output_contains("summary(students2014)")
+
 test_error()
 success_msg("Ready? Let's go for it!")
 ```
