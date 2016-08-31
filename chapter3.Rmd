@@ -2,22 +2,98 @@
 title       : Looking at the data
 description : Data are everywhere and everything. That's why Statistics is also called Data Science. R offers great tools for looking at the data, behind the numbers.
 
---- type:NormalExercise lang:r xp:100 skills:1 key:04d17eac03
-## Brackets have you data[under, control]
+--- type:NormalExercise lang:r xp:100 skills:1
 
-It is quite often necessary to access only a part of a dataset. This is called *subsetting* and there are many ways to do it. The best way will depend on the situation and preference.
+## Getting intimate with the data
 
-We have already seen that the column of a data frame (df) can be accessed via the `$`-sign. There is another way: the `[ ]`. The brackets are a general way of accessing a part of any data structure in R. 
+In this section, you will learn how to get familiar with thedata by zooming in on it, visualizing it and summarizing it.
 
-The brackets are used by giving the locations of the values you wish to access.
+These are always the first things to do after the data is collected and preprocessed (cleaned).
 
 
 *** =instructions
-- Modify the code so that the object age_height contains all the data of the columns three and four of the data frame students2014.
+- 
+
+
+
+*** =pre_exercise_code
+```{r}
+  # load data from web
+students2014 <- read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS-data.txt", sep="\t", header=TRUE)
+  # keep a couple background variables
+students2014 <- students2014[,c("sukup","toita","ika","pituus","kenka","kone")]
+  # recode kone variables missing values as factor levels
+students2014$kone <- addNA(students2014$kone)
+  # keep only rows without missing values
+students2014 <- students2014[complete.cases(students2014),]
+
+# draw plots in one window
+layout(matrix(c(1,2,3,3), 2, 2, byrow =TRUE))
+    
+#histogram of heights
+hist(students2014$pituus,  main ="Histogram of height", xlab = "height")
+
+# bar plot of operating systems 
+barplot(table(students2014$kone), main = "Barplot of OS", xlab = "Linux, Mac, Win or none")
+  
+# horizontally placed box plot of ages
+boxplot(students2014$ika, main = "Boxplot of age", xlab = "ika", horizontal = T)
+
+# take a summary of all the variables in students2014
+summary(students2014)
+
+```
+
+*** =sample_code
+```{r}
+# students2014 is available and layout() has been used. The next three plots will be placed in the same window.
+    
+#histogram of heights
+hist(students2014$pituus,  main ="Histogram of height", xlab = "height")
+
+# bar plot of operating systems 
+barplot(table(students2014$kone), main = "Barplot of OS", xlab = "Linux, Mac, Win or none")
+  
+# horizontally placed box plot of ages
+boxplot(students2014$ika, main = "Boxplot of age", xlab = "ika", horizontal = T)
+
+# take a summary of all the variables in students2014
+summary(students2014)
+
+
+```
+
+*** =solution
+```{r}
+#solution code here
+```
+
+*** =sct
+```{r}
+test_error()
+success_msg("Ready? Let's go for it!")
+```
+
+
+--- type:NormalExercise lang:r xp:100 skills:1 key:04d17eac03
+## Brackets have your data [ under, control ]
+
+It is quite often necessary to access only a part of a dataset. This is called *subsetting* and there are many ways of doing it. The best way will depend on the situation and  preference.
+
+We have already seen that the columns of a data frame (df) can be accessed via `$`. There is another, more general method: `[ ]`. The brackets are a way of accessing a part of any data structure in R. 
+
+The way to use brackets is by giving the locations of the values you wish to access.
+
+
+*** =instructions
+- Study the examples on how to select parts of a data frame.
+- Replace `NULL` so that the object `age_height` contains the third and fourth columns of students2014.
+- Modify the code to print out the first five rows of `age_height`.
 
 
 *** =hint
 - Selecting multiple columns is very similar to selecting multiple rows.
+- See the first example on how to select multiple rows.
 
 
 *** =pre_exercise_code
@@ -45,12 +121,14 @@ students2014[3:6, ]
 # Look at the value in row 6, column 4
 students2014[6, 4]
 
-# Choose the whole column 3
+# Choose the whole column 3 and save it as an object
 student_age <- students2014[, 3]
 
-# Choose all rows in the third and fourth columns
-age_hight <- students2014[, NULL]
+# Choose the third and fourth columns and save them as an object
+age_height <- students2014[, NULL]
 
+# Print out the first five rows of age_height
+age_height[NULL, ]
 
 
 ```
@@ -65,11 +143,15 @@ students2014[3:6, ]
 # Look at the value in row 6, column 4
 students2014[6, 4]
 
-# Choose the whole column 3
+# Choose the whole column 3 and save it as an object
 student_age <- students2014[, 3]
 
-# Choose all rows in the third and fourth columns
-age_hight <- students2014[, 3:4]
+# Choose the third and fourth columns and save them as an object
+age_height <- students2014[, 3:4]
+
+# Print out the first five rows of age_height
+age_height[1:5, ]
+
 
 
 ```
@@ -83,19 +165,185 @@ success_msg("Good work!")
 ```
 
 
---- type:NormalExercise lang:r xp:100 skills:1 key:b26060ee08
+--- type:NormalExercise lang:r xp:100 skills:1 key:457280046c
 
-## Help!
+## Bar plots for discrete variables
 
-How to use help() and ?
+Bar plots are useful for visualizing qualitative, discreate variables, which in R are usually stored as character, factor or perhaps boolean data types. A bar plot represents the counts of the unique values of the variable of interest. Drawing a bar plot only makes sense when the variable is discreate and there are only a few unique values possible.
+
+In this exercise you will draw a barplot of `kone` in the data frame `students2014`. For each student the value of `kone` is the operating system of the students computer, for more information see [meta](http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS-meta.txt).
+
+In base R graphics, the function `barplot()` can be used to draw a bar plot. The information needed for the function can be computed by first creating a `summary()` or a `table()` of the variable.
+
+Many of the values of `kone` are `<NA>`, not available. Why do you think this could be?
 
 *** =instructions
-- instruction 1
-- instruction 2
+- Use `summary()` on `kone` in the data frame `students2014`. What does it show you?
+- Create an object `os_counts` by assigning the output of `summary()` to it.
+- Use the function `barplot()` to draw a bar plot. Use the object you created as the first argument.
 
 *** =hint
-- hint 1
-- hint 2
+- replace `NULL` with the example code using `summary()` to create the object `os_counts`.
+- Then give the object os_counts an argument inside the parenthesis in `barplot()`. 
+
+
+*** =pre_exercise_code
+```{r}
+  # load data from web
+students2014 <- read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS-data.txt", sep="\t", header=TRUE)
+  # keep a couple background variables
+students2014 <- students2014[,c("sukup","toita","ika","pituus","kenka","kone")]
+  # recode kone variables missing values as factor levels
+students2014$kone <- addNA(students2014$kone)
+  # keep only rows without missing values
+students2014 <- students2014[complete.cases(students2014),]
+
+```
+
+
+*** =sample_code
+```{r}
+# students2014 is available
+
+# Look at the counts of different levels of 'kone'.
+summary(students2014$kone)
+
+# Create object os_counts that stores the counts
+os_counts <- NULL
+
+
+# Call barplot() to draw a graph. Use the object you created as the first argument.
+
+  
+```
+
+*** =solution
+```{r}
+# Look at the counts of different levels.
+summary(students2014$kone)
+
+# Create object os_counts that stores the counts
+os_counts <- summary(students2014$kone)
+
+# Call barplot() to draw a graph. Use the object you created as an argument.
+barplot(os_counts)
+
+
+
+```
+
+*** =sct
+```{r}
+
+test_function("barplot", args="height")
+
+# test error
+test_error()
+
+# Final message the student will see upon completing the exercise
+success_msg("Excellent work!")
+
+```
+
+--- type:NormalExercise lang:r xp:100 skills:1 key:82217456fa
+
+## Bar plots for continuous variables
+
+When a variable is continuous by nature, it means that it can in theory take on so many different values that all of it's observed values are unique. In practise though, all measurements are discreate and hence continuity is a matter of interpretation.
+
+Age can be interpret as continuous because of the continuous nature of time. The exact age of a person depends on the exact time of birth and is hence different for all.
+
+Age is often measured as rounded down years. Even then, there are too many unique values to draw bar plot that makes sense. A solution is to first categorize age.
+
+
+*** =instructions
+- Create a histogram of 
+- Adjust your code and draw the histogram again using `breaks = 12`.
+- Adjust your code and give your histogram a nice color using the `col` argument. Use quotations marks to define the color name.
+
+
+*** =hint
+- You can access the column of a data frame (df) with the `$` symbol: `df$column_name`.
+- Remember to seperate the arguments of a function with a comma.
+
+
+*** =pre_exercise_code
+```{r}
+  # load data from web
+students2014 <- read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS-data.txt", sep="\t", header=TRUE)
+  # keep a couple background variables
+students2014 <- students2014[,c("sukup","toita","ika","pituus","kenka","kone")]
+  # recode kone variables missing values as factor levels
+students2014$kone <- addNA(students2014$kone)
+  # keep only rows without missing values
+students2014 <- students2014[complete.cases(students2014),]
+
+```
+
+
+*** =sample_code
+```{r}
+# students2014 is available
+
+# draw a barplot of student age
+barplot(students2014$ika)
+
+# split age to intervals
+age_cut <- cut(students2014$ika, c(0, 16, 20,24,30, 100))
+
+barplot(summary(age_cut))
+
+
+
+```
+
+*** =solution
+```{r}
+# draw a barplot of student age
+barplot(students2014$ika)
+
+# split age to intervals
+age_cut <- cut(students2014$ika, c(0, 16, 20,24,30, 100))
+
+barplot(summary(age_cut))
+
+```
+
+*** =sct
+```{r}
+
+test_function("hist", args=c("x","breaks"))
+
+# test error
+test_error()
+
+
+# Final message the student will see upon completing the exercise
+success_msg("Good work!")
+
+```
+
+--- type:NormalExercise lang:r xp:100 skills:1
+
+## Histograms
+
+Drawing a histogram basically means following the steps in the previous exercise. Basic histograms can be drawn with the `hist()` function. The first argument of `hist()`, `x` should be a numeric vector of data values. The argument `breaks` can be used to approximately control the number of intervals.
+
+As with all the plotting functions in R, the `hist()` function can take on many additional arguments which allow for more control over the plot. One simple argument is `col`, which defines the color of the bars.
+
+`col` can be a character string giving the name of the color ("blue", "green", etc). Some possible color names can be found <a target="_blank" href="http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf">here</a> The `breaks` argument can be used to control the approximate number of bins in the histogram.
+
+*** =instructions
+- Create a histogram of 
+- Adjust your code and draw the histogram again using `breaks = 12`.
+- Adjust your code and give your histogram a nice color using the `col` argument. Use quotations marks to define the color name.
+
+
+*** =hint
+- You can access the column of a data frame (df) with the `$` symbol: `df$column_name`.
+- Remember to seperate the arguments of a function with a comma.
+
+
 
 
 *** =pre_exercise_code
@@ -130,140 +378,6 @@ success_msg("Good work!")
 
 ```
 
-
---- type:NormalExercise lang:r xp:100 skills:1 key:457280046c
-
-## Bar plots
-
-Bar plots are useful for visualizing qualitative variables, which in R are usually stored as character-, factor- or boolean data types.
-
-In base R graphics, the function `barplot()` can be used to draw a bar plot. It's first argument is `height` which is the only mandatory argument. The information for `height` can be computed easily by creating a `summary()` or a `table()` of a factor.
-
-In this exercise you will draw a barplot of `variable` in the data frame `df`.
-
-*** =instructions
-- Remind yourself on how to access the column of a data frame and how to create objects.
-- Use `table()` on `variable` in the data frame `df`. What does it show you?
-- Create an object `counts` by assigning the output of `table()` or `summary()` to it.
-- Use the function `barplot()` to draw a bar plot. Use the object you created as the first argument.
-
-*** =hint
-- You can access the columns of a data.frame (df) with the `$` operator: `df$column`.
-- Remember how to create objects using the assign operator `<-`: `object_name <- function()`
-
-
-*** =pre_exercise_code
-```{r}
-# pec
-```
-
-
-*** =sample_code
-```{r}
-# Look at the counts of different levels.
-table(df)
-
-
-# Create object counts that stores the counts
-counts <- NULL
-
-
-# Call barplot() to draw a graph. Use the object you created as an argument.
-
-  
-```
-
-*** =solution
-```{r}
-# Look at the counts of different levels.
-table()
-
-
-# Create object counts that stores the counts
-counts <- table()
-
-
-# Call barplot() to draw a graph. Use the object you created as an argument.
-barplot(counts)
-
-
-
-```
-
-*** =sct
-```{r}
-
-test_function("barplot", args="height")
-
-# test error
-test_error()
-
-# Final message the student will see upon completing the exercise
-success_msg("Excellent work!")
-
-```
-
---- type:NormalExercise lang:r xp:100 skills:1 key:82217456fa
-
-## Histograms
-
-Histograms are an excellent way of visualizing the variability of a continuous quantitative variable. Basic histograms can be drawn with the `hist()` function. The first argument of `hist()`, `x` should be a numeric vector of data values.
-
-As with all the plotting functions in R, the `hist()` function can take on many additional arguments which allow for more control over the plot. One simple argument is `col`, which defines the color of the bars.
-
-`col` can be a character string giving the name of the color ("blue", "green", etc). Some possible color names can be found <a target="_blank" href="http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf">here</a> The `breaks` argument can be used to control the approximate number of bins in the histogram.
-
-*** =instructions
-- Create a histogram of 
-- Adjust your code and draw the histogram again using `breaks = 12`.
-- Adjust your code and give your histogram a nice color using the `col` argument. Use quotations marks to define the color name.
-
-
-*** =hint
-- You can access the column of a data frame (df) with the `$` symbol: `df$column_name`.
-- Remember to seperate the arguments of a function with a comma.
-
-
-*** =pre_exercise_code
-```{r}
-# pec
-```
-
-
-*** =sample_code
-```{r}
-
-
-# Draw a histogram of var. Use the additional arguments breaks and col.
-
-histogram(var, col = NULL)
-
-
-
-
-```
-
-*** =solution
-```{r}
-# Draw a histogram of Income in US. Use the additional arguments breaks and col.
-hist(var, breaks = 12, col ="blue")
-
-
-```
-
-*** =sct
-```{r}
-
-test_function("hist", args=c("x","breaks"))
-
-# test error
-test_error()
-
-
-# Final message the student will see upon completing the exercise
-success_msg("Good work!")
-
-```
 
 
 --- type:NormalExercise lang:r xp:150 skills:1 key:c3d62c54f5
