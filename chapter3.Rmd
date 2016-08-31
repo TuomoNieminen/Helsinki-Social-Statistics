@@ -2,7 +2,7 @@
 title       : Looking at the data
 description : Data are everywhere and everything. That's why Statistics is also called Data Science. R offers great tools for looking at the data, behind the numbers.
 
---- type:NormalExercise lang:r xp:100 skills:1
+--- type:NormalExercise lang:r xp:100 skills:1 key:9c7624db08
 
 ## Getting intimate with the data
 
@@ -323,7 +323,7 @@ success_msg("Good work!")
 
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1
+--- type:NormalExercise lang:r xp:100 skills:1 key:86cee4bd71
 
 ## Histograms
 
