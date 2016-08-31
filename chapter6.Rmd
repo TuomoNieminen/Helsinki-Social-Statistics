@@ -1,5 +1,5 @@
 ---
-title       : Probability 1 (computing)
+title       : Probability, concepts
 description : UNDER CONSTRUCTION
 
 --- type:NormalExercise lang:r xp:100 skills:1 key:b690c68893
