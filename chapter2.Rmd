@@ -237,6 +237,14 @@ success_msg("Great work!")
 
 *** =sample_code
 ```{r}
+# LEt's create a vector 
+names <- c("Matti", "Pekka", "Liisa", "Anna")
+
+# The first value in the vector
+names[1]
+
+# The third and fourth value in the vector
+names[c(3,4)]
 
 
 ```
@@ -299,7 +307,7 @@ mean(vector)
 ```{r}
 
 # Let's create a vector
-vector <- c(2, 3, '1', 5)
+vector <- c(2, 3, 1, 5)
 
 # Calculate the mean of vector
 mean(vector)
