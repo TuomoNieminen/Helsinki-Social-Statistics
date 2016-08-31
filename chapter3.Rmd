@@ -119,7 +119,7 @@ students2014 <- read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS-da
 ```{r}
 # students2014 is available
 
-# Look at the rows three to six of the data
+# Choose the rows from 3 to 6 in the data
 students2014[3:6, ]
 
 # Look at the value in row 6, column 4
@@ -141,7 +141,7 @@ age_height[NULL, ]
 ```{r}
 # students2014 is available
 
-# Look at the rows three to six of the data
+# Choose the rows from 3 to 6 in the data
 students2014[3:6, ]
 
 # Look at the value in row 6, column 4
@@ -173,16 +173,17 @@ success_msg("Good work!")
 
 ## Bar plots for discrete variables
 
-Bar plots are useful for visualizing qualitative, discreate variables, which in R are usually stored as character, factor or perhaps boolean data types. A bar plot represents the counts of the unique values of the variable of interest. Drawing a bar plot only makes sense when the variable is discreate and there are only a few unique values possible.
+Bar plots are useful for visualizing qualitative, discreate variables. A bar plot represents the counts of the unique values of the variable of interest. Drawing a bar plot only makes sense when there are only a few unique values possible.
 
 In this exercise you will draw a barplot of `kone` in the data frame `students2014`. For each student the value of `kone` is the operating system of the students computer, for more information see [meta](http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS-meta.txt).
 
 In base R graphics, the function `barplot()` can be used to draw a bar plot. The information needed for the function can be computed by first creating a `summary()` or a `table()` of the variable.
 
-Many of the values of `kone` are `<NA>`, not available. Why do you think this could be?
+
 
 *** =instructions
-- Use `summary()` on `kone` in the data frame `students2014`. What does it show you?
+- Use `summary()` on `kone` in the data frame `students2014`.
+- Many of the values of `kone` are `<NA>`, not available. Why do you think this could be?
 - Create an object `os_counts` by assigning the output of `summary()` to it.
 - Use the function `barplot()` to draw a bar plot. Use the object you created as the first argument.
 
@@ -253,22 +254,19 @@ success_msg("Excellent work!")
 
 ## Bar plots for continuous variables
 
-When a variable is continuous by nature, it means that it can in theory take on so many different values that all of it's observed values are unique. In practise though, all measurements are discreate and hence continuity is a matter of interpretation.
+When a variable is continuous by nature, it means that it can in theory take on so many different values that all of it's observed values are unique. In practise though, measurements are always discreate and hence continuity is a matter of interpretation.
 
-Age can be interpret as continuous because of the continuous nature of time. The exact age of a person depends on the exact time of birth and is hence different for all.
-
-Age is often measured as rounded down years. Even then, there are too many unique values to draw bar plot that makes sense. A solution is to first categorize age.
+Age can be interpret as continuous because of the continuous nature of time. The exact age of a person depends on the exact time of birth and is hence different for all. Age is often measured quite discretely as rounded down years. Even then, there are too many unique values to draw bar plot that makes sense. A solution is to first categorize age.
 
 
 *** =instructions
-- Create a histogram of 
-- Adjust your code and draw the histogram again using `breaks = 12`.
-- Adjust your code and give your histogram a nice color using the `col` argument. Use quotations marks to define the color name.
+- Draw a bar plot of students age. How does it look?
+- Use `cut()` to create a factor object where age is cut into intervals.
+- Use `summary()` and `barplot()` to draw a barplot.
 
 
 *** =hint
-- You can access the column of a data frame (df) with the `$` symbol: `df$column_name`.
-- Remember to seperate the arguments of a function with a comma.
+- 
 
 
 *** =pre_exercise_code
@@ -289,13 +287,13 @@ students2014 <- students2014[complete.cases(students2014),]
 ```{r}
 # students2014 is available
 
-# draw a barplot of student age
+# Draw a barplot of student age.
 barplot(students2014$ika)
 
-# split age to intervals
+# Split age to intervals
 age_cut <- cut(students2014$ika, c(0, 16, 20,24,30, 100))
 
-barplot(summary(age_cut))
+# Draw a bar plot of age_cut below
 
 
 
@@ -309,6 +307,7 @@ barplot(students2014$ika)
 # split age to intervals
 age_cut <- cut(students2014$ika, c(0, 16, 20,24,30, 100))
 
+# Draw a bar plot of age_cut below
 barplot(summary(age_cut))
 
 ```
@@ -316,26 +315,21 @@ barplot(summary(age_cut))
 *** =sct
 ```{r}
 
-test_function("hist", args=c("x","breaks"))
+test_function("barplot", args=c("height"))
 
-# test error
 test_error()
-
-
-# Final message the student will see upon completing the exercise
-success_msg("Good work!")
-
+success_msg("That was awsome!")
 ```
 
 --- type:NormalExercise lang:r xp:100 skills:1 key:86cee4bd71
 
 ## Histograms
 
-Drawing a histogram basically means following the steps in the previous exercise. Basic histograms can be drawn with the `hist()` function. The first argument of `hist()`, `x` should be a numeric vector of data values. The argument `breaks` can be used to approximately control the number of intervals.
+Splitting a continuous variable into intervals and then drawing a bar plot is so common that it has it's own name: the histogram. Basic histograms can be drawn with the `hist()` function. The first argument of `hist()`, `x` should be a numeric vector of data values. The argument `breaks` can be used to approximately control the number of intervals.
 
 As with all the plotting functions in R, the `hist()` function can take on many additional arguments which allow for more control over the plot. One simple argument is `col`, which defines the color of the bars.
 
-`col` can be a character string giving the name of the color ("blue", "green", etc). Some possible color names can be found <a target="_blank" href="http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf">here</a> The `breaks` argument can be used to control the approximate number of bins in the histogram.
+`col` can be a character string giving the name of the color ("blue", "green", etc). Some possible color names can be found <a target="_blank" href="http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf">here</a>.
 
 *** =instructions
 - Create a histogram of 
