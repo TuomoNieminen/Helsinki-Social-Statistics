@@ -360,7 +360,7 @@ mean(my_vector)
 *** =sct
 ```{r}
 test_object("vector <- c(2, 3, 1, 5)", incorrect_msg = "Did you correct the `vector`?")
-test_function("mean", args = "x")
+
 test_error()
 
 # Final message the student will see upon completing the exercise
