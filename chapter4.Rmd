@@ -24,6 +24,8 @@ It is then possible to make a reasonable guess of the strength of the linear rel
 # simulate and plot correlated data
 simulate <- function(n = 60) {
   
+  if(n > 1e5) stop("That n is quite large. Please choose a smaller n")
+  
   # degree (d) of the polynomial
   degree <- sample(1:3, 1)
   
@@ -40,7 +42,7 @@ simulate <- function(n = 60) {
   # linear equation y = b_1 * x^1 + .. + b_d * x^d + e
   y <- rowSums(X) + rnorm(n)
   
-  # scatterplot with regression line
+  # scatterplot
   plot(x, y, col = "grey40", type = "p", pch= 20, xlab="", ylab="")
   
   return(list(x = x, y = y))
