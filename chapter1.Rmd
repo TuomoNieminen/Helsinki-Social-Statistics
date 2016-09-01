@@ -25,7 +25,7 @@ data_url <- "http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS-data.txt"
 students2014 <- read.table(data_url, sep="\t", header=TRUE)
 
 with(students2014, 
-     plot(kenka, pituus, col = sukup))
+     plot(kenka, pituus, col = sukup, pch = 20))
 ```
 
 *** =sample_code
@@ -41,7 +41,7 @@ students2014 <- read.table(data_url, sep = "\t", header = TRUE)
 # Draw graph of shoesize versus hight using plot()
 # Indicate sex by color with the 'col' argument
 with(students2014, 
-     plot(x = kenka, y = pituus, col = sukup))
+     plot(x = kenka, y = pituus, col = sukup, pch = 20))
 
 
 ```
