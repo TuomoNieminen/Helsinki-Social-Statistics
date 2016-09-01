@@ -75,9 +75,9 @@ Some functions in R are very generic. They can take different objects as their f
 One such example is the `summary()` function. Depending on the type of data object it receives as it's first argument, `summary()` will produce different convenient results. 
 
 *** =instructions
-- Execute the code that creates a summary of the factor data object `kone` in the data frame `students2014
-- Execute the code that creates a summary of the numeric data object `ika` in the data frame `students2014`
-- Create a summary of the data.frame object `students2014`.
+- Execute the code that creates a summary of the object `kone` in the data.frame `students2014`
+- Execute the code that creates a summary of the object `ika`.
+- Create a summary of the object `students2014`.
 
 *** =hint
 - Get the summary of an object by typing `summary(object)`.
@@ -100,10 +100,10 @@ students2014 <- students2014[complete.cases(students2014),]
 ```{r}
 # students2014 is available
 
-# Create a summary of a factor object (qualitative)
+# Create a summary of a factor object
 summary(students2014$kone)
 
-# Create a summary of a numeric object (quantitative)
+# Create a summary of a numeric object
 summary(students2014$ika)
 
 # Create a summary of a data.frame object
@@ -116,10 +116,10 @@ summary(students2014$ika)
 *** =solution
 ```{r}
 
-# Create a summary of a factor object (qualitative)
+# Create a summary of a factor object
 summary(students2014$kone)
 
-# Create a summary of a numeric object (quantitative)
+# Create a summary of a numeric object
 summary(students2014$ika)
 
 # Create a summary of a data.frame object
@@ -142,9 +142,9 @@ success_msg("Well done!")
 
 ## Bar plots of qualitative variables
 
-Bar plots are useful for visualizing qualitative, discreate variables. A bar plot represents the counts of the unique values of the variable of interest. Drawing a bar plot only makes sense when there are only a few unique values possible.
+Bar plots are useful for visualizing qualitative, discrete variables. A bar plot represents the counts of the unique values of the variable of interest. Drawing a bar plot only makes sense when there are only a few unique values possible.
 
-In this exercise you will draw a barplot of `kone` in the data frame `students2014`. For each student the value of `kone` is the operating system of the students computer, for more information see [meta](http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS-meta.txt).
+In this exercise you will draw a barplot of `kone` in the data frame `students2014`. For each student the value of `kone` is the operating system of the students computer. For more information see [the metafile](http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS-meta.txt).
 
 In base R graphics, the function `barplot()` can be used to draw a bar plot. The information needed for the function can be computed by first creating a `summary()` or a `table()`.
 
@@ -152,7 +152,7 @@ In base R graphics, the function `barplot()` can be used to draw a bar plot. The
 *** =instructions
 - Use `summary()` on `kone` in the data frame `students2014`.
 - Many of the values of `kone` are `<NA>`, not available. Why do you think this could be?
-- Create an object `os_counts` by assigning the output of `summary()` to it.
+- Replace the `NULL` with a call to `summary()` and create object `os_counts` by assigning the summary of `kone` to it.
 - Use the function `barplot()` to draw a bar plot. Use the object you created as the first argument.
 
 *** =hint
@@ -219,11 +219,11 @@ success_msg("Excellent work!")
 
 ## Bar plots of continuous variables
 
-When a variable is continuous by nature, it means that it can take on so many different values that all of it's observed values are unique. In practise though, measurements are always discrete and hence continuity is a matter of interpretation.
+When a variable is continuous by nature, it means that it can take on so many different values that all of it's observed values are likely to be unique. In practise though, measurements are always discrete and hence continuity is a matter of interpretation.
 
 Age can be interpret as continuous because of the continuous nature of time. The exact age of a person depends on the exact time of birth and is different for all. However, age is often measured quite discretely as rounded down years.
 
-Even when age is measured in years, there are usually too many unique values to draw bar plot that makes sense. A solution is to first categorize age.
+Even when age is measured in years, usually there are too many unique values to draw bar plot that makes sense and a continuous interpretation is valid. So how do we then look at the distribution of age? A solution is to first categorize age.
 
 
 *** =instructions
@@ -234,6 +234,7 @@ Even when age is measured in years, there are usually too many unique values to 
 
 *** =hint
 - Use `breaks = c(0, 16, 20, 24, 30, 100)` to create the factor object `age_cut`
+- Make sure to close the parenthesis on `cut()`.
 - See the previous exercise for information on how to create a bar plot of a factor object.
 
 
@@ -255,13 +256,14 @@ students2014 <- students2014[complete.cases(students2014),]
 ```{r}
 # students2014 is available
 
-# Draw a barplot of student age.
+# Draw a barplot of student age
 barplot(students2014$ika)
 
 # Split age to intervals
 age_cut <- cut(students2014$ika, breaks = NULL)
 
 # Draw a bar plot of age_cut
+# Use summary() first
 
 
 
@@ -275,7 +277,8 @@ barplot(students2014$ika)
 # split age to intervals
 age_cut <- cut(students2014$ika, breaks = c(0, 16, 20, 24, 30, 100))
 
-# Draw a bar plot of age_cut below
+# Draw a bar plot of age_cut
+# Use summary() first
 barplot(summary(age_cut))
 
 
@@ -322,6 +325,10 @@ students2014 <- students2014[,c("sukup","toita","ika","pituus","kenka","kone")]
 students2014$kone <- addNA(students2014$kone)
 # keep only rows without missing values
 students2014 <- students2014[complete.cases(students2014),]
+
+# Draw a histogram of student age
+hist(students2014$ika)
+
 ```
 
 *** =sample_code
@@ -358,7 +365,7 @@ success_msg("Very well done!")
 
 
 
---- type:NormalExercise lang:r xp:150 skills:1 key:c3d62c54f5
+--- type:NormalExercise lang:r xp:100 skills:1 key:c3d62c54f5
 
 ## Box plots
 
@@ -372,7 +379,6 @@ Values outside the whiskers can be considered as outliers, unusually distant obs
 
 *** =instructions
 - Draw a `boxplot()` of `var`.
-- Use help() or `?` to find out which argument controls the label of the y axis and the main title.
 - Add a suitable label to the y axis and a main title of your choice.
 
 *** =hint
