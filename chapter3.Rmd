@@ -13,8 +13,8 @@ These are always the first things to do after the data is collected and preproce
 
 *** =instructions
 - Take a look at the examples, you will learn more about all of them in the next exercises.
-- Execute the line that produces summaries of all the variables in `students2014`.
-- Click 'Submit Answer'.
+-  You can browse the different plots by clicking on "Next/Previous plot".
+- Click 'Submit Answer' to move to the first exercise.
 
 
 
@@ -29,14 +29,11 @@ students2014$kone <- addNA(students2014$kone)
   # keep only rows without missing values
 students2014 <- students2014[complete.cases(students2014),]
 
-# draw plots in one window
-layout(matrix(c(1,2,3,3), 2, 2, byrow =TRUE))
-    
-#histogram of heights
-hist(students2014$pituus,  main ="Histogram of height", xlab = "height")
-
 # bar plot of operating systems 
 barplot(table(students2014$kone), main = "Barplot of OS", xlab = "Linux, Mac, Win or none")
+
+# histogram of heights
+hist(students2014$pituus,  main ="Histogram of height", xlab = "height")
   
 # horizontally placed box plot of ages
 boxplot(students2014$ika, main = "Boxplot of age", xlab = "ika", horizontal = T)
@@ -46,34 +43,26 @@ boxplot(students2014$ika, main = "Boxplot of age", xlab = "ika", horizontal = T)
 
 *** =sample_code
 ```{r}
-# students2014 is available and layout() has been called. Three plots will be placed in the same window.
-    
-# Histogram of student heights
-hist(students2014$pituus,  main ="Histogram of height", xlab = "height")
+# students2014 is available
 
 # Bar plot of operating systems 
 barplot(table(students2014$kone), main = "Barplot of OS", xlab = "Linux, Mac, Win or none")
+    
+# Histogram of student heights
+hist(students2014$pituus,  main ="Histogram of height", xlab = "height")
   
 # Box plot of student ages
 boxplot(students2014$ika, main = "Boxplot of age", xlab = "ika", horizontal = T)
-
-# Summaries of all variables
-summary(students2014)
 
 
 ```
 
 *** =solution
 ```{r}
-# Summaries of all variables
-summary(students2014)
 ```
 
 *** =sct
 ```{r}
-
-test_output_contains("summary(students2014)")
-
 test_error()
 success_msg("Ready? Let's go for it!")
 ```
@@ -83,132 +72,58 @@ success_msg("Ready? Let's go for it!")
 
 Some functions in R are very generic. They can take different objects as their first argument and they seem to magically do exactly what you'd hope they do in all situations.
 
-One such example is the `summary()` function.
+One such example is the `summary()` function. Depending on the type of data object it receives as it's first argument, `summary()` will produce different convenient results. 
 
 *** =instructions
-- Execute the code that creates a summary of the `variable` in `df`
-- Then create a summary of `df`
-- `summary()` behaves differently because `variable` and `df` are different kinds of objects.
+- Execute the code that creates a summary of the factor data object `kone` in the data frame `students2014
+- Execute the code that creates a summary of the numeric data object `ika` in the data frame `students2014`
+- Create a summary of the data.frame object `students2014`.
 
 *** =hint
-- Get the summary of an object by typing summary(object)
+- Get the summary of an object by typing `summary(object)`.
 
 *** =pre_exercise_code
 ```{r}
-# pec
-```
-
-
-*** =sample_code
-```{r}
-
-# Create a summary of var
-summary(df$var)
-
-# Create a summary of df
-
-
-
-```
-
-*** =solution
-```{r}
-
-# Create a summary of var in df
-summary(df$var)
-
-# Create a summary of df
-summary(df)
-
-
-```
-
-*** =sct
-```{r}
-# tests. 
-test_output_contains("summary(df)", incorrect_msg="Please type in the code to create a summary of `df`")
-
-test_error()
-success_msg("Great job!")
-```
-
-
---- type:NormalExercise lang:r xp:100 skills:1 key:04d17eac03
-## Brackets have your data [ under, control ]
-
-It is quite often necessary to access only a part of a dataset. This is called *subsetting* and there are many ways of doing it. The best way will depend on the situation and  preference.
-
-We have already seen that the columns of a data frame (df) can be accessed via `$`. There is another, more general method: `[ ]`. The brackets are a way of accessing a part of any data structure in R. 
-
-The way to use brackets is by giving the locations of the values you wish to access.
-
-
-*** =instructions
-- Study the examples on how to select parts of a data frame.
-- Replace `NULL` so that the object `age_height` contains the third and fourth columns of students2014.
-- Modify the code to print out the first five rows of `age_height`.
-
-
-*** =hint
-- Selecting multiple columns is very similar to selecting multiple rows.
-- See the first example on how to select multiple rows.
-
-
-*** =pre_exercise_code
-```{r}
+# load data from web
 students2014 <- read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS-data.txt", sep="\t", header=TRUE)
-  
-  # keep a couple background variables
-  students2014 <- students2014[,c("sukup","toita","ika","pituus","kenka","kone")]
-  
-  # recode kone -variable NA values as factor levels
-  students2014$kone <- addNA(students2014$kone)
-  
-  # choose rows without missing values
-  students2014 <- students2014[complete.cases(students2014),]
+# keep a couple background variables
+students2014 <- students2014[,c("sukup","toita","ika","pituus","kenka","kone")]
+# recode kone variables missing values as factor levels
+students2014$kone <- addNA(students2014$kone)
+# keep only rows without missing values
+students2014 <- students2014[complete.cases(students2014),]
 
 ```
+
 
 *** =sample_code
 ```{r}
 # students2014 is available
 
-# Choose the rows from 3 to 6 in the data
-students2014[3:6, ]
+# Create a summary of a factor object (qualitative)
+summary(students2014$kone)
 
-# Look at the value in row 6, column 4
-students2014[6, 4]
+# Create a summary of a numeric object (quantitative)
+summary(students2014$ika)
 
-# Choose the whole column 3 and save it as an object
-student_age <- students2014[, 3]
+# Create a summary of a data.frame object
 
-# Choose the third and fourth columns and save them as an object
-age_height <- students2014[, NULL]
 
-# Print out the first five rows of age_height
-age_height[NULL, ]
 
 
 ```
 
 *** =solution
 ```{r}
-# students2014 is available
 
-# Choose the rows from 3 to 6 in the data
-students2014[3:6, ]
+# Create a summary of a factor object (qualitative)
+summary(students2014$kone)
 
-# Look at the value in row 6, column 4
-students2014[6, 4]
+# Create a summary of a numeric object (quantitative)
+summary(students2014$ika)
 
-# Choose the whole column 3 and save it as an object
-student_age <- students2014[, 3]
-
-# Choose the third and fourth columns and save them as an object
-age_height <- students2014[, 3:4]
-
-# Print out the first five rows of age_height
-age_height[1:5, ]
+# Create a summary of a data.frame object
+summary(students2014)
 
 
 
@@ -216,23 +131,22 @@ age_height[1:5, ]
 
 *** =sct
 ```{r}
-test_object("age_height")
+test_student_typed("summary(students2014)", not_typed_msg="Please type in the code to create a summary of `students2014`")
 
 test_error()
-success_msg("Good work!")
+success_msg("Well done!")
 ```
 
 
 --- type:NormalExercise lang:r xp:100 skills:1 key:457280046c
 
-## Bar plots for discrete variables
+## Bar plots of qualitative variables
 
 Bar plots are useful for visualizing qualitative, discreate variables. A bar plot represents the counts of the unique values of the variable of interest. Drawing a bar plot only makes sense when there are only a few unique values possible.
 
 In this exercise you will draw a barplot of `kone` in the data frame `students2014`. For each student the value of `kone` is the operating system of the students computer, for more information see [meta](http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS-meta.txt).
 
-In base R graphics, the function `barplot()` can be used to draw a bar plot. The information needed for the function can be computed by first creating a `summary()` or a `table()` of the variable.
-
+In base R graphics, the function `barplot()` can be used to draw a bar plot. The information needed for the function can be computed by first creating a `summary()` or a `table()`.
 
 
 *** =instructions
@@ -270,14 +184,16 @@ summary(students2014$kone)
 # Create object os_counts that stores the counts
 os_counts <- NULL
 
-
 # Call barplot() to draw a graph. Use the object you created as the first argument.
+
 
   
 ```
 
 *** =solution
 ```{r}
+# students2014 is available
+
 # Look at the counts of different levels.
 summary(students2014$kone)
 
@@ -293,34 +209,32 @@ barplot(os_counts)
 
 *** =sct
 ```{r}
-
 test_function("barplot", args="height")
 
-# test error
 test_error()
-
-# Final message the student will see upon completing the exercise
 success_msg("Excellent work!")
-
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1 key:82217456fa
+--- type:NormalExercise lang:r xp:150 skills:1 key:82217456fa
 
-## Bar plots for continuous variables
+## Bar plots of continuous variables
 
-When a variable is continuous by nature, it means that it can in theory take on so many different values that all of it's observed values are unique. In practise though, measurements are always discreate and hence continuity is a matter of interpretation.
+When a variable is continuous by nature, it means that it can take on so many different values that all of it's observed values are unique. In practise though, measurements are always discrete and hence continuity is a matter of interpretation.
 
-Age can be interpret as continuous because of the continuous nature of time. The exact age of a person depends on the exact time of birth and is hence different for all. Age is often measured quite discretely as rounded down years. Even then, there are too many unique values to draw bar plot that makes sense. A solution is to first categorize age.
+Age can be interpret as continuous because of the continuous nature of time. The exact age of a person depends on the exact time of birth and is different for all. However, age is often measured quite discretely as rounded down years.
+
+Even when age is measured in years, there are usually too many unique values to draw bar plot that makes sense. A solution is to first categorize age.
 
 
 *** =instructions
 - Draw a bar plot of students age. How does it look?
-- Use `cut()` to create a factor object where age is cut into intervals.
-- Use `summary()` and `barplot()` to draw a barplot.
+- Use `cut()` to create a factor object where age is cut into intervals. Use the vector `c(0, 16, 20, 24, 30, 100)` as break points.
+- Follow the procedure in the previous exercise and use `summary()` and `barplot()` on the new object to draw a barplot.
 
 
 *** =hint
-- 
+- Use `breaks = c(0, 16, 20, 24, 30, 100)` to create the factor object `age_cut`
+- See the previous exercise for information on how to create a bar plot of a factor object.
 
 
 *** =pre_exercise_code
@@ -345,9 +259,9 @@ students2014 <- students2014[complete.cases(students2014),]
 barplot(students2014$ika)
 
 # Split age to intervals
-age_cut <- cut(students2014$ika, c(0, 16, 20,24,30, 100))
+age_cut <- cut(students2014$ika, breaks = NULL)
 
-# Draw a bar plot of age_cut below
+# Draw a bar plot of age_cut
 
 
 
@@ -359,15 +273,17 @@ age_cut <- cut(students2014$ika, c(0, 16, 20,24,30, 100))
 barplot(students2014$ika)
 
 # split age to intervals
-age_cut <- cut(students2014$ika, c(0, 16, 20,24,30, 100))
+age_cut <- cut(students2014$ika, breaks = c(0, 16, 20, 24, 30, 100))
 
 # Draw a bar plot of age_cut below
 barplot(summary(age_cut))
+
 
 ```
 
 *** =sct
 ```{r}
+test_object("age_cut", incorrect_msg = "Please use `breaks = c(0, 16, 20, 24, 30, 100)` to create the object age_cut.")
 
 test_function("barplot", args=c("height"))
 
@@ -379,54 +295,64 @@ success_msg("That was awsome!")
 
 ## Histograms
 
-Splitting a continuous variable into intervals and then drawing a bar plot is so common that it has it's own name: the histogram. Basic histograms can be drawn with the `hist()` function. The first argument of `hist()`, `x` should be a numeric vector of data values. The argument `breaks` can be used to approximately control the number of intervals.
+Splitting a continuous variable into intervals of equal width and then drawing a bar plot is so common that the procedure has it's own name: the histogram. 
 
-As with all the plotting functions in R, the `hist()` function can take on many additional arguments which allow for more control over the plot. One simple argument is `col`, which defines the color of the bars.
+In R, basic histograms can be drawn with the `hist()` function. The first argument of `hist()` should be a numeric vector of data values. The argument `breaks` can be used to approximately control the number of intervals.
 
-`col` can be a character string giving the name of the color ("blue", "green", etc). Some possible color names can be found <a target="_blank" href="http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf">here</a>.
+The plotting functions in R also have many additional arguments which allow for more control over the plot. One simple argument is `col`, which can be the name of the desired color ("blue", "green", etc). Some possible color names can be found <a target="_blank" href="http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf">here</a>.
 
 *** =instructions
-- Create a histogram of 
-- Adjust your code and draw the histogram again using `breaks = 12`.
-- Adjust your code and give your histogram a nice color using the `col` argument. Use quotations marks to define the color name.
+- Adjust the sample code and draw the histogram again by setting the argument `breaks = 25`.
+- Use the `col` argument to give the histogram a nice color of your choice. Use quotations marks to define the color name.
+- Set the argument `xlab = "Age"`.
+- Set the argument `main = "My histogram"`
 
 
 *** =hint
-- You can access the column of a data frame (df) with the `$` symbol: `df$column_name`.
 - Remember to seperate the arguments of a function with a comma.
-
-
 
 
 *** =pre_exercise_code
 ```{r}
-# pre exercise code here
+# load data from web
+students2014 <- read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS-data.txt", sep="\t", header=TRUE)
+# keep a couple background variables
+students2014 <- students2014[,c("sukup","toita","ika","pituus","kenka","kone")]
+# recode kone variables missing values as factor levels
+students2014$kone <- addNA(students2014$kone)
+# keep only rows without missing values
+students2014 <- students2014[complete.cases(students2014),]
 ```
 
 *** =sample_code
 ```{r}
-# sample code here
+# students2014 is available
+
+# Draw a histogram of student age
+hist(students2014$ika)
+
+
+
 ```
 
 *** =solution
 ```{r}
-#solution code here
+# students2014 is available
+
+# Draw a histogram of student age
+hist(students2014$ika, breaks=25, col = "blue", xlab = "Age", main = "My histogram")
+
+
 ```
 
 *** =sct
 ```{r}
 # submission correctness tests
 
-# example tests:
-# test_output_contains("output")
-# test_object("object_name")
-# test_function("function_name", args=c("arg1"))
+test_function("hist", args=c("x","breaks","main","xlab"))
 
-# test if the students code produces an error
 test_error()
-
-# Final message the student will see upon completing the exercise
-success_msg("Good work!")
+success_msg("Very well done!")
 
 ```
 
