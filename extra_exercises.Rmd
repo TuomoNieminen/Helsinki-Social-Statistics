@@ -1,0 +1,88 @@
+--- type:NormalExercise lang:r xp:100 skills:1
+## Brackets have your data [ under, control ]
+
+It is quite often necessary to access only a part of a dataset. This is called *subsetting* and there are many ways of doing it. The best way will depend on the situation and  preference.  
+
+We have already seen that the columns of a data frame (df) can be accessed via `$`. There is another, more general method: `[ ]`. The brackets are a way of accessing a part of any data structure in R. 
+
+The way to use brackets is by giving the locations of the values you wish to access.
+
+
+*** =instructions
+- Study the examples on how to select parts of a data frame.
+- Replace `NULL` so that the object `age_height` contains the third and fourth columns of students2014.
+- Modify the code to print out the first five rows of `age_height`.
+
+
+*** =hint
+- Selecting multiple columns is very similar to selecting multiple rows.
+- See the first example on how to select multiple rows.
+
+
+*** =pre_exercise_code
+```{r}
+students2014 <- read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS-data.txt", sep="\t", header=TRUE)
+  
+  # keep a couple background variables
+  students2014 <- students2014[,c("sukup","toita","ika","pituus","kenka","kone")]
+  
+  # recode kone -variable NA values as factor levels
+  students2014$kone <- addNA(students2014$kone)
+  
+  # choose rows without missing values
+  students2014 <- students2014[complete.cases(students2014),]
+
+```
+
+*** =sample_code
+```{r}
+# students2014 is available
+
+# Choose the rows from 3 to 6 in the data
+students2014[3:6, ]
+
+# Look at the value in row 6, column 4
+students2014[6, 4]
+
+# Choose the whole column 3 and save it as an object
+student_age <- students2014[, 3]
+
+# Choose the third and fourth columns and save them as an object
+age_height <- students2014[, NULL]
+
+# Print out the first five rows of age_height
+age_height[NULL, ]
+
+
+```
+
+*** =solution
+```{r}
+# students2014 is available
+
+# Choose the rows from 3 to 6 in the data
+students2014[3:6, ]
+
+# Look at the value in row 6, column 4
+students2014[6, 4]
+
+# Choose the whole column 3 and save it as an object
+student_age <- students2014[, 3]
+
+# Choose the third and fourth columns and save them as an object
+age_height <- students2014[, 3:4]
+
+# Print out the first five rows of age_height
+age_height[1:5, ]
+
+
+
+```
+
+*** =sct
+```{r}
+test_object("age_height")
+
+test_error()
+success_msg("Good work!")
+```
