@@ -43,8 +43,6 @@ my_boolean <- FALSE
 # See how the objects look with the function str()
 
 
-
-
 ```
 
 *** =solution
@@ -89,8 +87,6 @@ One of R's data types is called factor. It turns (for example) character objects
 
 The function `cut()` can be used to create categories from numerical objects. The function produces a factor object and by default creates label names or levels. The function `cut()` also has a mandatory argument `breaks`, where the break points of the object are assigned.
 
-NA/NULL?
-
 *** =instructions
 - Create objects `student_age` and `student_age_cut`
 - Print the contents of the `student_age_cut`
@@ -103,6 +99,20 @@ NA/NULL?
 *** =pre_exercise_code
 ```{r}
 students2014 <- read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS-data.txt", sep="\t", header=TRUE)
+
+# keep a couple background variables
+students2014 <- students2014[,c("sukup","toita","ika","pituus","kenka","kone")]
+
+# recode kone -variable NA values as factor levels
+students2014$kone <- addNA(students2014$kone)
+
+# choose rows without missing values
+students2014 <- students2014[complete.cases(students2014),]
+
+# integers to numeric
+students2014$ika <- as.numeric(students2014$ika)
+students2014$pituus <- as.numeric(students2014$pituus)
+students2014$kenka <- as.numeric(students2014$kenka)
 ```
 
 *** =sample_code
@@ -177,7 +187,6 @@ In this execrice you will learn how to create your own vector.
 
 *** =sample_code
 ```{r}
-
 # Here we create a vector with numeric elements
 c(2, 3, 4, 5)
 
@@ -194,7 +203,6 @@ my_vector <- c('a', 'b', 'c', 'd')
 
 *** =solution
 ```{r}
-
 # Here we create a vector with numeric elements
 c(2, 3, 4, 5)
 
@@ -225,10 +233,22 @@ success_msg("Great work!")
 --- type:NormalExercise lang:r xp:100 skills:1 key:12a4e8cd24
 ## Vectors (2)
 
+The values in vectors have indices: the first value in a vector has a index `1`, the second value has `2` and so on. 
+
+You can get a single value from a vector by using indices and bracets `[ ]`. Using a single index number inside the bracets gives you a single value from the vector. Using a vector of indices gives you a vector of values from the vector. 
+
+Note that you can also rearrange values in a vector by using indices. Look at the example code to see how indices work. 
+
 *** =instructions
-- 
+- Create the name vector.
+- See how the indices work by executing the example lines.
+- Create a new vector `girls` with values `Liisa` and `Anna` from `names` by using indices.
+- Create also a new vector `boys` with values `Pekka` and `Matti` from `names` by using indices.
+
 *** =hint
--
+- Note that space between the vector object and bracets produces an error.
+- Remember that vectors are created with the function `c()`.
+- Indices vectors `c(1,2)` and `c(2,1)` do not produce the same outcome. The order of the values is different.
 
 *** =pre_exercise_code
 ```{r}
@@ -237,34 +257,57 @@ success_msg("Great work!")
 
 *** =sample_code
 ```{r}
-# LEt's create a vector 
-names <- c("Matti", "Pekka", "Liisa", "Anna")
+# Let's create a vector
+names <- c('Matti', 'Pekka', 'Liisa', 'Anna')
 
 # The first value in the vector
 names[1]
 
 # The third and fourth value in the vector
-names[c(3,4)]
+names[c(3, 4)]
 
+# Rearranged
+names[c(4, 3)]
+
+# Separate the names vector into two vectors by using indices
+girls <-
+boys <-
 
 ```
 
 *** =solution
 ```{r}
+# Let's create a vector
+names <- c('Matti', 'Pekka', 'Liisa', 'Anna')
+
+# The first value in the vector
+names[1]
+
+# The third and fourth value in the vector
+names[c(3, 4)]
+
+# Rearranged
+names[c(4, 3)]
+
+# Separate the names vector into two vectors by using indices
+girls <- names[c(3, 4)]
+boys <- names[c(2, 1)]
 
 ```
 
 *** =sct
 ```{r}
-test_output_contains("c(2, 3, 4, 5)", incorrect_msg = "Did you execute all the lines?")
+#ex() %>% check_output_expr("mtcars[4, ]", missing_msg = "Have you used ... ")
 test_output_contains("c(0.1, 0.2, 5.84, 0.7)", incorrect_msg = "Did you execute all the lines?")
 
-test_object("my_vector <- c('a', 'b', 'c', 'd')", incorrect_msg = "Did you execute `my_vector`?")
-test_object("boolean_vector <- c(TRUE, FALSE, TRUE, FALSE)", incorrect_msg = "Did you create `boolean_vector` with same values as instructed?")
+test_object("names <- c('Matti', 'Pekka', 'Liisa', 'Anna')", incorrect_msg = "Did you execute `names`?")
+test_object("girls <- names[c(3, 4)]", incorrect_msg = "Did you create `girls`?")
+test_object("boys <- names[c(2, 1)]", incorrect_msg = "Did you create `boys`?")
+
 test_error()
 
 # Final message the student will see upon completing the exercise
-success_msg("Great work!")
+success_msg("Such indices. Wow. Much intelligent.")
 
 ```
 
@@ -344,6 +387,20 @@ You will also learn how to access the columns of a data frame using the $-sign.
 *** =pre_exercise_code
 ```{r}
 students2014 <- read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS-data.txt", sep="\t", header=TRUE)
+
+# keep a couple background variables
+students2014 <- students2014[,c("sukup","toita","ika","pituus","kenka","kone")]
+
+# recode kone -variable NA values as factor levels
+students2014$kone <- addNA(students2014$kone)
+
+# choose rows without missing values
+students2014 <- students2014[complete.cases(students2014),]
+
+# integers to numeric
+students2014$ika <- as.numeric(students2014$ika)
+students2014$pituus <- as.numeric(students2014$pituus)
+students2014$kenka <- as.numeric(students2014$kenka)
 ```
 
 *** =sample_code
@@ -394,11 +451,11 @@ success_msg("Good work!")
 ```
 
 --- type:NormalExercise lang:r xp:100 skills:1 key:3c0486635f
-## Data types and variable types/scales (?)
+## Data types and measurement scales
 
 
-| Scale          | Numeric | Character | Boolean | Factor |
-|----------------|:---------:|:-----------:|:---------:|:--------:|
+| Scale          | Numeric | Character | Boolean :| Factor |
+|----------------|---------|-----------|---------|--------|
 | Classification |    x    |     x     |    x    |    x   |
 | Ordinal        |    x    |     x     |         |    x   |
 | Measurement    |    x    |           |         |        |
