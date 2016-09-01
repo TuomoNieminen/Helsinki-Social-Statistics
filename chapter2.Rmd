@@ -321,8 +321,8 @@ One cannot for example use character vectors when the function needs a numeric o
 When using the wrong data type, R produces an error stating what is wrong. 
 
 *** =instructions
-- Create `vector`.
-- Try to calculate the mean of `vector` and see what happens. 
+- Create `my_vector`.
+- Try to calculate the mean of `my_vector` and see what happens. 
 - Correct the vector and calculate the mean so that you do not get any errors.
 
 *** =hint
@@ -339,10 +339,10 @@ When using the wrong data type, R produces an error stating what is wrong.
 *** =sample_code
 ```{r}
 # Let's create a vector
-vector <- c(2, 3, '1', 5)
+my_vector <- c(2, 3, '1', 5)
 
 # Calculate the mean of vector
-mean(vector)
+mean(my_vector)
   
 ```
 
@@ -350,10 +350,10 @@ mean(vector)
 ```{r}
 
 # Let's create a vector
-vector <- c(2, 3, 1, 5)
+my_vector <- c(2, 3, 1, 5)
 
 # Calculate the mean of vector
-mean(vector)
+mean(my_vector)
 
 ```
 
