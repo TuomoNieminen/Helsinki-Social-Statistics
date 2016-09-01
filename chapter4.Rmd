@@ -6,12 +6,12 @@ description : Variation and dependence are at the heart of Statistics. In fact, 
 
 ## Guess the correlation
 
-Correlation measures the strength of the *linear* relationship between two variables. It is important to note the word linear and try to think about what it means.
+Correlation measures the strength of the *linear* relationship between two variables. The easiest way to check if the relationship between two variables might be  interpret as linear is to visualize the relationship with a scatterplot. 
 
-In an effort to make the concept more clear, we have build a game you can play.
+It is then possible to make a reasonable guess of the strength of the linear relationship. In order for you to practise this skill, we have build a game you can play.
 
 *** =instructions
-- Use `simulate()` to draw a scatter plot of the values of two simulated variables. The variables can have linear and nonlinear relationships. Try to guess what the correlation might be.
+- Use `simulate()` to draw a scatter plot using simulated data. The variables can have linear and nonlinear relationships. Try to guess what the correlation might be.
 - Use `show_correlation()` to check how close you got.
 - You can experiment as many times as you wish and the simulation will be different each time. Feel free to change `n`, the number of simulated values.
 
@@ -62,6 +62,8 @@ show_correlation <- function(df) {
 
 # Simulate values and draw a scatterplot
 data <- simulate(n = 60)
+
+# What is the correlation?
 
 # Show the linear relationship and correlation
 show_correlation(data)
