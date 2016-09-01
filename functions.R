@@ -1,19 +1,16 @@
 
-# get small dataset
-get_data <- function() {
-  students2014 <- read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS-data.txt", sep="\t", header=TRUE)
-  
-  # keep a couple background variables
-  students2014 <- students2014[,c("sukup","toita","ika","pituus","kenka","kone")]
-  
-  # recode kone -variable NA values as factor levels
-  students2014$kone <- addNA(students2014$kone)
-  
-  # choose rows without missing values
-  students2014 <- students2014[complete.cases(students2014),]
-  
-  students2014
-}
+  # get small dataset
+
+# load data from web
+students2014 <- read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS-data.txt", sep="\t", header=TRUE)
+# keep a couple background variables
+students2014 <- students2014[,c("sukup","toita","ika","pituus","kenka","kone")]
+# recode kone variables missing values as factor levels
+students2014$kone <- addNA(students2014$kone)
+# keep only rows without missing values
+students2014 <- students2014[complete.cases(students2014),]
+
+
 # open metadata in a browser window
 open_meta <- function() browseURL("http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS-meta.txt")
 
@@ -31,28 +28,31 @@ leafplot <- function(x, char = "*") {
 # simulate and plot correlated data
 simulate <- function(n = 60) {
   
-  # degree (d) of the polynomial
+  # degree (d) of the polynomial relationship
   degree <- sample(1:3, 1)
   
   # x values
   x <- rnorm(n)
   
-  # each x^d multiplied by it's coefficient
-  # the coefficients are sampled from U(-1, 1)
+  # return each x^d multiplied by it's coefficient b_d
+  # b_d are sampled from U(-1, 1)
   X <- sapply(1:degree, function(d) {
-    b <- runif(1, min = -1, max = 1)
-    b * x^d
+    b_d <- runif(1, min = -1, max = 1)
+    b_d * x^d
   })
   
-  # linear equation y = b_1 * x^1 + .. + b_d * x^d + e
+  # linear relationship y = b_1 * x^1 + .. + b_d * x^d + error
   y <- rowSums(X) + rnorm(n)
   
   # scatterplot with regression line
-  plot(x, y, col = "grey40", type = "p", pch= 20, xlab="", ylab="")
+  plot(x, y, col = "grey40", type = "p", pch = 20, xlab = "", ylab="")
   
   return(list(x = x, y = y))
 }
 
+# Use data produced by simulate()
+# draw a scatterplot with a regression line
+# display the correlation
 show_correlation <- function(df) {
   x <- df$x
   y <- df$y
