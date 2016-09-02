@@ -9,6 +9,10 @@ students2014 <- students2014[,c("sukup","toita","ika","pituus","kenka","kone")]
 students2014$kone <- addNA(students2014$kone)
 # keep only rows without missing values
 students2014 <- students2014[complete.cases(students2014),]
+# integers to numeric
+students2014$ika <- as.numeric(students2014$ika)
+students2014$pituus <- as.numeric(students2014$pituus)
+students2014$kenka <- as.numeric(students2014$kenka)
 
 
 # open metadata in a browser window
