@@ -306,6 +306,11 @@ students2014$kone <- addNA(students2014$kone)
 # choose rows without missing values
 students2014 <- students2014[complete.cases(students2014),]
 
+# integers to numeric
+students2014$ika <- as.numeric(students2014$ika)
+students2014$pituus <- as.numeric(students2014$pituus)
+students2014$kenka <- as.numeric(students2014$kenka)
+
 ```
 
 *** =sample_code
