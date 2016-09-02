@@ -12,10 +12,10 @@ Because of these reasons, R is a very popular language among the scientific comm
 Researchers and experts often use programming to visualize and explore data and implement new methods. The purpose of this course is to expose you to the basics of programming and statistical analysis with R.
 
 *** =instructions
-- Study the code written in script.R, which already has been used to produce the graphic next to  
-- A hashtag marks a line as a comment. Comments make it easier for others and yourself to understand your code.
+- Study the code written in script.R, which has been used to load a dataset and produce the graphic next to it.
+- A hashtag marks a line as a comment. Comments make it easier for others and yourself to understand the code.
 - Notice that it would be very easy to draw the same or similar graph again, by re-using the code.
-- When done, press 'Submit Answer' and move on to the next exercise.
+- Press 'Submit Answer' and move on to the next exercise.
 
 
 *** =pre_exercise_code
@@ -30,15 +30,16 @@ with(students2014,
 
 *** =sample_code
 ```{r}
+# This is a very simple example of the power of R
 
-# Create character object holding data location
+# Create a character object holding data location
 data_url <- "http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS-data.txt"
 
-# Load data with read.table() function
-# Create data object 'students2014'
+# Load data with the read.table() function
+# Create a data object 'students2014'
 students2014 <- read.table(data_url, sep = "\t", header = TRUE)
 
-# Draw graph of shoesize versus hight using plot()
+# Draw a graph of shoesize versus hight using plot()
 # Indicate sex by color with the 'col' argument
 with(students2014, 
      plot(x = kenka, y = pituus, col = sukup, pch = 20))
