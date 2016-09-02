@@ -114,7 +114,7 @@ summary(students2014$sukup)
 # Create a summary of a numeric
 summary(students2014$ika)
 
-# Create a summary of the numeric 'pituus' in 'students2014'
+# Create a summary of 'pituus' in 'students2014'
 
 
 # Create a summary of the data.frame 'students2014'
@@ -144,7 +144,7 @@ summary(students2014)
 
 *** =sct
 ```{r}
-test_student_typed("summary(students2014$pituus))", not_typed_msg = "Please call summary() on the numeric object students2014$pituus.")
+test_student_typed("summary(students2014$pituus)", not_typed_msg = "Please call summary() on the numeric object students2014$pituus.")
 test_student_typed("summary(students2014)", not_typed_msg="Please call summary() on the data.frame object `students2014`")
 
 test_error()
