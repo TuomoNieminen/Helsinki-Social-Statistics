@@ -6,13 +6,13 @@ description : Data are everywhere and everything. That's why Statistics is also 
 
 ## Getting intimate with the data
 
-In this section, you will learn how to get familiar with your data by zooming in on it, visualizing it and summarizing it.
+In this section, you will learn how to get familiar with your data by visualizing and summarizing it.
 
 These are always the first things to do after the data is collected and preprocessed (cleaned).
 
 
 *** =instructions
-- Take a look at the examples, you will learn more about all of them in the next exercises.
+- Take a look at the examples - you will learn more about all of them in the next exercises.
 -  You can browse the different plots by clicking on "Next/Previous plot".
 - Click 'Submit Answer' to move to the first exercise.
 
@@ -28,15 +28,19 @@ students2014 <- students2014[,c("sukup","toita","ika","pituus","kenka","kone")]
 students2014$kone <- addNA(students2014$kone)
   # keep only rows without missing values
 students2014 <- students2014[complete.cases(students2014),]
+# integers to numeric
+students2014$ika <- as.numeric(students2014$ika)
+students2014$pituus <- as.numeric(students2014$pituus)
+students2014$kenka <- as.numeric(students2014$kenka)
 
 # bar plot of operating systems 
-barplot(table(students2014$kone), main = "Barplot of OS", xlab = "Linux, Mac, Win or none")
+barplot(summary(students2014$kone), main = "Barplot of OS", xlab = "Linux, Mac, Win or none")
 
 # histogram of heights
-hist(students2014$pituus,  main ="Histogram of height", xlab = "height")
+hist(students2014$pituus,  main ="Histogram of student heights", xlab = "height")
   
 # horizontally placed box plot of ages
-boxplot(students2014$ika, main = "Boxplot of age", xlab = "ika", horizontal = T)
+boxplot(students2014$ika, main = "Boxplot of student ages", xlab = "ika", horizontal = T)
 
 
 ```
@@ -46,13 +50,13 @@ boxplot(students2014$ika, main = "Boxplot of age", xlab = "ika", horizontal = T)
 # students2014 is available
 
 # Bar plot of operating systems 
-barplot(table(students2014$kone), main = "Barplot of OS", xlab = "Linux, Mac, Win or none")
+barplot(summary(students2014$kone), main = "Barplot of OS", xlab = "Linux, Mac, Win or none")
     
 # Histogram of student heights
-hist(students2014$pituus,  main ="Histogram of height", xlab = "height")
+hist(students2014$pituus,  main ="Histogram of student heights", xlab = "height")
   
 # Box plot of student ages
-boxplot(students2014$ika, main = "Boxplot of age", xlab = "ika", horizontal = T)
+boxplot(students2014$ika, main = "Boxplot of student ages", xlab = "ika", horizontal = T)
 
 
 ```
@@ -75,12 +79,13 @@ Some functions in R are very generic. They can take different objects as their f
 One such example is the `summary()` function. Depending on the type of data object it receives as it's first argument, `summary()` will produce different convenient results. 
 
 *** =instructions
-- Execute the code that creates a summary of the object `kone` in the data.frame `students2014`
-- Execute the code that creates a summary of the object `ika`.
+- Execute the code that creates a summary of `sukup`. What does it show you?
+- Execute the code that creates a summary of `ika`. What does it show you?
+- Create a summary of `pituus` in `students2014`.
 - Create a summary of the object `students2014`.
 
 *** =hint
-- Get the summary of an object by typing `summary(object)`.
+- Use the `$` -sign to access `pituus` in `students2014`.
 
 *** =pre_exercise_code
 ```{r}
@@ -92,7 +97,10 @@ students2014 <- students2014[,c("sukup","toita","ika","pituus","kenka","kone")]
 students2014$kone <- addNA(students2014$kone)
 # keep only rows without missing values
 students2014 <- students2014[complete.cases(students2014),]
-
+# integers to numeric
+students2014$ika <- as.numeric(students2014$ika)
+students2014$pituus <- as.numeric(students2014$pituus)
+students2014$kenka <- as.numeric(students2014$kenka)
 ```
 
 
@@ -100,14 +108,16 @@ students2014 <- students2014[complete.cases(students2014),]
 ```{r}
 # students2014 is available
 
-# Create a summary of a factor object
-summary(students2014$kone)
+# Create a summary of a factor
+summary(students2014$sukup)
 
-# Create a summary of a numeric object
+# Create a summary of a numeric
 summary(students2014$ika)
 
-# Create a summary of a data.frame object
+# Create a summary of the numeric 'pituus' in 'students2014'
 
+
+# Create a summary of the data.frame 'students2014'
 
 
 
@@ -117,12 +127,15 @@ summary(students2014$ika)
 ```{r}
 
 # Create a summary of a factor object
-summary(students2014$kone)
+summary(students2014$sukup)
 
 # Create a summary of a numeric object
 summary(students2014$ika)
 
-# Create a summary of a data.frame object
+# Create a summary of 'pituus' in 'students2014'
+summary(students2014$pituus)
+
+# Create a summary of the data.frame 'students2014'
 summary(students2014)
 
 
@@ -131,7 +144,8 @@ summary(students2014)
 
 *** =sct
 ```{r}
-test_student_typed("summary(students2014)", not_typed_msg="Please type in the code to create a summary of `students2014`")
+test_student_typed("summary(students2014$pituus))", not_typed_msg = "Please call summary() on the numeric object students2014$pituus.")
+test_student_typed("summary(students2014)", not_typed_msg="Please call summary() on the data.frame object `students2014`")
 
 test_error()
 success_msg("Well done!")
@@ -142,22 +156,21 @@ success_msg("Well done!")
 
 ## Bar plots of qualitative variables
 
-Bar plots are useful for visualizing qualitative, discrete variables. A bar plot represents the counts of the unique values of the variable of interest. Drawing a bar plot only makes sense when there are only a few unique values possible.
+Bar plots are useful for visualizing qualitative, discrete variables. A bar plot represents the counts of the unique values of a variable -  what the function `summary()` shows for factor type objects. Drawing a bar plot only makes sense when there are only a few unique values possible. 
 
 In this exercise you will draw a barplot of `kone` in the data frame `students2014`. For each student the value of `kone` is the operating system of the students computer. For more information see [the metafile](http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS-meta.txt).
 
-In base R graphics, the function `barplot()` can be used to draw a bar plot. The information needed for the function can be computed by first creating a `summary()` or a `table()`.
+In base R graphics, the function `barplot()` can be used to draw a bar plot. The first argument `height` should contain the counts you wish to visualize.
 
 
 *** =instructions
-- Use `summary()` on `kone` in the data frame `students2014`.
-- Many of the values of `kone` are `<NA>`, not available. Why do you think this could be?
-- Replace the `NULL` with a call to `summary()` and create object `os_counts` by assigning the summary of `kone` to it.
+- Use `summary()` on `kone` in the data frame `students2014`. Many of the values of `kone` are `<NA>`, not available. Why do you think this could be?
+- Adjust the code `os_counts <- NULL`: Replace `NULL` and assign the summary of `kone` to `os_counts`.
 - Use the function `barplot()` to draw a bar plot. Use the object you created as the first argument.
 
 *** =hint
-- replace `NULL` with the example code using `summary()` to create the object `os_counts`.
-- Then give the object os_counts an argument inside the parenthesis in `barplot()`. 
+- Replace `NULL` with the example code where `summary()` is used on `kone`.
+- Then give the object os_counts as the first to `barplot()`. 
 
 
 *** =pre_exercise_code
@@ -170,7 +183,10 @@ students2014 <- students2014[,c("sukup","toita","ika","pituus","kenka","kone")]
 students2014$kone <- addNA(students2014$kone)
   # keep only rows without missing values
 students2014 <- students2014[complete.cases(students2014),]
-
+# integers to numeric
+students2014$ika <- as.numeric(students2014$ika)
+students2014$pituus <- as.numeric(students2014$pituus)
+students2014$kenka <- as.numeric(students2014$kenka)
 ```
 
 
@@ -184,7 +200,7 @@ summary(students2014$kone)
 # Create object os_counts that stores the counts
 os_counts <- NULL
 
-# Call barplot() to draw a graph. Use the object you created as the first argument.
+# Call barplot() to visualize the counts.
 
 
   
@@ -200,7 +216,7 @@ summary(students2014$kone)
 # Create object os_counts that stores the counts
 os_counts <- summary(students2014$kone)
 
-# Call barplot() to draw a graph. Use the object you created as an argument.
+# Call barplot() to visualize the counts.
 barplot(os_counts)
 
 
@@ -219,23 +235,23 @@ success_msg("Excellent work!")
 
 ## Bar plots of continuous variables
 
-When a variable is continuous by nature, it means that it can take on so many different values that all of it's observed values are likely to be unique. In practise though, measurements are always discrete and hence continuity is a matter of interpretation.
+When a variable is continuous by nature, it means that it can take on so many different values that all of it's observed values are likely to be unique.
 
-Age can be interpret as continuous because of the continuous nature of time. The exact age of a person depends on the exact time of birth and is different for all. However, age is often measured quite discretely as rounded down years.
+Age can be interpret as a continuous variable because of the continuous nature of time. The exact age of a person depends on the exact time of birth and is different for all. However, age is often measured quite discretely as rounded down years.
 
-Even when age is measured in years, usually there are too many unique values to draw bar plot that makes sense and a continuous interpretation is valid. So how do we then look at the distribution of age? A solution is to first categorize age.
+Even when age is measured in years, usually there are too many unique values to draw bar plot that makes sense, which you will soon observe. So what would be a good way of looking at the distribution of age? A solution is to first categorize age.
 
 
 *** =instructions
-- Draw a bar plot of students age. How does it look?
+- Draw a bar plot of the age of students. How does it look?
 - Use `cut()` to create a factor object where age is cut into intervals. Use the vector `c(0, 16, 20, 24, 30, 100)` as break points.
-- Follow the procedure in the previous exercise and use `summary()` and `barplot()` on the new object to draw a barplot.
+- Follow the procedure in the previous exercise and use `summary()` and then `barplot()` to get and then visualize the counts of unique values of `age_cut`.
 
 
 *** =hint
-- Use `breaks = c(0, 16, 20, 24, 30, 100)` to create the factor object `age_cut`
+- Use the argument `breaks = c(0, 16, 20, 24, 30, 100)` inside `cut()` to create the factor object `age_cut`.
 - Make sure to close the parenthesis on `cut()`.
-- See the previous exercise for information on how to create a bar plot of a factor object.
+- See the previous exercise for information on how to create a bar plot of a factor object. The object `age_cut` is a factor similar to `students2014$kone`.
 
 
 *** =pre_exercise_code
@@ -248,7 +264,10 @@ students2014 <- students2014[,c("sukup","toita","ika","pituus","kenka","kone")]
 students2014$kone <- addNA(students2014$kone)
   # keep only rows without missing values
 students2014 <- students2014[complete.cases(students2014),]
-
+# integers to numeric
+students2014$ika <- as.numeric(students2014$ika)
+students2014$pituus <- as.numeric(students2014$pituus)
+students2014$kenka <- as.numeric(students2014$kenka)
 ```
 
 
@@ -262,8 +281,8 @@ barplot(students2014$ika)
 # Split age to intervals
 age_cut <- cut(students2014$ika, breaks = NULL)
 
-# Draw a bar plot of age_cut
-# Use summary() first
+# Draw a barplot() of age_cut
+# Use summary() on it first
 
 
 
@@ -277,8 +296,8 @@ barplot(students2014$ika)
 # split age to intervals
 age_cut <- cut(students2014$ika, breaks = c(0, 16, 20, 24, 30, 100))
 
-# Draw a bar plot of age_cut
-# Use summary() first
+# Draw a barplot() of age_cut
+# Use summary() on it first
 barplot(summary(age_cut))
 
 
@@ -302,17 +321,18 @@ Splitting a continuous variable into intervals of equal width and then drawing a
 
 In R, basic histograms can be drawn with the `hist()` function. The first argument of `hist()` should be a numeric vector of data values. The argument `breaks` can be used to approximately control the number of intervals.
 
-The plotting functions in R also have many additional arguments which allow for more control over the plot. One simple argument is `col`, which can be the name of the desired color ("blue", "green", etc). Some possible color names can be found <a target="_blank" href="http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf">here</a>.
+The plotting functions in R also have many additional arguments which allow for more control over the plot. One simple argument is `col`, the desired color ("blue", "green", etc). Some possible color names can be found <a target="_blank" href="http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf">here</a>.
 
 *** =instructions
-- Adjust the sample code and draw the histogram again by setting the argument `breaks = 25`.
+- Adjust the sample code and draw the histogram again by setting the argument `breaks = 20`.
 - Use the `col` argument to give the histogram a nice color of your choice. Use quotations marks to define the color name.
-- Set the argument `xlab = "Age"`.
+- Set the argument `xlab = "height"`.
 - Set the argument `main = "My histogram"`
 
 
 *** =hint
 - Remember to seperate the arguments of a function with a comma.
+- Use quotation marks for the color names and the main and xlab titles.
 
 
 *** =pre_exercise_code
@@ -325,9 +345,13 @@ students2014 <- students2014[,c("sukup","toita","ika","pituus","kenka","kone")]
 students2014$kone <- addNA(students2014$kone)
 # keep only rows without missing values
 students2014 <- students2014[complete.cases(students2014),]
+# integers to numeric
+students2014$ika <- as.numeric(students2014$ika)
+students2014$pituus <- as.numeric(students2014$pituus)
+students2014$kenka <- as.numeric(students2014$kenka)
 
-# Draw a histogram of student age
-hist(students2014$ika)
+# Draw a histogram of student heights
+hist(students2014$pituus)
 
 ```
 
@@ -335,8 +359,8 @@ hist(students2014$ika)
 ```{r}
 # students2014 is available
 
-# Draw a histogram of student age
-hist(students2014$ika)
+# Draw a histogram of student heights
+hist(students2014$pituus)
 
 
 
@@ -346,8 +370,8 @@ hist(students2014$ika)
 ```{r}
 # students2014 is available
 
-# Draw a histogram of student age
-hist(students2014$ika, breaks=25, col = "blue", xlab = "Age", main = "My histogram")
+# Draw a histogram of student heights
+hist(students2014$pituus, breaks = 20, col = "blue", xlab = "height", main = "My histogram")
 
 
 ```
@@ -369,7 +393,7 @@ success_msg("Very well done!")
 
 ## Box plots
 
-One very good way to visualize the most important summary statistics of a variable is by drawing box plots. A box plot visualizes the 25th, 50th and 75th percentiles (the box), the typical range (the whiskers) and the outliers (the dots) of a variable 
+One very good way to visualize the most important summary statistics of a variable is by drawing box plots. A box plot visualizes the 25th, 50th and 75th percentiles (the box), the typical range (the whiskers) and the outliers (the dots) of a variable. 
 
 The whiskers extending from the box can be computed by several techniques. The default in R is to extend them to reach to a data point that is no more than 1.5*IQR away from the box, where IQR is the inter quartile range defined as  
 
@@ -378,26 +402,43 @@ The whiskers extending from the box can be computed by several techniques. The d
 Values outside the whiskers can be considered as outliers, unusually distant observations. For more information on IQR, see <a target="_blank" href ="https://en.wikipedia.org/wiki/Interquartile_range"> wikipedia</a>
 
 *** =instructions
-- Draw a `boxplot()` of `var`.
-- Add a suitable label to the y axis and a main title of your choice.
+- Create a summary of `students2014$ika`.
+- Use `boxplot()` on `students2014$ika`.
+- Adjust the plot: set the argument `horizontal = TRUE`.
+- Adjust the plot: set the argument `xlab = "age"`.
+- Give your plot the main title "Box plot of student ages".
 
 *** =hint
-- hint1
+- Give `students2014$ika` as the fisrt argument of `boxplot()`.
+- Remember to separate function arguments with a comma.
+- Use quotation marks when adding text.
 
 *** =pre_exercise_code
 ```{r}
-# pec
+# load data from web
+students2014 <- read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS-data.txt", sep="\t", header=TRUE)
+# keep a couple background variables
+students2014 <- students2014[,c("sukup","toita","ika","pituus","kenka","kone")]
+# recode kone variables missing values as factor levels
+students2014$kone <- addNA(students2014$kone)
+# keep only rows without missing values
+students2014 <- students2014[complete.cases(students2014),]
+# integers to numeric
+students2014$ika <- as.numeric(students2014$ika)
+students2014$pituus <- as.numeric(students2014$pituus)
+students2014$kenka <- as.numeric(students2014$kenka)
 ```
 
 
 *** =sample_code
 ```{r}
-# data frame is available
+# students2014 is available
 
-# See the help page of boxplot()
-?boxplot
+# Create a summary of ika
+summary(students2014$ika)
 
-# Draw a boxplot of var. Add a y axis label and a main title.
+# Visualize the summary statistics  with a boxplot()
+
 
 
 
@@ -405,8 +446,14 @@ Values outside the whiskers can be considered as outliers, unusually distant obs
 
 *** =solution
 ```{r}
-# Draw a boxplot of var. Add a y axis label and a main title.
-boxplot(var, ylab = "", main = "")
+# students2014 is available
+
+# Create a summary of ika
+summary(students2014$ika)
+
+# Visualize the summary statistics  with a boxplot()
+boxplot(students2014$ika, horizontal = T, xlab = "age", main = "Box plot of student ages")
+
 
 
 ```
@@ -414,15 +461,10 @@ boxplot(var, ylab = "", main = "")
 *** =sct
 ```{r}
 
+test_function("boxplot", args=c("x","horizontal","xlab","main"))
 
-test_function("boxplot", args="x")
-
-# test error
 test_error()
-
-
-# Final message the student will see upon completing the exercise
-success_msg("Awsome work!")
+success_msg("That was awsome work!")
 
 ```
 
