@@ -165,7 +165,7 @@ In base R graphics, the function `barplot()` can be used to draw a bar plot. The
 
 *** =instructions
 - Use `summary()` on `kone` in the data frame `students2014`. Many of the values of `kone` are `<NA>`, not available. Why do you think this could be?
-- Adjust the code `os_counts <- NULL`: Replace `NULL` and assign the summary of `kone` to `os_counts`.
+- Adjust the code `os_counts <- NULL`: Replace `NULL` and instead assign the summary of `kone` to `os_counts`.
 - Use the function `barplot()` to draw a bar plot. Use the object you created as the first argument.
 
 *** =hint
