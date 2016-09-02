@@ -8,7 +8,7 @@ description : Data are everywhere and everything. That's why Statistics is also 
 
 In this section, you will learn how to get familiar with your data by visualizing and summarizing it.
 
-These are always the first things to do after the data is collected and preprocessed (cleaned).
+These are always the first things to do after the data is collected and preprocessed (cleaned). These kinds of simple explorations are an important step and they create valuable insight into the data.
 
 
 *** =instructions
