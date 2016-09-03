@@ -24,7 +24,7 @@ Under construction.
 
 *** =sample_code
 ```{r}
-# sample code here
+
 ```
 
 *** =solution
@@ -53,46 +53,87 @@ success_msg("Good work!")
 
 ## Tables
 
-table() & prop.table()
+Cross tabulations works with all kind of data types and is important form of presenting information. From tables one can see details that plots and pictures do not necessarily convey. Let's do couple of simple tables from the `students2014` data.
+
+You can create freguency tables in R with the `table()` function. Proportional tables are created with the function `prop.table()`, which needs a table object as an argument.
 
 *** =instructions
-- instruction 1
-- instruction 2
+- Create the object `tbl` and print its contents to see how the table looks like.
+- Create proportional table by using the `tbl` object and see the results.
+- Use the `table()` and `prop.table()` functions to create another proportional table of the variable `kone` from the `students2014` dataset.
 
 *** =hint
-- hint 1
-- hint 2
+- Remember to use the $-sign to access variables of the `students2014` dataset.
+- Function `prop.table()` needs a product of the function `table()` as an argument to work correctly. 
 
 
 *** =pre_exercise_code
 ```{r}
-# pre exercise code here
+students2014 <- read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS-data.txt", sep="\t", header=TRUE)
+
+# keep a couple background variables
+students2014 <- students2014[,c("sukup","toita","ika","pituus","kenka","kone")]
+
+# recode kone -variable NA values as factor levels
+students2014$kone <- addNA(students2014$kone)
+
+# choose rows without missing values
+students2014 <- students2014[complete.cases(students2014),]
+
+# integers to numeric
+students2014$ika <- as.numeric(students2014$ika)
+students2014$pituus <- as.numeric(students2014$pituus)
+students2014$kenka <- as.numeric(students2014$kenka)
 ```
 
 *** =sample_code
 ```{r}
-# sample code here
+# students2014 is available
+
+# Create a table of 'sukup' in 'students2014'
+tbl <- table(students2014$sukup)
+
+# Print the table
+tbl
+
+# Create a proportional table of 'sukup' in 'students2014'
+prop.table(tbl)
+
+# Create a proportional table of 'kone' in 'students2014'
+
+
+
 ```
 
 *** =solution
 ```{r}
-#solution code here
+# students2014 is available
+
+# Create a table of 'sukup' in 'students2014'
+tbl <- table(students2014$sukup)
+
+# Print the table
+tbl
+
+# Create a proportional table of 'sukup' in 'students2014'
+prop.table(tbl)
+
+# Create a proportional table of 'kone' in 'students2014'
+prop.table(table(students2014$kone))
+
 ```
 
 *** =sct
 ```{r}
 # submission correctness tests
-
-# example tests:
-# test_output_contains("output")
-# test_object("object_name")
-# test_function("function_name", args=c("arg1"))
-
-# test if the students code produces an error
+test_output_contains("tbl")
+test_object("tbl<-table(students2014$sukup)", incorrect_msg = "Did you execute `tbl`?")
+test_function("table", incorrect_msg = "Did you use the `table()` function?")
+test_function("prop.table", incorrect_msg = "Did you use the `prop.table()` function?")
+test_output_contains("prop.table(table(students2014$kone))")
 test_error()
 
-# Final message the student will see upon completing the exercise
-success_msg("Good work!")
+success_msg("Making progress, good work!")
 
 ```
 
@@ -147,59 +188,111 @@ success_msg("Good work!")
 
 ## Cross tabulations
 
-Under construction.
+Tables get interesting when there is more than one variable. You can find fascinating information by doing simple cross tabulations on different data variables. 
+
+The function `table()` can take more than one variable and produce more complex cross tabulations. When using `table()` to do cross tabulations with more than one variable, one needs to separate the variables with a comma. 
+
+Often it is useful to calculate the margins of the table. In R the calculations are done with function `addmargins()`, which takes an table object as an argument. So to calculate the margins, you need to have a table first. 
+
+The `prop.table()` function creates propotional tables the same way as it did when only one variable was used. The function `addmargins()` works also with proportional tables. 
 
 *** =instructions
-- instruction 1
-- instruction 2
+- Execute `tbl` and see how the table of variable `sukup` and `toita` looks like. 
+- Look at the proportional table of `tbl`.
+- Look what happens when you use the `addmargins()` function on `tbl`.
+- Create `my_tbl` with variables `kone` and `sukup` from the `students2014`
+- Add margins to `my_tbl`
 
 *** =hint
-- hint 1
-- hint 2
+- Did you separate the variable names with comma (`,`) inside the `table()` function?
+- Both `prop.table()` and `addmargins()` need a product of `table()` function as an argument to work correctly. 
 
 
 *** =pre_exercise_code
 ```{r}
-# pre exercise code here
+students2014 <- read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS-data.txt", sep="\t", header=TRUE)
+
+# keep a couple background variables
+students2014 <- students2014[,c("sukup","toita","ika","pituus","kenka","kone")]
+
+# recode kone -variable NA values as factor levels
+students2014$kone <- addNA(students2014$kone)
+
+# choose rows without missing values
+students2014 <- students2014[complete.cases(students2014),]
+
+# integers to numeric
+students2014$ika <- as.numeric(students2014$ika)
+students2014$pituus <- as.numeric(students2014$pituus)
+students2014$kenka <- as.numeric(students2014$kenka)
 ```
 
 *** =sample_code
 ```{r}
-# sample code here
+# students2014 is available
+
+# Create a table of 'sukup' and 'toita'. Look at the proportional table and freguency table with margins.
+tbl <- table(students2014$sukup, students2014$toita)
+prop.table(tbl)
+addmargins(tbl)
+
+# Create a table of 'kone' and 'sukup' from the 'students2014'
+my_tbl <-
+
+# Add margins to 'my_tbl'
+  
+  
 ```
 
 *** =solution
 ```{r}
-#solution code here
+# students2014 is available
+
+# Create a table of 'sukup' and 'toita'. Look at the proportional table and freguency table with margins.
+tbl <- table(students2014$sukup, students2014$toita)
+prop.table(tbl)
+addmargins(tbl)
+
+# Create a table of 'sukup' and 'kone' from the 'students2014'
+my_tbl <- table(students2014$sukup, students2014$kone)
+
+# Add margins to 'my_tbl'
+addmargins(my_tbl)  
+  
 ```
 
 *** =sct
 ```{r}
-# submission correctness tests
+test_object("tbl")
+test_object("my_tbl")
 
-# example tests:
-# test_output_contains("output")
-# test_object("object_name")
-# test_function("function_name", args=c("arg1"))
+test_function("prop.table", incorrect_msg = "Did you use the `prop.table()` function?")
+test_function("addmargins", incorrect_msg = "Did you use the `addmargins()` function?")
+test_output_contains("addmargins(my_tbl)")
 
-# test if the students code produces an error
 test_error()
 
-# Final message the student will see upon completing the exercise
-success_msg("Good work!")
+success_msg("Great! Good work!")
 
 ```
 
 --- type:NormalExercise lang:r xp:100 skills:1 key:242f06b715
 
-## Let's plot that table
+## Let's (bar)plot that table
 
-mosaicplot()/plot()
-barplot(..., beside=T/F)
+Now we know how to create a table and next we want to visualize it. The basic functions to use when plotting tables are 
+`barplot()` and `plot()` (or `mosaicplot()`). 
+
+The `barplot()` function has many arguments, and it is often useful to see the help pge of the function with `help(barplot)` or `?barplot`. 
+
+One of the arguments in `barplot()` is `beside`, which is by default stated as `FALSE`. The `beside` argument tells how the bars are in the plot: `FALSE` creates a plot where the bars are stacked and `TRUE` creates a barplot, where the bars are side by side in groups.
+
+When visualizing cross tabulations it is good to know what part of the table is what in the plot. It is possible to add a legend to a `barplot()` with an argument `legend`. See the sample code to understand how legends work. 
 
 *** =instructions
-- instruction 1
-- instruction 2
+- Execute objects `tbl` and `my_tbl`.
+- Plot a barplots of `tbl`and `my_tbl`. Note the difference in the plots.
+- Do a better barplot of `my_tbl` by adding a legend. You get the correct names by assigning the rownames of `my_tbl` to the legend. Note that the  `rownames()` is also a function.
 
 *** =hint
 - hint 1
@@ -213,7 +306,19 @@ barplot(..., beside=T/F)
 
 *** =sample_code
 ```{r}
-# sample code here
+# students2014 is available
+
+# Let's create 'tbl', 'my_tbl' and 'my_prop_tbl'
+tbl <- table(students2014$sukup)
+my_tbl <- table(students2014$sukup, students2014$kone)
+
+# The barplots of 'tbl' and 'my_tbl'
+barplot(tbl)
+barplot(my_tbl)
+
+# Add a legend
+barplot(my_tbl, legend=rownames(my_tbl))
+
 ```
 
 *** =solution
