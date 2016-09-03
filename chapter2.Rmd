@@ -352,7 +352,7 @@ mean(my_vector)
 
 *** =sct
 ```{r}
-test_object("my_vector <- c(2, 3, 1, 5)", incorrect_msg = "Did you correct the `my_vector`?")
+test_object("my_vector", incorrect_msg = "Did you correct the `my_vector`?")
 
 test_error()
 
