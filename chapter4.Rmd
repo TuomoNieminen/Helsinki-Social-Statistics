@@ -63,7 +63,7 @@ success_msg("Good job!")
 
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1
+--- type:NormalExercise lang:r xp:100 skills:1 key:ab9cf651a8
 ## Help()!
 
 There are many, many functions in R. It is very hard to remember all the argument names and details of the functions. Luckily, every single one has a help page. Using the help pages is part of using R.
