@@ -58,25 +58,24 @@ success_msg("Ok let's get to it!")
 --- type:NormalExercise lang:r xp:100 skills:1 key:0083627e50
 ## Standard deviation
 
-Standard deviation is the most important measure of variability in statistics. For a variable x, the sample standard deviation is the average euclidean distance from the mean $\overbrace{x}$.  
+Standard deviation is perhaps the most important measure of variability in statistics. For any variable x, the sample standard deviation is the average (euclidean) distance from the mean, $\bar{x}$. So, the closer the values of a variable are to their mean, the smaller the standard deviation.
 
-Mathematically for n obervations this can be expressed $\frac{1}{n} \cdot \Sigma_n |x_n - \overbrace{x}|}$, where $\Sigma_n$ expresses the sum over the n values. In practise, this is computed using
+Mathematically, the sample standard deviation is computed using
 
-$$\sqrt[2]{\frac{1}{n-1} \cdot \Sigma (x - \overbrace{x})^2}$$
+$$sd = \sqrt[2]{\frac{1}{n-1} \cdot \Sigma_n (x_n - \bar{x})^2}$$
 
-In R, standard deviation can be computed using the function `sd()`. Standard deviation is very closely related to variance, `var()`. Variance equals standard deviation squared (`^2`), which means that standard deviation equals to the square root (`sqrt()`) of variance.
+Standard deviation is very closely related to variance. Variance is standard deviation squared (`^2`), which means that standard deviation equals to the square root (`sqrt()`) of variance.
+
+In R, standard deviation of a numeric vector can be computed using the function `sd()`.
 
 
 *** =instructions
 - Print out a summary of `height`.
-- Use `sqrt()` to compute the standard deviation of height.
-- Print out the standard deviation.
-- Use `sd()` on `height` and compare the result to `sd_height`.
+- Compute the standard deviation of height, using the variance of height.
+- Compute the standard deviation of height, using the function `sd()`.
 
 *** =hint
-- Use `sqrt()` on the object `var_height`.
-- Use `sd()` on the object `height`.
-- The `==` performs a logical comparison.
+- `sqrt()` computes the square root. Take advantage of the relationship between variance and standard deviation.
 
 
 *** =pre_exercise_code
@@ -105,17 +104,13 @@ height <- students2014$pituus
 summary(height)
 
 # Compute the variance of height
-n <- length(height)
-var_height <- sum( (height - mean(height) )^2 ) / (n-1)
+n <- length(height) # number of observations
+var_height <- sum((height - mean(height) )^2) / (n - 1)
 
 # Compute the standard deviation using var_height
-sd_height <- NULL
-
-# Print the standard deviation of height
 
 
-# Check that the result is the same as with sd()
-sd_height == 1
+# Compute the standard deviation using sd()
 
 
 ```
@@ -123,22 +118,19 @@ sd_height == 1
 *** =solution
 ```{r}
 # height is available
-n <- length(height)
 
 # Print a summary of height
 summary(height)
 
 # Compute the variance of height
-var_height <- sum( (height - mean(height) )^2 ) / (n-1)
+n <- length(height) # number of observations
+var_height <- sum((height - mean(height) )^2) / (n - 1)
 
 # Compute the standard deviation using var_height
-sd_height <- sqrt(var_height)
+sqrt(var_height)
 
-# Print the standard deviation of height
-sd_height
-
-# Check that the result is the same as with sd()
-sd_height == sd(height)
+# Compute the standard deviation using sd()
+sd(height)
 
 
 ```
@@ -146,9 +138,8 @@ sd_height == sd(height)
 *** =sct
 ```{r}
 
-test_object("sd_height")
 test_function("sqrt", args=c("x"))
-test_student_typed("sd(height)")
+test_function("sd", args = c("x"))
 
 test_error()
 success_msg("Awsome work!")
@@ -160,21 +151,21 @@ success_msg("Awsome work!")
 
 [Clustering](https://en.wikipedia.org/wiki/Cluster_analysis) is the task of grouping a set of objects in such a way that objects in the same group (called a cluster) are (in some way) more similar to each other than to those in other groups.
 
-K-means is a popular algorithm that performs clustering. Intuitively, in order to split a variable to k clusters, the mean values of k groups are used as *centroids* and the closest centroid defines the cluster.
+[K-means](https://en.wikibooks.org/wiki/Data_Mining_Algorithms_In_R/Clustering/K-Means#Algorithm) is a popular algorithm that performs clustering. Intuitively, in order to split a variable to k clusters, the mean values of k groups are used as *centroids* and the closest centroid defines the cluster. The centroids are found in such a way that the combined distances to the centroid points is the smallest possible. 
 
-The centroids are found in such a way that the combined distances to the centroid points is the smallest possible. In a simple case this is identical to saying that the combined standard deviation inside the clusters is the smallest possible.
+In a simple case this is identical to saying that the combined standard deviation inside the defined clusters is the smallest possible.
 
 
 *** =instructions
-- Modify the code to use k-means with two centroids.
-- Print out the values of the centroids. Are they lower or higher than expected? Can you think of a possible reason?
-- Use `$` to access the vector `cluster` in the `km` object. Assign the vector to the column `cluster` in `students2014`.
+- Modify the code to use k-means with two centroids (centers).
+- Print out the values of the centers. Can you find interpretations to the clusters? Are the center values lower or higher than you might have expected? Can you think of a possible reason?
+- Use `$` to access the vector `cluster` in the object `km`. Assign that vector to the column `cluster` in `students2014`.
 - Plot the students heights again but this time color the values by cluster.
 
 *** =hint
 - Define the number of clusters using the `centers` argument of `kmeans()`.
 - Use `km$cluster` to access the vector of cluster values.
-- Copy the code where `plot()` is called but change the `col` argument. You can use the new column `cluster` in the data.frame `students2014` just like in the copied code.
+- Copy the code where `plot()` is called but change the `col` argument. You can use the column `cluster` in the data.frame `students2014` just like in the copied code.
 
 
 *** =pre_exercise_code
