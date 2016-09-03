@@ -5,17 +5,16 @@ description : Variation and dependence are at the heart of Statistics. In fact, 
 --- type:NormalExercise lang:r xp:50 skills:1 key:ea11f25c3e
 ## Be aware of varying variables
 
-In the previous chapter you learned how to explore the variables in your data by creating summaries and plots out of data objects in R. In fact, you already know quite a bit about how to exlore the variability of different variables.
+In the previous chapter you learned how to explore the variables in your data by creating summaries and plots out of data objects in R. You already know quite a bit about how to exlore variability.
 
-In this chapter we'll expand on these tools and we'll also look at how to explore the *relationships* between pairs of variables.
+In this chapter we'll expand on these tools and we'll also look at how to explore the *relationships* between pairs of variables with scatter plots and correlation.
 
 *** =instructions
-- instruction 1
-- instruction 2
+- Draw a scatterplot of students shoesizes and heights. Does a linear relationship look plausible?
+- Compute the correlation between shoesizes and heights. What is your interpretation?
 
 *** =hint
-- hint 1
-- hint 2
+- Simply execute the example codes.
 
 
 *** =pre_exercise_code
@@ -38,6 +37,15 @@ students2014$kenka <- as.numeric(students2014$kenka)
 *** =sample_code
 ```{r}
 # students2014 is available
+# Use with(data.frame, ) to directly access the colums of a data.frame
+
+# A scatterplot of shoesize and height
+with(students2014, 
+     plot(kenka, pituus))
+
+# The correlation of shoesize and height
+with(students2014,
+     cor(kenka, pituus))
 
 
 ```
@@ -51,20 +59,99 @@ students2014$kenka <- as.numeric(students2014$kenka)
 ```{r}
 
 test_error()
-success_msg("Ok let's get to it!")
+success_msg("Good job!")
 
 ```
+
+--- type:NormalExercise lang:r xp:100 skills:1
+## Help()!
+
+There are many, many functions in R. It is very hard to remember all the argument names and details of the functions. Luckily, every single one has a help page. Using the help pages is part of using R.
+
+The help page of a function called f can be opened by two methods: `help(f)` or `?f`.
+
+
+*** =instructions
+- Open the help page of `plot` and make the following changes to the plot:
+- Add a main title "Scatterplot of student shoesize versus height".
+- Add a subtitle "correlation: x" and replace x with the actual correlation, rounded to two decimal places.
+
+*** =hint
+- The help page is a pop-up window, which you might have to specifically allow.
+
+*** =pre_exercise_code
+```{r}
+# load data from web
+students2014 <- read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS-data.txt", sep="\t", header=TRUE)
+# keep a couple background variables
+students2014 <- students2014[,c("sukup","toita","ika","pituus","kenka","kone")]
+# recode kone variables missing values as factor levels
+students2014$kone <- addNA(students2014$kone)
+# keep only rows without missing values
+students2014 <- students2014[complete.cases(students2014),]
+# integers to numeric
+students2014$ika <- as.numeric(students2014$ika)
+students2014$pituus <- as.numeric(students2014$pituus)
+students2014$kenka <- as.numeric(students2014$kenka)
+
+```
+
+*** =sample_code
+```{r}
+# students2014 is available
+
+# A scatterplot of shoesize and height
+with(students2014, 
+     plot(kenka, pituus))
+
+# The correlation of shoesize and height
+with(students2014,
+     cor(kenka, pituus))
+
+# See the help page of the plot function
+
+
+```
+
+*** =solution
+```{r}
+# students2014 is available
+
+# A scatterplot of shoesize and height
+with(students2014, 
+     plot(kenka, pituus, main = "Scatterplot of student shoesize versus height", sub = "Correlation: 0.85"))
+
+# The correlation of shoesize and height
+with(students2014,
+     cor(kenka, pituus))
+
+# See the help page of the plot function
+?plot
+
+```
+
+*** =sct
+```{r}
+
+# test_output_contains("output")
+# test_object("object_name")
+# test_function("function_name", args=c("arg1"))
+
+test_error()
+success_msg("Good work!")
+```
+
 
 --- type:NormalExercise lang:r xp:100 skills:1 key:0083627e50
 ## Standard deviation
 
-Standard deviation is perhaps the most important measure of variability in statistics. For any variable x, the sample standard deviation is the average (euclidean) distance from the mean, $\bar{x}$. So, the closer the values of a variable are to their mean, the smaller the standard deviation.
+*Standard deviation* is perhaps the most important measure of variability in statistics. For any variable x, the sample standard deviation is the average (euclidean) distance from the mean, $\bar{x}$. So, the closer the values of a variable are to their mean, the smaller the standard deviation.
 
 Mathematically, the sample standard deviation is computed using
 
 $$sd = \sqrt[2]{\frac{1}{n-1} \cdot \Sigma_n (x_n - \bar{x})^2}$$
 
-Standard deviation is very closely related to variance. Variance is standard deviation squared (`^2`), which means that standard deviation equals to the square root (`sqrt()`) of variance.
+Standard deviation is very closely related to *variance*. Variance is standard deviation squared (`^2`), which means that standard deviation equals to the square root (`sqrt()`) of variance.
 
 In R, standard deviation of a numeric vector can be computed using the function `sd()`.
 
