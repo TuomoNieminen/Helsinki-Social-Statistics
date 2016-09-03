@@ -11,6 +11,8 @@ There are different data types in R. The most commonly used are:
 - Text or character values are called **characters**
 - Boolean values (`TRUE` or `FALSE`) are called **logical**
 
+When creating character values, one needs to use quotation marks `' '`. For example `'Statistics<3'` would be a character value in R. Numeric and boolean values do not need quotation marks. 
+
 You can use the function `str()` (str is short for structure) to find out what data type the object is.
 
 *** =instructions
@@ -37,9 +39,6 @@ my_initials <-
 my_numeric_object <-
 my_boolean <- FALSE
 
-# Change the value of my_boolean to TRUE
-
-
 # See how the objects look with the function str()
 
 
@@ -48,11 +47,8 @@ my_boolean <- FALSE
 *** =solution
 ```{r}
 # Create objects with different data types
-my_initials <- "A.B.C."
+my_initials <- 'A.B.C.'
 my_numeric_object <- 10.5
-my_boolean <- FALSE
-
-# Change the value of my_boolean
 my_boolean <- TRUE
 
 # See how the objects look with the function str()
@@ -330,11 +326,9 @@ When using the wrong data type, R produces an error stating what is wrong.
 - `chr` is short for character.
 - When creating a character vector, one needs to use quotation marks. 
 
-
 *** =pre_exercise_code
 ```{r}
 ```
-
 
 *** =sample_code
 ```{r}
@@ -348,7 +342,6 @@ mean(my_vector)
 
 *** =solution
 ```{r}
-
 # Let's create a vector
 my_vector <- c(2, 3, 1, 5)
 
@@ -454,9 +447,9 @@ success_msg("Good work!")
 ## Data types and measurement scales
 
 
-| Scale          | Numeric | Character | Boolean :| Factor |
+| Scale          | Numeric | Character | Boolean | Factor |
 |----------------|---------|-----------|---------|--------|
-| Classification |    x    |     x     |    x    |    x   |
+| Categorical  |    x    |     x     |    x    |    x   |
 | Ordinal        |    x    |     x     |         |    x   |
 | Measurement    |    x    |           |         |        |
 
@@ -480,16 +473,18 @@ plot(student_age_cut, main="student_age_cut", col=col1)
 
 *** =sample_code
 ```{r}
-# Classification
+# students2014 is available
+
+# Categorical
 barplot(table(students2014$kone))
 
-# Ordinal scale
+# Ordinal 
 barplot((table(students2014$kenka)))
 
 # Measurement
-hist(students2014$ika, breaks = "scott")
+hist(students2014$ika, breaks = 50)
 
-# From measurement to ordinal scale
+# From measurement to ordinal
 student_age_cut <- cut(students2014$ika, breaks = c(15, 25, 35, 45, 55, 65, 75, 85))
 plot(student_age_cut, main = "student_age_cut")
 ```
