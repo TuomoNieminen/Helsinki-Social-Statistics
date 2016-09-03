@@ -2,7 +2,7 @@
 title       : Exploring variation and dependence
 description : Variation and dependence are at the heart of Statistics. In fact, without variation the discipline would cease to exist. Correlation is not causation, but why?
 
---- type:NormalExercise lang:r xp:50 skills:1
+--- type:NormalExercise lang:r xp:50 skills:1 key:ea11f25c3e
 ## Be aware of varying variables
 
 In the previous chapter you learned how to explore the variables in your data by creating summaries and plots out of data objects in R. In fact, you already know quite a bit about how to exlore the variability of different variables.
@@ -55,7 +55,7 @@ success_msg("Ok let's get to it!")
 
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1
+--- type:NormalExercise lang:r xp:100 skills:1 key:0083627e50
 ## Standard deviation
 
 Standard deviation is the most important measure of variability in statistics. For a variable x, the sample standard deviation is the average euclidean distance from the mean $\overbrace{x}$.  
@@ -155,7 +155,7 @@ success_msg("Awsome work!")
 ```
 
 
---- type:NormalExercise lang:r xp:100 skills:1
+--- type:NormalExercise lang:r xp:100 skills:1 key:989f75fe50
 ## Clustering
 
 [Clustering](https://en.wikipedia.org/wiki/Cluster_analysis) is the task of grouping a set of objects in such a way that objects in the same group (called a cluster) are (in some way) more similar to each other than to those in other groups.
