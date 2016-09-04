@@ -24,7 +24,7 @@ data_url <- "http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS-data.txt"
 
 students2014 <- read.table(data_url, sep="\t", header=TRUE)
 
-with(students2014, plot(x = kenka, y = pituus, col = sukup, pch = 20))
+with(students2014, plot(x = kenka, y = pituus, col = sukup, pch = 20, main = "Scatter plot of student shoesize and height"))
 ```
 
 *** =sample_code
