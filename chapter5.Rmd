@@ -6,11 +6,11 @@ description : Cross-tabulations let you explore dependencies hidden deep within 
 
 ## The sum of the variable
 
-Often in a survey there are many questions that measure the same phenomenon. The phenomenon could be for example trustfulness or prejudice. Single questions are nice, but they do not help us to see the big picture. To get a better outlook of a phenomenon, we can use the sum of variables.
+Often in a survey there are many questions that measure the same phenomenon. The phenomenon could be for example trustfulness or prejudice of some sort. Single survey questions are nice, but they do not help us to see the big picture. To get a better outlook of a phenomenon, we can use the sum of variables.
 
 Next we learn to do the sum of variables by ourselves with a little toy example.
 
-Let's say that we have five questions about trust in our survey. In the sample code `answer_1` contains the coded answers of one survey answerer. The `answer_2` contains another person's answers, and so on. The sum of variable is made by taking the average (or sum) of one persons answers and saving it to another object. So in the sum of variable there is one value for every survey answerer.
+Let's say that we have five questions about trust in our survey. In the sample code `answer_1` contains the coded answers of one survey answerer. The object `answer_2` contains another person's answers, and so on. The sum of variable is made by taking the average (or sum) of one persons answers and saving it to another object. So in the sum of variable there is one value for every survey answerer. In this case the average value sums up one survey answerers trust in a single value. 
 
 *** =instructions
 - Execute `answer_1`, `answer_2` and `answer_3`.
@@ -31,7 +31,7 @@ Let's say that we have five questions about trust in our survey. In the sample c
 # Coded survey answers
 answer_1 <- c(2, 3, 2, 1, 3)
 answer_2 <- c(4, 5, 5, 4, 4)
-answer_2 <- c(1, 4, 3, 4, 1)
+answer_3 <- c(1, 4, 3, 4, 1)
 
 # Calculate the means
 average_1 <- mean(answer_1)
@@ -65,10 +65,6 @@ sum_of_var <- c(average_1, average_2, average_3)
 test_function("mean", incorrect_msg = "Did you use the mean() to calculate averages?")
 test_object("sum_of_var", incorrect_msg = "Did you create the `sum_of_var`?")
 
-test_object("answer_1", incorrect_msg = "Did you execute the line of `answer_1`?")
-test_object("answer_2", incorrect_msg = "Did you execute the line of `answer_2`?")
-test_object("answer_3", incorrect_msg = "Did you execute the line of `answer_3`?")
-
 test_object("average_1", incorrect_msg = "Did you create the `average_1`?")
 test_object("average_2", incorrect_msg = "Did you create the `average_2`?")
 test_object("average_3", incorrect_msg = "Did you create the `average_3`?")
@@ -83,9 +79,9 @@ success_msg("Summing those variables up pretty nicely!")
 
 ## Tables
 
-Cross tabulations works with all kind of data types and is important form of presenting information. From tables one can see details that plots and pictures do not necessarily convey. Let's do couple of simple tables from the `students2014` data.
+Cross tabulation is important form of presenting information. From tables one can see details that plots and pictures do not necessarily convey. Let's do couple of simple tables from the `students2014` data.
 
-You can create freguency tables in R with the `table()` function. Proportional tables are created with the function `prop.table()`, which needs a table object as an argument.
+Maybe the most basic functions to do cross tabulations in R are `table()` and `prop.table()`. With the `table()` function you can create freguency tables and with the function `prop.table()` proportional tables are created., The `prop.table()` function needs a table object as an argument. Look the examples to see how tables are created.
 
 *** =instructions
 - Create the object `tbl` and print its contents to see how the table looks like.
@@ -218,9 +214,9 @@ success_msg("Good work!")
 
 ## Cross tabulations
 
-Tables get interesting when there is more than one variable. You can find fascinating information by doing simple cross tabulations on different data variables. 
+Tables get more interesting when there is more than one variable. You can find fascinating information by doing simple cross tabulations on different data variables. 
 
-The function `table()` can take more than one variable and produce more complex cross tabulations. When using `table()` to do cross tabulations with more than one variable, one needs to separate the variables with a comma. 
+The function `table()` can take more than one variable and produce more complex cross tabulations. When using `table()` with more than one variable, one needs to separate the variables with a comma (`,`). 
 
 Often it is useful to calculate the margins of the table. In R the calculations are done with function `addmargins()`, which takes an table object as an argument. So to calculate the margins, you need to have a table first. 
 
@@ -317,12 +313,15 @@ The `barplot()` function has many arguments, and it is often useful to see the h
 
 One of the arguments in `barplot()` is `beside`, which is by default stated as `FALSE`. The `beside` argument tells how the bars are in the plot: `FALSE` creates a plot where the bars are stacked and `TRUE` creates a barplot, where the bars are side by side in groups.
 
-When visualizing cross tabulations it is good to know what part of the table is what in the plot. It is possible to add a legend to a `barplot()` with an argument `legend`. See the sample code to understand how legends work. 
+When visualizing cross tabulations it is good to know what part of the table is what in the plot. It is possible to add a legend to a `barplot()` with an argument `legend`. Note that you need to specify what you want to be in the legend. See the sample code to understand how legends work. 
 
 *** =instructions
 - Execute objects `tbl` and `my_tbl`.
 - Plot a barplots of `tbl`and `my_tbl`. Note the difference in the plots.
 - Do a better barplot of `my_tbl` by adding a legend. You get the correct names by assigning the rownames of `my_tbl` to the legend. Note that the  `rownames()` is also a function.
+- Create a table object `my_tbl_2` where the variables are 'toita' and 'kone'
+- Make a barplot of `my_tbl_2` and add a legend using the rownames of the table.
+
 
 *** =hint
 - hint 1
@@ -331,7 +330,21 @@ When visualizing cross tabulations it is good to know what part of the table is 
 
 *** =pre_exercise_code
 ```{r}
-# pre exercise code here
+students2014 <- read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS-data.txt", sep="\t", header=TRUE)
+
+# keep a couple background variables
+students2014 <- students2014[,c("sukup","toita","ika","pituus","kenka","kone")]
+
+# recode kone -variable NA values as factor levels
+students2014$kone <- addNA(students2014$kone)
+
+# choose rows without missing values
+students2014 <- students2014[complete.cases(students2014),]
+
+# integers to numeric
+students2014$ika <- as.numeric(students2014$ika)
+students2014$pituus <- as.numeric(students2014$pituus)
+students2014$kenka <- as.numeric(students2014$kenka)
 ```
 
 *** =sample_code
@@ -349,27 +362,98 @@ barplot(my_tbl)
 # Add a legend
 barplot(my_tbl, legend=rownames(my_tbl))
 
+# Create a table of 'toita' and 'kone'
+
+  
+# Make a barplot of 'my_tbl_2' and add a legend using the rownames of the table
+
+
 ```
 
 *** =solution
 ```{r}
-#solution code here
+# students2014 is available
+
+# Let's create 'tbl', 'my_tbl' and 'my_prop_tbl'
+tbl <- table(students2014$sukup)
+my_tbl <- table(students2014$sukup, students2014$kone)
+
+# The barplots of 'tbl' and 'my_tbl'
+barplot(tbl)
+barplot(my_tbl)
+
+# Add a legend
+barplot(my_tbl, legend=rownames(my_tbl))
+
+# Create a table of 'toita' and 'kone'
+my_tbl_2 <- table(students2014$toita, students2014$kone)
+  
+# Barplot 'my_tbl_2' and add a legend with the rownames of the table. 
+barplot(my_tbl_2, legend=rownames(my_tbl_2))
 ```
 
 *** =sct
 ```{r}
-# submission correctness tests
 
-# example tests:
-# test_output_contains("output")
-# test_object("object_name")
-# test_function("function_name", args=c("arg1"))
+test_function("barplot")
+test_object("my_tbl_2", incorrect_msg = "Did you create a table `my_tbl_2` with `toita` and `kone`?")
 
 # test if the students code produces an error
 test_error()
 
 # Final message the student will see upon completing the exercise
-success_msg("Good work!")
+success_msg("You are doing very well!")
 
 ```
 
+--- type:NormalExercise lang:r xp:100 skills:1
+
+## And then little more plotting
+
+
+*** =instructions
+- 
+
+
+*** =hint
+- hint 1
+- hint 2
+
+
+*** =pre_exercise_code
+```{r}
+students2014 <- read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS-data.txt", sep="\t", header=TRUE)
+
+# keep a couple background variables
+students2014 <- students2014[,c("sukup","toita","ika","pituus","kenka","kone")]
+
+# recode kone -variable NA values as factor levels
+students2014$kone <- addNA(students2014$kone)
+
+# choose rows without missing values
+students2014 <- students2014[complete.cases(students2014),]
+
+# integers to numeric
+students2014$ika <- as.numeric(students2014$ika)
+students2014$pituus <- as.numeric(students2014$pituus)
+students2014$kenka <- as.numeric(students2014$kenka)
+```
+
+*** =sample_code
+```{r}
+# students2014 is available
+
+```
+
+*** =solution
+```{r}
+# students2014 is available
+
+```
+
+*** =sct
+```{r}
+
+success_msg("You are doing very well!")
+
+```
