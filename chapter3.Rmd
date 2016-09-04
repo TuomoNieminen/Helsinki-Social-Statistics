@@ -72,7 +72,7 @@ success_msg("Ready? Let's go for it!")
 ```
 
 --- type:NormalExercise lang:r xp:100 skills:1, 3  key:0e42548148
-## summary() statistics
+## Summary() statistics
 
 Some functions in R are very generic. They can take different objects as their first argument and they seem to magically do exactly what you'd hope they do in all situations.
 
@@ -156,7 +156,7 @@ success_msg("Well done!")
 
 ## Bar plots of qualitative variables
 
-Bar plots are useful for visualizing qualitative, discrete variables. A bar plot represents the counts of the unique values of a variable -  what the function `summary()` shows for factor type objects. Drawing a bar plot only makes sense when there are only a few unique values possible. 
+Bar plots are useful for visualizing qualitative, discrete variables. A bar plot represents the counts of the unique values of a variable.
 
 In this exercise you will draw a barplot of `kone` in the data frame `students2014`. For each student the value of `kone` is the operating system of the students computer. For more information see [the metafile](http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS-meta.txt).
 
@@ -165,12 +165,12 @@ In base R graphics, the function `barplot()` can be used to draw a bar plot. The
 
 *** =instructions
 - Use `summary()` on `kone` in the data frame `students2014`. Many of the values of `kone` are `<NA>`, not available. Why do you think this could be?
-- Adjust the code `os_counts <- NULL`: Replace `NULL` and instead assign the summary of `kone` to `os_counts`.
+- Adjust the code `os_counts <- NULL`: Replace `NULL` and assign the summary of `kone` to `os_counts`.
 - Use the function `barplot()` to draw a bar plot. Use the object you created as the first argument.
 
 *** =hint
 - Replace `NULL` with the example code where `summary()` is used on `kone`.
-- Then give the object os_counts as the first to `barplot()`. 
+- Give the object os_counts as the first to `barplot()`. 
 
 
 *** =pre_exercise_code
@@ -235,17 +235,17 @@ success_msg("Excellent work!")
 
 ## Bar plots of continuous variables
 
-When a variable is continuous by nature, it means that it can take on so many different values that all of it's observed values are likely to be unique.
+When a variable is continuous by nature, it means that it can take on so many different values that all of it's observed values are likely to be unique. How to draw a bar plot in this case?
 
-Age can be interpret as a continuous variable because of the continuous nature of time. The exact age of a person depends on the exact time of birth and is different for all. However, age is often measured quite discretely as rounded down years.
+Age can be interpret as a continuous variable even though age is often measured quite discretely as rounded down years. Even then, usually there are too many unique values to visualize them clearly with a bar plot.
 
-Even when age is measured in years, usually there are too many unique values to draw bar plot that makes sense, which you will soon observe. So what would be a good way of looking at the distribution of age? A solution is to first categorize age.
+A solution is to first categorize the variable.
 
 
 *** =instructions
 - Draw a bar plot of the age of students. How does it look?
 - Use `cut()` to create a factor object where age is cut into intervals. Use the vector `c(0, 16, 20, 24, 30, 100)` as break points.
-- Follow the procedure in the previous exercise and use `summary()` and then `barplot()` to get and then visualize the counts of unique values of `age_cut`.
+- Follow the procedure in the previous exercise and use `summary()` and then `barplot()` to visualize the counts of the unique values of `age_cut`.
 
 
 *** =hint
@@ -290,10 +290,12 @@ age_cut <- cut(students2014$ika, breaks = NULL)
 
 *** =solution
 ```{r}
-# draw a barplot of student age
+# students2014 is available
+
+# Draw a barplot of student age
 barplot(students2014$ika)
 
-# split age to intervals
+# Split age to intervals
 age_cut <- cut(students2014$ika, breaks = c(0, 16, 20, 24, 30, 100))
 
 # Draw a barplot() of age_cut
@@ -321,7 +323,7 @@ Splitting a continuous variable into intervals of equal width and then drawing a
 
 In R, basic histograms can be drawn with the `hist()` function. The first argument of `hist()` should be a numeric vector of data values. The argument `breaks` can be used to approximately control the number of intervals.
 
-The plotting functions in R also have many additional arguments which allow for more control over the plot. One simple argument is `col`, the desired color ("blue", "green", etc). Some possible color names can be found <a target="_blank" href="http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf">here</a>.
+The plotting functions in R also have many additional arguments which allow for more control over the plot. One simple argument is `col`, which can be the number(s) or the name(s) of the desired color(s). Some possible color names can be found <a target="_blank" href="http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf">here</a>.
 
 *** =instructions
 - Adjust the sample code and draw the histogram again by setting the argument `breaks = 20`.
@@ -406,7 +408,7 @@ Values outside the whiskers can be considered as outliers, unusually distant obs
 - Use `boxplot()` on `students2014$ika`.
 - Adjust the plot: set the argument `horizontal = TRUE`.
 - Adjust the plot: set the argument `xlab = "age"`.
-- Give your plot the main title "Box plot of student ages".
+- Give your plot the main title "Box plot of student ages" with the argument `main`.
 
 *** =hint
 - Give `students2014$ika` as the fisrt argument of `boxplot()`.
