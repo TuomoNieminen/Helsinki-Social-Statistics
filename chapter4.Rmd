@@ -10,7 +10,7 @@ In the previous chapter you learned how to explore the variables in your data by
 In this chapter we'll expand on these tools and we'll also look at how to explore the *relationships* between pairs of variables with scatter plots and correlation.
 
 *** =instructions
-- Draw a scatterplot of students shoesizes and heights. Does a linear relationship look plausible?
+- Draw a scatter plot of students shoesizes and heights. Does a linear relationship look plausible?
 - Compute the correlation between shoesizes and heights. What is your interpretation?
 
 *** =hint
@@ -36,14 +36,15 @@ students2014$kenka <- as.numeric(students2014$kenka)
 
 *** =sample_code
 ```{r}
-# students2014 is available
-# Use with(data.frame, ) to have direct access the colums of a data.frame
+# Create objects shoesize and height
+shoesize <- students2014$kenka
+height <- students2014$pituus
 
-# A scatterplot of shoesize and height
-with(students2014, plot(kenka, pituus))
+# Draw a scatter plot of shoesize and height
+plot(shoesize, height)
 
-# The correlation of shoesize and height
-with(students2014, cor(kenka, pituus))
+# Compute the correlation of shoesize and height
+cor(shoesize, height)
 
 
 ```
@@ -71,7 +72,7 @@ The help page of a function called *func* can be opened by two methods: `help(fu
 
 *** =instructions
 - Open the help page of `plot`.
-- Draw a scatter plot of student shoesize versus height.
+- Draw a scatter plot of student shoesize versus height and compute the correlation.
 - Use the information on the help page and make the following adjustments to the plot:
 - Add a main title: "Scatterplot of student shoesize versus height".
 - Add a subtitle: "correlation: x". Replace x with the actual correlation, rounded to two decimal places.
@@ -99,32 +100,35 @@ students2014$kenka <- as.numeric(students2014$kenka)
 
 *** =sample_code
 ```{r}
-# students2014 is available
+# Create objects shoesize and height
+shoesize <- students2014$kenka
+height <- students2014$pituus
 
 # See the help page of the plot function
 ?plot
 
 # Draw a scatterplot of shoesize and height
-with(students2014, NULL)
+
 
 # Compute the correlation of shoesize and height
-with(students2014, NULL)
 
 
 ```
 
 *** =solution
 ```{r}
-# students2014 is available
+# Create objects shoesize and height
+shoesize <- students2014$kenka
+height <- students2014$pituus
 
 # See the help page of the plot function
 ?plot
 
 # Draw a scatterplot of shoesize and height
-with(students2014, plot(kenka, pituus, main = "Scatterplot of student shoesize versus height", sub = "Correlation: 0.85"))
+plot(shoesize, height, main = "Scatterplot of student shoesize versus height", sub = "Correlation: 0.85")
 
 # Compute the correlation of shoesize and height
-with(students2014, cor(kenka, pituus))
+cor(shoesize, height)
 
 
 ```
