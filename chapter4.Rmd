@@ -10,7 +10,7 @@ In the previous chapter you learned how to explore the variables in your data by
 In this chapter we'll expand on these tools and we'll also look at how to explore the *relationships* between pairs of variables with scatter plots and correlation.
 
 *** =instructions
-- Draw a scatter plot of students shoesizes and heights. Does a linear relationship look plausible?
+- Draw a scatter plot of students shoesizes and heights with `plot()`. Does a linear relationship look plausible?
 - Compute the correlation between shoesizes and heights. What is your interpretation?
 
 *** =hint
@@ -65,7 +65,7 @@ success_msg("Good job!")
 --- type:NormalExercise lang:r xp:100 skills:1 key:ab9cf651a8
 ## Help() !
 
-There are many functions in R. It is hard to remember the argument names and details of the functions. Luckily, every single function has a help page. Using the help pages is part of using R.
+There are many functions in R. It is often hard to remember all the argument names and details of the functions. Luckily, every single function has a help page. Using the help pages is part of using R.
 
 The help page of a function called *func* can be opened by two methods: `help(func)` or `?func`.
 
@@ -74,7 +74,7 @@ The help page of a function called *func* can be opened by two methods: `help(fu
 - Open the help page of `plot`.
 - Draw a scatter plot of student shoesize versus height and compute the correlation.
 - Use the information on the help page and make the following adjustments to the plot:
-- Add a main title: "Scatterplot of student shoesize versus height".
+- Add a main title: "Scatter plot of student shoesize versus height".
 - Add a subtitle: "correlation: x". Replace x with the actual correlation, rounded to two decimal places.
 
 *** =hint
