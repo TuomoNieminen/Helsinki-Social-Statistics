@@ -24,8 +24,7 @@ data_url <- "http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS-data.txt"
 
 students2014 <- read.table(data_url, sep="\t", header=TRUE)
 
-with(students2014, 
-     plot(kenka, pituus, col = sukup, pch = 20))
+with(students2014, plot(x = kenka, y = pituus, col = sukup, pch = 20))
 ```
 
 *** =sample_code
@@ -35,14 +34,11 @@ with(students2014,
 # Create a character object holding data location
 data_url <- "http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS-data.txt"
 
-# Load data with the read.table() function
-# Create a data object 'students2014'
+# Load and save data with the read.table() function
 students2014 <- read.table(data_url, sep = "\t", header = TRUE)
 
 # Draw a graph of shoesize versus hight using plot()
-# Indicate sex by color with the 'col' argument
-with(students2014, 
-     plot(x = kenka, y = pituus, col = sukup, pch = 20))
+with(students2014, plot(x = kenka, y = pituus, col = sukup, pch = 20))
 
 
 ```
