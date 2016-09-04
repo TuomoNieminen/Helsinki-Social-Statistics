@@ -5,6 +5,8 @@ description : Quick overview to R data and variable types. What are the objects?
 --- type:NormalExercise lang:r xp:100 skills:1 key:e4360dcfec
 ## Data types in R (1)
 
+In this section you learn about the data types in R. You will also get familiar with vectors and their usage. What does data types and vectors have to do with each other? A lot, you'll see! 
+
 There are different data types in R. The most commonly used are:
 
 - Numbers and decimal values are called **numeric**
