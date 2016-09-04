@@ -366,7 +366,7 @@ The recommended style is to specify all but the first argument by name, when cal
 
 *** =instructions
 - Look at the definition of the `add_k()` function and execute the function calls that are defined, starting from line 4.
-- Create object `my_answer` by directly assigning the output of `add_k()` to it. Call `add_k()` with `a = 10` and `k = 7`.
+- Create object `my_answer` by directly assigning the output of `add_k()` to it. Call `add_k()` with `number = 10` and `k = 7`.
 
 *** =hint
 - The answer is of the form: `my_answer <- add_k(argname_1 = ?, argname_2 = ?)`
