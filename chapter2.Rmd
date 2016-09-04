@@ -219,7 +219,7 @@ test_output_contains("c(2, 3, 4, 5)", incorrect_msg = "Did you execute all the l
 test_output_contains("c(0.1, 0.2, 5.84, 0.7)", incorrect_msg = "Did you execute all the lines?")
 
 test_object("my_vector", incorrect_msg = "Did you execute `my_vector`?")
-test_object("boolean_vector <- c(TRUE, FALSE, TRUE, FALSE)", incorrect_msg = "Did you create `boolean_vector` with same values as instructed?")
+test_object("boolean_vector", incorrect_msg = "Did you create `boolean_vector` with same values as instructed?")
 test_error()
 
 # Final message the student will see upon completing the exercise
@@ -296,9 +296,9 @@ boys <- names[c(2, 1)]
 #ex() %>% check_output_expr("mtcars[4, ]", missing_msg = "Have you used ... ")
 test_output_contains("c(0.1, 0.2, 5.84, 0.7)", incorrect_msg = "Did you execute all the lines?")
 
-test_object("names <- c('Matti', 'Pekka', 'Liisa', 'Anna')", incorrect_msg = "Did you execute `names`?")
-test_object("girls <- names[c(3, 4)]", incorrect_msg = "Did you create `girls`?")
-test_object("boys <- names[c(2, 1)]", incorrect_msg = "Did you create `boys`?")
+test_object("names", incorrect_msg = "Did you create `names`?")
+test_object("girls", incorrect_msg = "Did you create `girls`?")
+test_object("boys", incorrect_msg = "Did you create `boys`?")
 
 test_error()
 
