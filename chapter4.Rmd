@@ -37,15 +37,13 @@ students2014$kenka <- as.numeric(students2014$kenka)
 *** =sample_code
 ```{r}
 # students2014 is available
-# Use with(data.frame, ) to directly access the colums of a data.frame
+# Use with(data.frame, ) to have direct access the colums of a data.frame
 
 # A scatterplot of shoesize and height
-with(students2014, 
-     plot(kenka, pituus))
+with(students2014, plot(kenka, pituus))
 
 # The correlation of shoesize and height
-with(students2014,
-     cor(kenka, pituus))
+with(students2014, cor(kenka, pituus))
 
 
 ```
@@ -64,20 +62,23 @@ success_msg("Good job!")
 ```
 
 --- type:NormalExercise lang:r xp:100 skills:1 key:ab9cf651a8
-## Help()!
+## Help() !
 
-There are many, many functions in R. It is very hard to remember all the argument names and details of the functions. Luckily, every single one has a help page. Using the help pages is part of using R.
+There are many functions in R. It is hard to remember the argument names and details of the functions. Luckily, every single function has a help page. Using the help pages is part of using R.
 
-The help page of a function called f can be opened by two methods: `help(f)` or `?f`.
+The help page of a function called *func* can be opened by two methods: `help(func)` or `?func`.
 
 
 *** =instructions
-- Open the help page of `plot` and make the following changes to the plot:
-- Add a main title "Scatterplot of student shoesize versus height".
-- Add a subtitle "correlation: x" and replace x with the actual correlation, rounded to two decimal places.
+- Open the help page of `plot`.
+- Draw a scatter plot of student shoesize versus height.
+- Use the information on the help page and make the following adjustments to the plot:
+- Add a main title: "Scatterplot of student shoesize versus height".
+- Add a subtitle: "correlation: x". Replace x with the actual correlation, rounded to two decimal places.
 
 *** =hint
-- The help page is a pop-up window, which you might have to specifically allow.
+- See the previous exersize for tips on drawing a scatterplot and computing correlation.
+- The help page is a pop-up window, which you might have to specifically allow to pop up.
 
 *** =pre_exercise_code
 ```{r}
@@ -100,15 +101,14 @@ students2014$kenka <- as.numeric(students2014$kenka)
 ```{r}
 # students2014 is available
 
-# A scatterplot of shoesize and height
-with(students2014, 
-     plot(kenka, pituus))
-
-# The correlation of shoesize and height
-with(students2014,
-     cor(kenka, pituus))
-
 # See the help page of the plot function
+?plot
+
+# Draw a scatterplot of shoesize and height
+with(students2014, NULL)
+
+# Compute the correlation of shoesize and height
+with(students2014, NULL)
 
 
 ```
@@ -117,16 +117,15 @@ with(students2014,
 ```{r}
 # students2014 is available
 
-# A scatterplot of shoesize and height
-with(students2014, 
-     plot(kenka, pituus, main = "Scatterplot of student shoesize versus height", sub = "Correlation: 0.85"))
-
-# The correlation of shoesize and height
-with(students2014,
-     cor(kenka, pituus))
-
 # See the help page of the plot function
 ?plot
+
+# Draw a scatterplot of shoesize and height
+with(students2014, plot(kenka, pituus, main = "Scatterplot of student shoesize versus height", sub = "Correlation: 0.85"))
+
+# Compute the correlation of shoesize and height
+with(students2014, cor(kenka, pituus))
+
 
 ```
 
@@ -134,8 +133,8 @@ with(students2014,
 ```{r}
 
 # test_output_contains("output")
-# test_object("object_name")
-# test_function("function_name", args=c("arg1"))
+test_function("plot",args = c("x","y","main","sub"))
+test_function("cor", args = c("x","y"))
 
 test_error()
 success_msg("Good work!")
