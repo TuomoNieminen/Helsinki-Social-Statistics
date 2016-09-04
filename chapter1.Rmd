@@ -5,11 +5,11 @@ description : Basics of R, the amazing statistical programming language. Do not 
 --- type:NormalExercise lang:r xp:50 skills:1 key:168121d0f0
 ## What is R?
 
-R is a programming language designed for statistical analysis. R is completely open source and all analysis done with R are reproduciple and easy to share. R is very flexible and powerful and always includes implementations of the latest research. 
+R is a programming language designed for statistical analysis. R is completely open source and all analysis done with R are reproduciple and easy to share. R is flexible and powerful and includes implementations of the latest research. 
 
 Because of these reasons, R is a very popular language among the scientific community. R is however also widely [used](http://blog.revolutionanalytics.com/2014/05/companies-using-r-in-2014.html) for data analysis and visualisations by companies such as Google, Facebook, Twitter and Reaktor. R is perfect for data science.
 
-Researchers and experts often use programming to visualize and explore data and implement new methods. The purpose of this course is to expose you to the basics of programming and statistical analysis with R.
+Researchers and experts often use programming to visualize and explore data and implement new statistical methods. The purpose of this course is to expose you to the basics of programming and data analysis with R.
 
 *** =instructions
 - Study the code written in script.R, which has been used to load a dataset and produce the graphic next to it.
@@ -37,8 +37,8 @@ data_url <- "http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS-data.txt"
 # Load and save data with the read.table() function
 students2014 <- read.table(data_url, sep = "\t", header = TRUE)
 
-# Draw a graph of shoesize versus hight using plot()
-with(students2014, plot(x = kenka, y = pituus, col = sukup, pch = 20))
+# Draw a graph of shoesize and hight using plot()
+with(students2014, plot(x = kenka, y = pituus, col = sukup, pch = 20, main = "Scatter plot of student shoesize and height"))
 
 
 ```
@@ -56,13 +56,11 @@ success_msg("Great! Move on to the first exercise.")
 --- type:NormalExercise lang:r xp:100 skills:1 key:35ad6c43ec
 ## Basic tools
 
-On your right you see the R editor area - the script - and below that the R console. The editor area is just a simple text editor where you write R code.
+On your right you see the R editor area - the script - and below that the R console. The editor area is just a simple text editor where you write code - just like text.
 
-The way to use these two is to first write code to the editor area and then to tell R that you want to execute a line of code by pressing `Ctrl + Enter`. Input and output will then appear in the console, executing the line where your cursor currently is.
+You can first write code to the editor area and then tell R that you want to execute a line of code where your cursor currently is by pressing `Ctrl + Enter`. Input and output will then appear in the console.
 
-It is also possible to write code directly to the console and use `Enter` to execute, but working with the script area is preferred for documentation.
-
-Here at DataCamp you can also execute everything in the editor area by pressing 'Submit Answer', after which DataCamp will do some magic to check if you have correctly completed the exercise.
+It is also possible to write code directly to the console and use `Enter` to execute, but working with the script area is preferred.
 
 Try it!
   
@@ -135,7 +133,7 @@ The `^` operator raises the number to its left to the power of the number to its
 
 *** =instructions
 - Type `2^5` in the editor to calculate 2 to the power 5.
-- Use `Ctrl + Enter` to run the line and/or click 'Submit answer' and have a look at the R output in the console.
+- Use `Ctrl + Enter` to run the lines and have a look at the output in the console.
 - When done, click 'Submit Answer'.
 
 
@@ -196,7 +194,7 @@ success_msg("Great work! Head over to the next exercise.")
 Here's where things start to get interesting. In R you can create and operate on things called *objects*. 
 An object is something that can store information such as numerical values and names. Once an object is created, it will be stored in memory and the information it contains will be available to you later.
 
-Objects are created using the assign operator: `<-` (`<` + `-`). The value of an object can be printed by typing it's name.
+Objects are created using the assign operator: `<-` (< and -). The value of an object can be printed by typing it's name.
 
 
 *** =instructions
@@ -360,7 +358,7 @@ success_msg("Nice job!")
 --- type:NormalExercise lang:r xp:100 skills:1 key:cecbb6b1e8
 ## Function arguments
 
-During this course you will operate on R's ready-made functions, but for clarity we will look at the definition of a simple function and learn how to use it, *call* it.
+During this course you will operate on R's ready-made functions, but for clarity we will look at the definition of a simple function and learn how to use it (*call* it).
 
 Functions usually have one or more arguments, for which the user can define values when calling the function. Multiple arguments are separated with a comma. The arguments have names, which can (and often should) be used when specifying their values.
 
@@ -368,14 +366,14 @@ The recommended style is to specify all but the first argument by name, when cal
 
 *** =instructions
 - Look at the definition of the `add_k()` function and execute the function calls that are defined, starting from line 4.
-- Create object `ans` by directly assigning the output of `add_k()` to it. Call `add_k()` with `value = 10` and `k = 7`.
+- Create object `my_answer` by directly assigning the output of `add_k()` to it. Call `add_k()` with `a = 10` and `k = 7`.
 
 *** =hint
-- The answer is of the form: `ans <- add_k(arguments and their values here)`
+- The answer is of the form: `my_answer <- add_k(argname_1 = ?, argname_2 = ?)`
 
 *** =pre_exercise_code
 ```{r}
-add_k <- function(value, k = 5) return(value + k)
+add_k <- function(number, k = 5) return(number + k)
 ```
 
 
@@ -383,43 +381,45 @@ add_k <- function(value, k = 5) return(value + k)
 ```{r}
 
 # Create a simple function with two arguments, of which 'k' has a default value
-add_k <- function(value, k = 5) return(value + k)
+add_k <- function(number, k = 5) return(number + k)
 
 # Call the add_k() function. Can you guess the result?
-add_k(value = 5)
+add_k(number = 5)
 
-# These calls are identical
+# These calls are identical. Try them.
 add_k(5, k = -4) # recommended style
-add_k(5, -4)     # style not recommended
-add_k(k = -4, value = 5) # style not recommended
+add_k(5, -4)     # style usually not recommended
+add_k(k = -4, number = 5) # style not recommended
 
-# Call add_k() to create the object 'ans'
-ans <- 
+# Call add_k() to create the object 'my_answer'
+my_answer <- 
 
 
 ```
 
 *** =solution
 ```{r}
+# Create a simple function with two arguments, of which 'k' has a default value
+add_k <- function(number, k = 5) return(number + k)
 
 # Call the add_k() function. Can you guess the result?
-add_k(value = 5)
+add_k(number = 5)
 
-# These calls are identical
+# These calls are identical. Try them.
 add_k(5, k = -4) # recommended style
-add_k(5, -4)     # style not recommended
-add_k(k = -4, value = 5) # style not recommended
+add_k(5, -4)     # style usually not recommended
+add_k(k = -4, number = 5) # style not recommended
 
-# Call add_k() to create the object 'ans'
-ans <- add_k(10, k = 7)
+# Call add_k() to create the object 'my_answer'
+my_answer <- add_k(10, k = 7)
 
 
 ```
 
 *** =sct
 ```{r}
-test_function("add_k",args=c("value","k"))
-test_object("ans")
+test_function("add_k",args=c("number","k"))
+test_object("my_answer")
 
 test_error()
 success_msg("Great job!")
