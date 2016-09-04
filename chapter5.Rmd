@@ -317,7 +317,7 @@ When visualizing cross tabulations it is good to know what part of the table is 
 
 *** =instructions
 - Execute objects `tbl` and `my_tbl`.
-- Plot a barplots of `tbl`and `my_tbl`. Note the difference in the plots.
+- Plot barplots of `tbl`and `my_tbl`. Note the difference in the plots.
 - Do a better barplot of `my_tbl` by adding a legend. You get the correct names by assigning the rownames of `my_tbl` to the legend. Note that the  `rownames()` is also a function.
 - Create a table object `my_tbl_2` where the variables are 'toita' and 'kone'
 - Make a barplot of `my_tbl_2` and add a legend using the rownames of the table.
@@ -395,7 +395,7 @@ barplot(my_tbl_2, legend=rownames(my_tbl_2))
 *** =sct
 ```{r}
 
-test_function("barplot")
+test_function("barplot", args=c("my_tbl_2"))
 test_object("my_tbl_2", incorrect_msg = "Did you create a table `my_tbl_2` with `toita` and `kone`?")
 
 # test if the students code produces an error
@@ -410,14 +410,20 @@ success_msg("You are doing very well!")
 
 ## And then little more plotting
 
+The `barplot()` function creates nice plots but sometimes, especially with proportional tables, you want to have a plot where you can see the ratios or proportions right away. R has default plot types for different kind of object, and when you use the function `plot()` where a table object is an argument, R produces a mosaicplot. You can use the function `mosaicplot()` to get the same results. 
+
+Mosaicplots are good when you want see the proportions of a table with a quick look. Note that the bars in the mosaic plot have different widths.
 
 *** =instructions
-- 
+- Execute `my_prop_tbl`.
+- Use the `plot()` function to create a plot of the `my_prop_tbl`. Add a title 'Plot()' to the picture. 
+- Use the `mosaicplot()` function to create a plot of the `my_prop_tbl`. Add a title 'Mosaicplot()' to the picture. 
+- Do you see differences between the plots?
 
 
 *** =hint
-- hint 1
-- hint 2
+- The `plot()` function can be used for many kinds of data. When there is a table object as an argument, `plot()` produces a mosaicplot.
+- `plot(my_prop_tbl)` and `mosaicplot(my_prop_tbl)` produce identical plots. 
 
 
 *** =pre_exercise_code
@@ -443,17 +449,37 @@ students2014$kenka <- as.numeric(students2014$kenka)
 ```{r}
 # students2014 is available
 
+# Proportional table of 'sukup' and 'kone'
+my_prop_tbl <- prop.table(table(students2014$sukup, students2014$kone))
+
+# Plot 'my_prop_tbl' with 'plot()'
+
+
+# Plot 'my_prop_tbl' with 'mosaicplot()'
+
 ```
 
 *** =solution
 ```{r}
 # students2014 is available
 
+# Proportional table of 'sukup' and 'kone'
+my_prop_tbl <- prop.table(table(students2014$sukup, students2014$kone))
+
+# Plot 'my_prop_tbl' with 'plot()'
+plot(my_prop_tbl, main = "Plot()")
+
+# Plot 'my_prop_tbl' with 'mosaicplot()'
+mosaicplot(my_prop_tbl, main = "Mosaicplot()")
+
 ```
 
 *** =sct
 ```{r}
+test_function("plot", args=c("main"), incorrect_msg = "Use the argument `main` in the `plot()` function to add a title.")
+test_function("mosaicplot", args=c("main"), incorrect_msg = "Did you forget the title in `mosaicplot()`?")
+test_object("my_prop_tbl", incorrect_msg = "Did you execute `my_prop_tbl`?")
 
-success_msg("You are doing very well!")
+success_msg("You have learned so much! Well done!")
 
 ```
