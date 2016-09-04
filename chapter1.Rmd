@@ -418,7 +418,6 @@ my_answer <- add_k(10, k = 7)
 
 *** =sct
 ```{r}
-test_function("add_k",args=c("number","k"))
 test_object("my_answer")
 
 test_error()
