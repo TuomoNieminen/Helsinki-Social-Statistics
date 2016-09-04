@@ -152,7 +152,7 @@ success_msg("Good work!")
 
 Mathematically, the sample standard deviation is computed using  
 
-$\sqrt[2]{\frac{1}{n-1} \cdot \Sigma_n (x_n - \bar{x})^2}$  
+$\sqrt[2]{\frac{1}{n-1} \cdot \Sigma (x - \bar{x})^2}$  
 
 Standard deviation is very closely related to *variance*. Variance equals standard deviation squared (`^2`), which means that standard deviation equals to the square root (`sqrt()`) of variance.
 
