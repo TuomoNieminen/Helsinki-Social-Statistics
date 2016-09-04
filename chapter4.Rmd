@@ -148,15 +148,15 @@ success_msg("Good work!")
 --- type:NormalExercise lang:r xp:100 skills:1 key:0083627e50
 ## Standard deviation
 
-*Standard deviation* is perhaps the most important measure of variability in statistics. For any variable x, the sample standard deviation is the average (euclidean) distance from the mean, $\bar{x}$. So, the closer the values of a variable are to their mean, the smaller the standard deviation.
+*Standard deviation* is perhaps the most important measure of variability in statistics. For variable $x$, the sample standard deviation is the average distance from the mean ($\bar{x}$). So, the closer the values of a variable are to their mean, the smaller the standard deviation.
 
-Mathematically, the sample standard deviation is computed using
+Mathematically, the sample standard deviation is computed using  
 
-$$sd = \sqrt[2]{\frac{1}{n-1} \cdot \Sigma_n (x_n - \bar{x})^2}$$
+$sd = \sqrt[2]{\frac{1}{n-1} \cdot \Sigma_n (x_n - \bar{x})^2}$
 
-Standard deviation is very closely related to *variance*. Variance is standard deviation squared (`^2`), which means that standard deviation equals to the square root (`sqrt()`) of variance.
+Standard deviation is very closely related to *variance*. Variance equals standard deviation squared (`^2`), which means that standard deviation equals to the square root (`sqrt()`) of variance.
 
-In R, standard deviation of a numeric vector can be computed using the function `sd()`.
+In R, standard deviation of a numeric vector can be computed using the function `sd()` and variance with the function `var()`.
 
 
 *** =instructions
@@ -193,7 +193,7 @@ height <- students2014$pituus
 # Print a summary of height
 summary(height)
 
-# Compute the variance of height
+# Compute the variance of height using the formula
 n <- length(height) # number of observations
 var_height <- sum((height - mean(height) )^2) / (n - 1)
 
@@ -239,23 +239,23 @@ success_msg("Awsome work!")
 --- type:NormalExercise lang:r xp:100 skills:1 key:989f75fe50
 ## Clustering
 
-[Clustering](https://en.wikipedia.org/wiki/Cluster_analysis) is the task of grouping a set of objects in such a way that objects in the same group (called a cluster) are (in some way) more similar to each other than to those in other groups.
+[Clustering](https://en.wikipedia.org/wiki/Cluster_analysis) is the task of grouping a set of objects in such a way that objects in the same group (called a cluster) are more similar to each other than to those in other groups.
 
-[K-means](https://en.wikibooks.org/wiki/Data_Mining_Algorithms_In_R/Clustering/K-Means#Algorithm) is a popular algorithm that performs clustering. Intuitively, in order to split a variable to k clusters, the mean values of k groups are used as *centroids* and the closest centroid defines the cluster. The centroids are found in such a way that the combined distances to the centroid points is the smallest possible. 
+[K-means](https://en.wikibooks.org/wiki/Data_Mining_Algorithms_In_R/Clustering/K-Means#Algorithm) is a popular algorithm that performs clustering. With k-means, data points that share the same closest *centroid* are concidered similar.
 
-In a simple case this is identical to saying that the combined standard deviation inside the defined clusters is the smallest possible.
+The centroids are found in such a way that the combined distance from each data point to it's centroid is the smallest possible. In a simple case this is identical to saying that the standard deviations inside the clusters is the smallest possible.
 
 
 *** =instructions
-- Modify the code to use k-means with two centroids (centers).
+- Modify the code and use k-means with two centroids (centers).
 - Print out the values of the centers. Can you find interpretations to the clusters? Are the center values lower or higher than you might have expected? Can you think of a possible reason?
-- Use `$` to access the vector `cluster` in the object `km`. Assign that vector to the column `cluster` in `students2014`.
-- Plot the students heights again but this time color the values by cluster.
+- Use `$` to access the vector `cluster` in the object `km`. Assign that vector to the new column `cluster` in `students2014`.
+- Copy and remove the code where `plot()` is used and plot the students heights again. Give the vector of clusters to the argument `col`.
 
 *** =hint
 - Define the number of clusters using the `centers` argument of `kmeans()`.
 - Use `km$cluster` to access the vector of cluster values.
-- Copy the code where `plot()` is called but change the `col` argument. You can use the column `cluster` in the data.frame `students2014` just like in the copied code.
+- Use the `col` argument of `plot()` and give it the vector of clusters.
 
 
 *** =pre_exercise_code
@@ -272,54 +272,51 @@ students2014 <- students2014[complete.cases(students2014),]
 students2014$ika <- as.numeric(students2014$ika)
 students2014$pituus <- as.numeric(students2014$pituus)
 students2014$kenka <- as.numeric(students2014$kenka)
+
+height <- students2014$pituus
 ```
 
 *** =sample_code
 ```{r}
-# students2014 is available
+# students2014 is available. Create object height.
+height <- students2014$pituus
 
-# Trick to plot student height vs constant y = 1
-x <- data.frame(height = students2014$pituus,  y = 1)
+# This trick plots heights with a bit of noise vs constant y = 1
+x <- data.frame(height = jitter(height),  y = 1)
+plot(x, pch = "|")
 
-plot(x, pch = "|", col = students2014$sukup)
-
-# Use k-means algorithm to group the students
-# Use only information on their heights
-km <- kmeans(students2014$pituus, centers = 1)
+# Use k-means to group the students by height
+km <- kmeans(height, centers = 1)
 
 # Values of the cluster centroids
 km$centers
 
-# Add cluster information to students2014 data
+# Add cluster column to students2014 data
 students2014$cluster <- NULL
+head(students2014)
 
-# Plot the student heights as before
-# Color the data points by cluster
-
+# Plot of the student heights. Color indicates the cluster.
 
 
 ```
 
 *** =solution
 ```{r}
-# students2014 is available
-
-# Trick to plot student height vs constant y = 1
-x <- data.frame(height = students2014$pituus,  y = 1)
-
-plot(x, pch = "|", col = students2014$sukup)
+# students2014 is available. Create object height.
+height <- students2014$pituus
 
 # Use k-means to group the students by height
-km <- kmeans(students2014$pituus, centers = 2)
+km <- kmeans(height, centers = 2)
 
 # Values of the cluster centroids
 km$centers
 
-# Add cluster information to students2014
+# Add cluster column to students2014 data
 students2014$cluster <- km$cluster
+head(students2014)
 
-# Plot the student heights as before
-# Color the data points by cluster
+# Plot of the student heights. Color indicates the cluster.
+x <- data.frame(height = jitter(height),  y = 1)
 plot(x, pch = "|", col = km$cluster)
 
 
