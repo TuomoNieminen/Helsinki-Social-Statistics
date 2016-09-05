@@ -5,7 +5,7 @@ description : Basics of R, the amazing statistical programming language. Do not 
 --- type:NormalExercise lang:r xp:50 skills:1 key:168121d0f0
 ## What is R?
 
-R is a programming language designed for statistical analysis. R is completely open source and all analysis done with R are reproduciple and easy to share. R is flexible and powerful and includes implementations of the latest research. 
+R is a programming language designed for statistical analysis. R is completely open source and all analysis done with R are reproduciple and easy to share. R is flexible, powerful and includes implementations of the latest research. 
 
 Because of these reasons, R is a very popular language among the scientific community. R is however also widely [used](http://blog.revolutionanalytics.com/2014/05/companies-using-r-in-2014.html) for data analysis and visualisations by companies such as Google, Facebook, Twitter and Reaktor. R is perfect for data science.
 
@@ -17,6 +17,9 @@ Researchers and experts often use programming to visualize and explore data and 
 - Notice that it would be very easy to draw the same or similar graph again, by re-using the code.
 - Press 'Submit Answer' and move on to the next exercise.
 
+***= hint
+- Press 'Submit Answer' when you're ready to move forward.
+
 
 *** =pre_exercise_code
 ```{r}
@@ -24,7 +27,7 @@ data_url <- "http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS-data.txt"
 
 students2014 <- read.table(data_url, sep="\t", header=TRUE)
 
-with(students2014, plot(x = kenka, y = pituus, col = sukup, pch = 20, main = "Scatter plot of student shoesize and height"))
+with(students2014, plot(x = kenka, y = pituus, col = sukup, pch = 20, main = "Scatter plot of student shoesize and height \n(color indicates sex)"))
 ```
 
 *** =sample_code
@@ -67,10 +70,11 @@ Try it!
 *** =instructions
 - Type "Hello world!" in the editor area. Use quotation marks.
 - Press `Ctrl + Enter` to execute your "Hello world!" - code
+- Make sure to use a capital "H" and an exclamation mark.
 - Click 'Submit Answer' when done.
 
 *** =hint
-- Remember to use quotation marks.
+- Remember to use quotation marks and write the sentence exactly as instructed.
 
 
 *** =pre_exercise_code
@@ -279,6 +283,8 @@ In R you operate on objects using *functions*. A function is a special kind of o
 
 Functions are how you're actually going to do all the magic.
 
+Here we will do a little bit of magic using data that will become more familiar to you later on.  
+
 *** =instructions
 - Study and execute the examples in the R script. Don't worry about the `$` -sign for now, we will get to that later.
 - Follow the examples and compute the mean age of students.
@@ -310,7 +316,7 @@ students2014$kenka <- as.numeric(students2014$kenka)
 
 *** =sample_code
 ```{r}
-# students2014 is available
+# students2014 data is available
 
 # Create object student_height
 student_height <- students2014$pituus
@@ -348,7 +354,7 @@ mean(student_age)
 
 *** =sct
 ```{r}
-test_function("mean", args=c("x"))
+test_output_contains("mean(student_age)", incorrect_msg = "Please use the `mean()` function to compute the mean of student_age.")
 
 test_error()
 success_msg("Nice job!")
@@ -369,7 +375,7 @@ The recommended style is to specify all but the first argument by name, when cal
 - Create object `my_answer` by directly assigning the output of `add_k()` to it. Call `add_k()` with `number = 10` and `k = 7`.
 
 *** =hint
-- The answer is of the form: `my_answer <- add_k(argname_1 = ?, argname_2 = ?)`
+- The answer is of the form: `my_answer <- add_k(arg1 = ?, arg2 = ?)`
 
 *** =pre_exercise_code
 ```{r}
@@ -380,7 +386,7 @@ add_k <- function(number, k = 5) return(number + k)
 *** =sample_code
 ```{r}
 
-# Create a simple function with two arguments, of which 'k' has a default value
+# Create a simple function with two arguments, of which 'k' has a default value 
 add_k <- function(number, k = 5) return(number + k)
 
 # Call the add_k() function. Can you guess the result?
