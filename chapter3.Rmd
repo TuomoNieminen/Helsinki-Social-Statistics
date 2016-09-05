@@ -40,7 +40,7 @@ barplot(summary(students2014$kone), main = "Barplot of OS", xlab = "Linux, Mac, 
 hist(students2014$pituus,  main ="Histogram of student heights", xlab = "height")
   
 # horizontally placed box plot of ages
-boxplot(students2014$ika, main = "Boxplot of student ages", xlab = "ika", horizontal = T)
+boxplot(students2014$ika, main = "Boxplot of student ages", xlab = "age", horizontal = T)
 
 
 ```
@@ -56,7 +56,7 @@ barplot(summary(students2014$kone), main = "Barplot of OS", xlab = "Linux, Mac, 
 hist(students2014$pituus,  main ="Histogram of student heights", xlab = "height")
   
 # Box plot of student ages
-boxplot(students2014$ika, main = "Boxplot of student ages", xlab = "ika", horizontal = T)
+boxplot(students2014$ika, main = "Boxplot of student ages", xlab = "age", horizontal = T)
 
 
 ```
@@ -158,19 +158,19 @@ success_msg("Well done!")
 
 Bar plots are useful for visualizing qualitative, discrete variables. A bar plot represents the counts of the unique values of a variable.
 
-In this exercise you will draw a barplot of `kone` in the data frame `students2014`. For each student the value of `kone` is the operating system of the students computer. For more information see [the metafile](http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS-meta.txt).
+In this exercise you will draw a barplot of `kone`. For each student the value of `kone` is the operating system of the students computer. For more information see [the metafile](http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS-meta.txt).
 
-In base R graphics, the function `barplot()` can be used to draw a bar plot. The first argument `height` should contain the counts you wish to visualize.
+In base R graphics, the function `barplot()` can be used to draw a bar plot. The first argument (`height`) should contain the counts you wish to visualize. The counts can be computed with `summary()` or more generally `table()`.
 
 
 *** =instructions
-- Use `summary()` on `kone` in the data frame `students2014`. Many of the values of `kone` are `<NA>`, not available. Why do you think this could be?
-- Adjust the code `os_counts <- NULL`: Replace `NULL` and assign the summary of `kone` to `os_counts`.
-- Use the function `barplot()` to draw a bar plot. Use the object you created as the first argument.
+- Use `summary()` and `table()` on `kone` in the data frame `students2014`. Many of the values of `kone` are `<NA>`, not available. Why do you think this could be?
+- Adjust the code `os_counts <- NULL`: Use `table()` and assign the counts of the different operating systems to `os_counts`.
+- Use the function `barplot()` to draw a bar plot. Use the counts of the different operating systems as the first argument.
 
 *** =hint
-- Replace `NULL` with the example code where `summary()` is used on `kone`.
-- Give the object os_counts as the first to `barplot()`. 
+- Replace `NULL` with the example code where `table()` is used on `kone`.
+- Give the object `os_counts` as the first argument to `barplot()`. 
 
 
 *** =pre_exercise_code
@@ -196,6 +196,7 @@ students2014$kenka <- as.numeric(students2014$kenka)
 
 # Look at the counts of different levels of 'kone'.
 summary(students2014$kone)
+table(students2014$kone)
 
 # Create object os_counts that stores the counts
 os_counts <- NULL
@@ -210,11 +211,12 @@ os_counts <- NULL
 ```{r}
 # students2014 is available
 
-# Look at the counts of different levels.
+# The counts of different levels of 'kone'.
 summary(students2014$kone)
+table(students2014$kone)
 
 # Create object os_counts that stores the counts
-os_counts <- summary(students2014$kone)
+os_counts <- table(students2014$kone)
 
 # Call barplot() to visualize the counts.
 barplot(os_counts)
@@ -225,7 +227,9 @@ barplot(os_counts)
 
 *** =sct
 ```{r}
-test_function("barplot", args="height")
+test_object("os_counts", incorrect_msg = "Please use `table()` to create the object `os_counts`.")
+
+test_function("barplot", args="height", not_called_msg = "Please call `barplot()` using the counts of the operating systems created by `table()`.")
 
 test_error()
 success_msg("Excellent work!")
@@ -243,15 +247,16 @@ A solution is to first categorize the variable.
 
 
 *** =instructions
-- Draw a bar plot of the age of students. How does it look?
+- Use `table()` to look at the distribution of students age.
 - Use `cut()` to create a factor object where age is cut into intervals. Use the vector `c(0, 16, 20, 24, 30, 100)` as break points.
-- Follow the procedure in the previous exercise and use `summary()` and then `barplot()` to visualize the counts of the unique values of `age_cut`.
+- Print out a table of the age categories.
+- Visualize the contents of the table with a bar plot.
 
 
 *** =hint
 - Use the argument `breaks = c(0, 16, 20, 24, 30, 100)` inside `cut()` to create the factor object `age_cut`.
 - Make sure to close the parenthesis on `cut()`.
-- See the previous exercise for information on how to create a bar plot of a factor object. The object `age_cut` is a factor similar to `students2014$kone`.
+- See the previous exercise for more information on how to create a bar plot. The object `age_cut` is very similar to `students2014$kone`.
 
 
 *** =pre_exercise_code
@@ -275,14 +280,16 @@ students2014$kenka <- as.numeric(students2014$kenka)
 ```{r}
 # students2014 is available
 
-# Draw a barplot of student age
-barplot(students2014$ika)
+# Print out a table of the students ages
+table(students2014$ika)
 
 # Split age to intervals
 age_cut <- cut(students2014$ika, breaks = NULL)
 
-# Draw a barplot() of age_cut
-# Use summary() on it first
+# Print out a table of the students age categories
+
+
+# Draw a barplot() of the age categories
 
 
 
@@ -292,15 +299,17 @@ age_cut <- cut(students2014$ika, breaks = NULL)
 ```{r}
 # students2014 is available
 
-# Draw a barplot of student age
-barplot(students2014$ika)
+# Print out a table of the students ages
+table(students2014$ika)
 
 # Split age to intervals
 age_cut <- cut(students2014$ika, breaks = c(0, 16, 20, 24, 30, 100))
 
-# Draw a barplot() of age_cut
-# Use summary() on it first
-barplot(summary(age_cut))
+# Print out a table of the students age categories
+table(age_cut)
+
+# Draw a barplot() of the age categories
+barplot(table(age_cut))
 
 
 ```
@@ -309,10 +318,14 @@ barplot(summary(age_cut))
 ```{r}
 test_object("age_cut", incorrect_msg = "Please use `breaks = c(0, 16, 20, 24, 30, 100)` to create the object age_cut.")
 
-test_function("barplot", args=c("height"))
+test_output_contains("table(age_cut)",
+ incorrect_msg = "Please use `table()` on `age_cut`")
+
+test_function("barplot", args = "height", not_called_msg = "Please use `barplot()` to visualize the counts of the age categories.")
 
 test_error()
-success_msg("That was awsome!")
+
+success_msg("Nicely done. That was awsome!")
 ```
 
 --- type:NormalExercise lang:r xp:100 skills:1 key:86cee4bd71
@@ -395,7 +408,7 @@ success_msg("Very well done!")
 
 ## Box plots
 
-One very good way to visualize the most important summary statistics of a variable is by drawing box plots. A box plot visualizes the 25th, 50th and 75th percentiles (the box), the typical range (the whiskers) and the outliers (the dots) of a variable. 
+One very good way to visualize the summary statistics of a numerical variable is by drawing box plots. A box plot visualizes the 25th, 50th and 75th percentiles (the box), the typical range (the whiskers) and the outliers (the dots) of a variable. 
 
 The whiskers extending from the box can be computed by several techniques. The default in R is to extend them to reach to a data point that is no more than 1.5*IQR away from the box, where IQR is the inter quartile range defined as  
 
@@ -411,7 +424,7 @@ Values outside the whiskers can be considered as outliers, unusually distant obs
 - Give your plot the main title "Box plot of student ages" with the argument `main`.
 
 *** =hint
-- Give `students2014$ika` as the fisrt argument of `boxplot()`.
+- Give `students2014$ika` as the first argument of `boxplot()`.
 - Remember to separate function arguments with a comma.
 - Use quotation marks when adding text.
 
@@ -436,10 +449,10 @@ students2014$kenka <- as.numeric(students2014$kenka)
 ```{r}
 # students2014 is available
 
-# Create a summary of ika
+# Create a summary of student ages
 summary(students2014$ika)
 
-# Visualize the summary statistics  with a boxplot()
+# Visualize the distribution of student ages with a boxplot()
 
 
 
@@ -450,10 +463,10 @@ summary(students2014$ika)
 ```{r}
 # students2014 is available
 
-# Create a summary of ika
+# Create a summary of student ages
 summary(students2014$ika)
 
-# Visualize the summary statistics  with a boxplot()
+# Visualize the distribution of student ages with a boxplot()
 boxplot(students2014$ika, horizontal = T, xlab = "age", main = "Box plot of student ages")
 
 
@@ -466,7 +479,7 @@ boxplot(students2014$ika, horizontal = T, xlab = "age", main = "Box plot of stud
 test_function("boxplot", args=c("x","horizontal","xlab","main"))
 
 test_error()
-success_msg("That was awsome work!")
+success_msg("That was nice work!")
 
 ```
 
