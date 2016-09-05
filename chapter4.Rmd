@@ -251,18 +251,16 @@ success_msg("Awsome work!")
 --- type:NormalExercise lang:r xp:100 skills:1 key:989f75fe50
 ## Clustering
 
-[Clustering](https://en.wikipedia.org/wiki/Cluster_analysis) is the task of grouping a set of objects in such a way that objects in the same group (called a cluster) are more similar to each other than to those in other groups.
-
-[K-means](https://en.wikibooks.org/wiki/Data_Mining_Algorithms_In_R/Clustering/K-Means#Algorithm) is a popular algorithm that performs clustering. With k-means, data points that share the same closest *centroid* are concidered similar.
+[Clustering](https://en.wikipedia.org/wiki/Cluster_analysis) is the task of grouping a set of objects in such a way that objects in the same group (called a cluster) are more similar to each other than to those in other groups. [K-means](https://en.wikibooks.org/wiki/Data_Mining_Algorithms_In_R/Clustering/K-Means#Algorithm) is a popular algorithm that performs clustering. With k-means, data points that share the same closest *centroid* are concidered similar.
 
 The centroids are found in such a way that the combined distance from each data point to it's centroid is the smallest possible. In a simple case this is identical to saying that the standard deviations inside the clusters is the smallest possible.
 
 
 *** =instructions
 - Modify the code and use k-means with two centroids (centers).
-- Print out the values of the centers. Can you find interpretations to the clusters? Are the center values lower or higher than you might have expected? Can you think of a possible reason?
-- Use `$` to access the vector `cluster` in the object `km`. Assign that vector to the new column `cluster` in `students2014`.
-- Copy and remove the code where `plot()` is used and plot the students heights again. Give the vector of clusters to the argument `col`.
+- Print out the values of the centers by typing `km$centers`. Can you find interpretations to the clusters?
+- Use `$` to access the vector `cluster` in the object `km`. Give that vector to the `col` argument of `plot()` to visualize the clusters.
+
 
 *** =hint
 - Define the number of clusters using the `centers` argument of `kmeans()`.
@@ -293,22 +291,17 @@ height <- students2014$pituus
 # students2014 is available. Create object height.
 height <- students2014$pituus
 
-# This trick plots heights with a bit of noise vs constant y = 1
-x <- data.frame(height = jitter(height),  y = 1)
-plot(x, pch = "|")
-
 # Use k-means to group the students by height
 km <- kmeans(height, centers = 1)
 
 # Values of the cluster centroids
-km$centers
 
-# Add cluster column to students2014 data
-students2014$cluster <- NULL
-head(students2014)
+
+# Use a trick to plot the students heights with a bit of noise.
+x <- data.frame(height = jitter(height),  y = 1)
 
 # Plot of the student heights. Color indicates the cluster.
-
+plot(x, pch = "|", col = 1)
 
 ```
 
@@ -323,12 +316,10 @@ km <- kmeans(height, centers = 2)
 # Values of the cluster centroids
 km$centers
 
-# Add cluster column to students2014 data
-students2014$cluster <- km$cluster
-head(students2014)
+# Use a trick to plot the students heights with a bit of noise.
+x <- data.frame(height = jitter(height),  y = 1)
 
 # Plot of the student heights. Color indicates the cluster.
-x <- data.frame(height = jitter(height),  y = 1)
 plot(x, pch = "|", col = km$cluster)
 
 
@@ -337,7 +328,8 @@ plot(x, pch = "|", col = km$cluster)
 *** =sct
 ```{r}
 
-test_object("students2014")
+test_function("kmeans",args=c("x","centers"), not_called_msg = "Please call `kmeans()` with the correct arguments.")
+test_output_contains("km$centers")
 test_function("plot", args=c("col"))
 
 test_error()
