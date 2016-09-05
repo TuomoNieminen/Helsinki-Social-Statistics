@@ -167,7 +167,7 @@ success_msg("Making progress, good work!")
 
 ## Metadata of students2014
 
-The `students2014` data is used in many of the exercises. The dataset was collected in 2014 from the students of the Faculty of Social Sciences in the University of Helsinki. This [questionnaire](http://www.helsinki.fi/~kvehkala/JYTmooc/ASSIST-2014-FI-0-20140903.pdf) that was used to collect the information.
+The `students2014` data is used in many of the exercises. The dataset was collected in 2014 from the students of the Faculty of Social Sciences in the University of Helsinki. This [questionnaire](http://www.helsinki.fi/~kvehkala/JYTmooc/ASSIST-2014-FI-0-20140903.pdf) was used to collect the information.
 
 To use the collected data, you will have to put it in a digital form. The `students2014` data was saved manually. When saving the data it is often useful to use short descriptive names for the questions (variable names in the dataset).
 
