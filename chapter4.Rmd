@@ -148,88 +148,100 @@ success_msg("Good work!")
 --- type:NormalExercise lang:r xp:100 skills:1 key:0083627e50
 ## Standard deviation
 
-*Standard deviation* is perhaps the most important measure of variability in statistics. For variable $x$, the sample standard deviation is the average distance from the mean ($\bar{x}$). So, the closer the values of a variable are to their mean, the smaller the standard deviation.
+*Standard deviation* is perhaps the most important measure of variability in statistics. For variable $x$, the sample standard deviation is the average distance from the mean. So, the closer the values of a variable are to their mean, the smaller the standard deviation.
 
-Mathematically, the sample standard deviation is computed using  
+Mathematically, the sample standard deviation $sd$ is computed using  
 
-$sd = \sqrt[2]{\frac{1}{n-1} \cdot \Sigma (x - \bar{x})^2}$  
+$sd = \sqrt[2]{\frac{ \cdot \Sigma (x - mean)^2}{n - 1} }$  
 
-Standard deviation is very closely related to *variance*. Variance equals standard deviation squared (`^2`), which means that standard deviation equals to the square root (`sqrt()`) of variance.
-
-In R, standard deviation of a numeric vector can be computed using the function `sd()` and variance with the function `var()`.
+In R, standard deviation of a numeric vector can be computed using the function `sd()`.
 
 
 *** =instructions
-- Print out a summary of `height`.
-- Compute the standard deviation of height, using the variance of height.
-- Compute the standard deviation of height, using the function `sd()`.
+- Use `simulate()` to visualize a random sample of data from a population where the average distance from the mean is 1 (`sd = 1`). Compute the sample standard deviation with `sd()`.
+- Create object `x2` similarily setting `sd = 2`. Compute the sample standard deviation.
+- Create object `x3` by setting `sd = 10`. Compute the sample standard deviation.
+- Create object `x4` by setting `sd = 0`. Compute the sample standard deviation.
+
 
 *** =hint
-- `sqrt()` computes the square root. Take advantage of the relationship between variance and standard deviation.
-
+- Create the objects `x2`, `x3` and `x4` similarily to `x1` by calling `simulate()` and modify the `sd` argument.
+- Compute the standard deviations of the new object on different lines similarily to the example.
 
 *** =pre_exercise_code
 ```{r}
-# load data from web
-students2014 <- read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS-data.txt", sep="\t", header=TRUE)
-# keep a couple background variables
-students2014 <- students2014[,c("sukup","toita","ika","pituus","kenka","kone")]
-# recode kone variables missing values as factor levels
-students2014$kone <- addNA(students2014$kone)
-# keep only rows without missing values
-students2014 <- students2014[complete.cases(students2014),]
-# integers to numeric
-students2014$ika <- as.numeric(students2014$ika)
-students2014$pituus <- as.numeric(students2014$pituus)
-students2014$kenka <- as.numeric(students2014$kenka)
 
-height <- students2014$pituus
+simulate <- function(n = 100, mean = 0, sd = NULL) {
+  
+  if(is.null(sd)) stop("Please provide the argument 'sd'")
+  
+  set.seed(666)
+  
+  x <- data.frame(x = rnorm(n = n, mean = mean, sd = sd), y = 1)
+  sample_mean <- round(mean(x$x),1)
+  
+  plot(x, pch = "|" , 
+       xlim = c(-10, 10), 
+       col = "blue", 
+       ylab="", xlab = "", yaxt = "n",
+       main = "Values of x",
+       sub = paste("sample size =",n,"\nsample mean = ",sample_mean))
+  
+  abline(v = sample_mean, col = "red")
+  
+  return(x$x)
+}
+
 ```
 
 *** =sample_code
 ```{r}
-# height is available
+# simulate() is available to simulate samples from an artificial population
 
-# Print a summary of height
-summary(height)
+# Simulate data and visualize the distances of the data points from the mean.
+x1 <- simulate(sd = 1)  # (1)
+      # (2)
+      # (3)
+      # (4)
 
-# Compute the variance of height using the formula
-n <- length(height) # number of observations
-var_height <- sum((height - mean(height) )^2) / (n - 1)
-
-# Compute the standard deviation using var_height
-
-
-# Compute the standard deviation using sd()
-
+# Compute the average distances from the mean in the sample.
+sd(x1)  # (1)
+      # (2)
+      # (3)
+      # (4)
 
 ```
 
 *** =solution
 ```{r}
-# height is available
+# simulate() is available to simulate samples from an artificial population
 
-# Print a summary of height
-summary(height)
+# Simulate data and visualize the distances of the data points from the mean.
+x1 <- simulate(sd = 1)    # (1)
+x2 <- simulate(sd = 2)    # (2)
+x3 <- simulate(sd = 10)   # (3)
+x4 <- simulate(sd = 0)    # (4)
 
-# Compute the variance of height
-n <- length(height) # number of observations
-var_height <- sum((height - mean(height) )^2) / (n - 1)
-
-# Compute the standard deviation using var_height
-sqrt(var_height)
-
-# Compute the standard deviation using sd()
-sd(height)
-
+# Compute the average distances from the mean
+sd(x1)  # (1)
+sd(x2)  # (2)
+sd(x3)  # (3)
+sd(x4)  # (4)
 
 ```
 
 *** =sct
 ```{r}
 
-test_function("sqrt", args=c("x"))
-test_function("sd", args = c("x"))
+test_object("x1")
+test_object("x2")
+test_object("x3")
+test_object("x4")
+
+test_output_contains("sd(x1)")
+test_output_contains("sd(x2")
+test_output_contains("sd(x3")
+test_output_contains("sd(x4)")
 
 test_error()
 success_msg("Awsome work!")
