@@ -154,7 +154,7 @@ Mathematically, the sample standard deviation $sd$ is computed using
 
 $sd = \sqrt[2]{\frac{ \cdot \Sigma (x - mean)^2}{n - 1} }$  
 
-In R, standard deviation of a numeric vector can be computed using the function `sd()`.
+which might look a bit complicated but really is just the average distance from the mean. In R, standard deviation can be computed using the function `sd()`.
 
 
 *** =instructions
