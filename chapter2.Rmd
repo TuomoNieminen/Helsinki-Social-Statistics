@@ -329,9 +329,10 @@ success_msg("Great work!")
 
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1 key:3c0486635f
+--- type:MultipleChoiceExercise lang:r xp:50 skills:1 key:3c0486635f
 ## Data types and measurement scales
 
+Data types and measurement scales are somewhat related. When asking simple "Yes / No " -questions boolean values are useful but you would not use them for measuring heights. Here is a table for the data types and measuring scales:
 
 | Scale          | Numeric | Character | Boolean | Factor |
 |----------------|---------|-----------|---------|--------|
@@ -339,53 +340,52 @@ success_msg("Great work!")
 | Ordinal        |    x    |     x     |         |    x   |
 | Measurement    |    x    |           |         |        |
 
+Inspect the `students2014` data and select the correct answer. 
 *** =instructions
-- 
+- Variable `kone` is from ordinal scale.
+- Variable `ika` and `pituus` are character values. 
+- You can use boolean data type for variables `ika` and `pituus`.
+- Variable `kone` is from categorical scale.
+- It is meaningful to use factors for measurement scale.
+
 
 *** =hint
-- 
+- There is no natural order in categorical scale. 
+- You can put the values in a meaningful order, then it's ordinal scale. 
+- Factors create a unique encoding for all the different values. Using factors loses its purpose when you have a lot of different values.
+- Character values have quotations marks. `chr` is short for character. 
 
 *** =pre_exercise_code
 ```{r}
-col1 <- rgb(229, 5, 58, max = 255)
 students2014 <- read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS-data.txt", sep="\t", header=TRUE)
 
-barplot(table(students2014$kone), sub="(M=Mac, W=Windows, L=Linux)", col=col1)
-barplot((table(students2014$kenka)), main="Shoe sizes", col=col1)
-hist(students2014$ika, breaks="scott", main="Age", col=col1)
-student_age_cut <- cut(students2014$ika, breaks = c(15, 25, 35, 45, 55, 65, 75, 85))
-plot(student_age_cut, main="student_age_cut", col=col1)
-```
+# keep a couple background variables
+students2014 <- students2014[,c("sukup","toita","ika","pituus","kenka","kone")]
 
-*** =sample_code
-```{r}
-# students2014 is available
+# recode kone -variable NA values as factor levels
+students2014$kone <- addNA(students2014$kone)
 
-# Categorical
-barplot(table(students2014$kone))
+# choose rows without missing values
+students2014 <- students2014[complete.cases(students2014),]
 
-# Ordinal 
-barplot((table(students2014$kenka)))
-
-# Measurement
-hist(students2014$ika, breaks = 50)
-
-# From measurement to ordinal
-student_age_cut <- cut(students2014$ika, breaks = c(15, 25, 35, 45, 55, 65, 75, 85))
-plot(student_age_cut, main = "student_age_cut")
-```
-
-*** =solution
-```{r}
+# integers to numeric
+students2014$ika <- as.numeric(students2014$ika)
+students2014$pituus <- as.numeric(students2014$pituus)
+students2014$kenka <- as.numeric(students2014$kenka)
 ```
 
 *** =sct
 ```{r}
-# test if the students code produces an error
-test_error()
+msg1 = "Sorry, I know you feel like Mac is better than Windows put in this case there is no order. Try again!"
+msg2 = "I would use numbers to measure height and age. Try again!"
+msg3 = "Maybe you can do that but it makes no sense. Guess again!"
+msg4 = "Well done. Proceed to the next exercise"
+msg5 = "Well technically you CAN do that, but you'll have as many factors as there are different numbers. Why not just use numerical values? Guess again!"
+
+test_mc(correct = 4, feedback_msgs = c(msg1,msg2,msg3,msg4,msg5))
 
 # Final message the student will see upon completing the exercise
-success_msg("Good work!")
+success_msg("Nicely done!")
 
 ```
 
