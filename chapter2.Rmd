@@ -340,7 +340,8 @@ Data types and measurement scales are somewhat related. When asking simple "Yes 
 | Ordinal        |    x    |     x     |         |    x   |
 | Measurement    |    x    |           |         |        |
 
-Inspect the `students2014` data and select the correct answer. 
+Inspect the `students2014` data and select the correct answer.
+
 *** =instructions
 - Variable `kone` is from ordinal scale.
 - Variable `ika` and `pituus` are character values. 
