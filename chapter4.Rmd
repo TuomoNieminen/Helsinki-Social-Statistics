@@ -148,11 +148,11 @@ success_msg("Good work!")
 --- type:NormalExercise lang:r xp:100 skills:1 key:0083627e50
 ## Standard deviation
 
-*Standard deviation* is perhaps the most important measure of variability in statistics. For variable $x$, the sample standard deviation is the average distance from the mean. So, the closer the values of a variable are to their mean, the smaller the standard deviation.
+*Standard deviation* is perhaps the most important measure of variability in statistics. It is defined as the average distance of a set of data points from their mean. So, the closer the values of a variable are to their mean, the smaller the standard deviation.
 
-Mathematically, the sample standard deviation $sd$ is computed using  
+Mathematically, the sample standard deviation ($sd$) is computed using  
 
-$sd = \sqrt[2]{\frac{ \cdot \Sigma (x - mean)^2}{n - 1} }$  
+$sd = \sqrt[2]{\frac{ \Sigma (x - mean)^2}{n - 1} }$  
 
 which might look a bit complicated but really is just the average distance from the mean. In R, standard deviation can be computed using the function `sd()`.
 
