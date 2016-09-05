@@ -340,7 +340,7 @@ Data types and measurement scales are somewhat related. When asking simple "Yes 
 | Ordinal        |    x    |     x     |         |    x   |
 | Measurement    |    x    |           |         |        |
 
-Inspect the `students2014` data and select the correct answer.
+Use the R Console to inspect the `students2014` data and select the correct answer. The data is already loaded for you. Remember that in console `Enter` executes lines.
 
 *** =instructions
 - Variable `kone` is from ordinal scale.
