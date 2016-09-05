@@ -159,9 +159,9 @@ which might look a bit complicated but really is just the average distance from 
 
 *** =instructions
 - Use `simulate()` to visualize a random sample of data from a population where the average distance from the mean is 1 (`sd = 1`). Compute the sample standard deviation with `sd()`.
-- Create object `x2` similarily setting `sd = 2`. Compute the sample standard deviation.
-- Create object `x3` by setting `sd = 10`. Compute the sample standard deviation.
-- Create object `x4` by setting `sd = 0`. Compute the sample standard deviation.
+- Create object `x2` similarily setting `sd = 2`. What changed? Compute the sample standard deviation.
+- Create object `x3` by setting `sd = 10`. What changed? Compute the sample standard deviation.
+- Create object `x4` by setting `sd = 0`. What happened now? Compute the sample standard deviation.
 
 
 *** =hint
@@ -199,16 +199,16 @@ simulate <- function(n = 100, mean = 0, sd = NULL) {
 # simulate() is available to simulate samples from an artificial population
 
 # Simulate data and visualize the distances of the data points from the mean.
-x1 <- simulate(sd = 1)  # (1)
-      # (2)
-      # (3)
-      # (4)
+x1 <- simulate(sd = 1)  # create x1
+      # create x2
+      # create x3
+      # create x4
 
 # Compute the average distances from the mean in the sample.
-sd(x1)  # (1)
-      # (2)
-      # (3)
-      # (4)
+sd(x1)  # sd of x1
+      # sd of x2
+      # sd of x3
+      # sd of x4
 
 ```
 
