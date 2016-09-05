@@ -333,7 +333,7 @@ test_output_contains("km$centers")
 test_function("plot", args=c("col"))
 
 test_error()
-success_msg("Nice work!")
+success_msg("Very nice work!")
 
 ```
 
@@ -342,7 +342,7 @@ success_msg("Nice work!")
 
 ## Guess the correlation
 
-Correlation measures the strength of the *linear* relationship between two variables. The easiest way to check if the relationship between two variables might be  interpret as linear is to visualize the relationship with a scatterplot. 
+Correlation measures the strength of the *linear* relationship between two variables. The easiest way to check if the relationship between two variables might be  interpret as linear is to visualize the relationship with a scatter plot. 
 
 It is then possible to make a reasonable guess of the strength of the linear relationship. In order for you to practise this skill, we have build a game you can play.
 
@@ -398,7 +398,7 @@ show_correlation <- function(df) {
 ```{r}
 # Functions simulate() and show_correlation() are available
 
-# Simulate values and draw a scatterplot
+# Simulate n values and draw a scatterplot
 data <- simulate(n = 60)
 
 # What is the correlation?
