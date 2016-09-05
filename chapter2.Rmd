@@ -168,11 +168,11 @@ success_msg("You're making progress, well done!")
 
 One of R's data types is called factor. In factors you have numeric values, but for every number there is a character value associated to it. [Likert scale](https://en.wikipedia.org/wiki/Likert_scale) could be an example of a factor: there are numbers from 1 to 5, but the numbers have a unique words attached to them.
 
-Strongly disagree = 1
-Disagree  = 2
-Neither agree nor disagree = 3
-Agree = 4
-Strongly agree = 5
+- Strongly disagree = 1
+- Disagree  = 2
+- Neither agree nor disagree = 3
+- Agree = 4
+- Strongly agree = 5
 
 The function `cut()` can be used to create categories from numerical objects. The function produces a factor object and by default creates label names or levels. The function `cut()` also has a mandatory argument `breaks`, where the break points of the object are assigned.
 
