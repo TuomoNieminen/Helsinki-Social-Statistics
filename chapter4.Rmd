@@ -180,14 +180,14 @@ simulate <- function(n = 100, mean = 0, sd = NULL) {
   x <- data.frame(x = rnorm(n = n, mean = mean, sd = sd), y = 1)
   sample_mean <- round(mean(x$x),1)
   
-  plot(x, pch = "|" , 
+  plot(x, 
        xlim = c(-10, 10), 
-       col = "blue", 
        ylab="", xlab = "", yaxt = "n",
        main = "Values of x",
-       sub = paste("sample size =",n,"\nsample mean = ",sample_mean))
-  
+       sub = paste("sample size =",n,"\nsample mean = ",sample_mean),
+      type = "n")
   abline(v = sample_mean, col = "red")
+  points(x, pch = "|", col = "blue")
   
   return(x$x)
 }
