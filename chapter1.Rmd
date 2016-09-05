@@ -132,8 +132,8 @@ Let's continue with something simple. R can do amazing things like scrape websit
 The `^` operator raises the number to its left to the power of the number to its right: for example `3^2` is 9. With this knowledge, follow the instructions below to complete the exercise.
 
 *** =instructions
-- Type `2^5` in the editor to calculate 2 to the power 5.
-- Use `Ctrl + Enter` to run the lines and have a look at the output in the console.
+- Study and execute the examples in the R script.
+- Type `2^5` in the editor and calculate 2 to the power 5.
 - When done, click 'Submit Answer'.
 
 
@@ -280,7 +280,7 @@ In R you operate on objects using *functions*. A function is a special kind of o
 Functions are how you're actually going to do all the magic.
 
 *** =instructions
-- Study and execute the examples in the R script.
+- Study and execute the examples in the R script. Don't worry about the `$` -sign for now, we will get to that later.
 - Follow the examples and compute the mean age of students.
 - When done, click 'Submit Answer'.
 
@@ -365,7 +365,7 @@ Functions usually have one or more arguments, for which the user can define valu
 The recommended style is to specify all but the first argument by name, when calling a function.
 
 *** =instructions
-- Look at the definition of the `add_k()` function and execute the function calls that are defined, starting from line 4.
+- Look at the definition of the `add_k()` function and execute the function calls that are defined, starting from line 5.
 - Create object `my_answer` by directly assigning the output of `add_k()` to it. Call `add_k()` with `number = 10` and `k = 7`.
 
 *** =hint
