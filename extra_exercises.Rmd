@@ -86,3 +86,138 @@ test_object("age_height")
 test_error()
 success_msg("Good work!")
 ```
+
+--- type:NormalExercise lang:r xp:100 skills:1 key:12a4e8cd24
+## Vectors (2)
+
+The values in vectors have indices: the first value in a vector has a index `1`, the second value has `2` and so on. 
+
+You can get a single value from a vector by using indices and bracets `[ ]`. Using a single index number inside the bracets gives you a single value from the vector. Using a vector of indices gives you a vector of values from the vector. 
+
+Note that you can also rearrange values in a vector by using indices. Look at the example code to see how indices work. 
+
+*** =instructions
+- Create the name vector.
+- See how the indices work by executing the example lines.
+- Create a new vector `girls` with values `Liisa` and `Anna` from `names` by using indices.
+- Create also a new vector `boys` with values `Pekka` and `Matti` from `names` by using indices.
+
+*** =hint
+- Note that space between the vector object and bracets produces an error.
+- Remember that vectors are created with the function `c()`.
+- Indices vectors `c(1,2)` and `c(2,1)` do not produce the same outcome. The order of the values is different.
+
+*** =pre_exercise_code
+```{r}
+```
+
+
+*** =sample_code
+```{r}
+# Let's create a vector
+names <- c('Matti', 'Pekka', 'Liisa', 'Anna')
+
+# The first value in the vector
+names[1]
+
+# The third and fourth value in the vector
+names[c(3, 4)]
+
+# Rearranged
+names[c(4, 3)]
+
+# Separate the names vector into two vectors by using indices
+girls <-
+boys <-
+
+```
+
+*** =solution
+```{r}
+# Let's create a vector
+names <- c('Matti', 'Pekka', 'Liisa', 'Anna')
+
+# The first value in the vector
+names[1]
+
+# The third and fourth value in the vector
+names[c(3, 4)]
+
+# Rearranged
+names[c(4, 3)]
+
+# Separate the names vector into two vectors by using indices
+girls <- names[c(3, 4)]
+boys <- names[c(2, 1)]
+
+```
+
+*** =sct
+```{r}
+#error in tests
+#ex() %>% check_output_expr("mtcars[4, ]", missing_msg = "Have you used ... ")
+test_output_contains("c(0.1, 0.2, 5.84, 0.7)", incorrect_msg = "Did you execute all the lines?")
+
+test_object("names", incorrect_msg = "Did you create `names`?")
+test_object("girls", incorrect_msg = "Did you create `girls`?")
+test_object("boys", incorrect_msg = "Did you create `boys`?")
+
+test_error()
+
+# Final message the student will see upon completing the exercise
+success_msg("Such indices. Wow. Much intelligent.")
+
+```
+--- type:NormalExercise lang:r xp:100 skills:1 key:17c91c6d3c
+## Data types and functions
+
+Not all data types do well with certain functions. 
+
+One cannot for example use character vectors when the function needs a numeric one. It is also impossiple to create a vector with multiple data types. 
+
+When using the wrong data type, R produces an error stating what is wrong. 
+
+*** =instructions
+- Create `my_vector`.
+- Try to calculate the mean of `my_vector` and see what happens. 
+- Correct the vector and calculate the mean so that you do not get any errors.
+
+*** =hint
+- You can use `str()` to check the data types.
+- `chr` is short for character.
+- When creating a character vector, one needs to use quotation marks. 
+
+*** =pre_exercise_code
+```{r}
+```
+
+*** =sample_code
+```{r}
+# Let's create a vector
+my_vector <- c(2, 3, "1", 5)
+
+# Calculate the mean of vector
+mean(my_vector)
+  
+```
+
+*** =solution
+```{r}
+# Let's create a vector
+my_vector <- c(2, 3, 1, 5)
+
+# Calculate the mean of vector
+mean(my_vector)
+
+```
+
+*** =sct
+```{r}
+test_object("my_vector", incorrect_msg = "Did you correct the `my_vector`?")
+
+test_error()
+
+# Final message the student will see upon completing the exercise
+success_msg("Creating vectors like a pro. Great work!")
+
+```
