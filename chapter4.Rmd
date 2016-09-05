@@ -239,8 +239,8 @@ test_object("x3")
 test_object("x4")
 
 test_output_contains("sd(x1)")
-test_output_contains("sd(x2")
-test_output_contains("sd(x3")
+test_output_contains("sd(x2)")
+test_output_contains("sd(x3)")
 test_output_contains("sd(x4)")
 
 test_error()
