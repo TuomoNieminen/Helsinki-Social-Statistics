@@ -7,7 +7,7 @@ description : Variation and dependence are at the heart of Statistics. In fact, 
 
 In the previous chapter you learned how to explore the variables in your data by creating summaries and plots out of data objects in R. You already know quite a bit about how to exlore variability.
 
-In this chapter we'll expand on these tools and we'll also look at how to explore the *relationships* between pairs of variables with scatter plots and correlation.
+In this chapter we'll expand on these tools and we'll also look at how to explore the *relationships* between pairs of variables with scatter plots and correlation. We'll also learn about standard deviation, perhaps the most important measure of variability in statistics.
 
 *** =instructions
 - Draw a scatter plot of students shoesizes and heights with `plot()`. Does a linear relationship look plausible?
@@ -36,6 +36,8 @@ students2014$kenka <- as.numeric(students2014$kenka)
 
 *** =sample_code
 ```{r}
+# students 2014 is available
+
 # Create objects shoesize and height
 shoesize <- students2014$kenka
 height <- students2014$pituus
@@ -67,7 +69,7 @@ success_msg("Good job!")
 
 There are many functions in R. It is often hard to remember all the argument names and details of the functions. Luckily, every single function has a help page. Using the help pages is part of using R.
 
-The help page of a function called *func* can be opened by two methods: `help(func)` or `?func`.
+The help page of a function called *func* can be opened by two methods: `help(func)` or `?func`. The help page is a pop-up window, which you might have to specifically allow to pop up.
 
 
 *** =instructions
@@ -79,7 +81,6 @@ The help page of a function called *func* can be opened by two methods: `help(fu
 
 *** =hint
 - See the previous exersize for tips on drawing a scatterplot and computing correlation.
-- The help page is a pop-up window, which you might have to specifically allow to pop up.
 
 *** =pre_exercise_code
 ```{r}
@@ -148,7 +149,7 @@ success_msg("Good work!")
 --- type:NormalExercise lang:r xp:100 skills:1 key:0083627e50
 ## Standard deviation
 
-*Standard deviation* is perhaps the most important measure of variability in statistics. It is defined as the average distance of a set of data points from their mean. So, the closer the values of a variable are to their mean, the smaller the standard deviation.
+*Standard deviation* is perhaps the most important measure of variability in statistics. It is defined as the average distance of a set of data points from their mean. So, the closer the values of a variable are to their mean on average, the smaller the standard deviation.
 
 Mathematically, the sample standard deviation ($sd$) is computed using  
 
@@ -159,14 +160,14 @@ which might look a bit complicated but really is just the average distance from 
 
 *** =instructions
 - Use `simulate()` to visualize a random sample of data from a population where the average distance from the mean is 1 (`sd = 1`). Compute the sample standard deviation with `sd()`.
-- Create object `x2` similarily setting `sd = 2`. What changed? Compute the sample standard deviation.
+- Create object `x2` similarily by setting `sd = 2`. What changed? Compute the sample standard deviation.
 - Create object `x3` by setting `sd = 10`. What changed? Compute the sample standard deviation.
 - Create object `x4` by setting `sd = 0`. What happened now? Compute the sample standard deviation.
 
 
 *** =hint
-- Create the objects `x2`, `x3` and `x4` similarily to `x1` by calling `simulate()` and modify the `sd` argument.
-- Compute the standard deviations of the new object on different lines similarily to the example.
+- Create the objects `x2`, `x3` and `x4` similarily to `x1` by calling `simulate()` and modifying the `sd` argument.
+- Compute the standard deviations of the new object on different lines, similarily to the example.
 
 *** =pre_exercise_code
 ```{r}
@@ -196,27 +197,27 @@ simulate <- function(n = 100, mean = 0, sd = NULL) {
 
 *** =sample_code
 ```{r}
-# simulate() is available to simulate samples from an artificial population
+# simulate() is available to draw samples from an artificial population
 
-# Simulate data and visualize the distances of the data points from the mean.
+# Simulate data and visualize the distances to the mean (red line).
 x1 <- simulate(sd = 1)  # create x1
-      # create x2
-      # create x3
-      # create x4
+  # create x2
+  # create x3
+  # create x4
 
 # Compute the average distances from the mean in the sample.
 sd(x1)  # sd of x1
-      # sd of x2
-      # sd of x3
-      # sd of x4
+  # sd of x2
+  # sd of x3
+  # sd of x4
 
 ```
 
 *** =solution
 ```{r}
-# simulate() is available to simulate samples from an artificial population
+# simulate() is available to draw samples from an artificial population
 
-# Simulate data and visualize the distances of the data points from the mean.
+# Simulate data and visualize the distances to the mean (red line).
 x1 <- simulate(sd = 1)    # (1)
 x2 <- simulate(sd = 2)    # (2)
 x3 <- simulate(sd = 10)   # (3)
@@ -251,21 +252,22 @@ success_msg("Awsome work!")
 --- type:NormalExercise lang:r xp:100 skills:1 key:989f75fe50
 ## Clustering
 
-[Clustering](https://en.wikipedia.org/wiki/Cluster_analysis) is the task of grouping a set of objects in such a way that objects in the same group (called a cluster) are more similar to each other than to those in other groups. [K-means](https://en.wikibooks.org/wiki/Data_Mining_Algorithms_In_R/Clustering/K-Means#Algorithm) is a popular algorithm that performs clustering. With k-means, data points that share the same closest *centroid* are concidered similar.
+[Clustering](https://en.wikipedia.org/wiki/Cluster_analysis) is the task of grouping a set of objects in such a way that objects in the same group (called a cluster) are more similar to each other than to those in other groups. [K-means](https://en.wikibooks.org/wiki/Data_Mining_Algorithms_In_R/Clustering/K-Means#Algorithm) is a popular algorithm that performs clustering. With k-means, data points that share the same closest *centroid* are concidered similar. There are k centroids forming k clusters around them.  
 
 The centroids are found in such a way that the combined distance from each data point to it's centroid is the smallest possible. In a simple case this is identical to saying that the standard deviations inside the clusters is the smallest possible.
 
 
 *** =instructions
-- Modify the code and use k-means with two centroids (centers).
-- Print out the values of the centers by typing `km$centers`. Can you find interpretations to the clusters?
-- Use `$` to access the vector `cluster` in the object `km`. Give that vector to the `col` argument of `plot()` to visualize the clusters.
+- Use k-means with two centroids (centers).
+- Look at the structure of the `km` object. It is of a new type *list*, which is similar to *data.frame*.
+- Print out `km$centers`. Can you find interpretations to the clusters?
+- Plot the student heights, separated by sex.
+- Modify the object `student_colors` to include the vector of clusters found by `kmeans()`. Draw the plot again.
 
 
 *** =hint
 - Define the number of clusters using the `centers` argument of `kmeans()`.
-- Use `km$cluster` to access the vector of cluster values.
-- Use the `col` argument of `plot()` and give it the vector of clusters.
+- Use `km$cluster` to access the vector of cluster values. Assign this vector to `student_colors`.
 
 
 *** =pre_exercise_code
@@ -284,43 +286,45 @@ students2014$pituus <- as.numeric(students2014$pituus)
 students2014$kenka <- as.numeric(students2014$kenka)
 
 height <- students2014$pituus
+sex <- jitter(as.numeric(students2014$sukup))
+
 ```
 
 *** =sample_code
 ```{r}
-# students2014 is available. Create object height.
-height <- students2014$pituus
+# height and sex are available
 
 # Use k-means to group the students by height
-km <- kmeans(height, centers = 1)
+km <- kmeans(height, centers = 1)[1:2]
 
-# Values of the cluster centroids
+# Look at the structure of km
+str(km)
+
+# Print out the centroid values (centers)
 
 
-# Use a trick to plot the students heights with a bit of noise.
-x <- data.frame(height = jitter(height),  y = 1)
-
-# Plot of the student heights. Color indicates the cluster.
-plot(x, pch = "|", col = 1)
+# Plot of the student heights separated by sex.
+student_colors <- 1
+plot(sex, height, col = student_colors, xaxt = "n", main = "Student heights by sex")
 
 ```
 
 *** =solution
 ```{r}
-# students2014 is available. Create object height.
-height <- students2014$pituus
+# height and sex are available
 
 # Use k-means to group the students by height
-km <- kmeans(height, centers = 2)
+km <- kmeans(height, centers = 2)[1:2]
 
-# Values of the cluster centroids
+# Look at the structure of km
+str(km)
+
+# Print out the centroid values (centers)
 km$centers
 
-# Use a trick to plot the students heights with a bit of noise.
-x <- data.frame(height = jitter(height),  y = 1)
-
-# Plot of the student heights. Color indicates the cluster.
-plot(x, pch = "|", col = km$cluster)
+# Plot of the student heights.
+student_colors <- km$cluster
+plot(sex, height, col = student_colors, xaxt = "n", main = "Student heights by sex")
 
 
 ```
@@ -328,9 +332,9 @@ plot(x, pch = "|", col = km$cluster)
 *** =sct
 ```{r}
 
-test_function("kmeans",args=c("x","centers"), not_called_msg = "Please call `kmeans()` with the correct arguments.")
+test_function("kmeans",args=c("x","centers"))
 test_output_contains("km$centers")
-test_function("plot", args=c("col"))
+test_object("student_colors")
 
 test_error()
 success_msg("Very nice work!")
@@ -364,7 +368,6 @@ simulate <- function(n = 60) {
   
   # degree (d) of the polynomial
   degree <- sample(1:3, 1)
-  
   # x values
   x <- rnorm(n)
   
@@ -377,9 +380,8 @@ simulate <- function(n = 60) {
   
   # linear equation y = b_1 * x^1 + .. + b_d * x^d + e
   y <- rowSums(X) + rnorm(n)
-  
   # scatterplot
-  plot(x, y, col = "grey40", type = "p", pch= 20, xlab="", ylab="")
+  plot(x, y, col = "grey40", type = "p", pch= 19, xlab="", ylab="")
   
   return(list(x = x, y = y))
 }
@@ -387,7 +389,7 @@ simulate <- function(n = 60) {
 show_correlation <- function(df) {
   x <- df$x
   y <- df$y
-  plot(x, y, type = "p", col = "grey40", pch= 20, xlab="", ylab="",
+  plot(x, y, type = "p", col = "grey40", pch= 19, xlab="", ylab="",
        sub = paste("correlation:", round(cor(x, y),2)))
   abline(lm(y~x), col ="red")
 }
