@@ -167,24 +167,25 @@ success_msg("Making progress, good work!")
 
 ## Metadata of students2014
 
-The `students2014` data is used in many of the exercises. As we told you earlier, the dataset was collected in 2014 from the students of the Faculty of Social Sciences in the University of Helsinki. We also showed you the [questionnaire](http://www.helsinki.fi/~kvehkala/JYTmooc/ASSIST-2014-FI-0-20140903.pdf) that was used to collect the information.
+The `students2014` data is used in many of the exercises. The dataset was collected in 2014 from the students of the Faculty of Social Sciences in the University of Helsinki. This [questionnaire](http://www.helsinki.fi/~kvehkala/JYTmooc/ASSIST-2014-FI-0-20140903.pdf) that was used to collect the information.
 
 To use the collected data, you will have to put it in a digital form. The `students2014` data was saved manually. When saving the data it is often useful to use short descriptive names for the questions (variable names in the dataset).
 
 The meta file for the `students2014` can be seen [here](http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS-meta.txt). Note that in the exercises we have used only few variables. From the metafile you can check what the questionnaire's answer options were and some other information.
 
-Open and read the meta file. What does `95` mean in the variable `opalku`?
+Open and read the meta file. What does `95` mean in the variable `opalku`?  
 
 *** =instructions
-- 95 is the number of persons who answered in the questionnaire
-- It means that the answerer has started his/hers studies in 1995
-- There were 95 questions in the questionnaire
-- It is a bluff: 95 is not mentioned in the meta file
-- The average of credits is 95 among the answerers
+- 95 is the number of persons who answered in the questionnaire  
+- It means that the answerer has started his/hers studies in 1995  
+- There were 95 questions in the questionnaire  
+- It is a bluff: 95 is not mentioned in the meta file  
+- The average of credits is 95 among the answerers  
+
 
 *** =hint
-- Did you open the [meta file](http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS-meta.txt)?
-- If the link does not work, go to http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS-meta.txt
+- Did you open the [meta file](http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS-meta.txt)?  
+- If the link does not work, go to http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS-meta.txt  
 
 
 *** =pre_exercise_code
