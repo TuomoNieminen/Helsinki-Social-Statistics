@@ -348,7 +348,8 @@ Correlation measures the strength of the *linear* relationship between two varia
 It is then possible to make a reasonable guess of the strength of the linear relationship. In order for you to practise this skill, we have build a game you can play.
 
 *** =instructions
-- Use `simulate()` to draw a scatter plot using simulated data. The variables can have linear and nonlinear relationships. Try to guess what the correlation might be.
+- Use `simulate()` to draw a scatter plot using simulated data. The variables can have linear and nonlinear relationships. 
+- Try to guess what the correlation might be and save your guess to `guess`.
 - Use `show_correlation()` to check how close you got.
 - You can experiment as many times as you wish and the simulation will be different each time. Feel free to change `n`, the number of simulated values.
 
@@ -359,7 +360,7 @@ It is then possible to make a reasonable guess of the strength of the linear rel
 *** =pre_exercise_code
 ```{r}
 # simulate and plot correlated data
-simulate <- function(n = 60) {
+simulate <- function(n = 100) {
   
   if(n > 1e5) stop("That n is quite large. Please choose a smaller n")
   
@@ -383,11 +384,21 @@ simulate <- function(n = 60) {
   return(list(x = x, y = y))
 }
 
-show_correlation <- function(df) {
+show_correlation <- function(df, guess) {
   x <- df$x
   y <- df$y
+  correlation <- cor(x, y)
+  diff <- round(abs(correlation - guess),2)
+  if(diff < 0.1) fb <- "you're a wizard!"
+  else if(diff < 0.2) fb <- "awsome!"
+  else if(diff < 0.3) fb <- "nice try!"
+  else if(diff < 0.4) fb <- "not too bad."
+  else if(diff > 0.4) fb <- "try again?"
   plot(x, y, type = "p", col = "grey40", pch= 19, xlab="", ylab="",
-       sub = paste("correlation:", round(cor(x, y),2)))
+       main = paste0("Results\n", 
+                    "guess: ",guess,", ",
+                    "actual: ",round(cor(x, y),2), "\n",
+                    diff," difference, ",fb))
   abline(lm(y~x), col ="red")
 }
 
@@ -401,15 +412,26 @@ show_correlation <- function(df) {
 data <- simulate(n = 60)
 
 # What is the correlation?
+guess <- 0.5
 
 # Show the linear relationship and correlation
-show_correlation(data)
+show_correlation(data, guess)
 
 ```
 
 *** =solution
 ```{r}
-#solution code here
+# Functions simulate() and show_correlation() are available
+
+# Simulate n values and draw a scatterplot
+data <- simulate(n = 100)
+
+# What is the correlation?
+guess <- 0.5
+
+# Show the linear relationship and correlation
+show_correlation(data, guess)
+
 ```
 
 *** =sct
