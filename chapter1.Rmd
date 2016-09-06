@@ -281,7 +281,7 @@ success_msg(paste0("Great job ", my_name, ". ", my_message, "!"))
 
 In R you operate on objects using *functions*. A function is a special kind of object that can be *called* by typing it's name and giving it the necessary *arguments* inside parenthesis. When a function is called, it will perform an action.
 
-Functions are how you're actually going to do all the magic.
+R has many functions ready for you to use. Functions are how you're actually going to do all the magic.
 
 Here we will do a little bit of magic using data that will become more familiar to you later on.  
 
@@ -357,7 +357,7 @@ mean(student_age)
 test_output_contains("mean(student_age)", incorrect_msg = "Please use the `mean()` function to compute the mean of student_age.")
 
 test_error()
-success_msg("Nice job!")
+success_msg("Excellent! You are making great progress.")
 ```
 
 
