@@ -152,11 +152,7 @@ prop.table(table(students2014$kone))
 *** =sct
 ```{r}
 # submission correctness tests
-test_output_contains("tbl")
-test_object("tbl<-table(students2014$sukup)", incorrect_msg = "Did you execute `tbl`?")
-test_function("table", incorrect_msg = "Did you use the `table()` function?")
-test_function("prop.table", incorrect_msg = "Did you use the `prop.table()` function?")
-test_output_contains("prop.table(table(students2014$kone))")
+test_output_contains("prop.table(table(students2014$kone))", incorrect_msg = "Did you use prop.table on a table of `kone`?")
 test_error()
 
 success_msg("Making progress, good work!")
