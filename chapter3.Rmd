@@ -63,12 +63,24 @@ boxplot(students2014$ika, main = "Boxplot of student ages", xlab = "age", horizo
 
 *** =solution
 ```{r}
+# students2014 is available
+
+# Bar plot of operating systems 
+barplot(summary(students2014$kone), main = "Barplot of OS", xlab = "Linux, Mac, Win or none")
+    
+# Histogram of student heights
+hist(students2014$pituus,  main ="Histogram of student heights", xlab = "height")
+  
+# Box plot of student ages
+boxplot(students2014$ika, main = "Boxplot of student ages", xlab = "age", horizontal = TRUE)
+
 ```
 
 *** =sct
 ```{r}
 test_error()
 success_msg("Ready? Let's go for it!")
+
 ```
 
 --- type:NormalExercise lang:r xp:100 skills:1, 3  key:0e42548148
