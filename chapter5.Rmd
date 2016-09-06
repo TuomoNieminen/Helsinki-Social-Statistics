@@ -380,12 +380,11 @@ success_msg("You are doing very well!")
 
 The `barplot()` function creates nice plots but sometimes, especially with proportional tables, you want to have a plot where you can see the ratios or proportions right away. R has default plot types for different kind of object, and when you use the function `plot()` where a table object is an argument, R produces a [mosaic plot](https://en.wikipedia.org/wiki/Mosaic_plot).
 
-Mosaic plots are good when you want see the proportions of a table with a quick look. Note that the bars in the mosaic plot have different widths.
+Mosaic plots are good when you want see the proportions of a table with a quick look. Unlike in barplots, the bars in the mosaic plot have different widths. With different bar widths, you immediately notice the size differences between the cells of the table. 
 
 *** =instructions
 - Execute `my_prop_tbl`.
 - Use the `plot()` function to create a plot of the `my_prop_tbl`. Add a descriptive title to the plot.
-
 
 *** =hint
 - The `plot()` function can be used for many kinds of data. When there is a table object as an argument, `plot()` produces a mosaicplot.
