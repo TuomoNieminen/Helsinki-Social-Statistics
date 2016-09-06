@@ -10,7 +10,7 @@ In the previous chapter you learned how to explore the variables in your data by
 In this chapter we'll expand on these tools and we'll also look at how to explore the *relationships* between pairs of variables with scatter plots and correlation. We'll also learn about standard deviation, perhaps the most important measure of variability in statistics.
 
 *** =instructions
-- Draw a scatter plot of students shoesizes and heights with `plot()`. Does a linear relationship look plausible?
+- Draw a scatter plot of students shoesizes and heights with `plot()`. Does a linear relationship between the variables look plausible?
 - Compute the correlation between shoesizes and heights. What is your interpretation?
 
 *** =hint
@@ -73,8 +73,8 @@ The help page of a function called *func* can be opened by two methods: `help(fu
 
 
 *** =instructions
-- Open the help page of `plot`.
-- Draw a scatter plot of student shoesize versus height and compute the correlation.
+- Open the help page of `plot` by writing `?plot` directly to the console and pressing enter.
+- Draw a scatter plot of student shoesize versus height. Compute the correlation.
 - Use the information on the help page and make the following adjustments to the plot:
 - Add a main title: "Scatter plot of student shoesize versus height".
 - Add a subtitle: "correlation: x". Replace x with the actual correlation, rounded to two decimal places.
@@ -105,9 +105,6 @@ students2014$kenka <- as.numeric(students2014$kenka)
 shoesize <- students2014$kenka
 height <- students2014$pituus
 
-# See the help page of the plot function
-?plot
-
 # Draw a scatterplot of shoesize and height
 
 
@@ -122,11 +119,8 @@ height <- students2014$pituus
 shoesize <- students2014$kenka
 height <- students2014$pituus
 
-# See the help page of the plot function
-?plot
-
 # Draw a scatterplot of shoesize and height
-plot(shoesize, height, main = "Scatterplot of student shoesize versus height", sub = "Correlation: 0.85")
+plot(shoesize, height, main = "Scatter plot of student shoesize versus height", sub = "Correlation: 0.85")
 
 # Compute the correlation of shoesize and height
 cor(shoesize, height)
@@ -137,9 +131,7 @@ cor(shoesize, height)
 *** =sct
 ```{r}
 
-# test_output_contains("output")
 test_function("plot",args = c("x","y","main","sub"))
-test_function("cor", args = c("x","y"))
 
 test_error()
 success_msg("Good work!")
