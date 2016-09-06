@@ -244,17 +244,17 @@ success_msg("Awsome work!")
 --- type:NormalExercise lang:r xp:100 skills:1 key:989f75fe50
 ## Clustering
 
-[Clustering](https://en.wikipedia.org/wiki/Cluster_analysis) is the task of grouping a set of objects in such a way that objects in the same group (called a cluster) are more similar to each other than to those in other groups. [K-means](https://en.wikibooks.org/wiki/Data_Mining_Algorithms_In_R/Clustering/K-Means#Algorithm) is a popular algorithm that performs clustering. With k-means, data points that share the same closest *centroid* are concidered similar. There are k centroids forming k clusters around them.  
+[Clustering](https://en.wikipedia.org/wiki/Cluster_analysis) is the task of grouping a set of objects in such a way that objects in the same group (called a cluster) are more similar to each other than to those in other groups. [K-means](https://en.wikibooks.org/wiki/Data_Mining_Algorithms_In_R/Clustering/K-Means#Algorithm) is a popular algorithm that performs clustering. With k-means, data points that share the same closest *centroid* are concidered similar. k centroids form k clusters around them.  
 
 The centroids are found in such a way that the combined distance from each data point to it's centroid is the smallest possible. In a simple case this is identical to saying that the standard deviations inside the clusters is the smallest possible.
 
 
 *** =instructions
-- Use k-means with two centroids (centers).
-- Look at the structure of the `km` object. It is of a new type *list*, which is similar to *data.frame*.
-- Print out `km$centers`. Can you find interpretations to the clusters?
-- Plot the student heights, separated by sex.
-- Modify the object `student_colors` to include the vector of clusters found by `kmeans()`. Draw the plot again.
+- Modify the call to `kmeans()` to group the student heights to two group by using two centroids (centers).
+- Print out `km$centers`. Can you find any interpretations?
+- Create a new colum `cluster` in `students2014` that stores the new clusters of the students. Look at the first 6 rows of `students2014` with `head()`.
+- Draw a plot of the student heights, separated and colored by sex.
+- Adjust the `col` argument of `plot()` and instead color the points by clusters and draw the plot again.
 
 
 *** =hint
@@ -277,47 +277,51 @@ students2014$ika <- as.numeric(students2014$ika)
 students2014$pituus <- as.numeric(students2014$pituus)
 students2014$kenka <- as.numeric(students2014$kenka)
 
-height <- students2014$pituus
-sex <- jitter(as.numeric(students2014$sukup))
-
 ```
 
 *** =sample_code
 ```{r}
-# height and sex are available
+# students2014 is available
+height <- students2014$pituus
 
 # Use k-means to group the students by height
-km <- kmeans(height, centers = 1)[1:2]
-
-# Look at the structure of km
-str(km)
+km <- kmeans(height, centers = 1)
 
 # Print out the centroid values (centers)
+km$centers
+
+# Assign the clusters to the student data
+students2014$cluster <- km$cluster
+
+# Look at the first six values of students2014 with head()
 
 
-# Plot of the student heights separated by sex.
-student_colors <- 1
-plot(sex, height, col = student_colors, xaxt = "n", main = "Student heights by sex")
+# Trick to plot the student heights separated by sex.
+sex <- jitter(as.numeric(students2014$sukup))
+plot(sex, height, col = students2014$sukup)
 
 ```
 
 *** =solution
 ```{r}
-# height and sex are available
+# students2014 is available
+height <- students2014$pituus
 
 # Use k-means to group the students by height
-km <- kmeans(height, centers = 2)[1:2]
-
-# Look at the structure of km
-str(km)
+km <- kmeans(height, centers = 2)
 
 # Print out the centroid values (centers)
 km$centers
 
-# Plot of the student heights.
-student_colors <- km$cluster
-plot(sex, height, col = student_colors, xaxt = "n", main = "Student heights by sex")
+# Assign the clusters to the student data
+students2014$cluster <- km$cluster
 
+# Look at the first six values of students2014 with head()
+head(students2014)
+
+# Trick to plot the student heights separated by sex.
+sex <- jitter(as.numeric(students2014$sukup))
+plot(sex, height, col = students2014$cluster)
 
 ```
 
@@ -325,8 +329,9 @@ plot(sex, height, col = student_colors, xaxt = "n", main = "Student heights by s
 ```{r}
 
 test_function("kmeans",args=c("x","centers"))
-test_output_contains("km$centers")
-test_object("student_colors")
+test_object("students2014")
+test_function("head", args = "x", not_called_msg = "Please use `head()` on the data.frame `students2014`.")
+test_function("plot", args = "col")
 
 test_error()
 success_msg("Very nice work!")
