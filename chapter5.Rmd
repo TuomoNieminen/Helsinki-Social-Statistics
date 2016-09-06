@@ -8,69 +8,54 @@ description : Cross-tabulations let you explore dependencies hidden deep within 
 
 Often in a survey there are many questions that measure the same phenomenon. The phenomenon could be for example trustfulness or prejudice of some sort. Single survey questions are nice, but they do not help us to see the big picture. To get a better outlook of a phenomenon, we can use the sum of variables.
 
-Next we learn to do the sum of variables by ourselves with a little toy example.
+Next we learn to do the sum of variables by ourselves with a little toy example. See the sample code!
 
-Let's say that we have five questions about trust in our survey. In the sample code `answer_1` contains the coded answers of one survey answerer. The object `answer_2` contains another person's answers, and so on. The sum of variable is made by taking the average (or sum) of one persons answers and saving it to another object. So in the sum of variable there is one value for every survey answerer. In this case the average value sums up one survey answerers trust in a single value. 
 
 *** =instructions
-- Execute `answer_1`, `answer_2` and `answer_3`.
-- Calculate the average for every survey answerer.
-- Create the sum of variables `sum_of_var`. You can create it by putting the values of `average_1`, `average_2` and `average_3` as a single vector. 
+- In our toy example, the dataset is called 'data'. Print out its contains.
+- On the rows are the dudes that answered in the survey. The columns are the questions. Let's say that all the questions measure the same phenomenon.
+- To get the sum of variables, we need to calculate the mean of every persons answers. The function `rowMeans()` will do it for you.
+- The mean vector we got is the sum of variables
 
 *** =hint
-- You can create a vector with a function `c()`.
-- Remember to separate the values with a comma in a vector (e.g. `c(value_1, value_2)`)
+- 
+- 
 
 *** =pre_exercise_code
 ```{r}
-# pre exercise code here
+Dude_1 <- c(2, 3, 2)
+Dude_2 <- c(4, 5, 5)
+Dude_3 <- c(1, 4, 3)
+data<-data.frame(rbind(Dude_1, Dude_2, Dude_3))
+colnames(data)<-c("Question_1", "Question_2", "Question_3")
 ```
 
 *** =sample_code
 ```{r}
-# Coded survey answers
-answer_1 <- c(2, 3, 2, 1, 3)
-answer_2 <- c(4, 5, 5, 4, 4)
-answer_3 <- c(1, 4, 3, 4, 1)
+# In our toy example, the dataset is called 'data'. Print out its contains.
+data
 
-# Calculate the means
-average_1 <- mean(answer_1)
-average_2 <- 
-average_3 <- 
-
-# Create the sum of variables 
-sum_of_var <- 
+# Calculate the means for every person. 
+means<- rowMeans(data)
 
 ```
 
 *** =solution
 ```{r}
-# Coded survey answers
-answer_1 <- c(2, 3, 2, 1, 3)
-answer_2 <- c(4, 5, 5, 4, 4)
-answer_3 <- c(1, 4, 3, 4, 1)
+# In our toy example, the dataset is called 'data'. Print out its contains.
+data
 
-# Calculate the means
-average_1 <- mean(answer_1)
-average_2 <- mean(answer_2)
-average_3 <- mean(answer_3)
+# Calculate the means for every person. 
+means<- rowMeans(data)
 
-# Create the sum of variables 
-sum_of_var <- c(average_1, average_2, average_3)
+# the 'means' vector is the sum of variables. 
 
 ```
 
 *** =sct
 ```{r}
-test_function("mean", incorrect_msg = "Did you use the mean() to calculate averages?")
-test_object("sum_of_var", incorrect_msg = "Did you create the `sum_of_var`?")
-
-test_object("average_1", incorrect_msg = "Did you create the `average_1`?")
-test_object("average_2", incorrect_msg = "Did you create the `average_2`?")
-test_object("average_3", incorrect_msg = "Did you create the `average_3`?")
 
 test_error()
-
 success_msg("Summing those variables up pretty nicely!")
 
 ```
