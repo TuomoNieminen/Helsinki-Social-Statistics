@@ -261,7 +261,7 @@ my_character_object <- my_numeric_object
 my_character_object
 
 # Create character objects my_name and my_message here. Use quotation marks.
-my_name <- "Tuomo"
+my_name <- "Hey You"
 my_message <- "You are awsome!"
 
 ```
@@ -271,7 +271,7 @@ my_message <- "You are awsome!"
 test_object("my_name", eval = F, incorrect_msg = "Did you assign your name to `my_name`?")
 test_object("my_message", eval = F, incorrect_msg = "Did you assign a message to `my_message`?")
 
-test_error()
+test_error(incorrect_msg = "Did you use quotation marks to assign your name and a message to the objects `my_name` and `my_message`")
 success_msg(paste0("Great job ", my_name, ". ", my_message, "!"))
 ```
 
