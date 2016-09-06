@@ -48,7 +48,17 @@ with(students2014, plot(x = kenka, y = pituus, col = sukup, pch = 20, main = "Sc
 
 *** =solution
 ```{r}
-#solution code here
+# This is a very simple example of the power of R
+
+# Create a character object holding data location
+data_url <- "http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS-data.txt"
+
+# Load and save data with the read.table() function
+students2014 <- read.table(data_url, sep = "\t", header = TRUE)
+
+# Draw a graph of shoesize and hight using plot()
+with(students2014, plot(x = kenka, y = pituus, col = sukup, pch = 20, main = "Scatter plot of student shoesize and height \n(color indicates sex)"))
+
 ```
 
 *** =sct
@@ -361,80 +371,95 @@ success_msg("Excellent! You are making great progress.")
 ```
 
 
---- type:NormalExercise lang:r xp:100 skills:1 key:cecbb6b1e8
-## Function arguments
+--- type:NormalExercise lang:r xp:100 skills:1
+## Good arguments
 
-During this course you will operate on R's ready-made functions, but for clarity we will look at the definition of a simple function and learn how to use it (*call* it).
+During this course you will operate on many of R's ready-made functions. As we already saw, functions take objects as their arguments and then perform actions using the objects. Using a function is called *calling* it.
 
-Functions usually have one or more arguments, for which the user can define values when calling the function. Multiple arguments are separated with a comma. The arguments have names, which can (and often should) be used when specifying their values.
-
-The recommended style is to specify all but the first argument by name, when calling a function.
+Functions usually have more than one possible argument. Some of them can have default values and others need to be specified. The arguments have names, which can (and often should) be used when specifying their values. The recommended style is to specify all but the first argument by name, when calling a function.
 
 *** =instructions
-- Look at the definition of the `add_k()` function and execute the function calls that are defined, starting from line 5.
-- Create object `my_answer` by directly assigning the output of `add_k()` to it. Call `add_k()` with `number = 10` and `k = 7`.
+- Execute the example codes where the function `head()` is used to explore the first couple observations in the `students2014` dataset.
+- Create object `first_ten_students` by calling `head()` with `n = 10`.
 
 *** =hint
-- The answer is of the form: `my_answer <- add_k(arg1 = ?, arg2 = ?)`
+- Remember to separate the arguments with a comma
+- The answer is of the form: `first_ten_students <- head(arguments_here)`
+
 
 *** =pre_exercise_code
 ```{r}
-add_k <- function(number, k = 5) return(number + k)
+# load data from web
+students2014 <- read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS-data.txt", sep="\t", header=TRUE)
+# keep a couple background variables
+students2014 <- students2014[,c("sukup","toita","ika","pituus","kenka","kone")]
+# recode kone variables missing values as factor levels
+students2014$kone <- addNA(students2014$kone)
+# keep only rows without missing values
+students2014 <- students2014[complete.cases(students2014),]
+# integers to numeric
+students2014$ika <- as.numeric(students2014$ika)
+students2014$pituus <- as.numeric(students2014$pituus)
+students2014$kenka <- as.numeric(students2014$kenka)
+
 ```
 
 
 *** =sample_code
 ```{r}
+# students2014 is available
 
-# Create a simple function with two arguments, of which 'k' has a default value 
-add_k <- function(number, k = 5) return(number + k)
+# Use the function head() on the object students2014
+head(students2014, n = 4)
 
-# Call the add_k() function. Can you guess the result?
-add_k(number = 5)
+# Argument 'n' of head() has a default value 6
+head(students2014)
 
 # These calls are identical. Try them.
-add_k(5, k = -4) # recommended style
-add_k(5, -4)     # style usually not recommended
-add_k(k = -4, number = 5) # style not recommended
+head(students2014, n = 3) # recommended style
+head(students2014, 3)     # style usually not recommended
+head(n = 3, students2014) # style not recommended
 
-# Call add_k() to create the object 'my_answer'
-my_answer <- 
+# Save the first ten observations of the data
+first_ten_students <- 
 
 
 ```
 
 *** =solution
 ```{r}
-# Create a simple function with two arguments, of which 'k' has a default value
-add_k <- function(number, k = 5) return(number + k)
+# students2014 is available
 
-# Call the add_k() function. Can you guess the result?
-add_k(number = 5)
+# Use the function head() on the object students2014
+head(students2014, n = 4)
+
+# Argument 'n' of head() has a default value 6
+head(students2014)
 
 # These calls are identical. Try them.
-add_k(5, k = -4) # recommended style
-add_k(5, -4)     # style usually not recommended
-add_k(k = -4, number = 5) # style not recommended
+head(students2014, n = 3) # recommended style
+head(students2014, 3)     # style usually not recommended
+head(n = 3, students2014) # style not recommended
 
-# Call add_k() to create the object 'my_answer'
-my_answer <- add_k(10, k = 7)
+first_ten_students <- head(students2014, n = 10)
 
 
 ```
 
 *** =sct
 ```{r}
-test_object("my_answer")
+test_error(incorrect_msg = "Your code seems to produce an error. Did you create the object `first_ten_students` as instructed?")
 
-test_error()
+test_object("first_ten_students")
+
 success_msg("Great job!")
 ```
 
 --- type:MultipleChoiceExercise lang:r xp:100 skills:1 key:8d2100f40a
 
-## Meet your data
+## students2014
 
-In future exercises, we will be doing data science using a dataset that was collected in 2014 from the students of the Faculty of Social Sciences in the University of Helsinki. 
+We will be doing data science using a dataset that was collected in 2014 from the students of the Faculty of Social Sciences in the University of Helsinki. 
 
 The students filled out [this short questionnaire](http://www.helsinki.fi/~kvehkala/JYTmooc/ASSIST-2014-FI-0-20140903.pdf). Please go ahead and read both pages of the pdf in the above link and then come back and answer the question below.
 
