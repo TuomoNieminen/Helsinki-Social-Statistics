@@ -5,11 +5,11 @@ description : Quick overview to R data and variable types. What are the objects?
 --- type:NormalExercise lang:r xp:100 skills:1 key:8718babe2e
 ## Data frames
 
-The most common object to operate on is the `data frame` object, which stores data in tabular form. The columns in data frames are vectors. Data frames can contain multiple vectors with different data types.
+In R, the basic idea is to use *functions* to operate on objects. The most common object to operate on is the `data frame` object, which stores data in tabular form.  
 
-In R, the basic idea is to use *functions* to operate on objects. Here you will get to apply some functions that are helpful for inspecting data: `head()` and `str()`.
+The columns in data frames are vectors. Data frames can contain multiple vectors with different data types. In this chapter you will learn more about vectors and data types.
 
-You will also learn how to access the columns of a data frame using the $-sign.
+Here you will get to apply some functions that are helpful for inspecting data: `head()` and `str()`. You will also learn how to access the columns of a data frame using the $-sign.  
 
 *** =instructions
 - Execute the function `head()` and see the results
@@ -46,7 +46,7 @@ students2014$kenka <- as.numeric(students2014$kenka)
 head(students2014)
 
 # View the structure of students2014
-
+str(students2014)
 
 # You can access the variables in the students2014 data by using the $-sign
 students2014$ika
@@ -150,40 +150,35 @@ test_student_typed("my_boolean <- TRUE", not_typed_msg="Did you change the value
 test_object("my_initials", eval=FALSE, incorrect_msg = "Did you assign your initials to `my_initials`?")
 test_student_typed("my_numeric_object <- 10.5", not_typed_msg="Did you assign correct value to  `my_numeric`?")
 
-test_function("str", incorrect_msg = "Did you use the str() to look at the data types?")
-
-test_output_contains("str(my_boolean)", incorrect_msg = "Did you use `str()` to `my_boolean`?")
-test_output_contains("str(my_initials)", incorrect_msg = "Did you use `str()` to `my_initials`?")
-test_output_contains("str(my_numeric_object)", incorrect_msg = "Did you use `str()` to `my_numeric_object`?")
+test_output_contains("str(my_boolean)", incorrect_msg = "Did you use `str()` on `my_boolean`?")
+test_output_contains("str(my_initials)", incorrect_msg = "Did you use `str()` on `my_initials`?")
+test_output_contains("str(my_numeric_object)", incorrect_msg = "Did you use `str()` on `my_numeric_object`?")
 
 # test if the students code produces an error
 test_error()
 
 # Final message the student will see upon completing the exercise
-success_msg("You're making progress, well done!")
+success_msg("You're making great progress, well done!")
 ```
 
 --- type:NormalExercise lang:r xp:100 skills:1 key:9ee1ba578e
 ## Data types (2)
 
-One of R's data types is called factor. In factors you have numeric values, but for every number there is a character value associated to it. [Likert scale](https://en.wikipedia.org/wiki/Likert_scale) could be an example of a factor: there are numbers from 1 to 5, but the numbers have a unique words attached to them.
+One of R's data types is called factor. Factors contain numbers, but for every number there is a character value associated to it. A variable measured by the [Likert scale](https://en.wikipedia.org/wiki/Likert_scale) could for example be coded as a factor: the values are numbers from 1 to 5, but the numbers also have words attached to them such as:
 
-- Strongly disagree = 1
-- Disagree  = 2
-- Neither agree nor disagree = 3
-- Agree = 4
-- Strongly agree = 5
+- "Strongly disagree" = 1
+- "Strongly agree" = 5
 
-The function `cut()` can be used to create categories from numerical objects. The function produces a factor object and by default creates label names or levels. The function `cut()` also has a mandatory argument `breaks`, where the break points of the object are assigned.
+In R is is also possible to create factors from numerical objects using the function `cut()`, which splits a variable into categories. It has a mandatory argument `breaks`, which defines the cutting points of the categories.  
 
 *** =instructions
 - Create objects `student_age` and `student_age_cut`
-- Print the contents of the `student_age_cut`
-- use `str()` to inspect the object `student_age_cut`
+- use `str()` to inspect `student_age_cut`
+- Use `head()` to print the first six values of `student_age_cut`
+
 
 *** =hint
-- Functions do not work correctly without mandatory arguments.
-- In the `cut()` function the argument `breaks` 
+- Give the object `student_age_cut` as the first argument to `str()` and `head()`.
 
 *** =pre_exercise_code
 ```{r}
@@ -212,12 +207,13 @@ students2014$kenka <- as.numeric(students2014$kenka)
 student_age <- students2014$ika
 
 # Let's use the cut()-function to cut the variable in categories
-student_age_cut <- cut(student_age, breaks = c(15, 25, 35, 45, 55, 65, 75, 85))
+student_age_cut <- cut(student_age, breaks = c(15, 25, 35, 100))
+
+# Inspect the data type of student_age_cut
+
 
 # Print the first 6 elements of student_age_cut
 
-
-# Inspect the data type of student_age_cut
 
 
 ```
@@ -230,24 +226,23 @@ student_age_cut <- cut(student_age, breaks = c(15, 25, 35, 45, 55, 65, 75, 85))
 student_age <- students2014$ika
 
 # Let's use the cut()-function to cut the variable in categories
-student_age_cut <- cut(student_age, breaks = c(15, 25, 35, 45, 55, 65, 75, 85))
+student_age_cut <- cut(student_age, breaks = c(15, 25, 35, 100))
+
+# Inspect the data type of student_age_cut
+str(student_age_cut)
 
 # Print the first 6 elements of student_age_cut
 head(student_age_cut)
 
-# Inspect the data type of student_age_cut
-str(student_age_cut)
 
 ```
 
 *** =sct
 ```{r}
-test_student_typed("student_age <- students2014$ika", not_typed_msg="Did you create the `student_age` object?")
-test_student_typed("student_age_cut <- cut(student_age, breaks = c(15, 25, 35, 45, 55, 65, 75, 85))", not_typed_msg="Did you create the `student_age_cut` object?")
 
-test_function("str", incorrect_msg = "Did you use the `str()` to look at the factor data type?")
-test_function("head", incorrect_msg = "Did you use the `head()` to look at the first six elements of `student_age_cut`?")
-test_output_contains("str(student_age_cut)", incorrect_msg = "Did you use `str()` to `student_age_cut`?")
+test_function("str", args="object", incorrect_msg = "Did you use the `str()` to look at the object 'student_age_cut'?")
+
+test_function("head", args="x", incorrect_msg = "Did you use the `head()` to look at the first six elements of `student_age_cut`?")
 
 # test if the students code produces an error
 test_error()
@@ -260,20 +255,21 @@ success_msg("Good work!")
 --- type:NormalExercise lang:r xp:100 skills:1 key:7cc56d2158
 ## Vectors
 
-You can combine values of the same data type to a **vector**, using the function `c()`. 
+A vector is an object containing multiple elements of the same data type. Vectors are quite important in R. The columns of a data frame (such as `student2014`) are vectors.
 
-A vector is an object containing multiple elements. All the elements need to be from same data type. Vectors are quite important in R. The columns of a data frame (such as `student2014`) are vectors.
+You can also create vectors by combining values of the same data type, using the function `c()`. 
 
 In this execrice you will learn how to create your own vector.
 
 *** =instructions
 - See and execute the examples on how to create a vector with `c()`.
-- Save character vector to `my_vector`.
-- Create vector `boolean_vector` with boolean values `TRUE, FALSE, TRUE, FALSE`.
+- Create a character vector `my_vector`.
+- Create a vector `boolean_vector` with boolean values `TRUE, FALSE, TRUE, FALSE`.
 - Print the contents of `boolean_vector`.
 
 *** =hint
 - When creating boolean values, no quotation marks are needed.
+- You can print the contents of an object by typing it's name.
 
 
 *** =pre_exercise_code
@@ -316,10 +312,7 @@ boolean_vector
 
 *** =sct
 ```{r}
-test_output_contains("c(2, 3, 4, 5)", incorrect_msg = "Did you execute all the lines?")
-test_output_contains("c(0.1, 0.2, 5.84, 0.7)", incorrect_msg = "Did you execute all the lines?")
 
-test_object("my_vector", incorrect_msg = "Did you execute `my_vector`?")
 test_object("boolean_vector", incorrect_msg = "Did you create `boolean_vector` with same values as instructed?")
 test_output_contains("boolean_vector", incorrect_msg = "Did you print the contents of `boolean_vector`?")
 test_error()
@@ -340,7 +333,7 @@ Data types and measurement scales are somewhat related. When asking simple "Yes 
 | Ordinal        |    x    |     x     |         |    x   |
 | Measurement    |    x    |           |         |        |
 
-Use the R Console to inspect the `students2014` data and select the correct answer. The data is already loaded for you. Remember that in console `Enter` executes lines.
+Use the R Console to inspect the `students2014` data with the function `str()` and select the correct answer. The data is already loaded for you. Remember that in the console `Enter` executes lines.
 
 *** =instructions
 - Variable `kone` is from ordinal scale.
