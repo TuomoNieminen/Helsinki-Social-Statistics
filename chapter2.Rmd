@@ -259,7 +259,7 @@ A vector is an object containing multiple elements of the same data type. Vector
 
 You can also create vectors by combining values of the same data type, using the function `c()`. 
 
-In this execrice you will learn how to create your own vector.
+In this exercise you will learn how to create your own vector.
 
 *** =instructions
 - See and execute the examples on how to create a vector with `c()`.
