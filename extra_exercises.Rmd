@@ -1,4 +1,74 @@
 --- type:NormalExercise lang:r xp:100 skills:1
+## Function arguments
+
+During this course you will operate on R's ready-made functions, but for clarity we will look at the definition of a simple function and learn how to use it (*call* it).
+
+Functions usually have one or more arguments, for which the user can define values when calling the function. Multiple arguments are separated with a comma. The arguments have names, which can (and often should) be used when specifying their values.
+
+The recommended style is to specify all but the first argument by name, when calling a function.
+
+*** =instructions
+- Look at the definition of the `add_k()` function and execute the function calls that are defined, starting from line 5.
+- Create object `my_answer` by directly assigning the output of `add_k()` to it. Call `add_k()` with `number = 10` and `k = 7`.
+
+*** =hint
+- The answer is of the form: `my_answer <- add_k(arg1 = ?, arg2 = ?)`
+
+*** =pre_exercise_code
+```{r}
+add_k <- function(number, k = 5) return(number + k)
+```
+
+
+*** =sample_code
+```{r}
+
+# Create a simple function with two arguments, of which 'k' has a default value 
+add_k <- function(number, k = 5) return(number + k)
+
+# Call the add_k() function. Can you guess the result?
+add_k(number = 5)
+
+# These calls are identical. Try them.
+add_k(5, k = -4) # recommended style
+add_k(5, -4)     # style usually not recommended
+add_k(k = -4, number = 5) # style not recommended
+
+# Call add_k() to create the object 'my_answer'
+my_answer <- 
+
+
+```
+
+*** =solution
+```{r}
+# Create a simple function with two arguments, of which 'k' has a default value
+add_k <- function(number, k = 5) return(number + k)
+
+# Call the add_k() function. Can you guess the result?
+add_k(number = 5)
+
+# These calls are identical. Try them.
+add_k(5, k = -4) # recommended style
+add_k(5, -4)     # style usually not recommended
+add_k(k = -4, number = 5) # style not recommended
+
+# Call add_k() to create the object 'my_answer'
+my_answer <- add_k(10, k = 7)
+
+
+```
+
+*** =sct
+```{r}
+test_object("my_answer")
+
+test_error()
+success_msg("Great job!")
+```
+
+
+--- type:NormalExercise lang:r xp:100 skills:1
 ## Brackets have your data [ under, control ]
 
 It is quite often necessary to access only a part of a dataset. This is called *subsetting* and there are many ways of doing it. The best way will depend on the situation and  preference.  
@@ -87,7 +157,7 @@ test_error()
 success_msg("Good work!")
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1 key:12a4e8cd24
+--- type:NormalExercise lang:r xp:100 skills:1
 ## Vectors (2)
 
 The values in vectors have indices: the first value in a vector has a index `1`, the second value has `2` and so on. 
@@ -168,7 +238,7 @@ test_error()
 success_msg("Such indices. Wow. Much intelligent.")
 
 ```
---- type:NormalExercise lang:r xp:100 skills:1 key:17c91c6d3c
+--- type:NormalExercise lang:r xp:100 skills:1
 ## Data types and functions
 
 Not all data types do well with certain functions. 
