@@ -301,25 +301,20 @@ success_msg("Great! Good work!")
 ## Let's (bar)plot that table
 
 Now we know how to create a table and next we want to visualize it. The basic functions to use when plotting tables are 
-`barplot()` and `plot()` (or `mosaicplot()`). 
+`barplot()` and `plot()`. 
 
-The `barplot()` function has many arguments, and it is often useful to see the help pge of the function with `help(barplot)` or `?barplot`. 
-
-One of the arguments in `barplot()` is `beside`, which is by default stated as `FALSE`. The `beside` argument tells how the bars are in the plot: `FALSE` creates a plot where the bars are stacked and `TRUE` creates a barplot, where the bars are side by side in groups.
-
-When visualizing cross tabulations it is good to know what part of the table is what in the plot. It is possible to add a legend to a `barplot()` with an argument `legend`. Note that you need to specify what you want to be in the legend. See the sample code to understand how legends work. 
+The `barplot()` function has many arguments, and it is often useful to see the help page of the function with `help(barplot)` or `?barplot`. We will pay special attention to the arguments `beside` and `legend`. You will notice the difference in plots, see the example code!
 
 *** =instructions
-- Execute objects `tbl` and `my_tbl`.
-- Plot barplots of `tbl`and `my_tbl`. Note the difference in the plots.
-- Do a better barplot of `my_tbl` by adding a legend. You get the correct names by assigning the rownames of `my_tbl` to the legend. Note that the  `rownames()` is also a function.
-- Create a table object `my_tbl_2` where the variables are 'toita' and 'kone'
-- Make a barplot of `my_tbl_2` and add a legend using the rownames of the table.
+- Execute objects `my_tbl`.
+- Plot barplot of `my_tbl` when `beside` is `FALSE`.
+- Change `beside` to `TRUE`. Do you see the difference?
+- Do a better barplot of `my_tbl` by adding a legend. You can add a legend with code `legend=rownames(my_tbl)`. Note that the  `rownames()` is also a function, and it takes the table as an argument.
 
 
 *** =hint
-- hint 1
-- hint 2
+- In functions multiple arguments are separated with comma. 
+- No quotation marks are needed with `FALSE` and `TRUE`. 
 
 
 *** =pre_exercise_code
@@ -345,22 +340,11 @@ students2014$kenka <- as.numeric(students2014$kenka)
 ```{r}
 # students2014 is available
 
-# Let's create 'tbl', 'my_tbl' and 'my_prop_tbl'
-tbl <- table(students2014$sukup)
+# Let's create 'my_tbl'
 my_tbl <- table(students2014$sukup, students2014$kone)
 
-# The barplots of 'tbl' and 'my_tbl'
-barplot(tbl)
-barplot(my_tbl)
-
-# Add a legend
-barplot(my_tbl, legend=rownames(my_tbl))
-
-# Create a table of 'toita' and 'kone'
-
-  
-# Make a barplot of 'my_tbl_2' and add a legend using the rownames of the table
-
+# Barplot of 'my_tbl'
+barplot(my_tbl, beside = FALSE)
 
 ```
 
@@ -368,31 +352,19 @@ barplot(my_tbl, legend=rownames(my_tbl))
 ```{r}
 # students2014 is available
 
-# Let's create 'tbl', 'my_tbl' and 'my_prop_tbl'
-tbl <- table(students2014$sukup)
+# Let's create 'my_tbl'
 my_tbl <- table(students2014$sukup, students2014$kone)
 
-# The barplots of 'tbl' and 'my_tbl'
-barplot(tbl)
-barplot(my_tbl)
+# Barplot of 'my_tbl'
+barplot(my_tbl, beside = FALSE, legend=rownames(my_tbl))
 
-# Add a legend
-barplot(my_tbl, legend=rownames(my_tbl))
-
-# Create a table of 'toita' and 'kone'
-my_tbl_2 <- table(students2014$toita, students2014$kone)
-  
-# Barplot 'my_tbl_2' and add a legend with the rownames of the table. 
-barplot(my_tbl_2, legend=rownames(my_tbl_2))
 ```
 
 *** =sct
 ```{r}
 
-test_function("barplot", args=c("my_tbl_2"))
-test_object("my_tbl_2", incorrect_msg = "Did you create a table `my_tbl_2` with `toita` and `kone`?")
+test_function("barplot", args=c("my_tbl", "beside", "legend"), incorrect_msg = "Did you use arguments `beside` and `legend` in the barplot?")
 
-# test if the students code produces an error
 test_error()
 
 # Final message the student will see upon completing the exercise
