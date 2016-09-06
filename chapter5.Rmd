@@ -213,16 +213,14 @@ Tables get more interesting when there is more than one variable. You can find f
 
 The function `table()` can take more than one variable and produce more complex cross tabulations. When using `table()` with more than one variable, one needs to separate the variables with a comma (`,`). 
 
-Often it is useful to calculate the margins of the table. In R the calculations are done with function `addmargins()`, which takes an table object as an argument. So to calculate the margins, you need to have a table first. 
-
-The `prop.table()` function creates propotional tables the same way as it did when only one variable was used. The function `addmargins()` works also with proportional tables. 
+See how the `prop.table()` works with multiple variables from the sample code. Also you will learn useful function `addmargins()` which calculates the margins of the table.
 
 *** =instructions
 - Execute `tbl` and see how the table of variable `sukup` and `toita` looks like. 
 - Look at the proportional table of `tbl`.
 - Look what happens when you use the `addmargins()` function on `tbl`.
-- Create `my_tbl` with variables `kone` and `sukup` from the `students2014`
-- Add margins to `my_tbl`
+- Create `my_tbl` with variables `sukup` and `kone` from the `students2014`
+- Print `my_tbl` and add margins to it.
 
 *** =hint
 - Did you separate the variable names with comma (`,`) inside the `table()` function?
@@ -257,9 +255,12 @@ tbl <- table(students2014$sukup, students2014$toita)
 prop.table(tbl)
 addmargins(tbl)
 
-# Create a table of 'kone' and 'sukup' from the 'students2014'
+# Create a table of 'sukup' and 'kone' from the 'students2014'
 my_tbl <-
 
+# Print 'my_tbl'
+
+    
 # Add margins to 'my_tbl'
   
   
@@ -277,6 +278,9 @@ addmargins(tbl)
 # Create a table of 'sukup' and 'kone' from the 'students2014'
 my_tbl <- table(students2014$sukup, students2014$kone)
 
+# Print 'my_tbl'
+my_tbl
+    
 # Add margins to 'my_tbl'
 addmargins(my_tbl)  
   
@@ -284,12 +288,9 @@ addmargins(my_tbl)
 
 *** =sct
 ```{r}
-test_object("tbl")
 test_object("my_tbl")
-
-test_function("prop.table", incorrect_msg = "Did you use the `prop.table()` function?")
-test_function("addmargins", incorrect_msg = "Did you use the `addmargins()` function?")
-test_output_contains("addmargins(my_tbl)")
+test_function("addmargins", args=c("my_tbl"), incorrect_msg = "Did you use the `addmargins()` function?")
+test_output_contains("my_tbl", incorrect_msg = "Did you print `my_tbl`?")
 
 test_error()
 
