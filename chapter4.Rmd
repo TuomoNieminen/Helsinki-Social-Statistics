@@ -379,7 +379,7 @@ simulate <- function(n = 100) {
   # linear equation y = b_1 * x^1 + .. + b_d * x^d + e
   y <- rowSums(X) + rnorm(n)
   # scatterplot
-  plot(x, y, col = "grey40", type = "p", pch= 19, xlab="", ylab="")
+  plot(x, y, col = "grey40", type = "p", pch= 19, xlab="", ylab="", main = "Guess the correlation")
   
   return(list(x = x, y = y))
 }
@@ -387,18 +387,18 @@ simulate <- function(n = 100) {
 show_correlation <- function(df, guess) {
   x <- df$x
   y <- df$y
-  correlation <- cor(x, y)
+  correlation <- round(cor(x, y), 2)
   diff <- round(abs(correlation - guess),2)
   if(diff < 0.1) fb <- "you're a wizard!"
   else if(diff < 0.2) fb <- "awsome!"
   else if(diff < 0.3) fb <- "nice try!"
   else if(diff < 0.4) fb <- "not too bad."
   else if(diff > 0.4) fb <- "try again?"
-  plot(x, y, type = "p", col = "grey40", pch= 19, xlab="", ylab="",
-       main = paste0("Results\n", 
-                    "guess: ",guess,", ",
-                    "actual: ",round(cor(x, y),2), "\n",
-                    diff," difference, ",fb))
+  plot(x, y, type = "p", col = "grey40", pch= 19, xlab="", ylab="")
+  title(main = paste0("Results", "\n", 
+                      "guess: ",guess," ",
+                      "actual: ",correlation, "\n",
+                      diff," difference, ",fb))
   abline(lm(y~x), col ="red")
 }
 
@@ -412,7 +412,7 @@ show_correlation <- function(df, guess) {
 data <- simulate(n = 60)
 
 # What is the correlation?
-guess <- 0.5
+guess <- 0
 
 # Show the linear relationship and correlation
 show_correlation(data, guess)
