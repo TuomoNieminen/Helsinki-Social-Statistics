@@ -160,7 +160,7 @@ Bar plots are useful for visualizing qualitative, discrete variables. A bar plot
 
 In this exercise you will draw a barplot of `kone`. For each student the value of `kone` is the operating system of the students computer. For more information see [the metafile](http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS-meta.txt).
 
-In base R graphics, the function `barplot()` can be used to draw a bar plot. The first argument (`height`) should contain the counts you wish to visualize. The counts can be computed with `summary()` or more generally `table()`.
+In base R graphics, the function `barplot()` can be used to draw a bar plot. The first argument (called `height`) should contain the counts you wish to visualize. The counts can be computed with `summary()` or more generally with `table()`.
 
 
 *** =instructions
@@ -229,7 +229,7 @@ barplot(os_counts)
 ```{r}
 test_object("os_counts", incorrect_msg = "Please use `table()` to create the object `os_counts`.")
 
-test_function("barplot", args="height", not_called_msg = "Please call `barplot()` using the counts of the operating systems created by `table()`.")
+test_function("barplot", args="height", not_called_msg = "Please call `barplot()` using the counts of the operating systems, created by `table()`.")
 
 test_error()
 success_msg("Excellent work!")
@@ -249,14 +249,14 @@ A solution is to first categorize the variable.
 *** =instructions
 - Use `table()` to look at the distribution of students age.
 - Use `cut()` to create a factor object where age is cut into intervals. Use the vector `c(0, 16, 20, 24, 30, 100)` as break points.
-- Print out a table of the age categories.
+- Use `table()` on the age categories to create object `age_counts` and print it.
 - Visualize the contents of the table with a bar plot.
 
 
 *** =hint
 - Use the argument `breaks = c(0, 16, 20, 24, 30, 100)` inside `cut()` to create the factor object `age_cut`.
 - Make sure to close the parenthesis on `cut()`.
-- See the previous exercise for more information on how to create a bar plot. The object `age_cut` is very similar to `students2014$kone`.
+
 
 
 *** =pre_exercise_code
@@ -286,10 +286,11 @@ table(students2014$ika)
 # Split age to intervals
 age_cut <- cut(students2014$ika, breaks = NULL)
 
-# Print out a table of the students age categories
+# Create a table of the students age categories and print it.
+age_counts <- NULL
 
 
-# Draw a barplot() of the age categories
+# Draw a barplot() of the counts of the age categories. 
 
 
 
@@ -305,26 +306,30 @@ table(students2014$ika)
 # Split age to intervals
 age_cut <- cut(students2014$ika, breaks = c(0, 16, 20, 24, 30, 100))
 
-# Print out a table of the students age categories
-table(age_cut)
+# Create a table of the students age categories and print it.
+age_counts <- table(age_cut)
+age_counts
 
 # Draw a barplot() of the age categories
-barplot(table(age_cut))
+barplot(age_counts)
 
 
 ```
 
 *** =sct
 ```{r}
+
+test_output_contains("table(students2014$ika)", incorrect_msg = "Please print out a table of the original `ika` variable.")
+
 test_object("age_cut", incorrect_msg = "Please use `breaks = c(0, 16, 20, 24, 30, 100)` to create the object age_cut.")
 
-test_output_contains("table(age_cut)",
- incorrect_msg = "Please use `table()` on `age_cut`")
+test_object("age_counts",incorrect_msg = "Please create the object `age_counts` using `table()`.")
+
+test_output_contains("age_counts", incorrect_msg = "Please print out the contents of `age_counts`.")
 
 test_function("barplot", args = "height", not_called_msg = "Please use `barplot()` to visualize the counts of the age categories.")
 
 test_error()
-
 success_msg("Nicely done. That was awsome!")
 ```
 
