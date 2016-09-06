@@ -40,7 +40,7 @@ barplot(summary(students2014$kone), main = "Barplot of OS", xlab = "Linux, Mac, 
 hist(students2014$pituus,  main ="Histogram of student heights", xlab = "height")
   
 # horizontally placed box plot of ages
-boxplot(students2014$ika, main = "Boxplot of student ages", xlab = "age", horizontal = T)
+boxplot(students2014$ika, main = "Boxplot of student ages", xlab = "age", horizontal = TRUE)
 
 
 ```
@@ -56,7 +56,7 @@ barplot(summary(students2014$kone), main = "Barplot of OS", xlab = "Linux, Mac, 
 hist(students2014$pituus,  main ="Histogram of student heights", xlab = "height")
   
 # Box plot of student ages
-boxplot(students2014$ika, main = "Boxplot of student ages", xlab = "age", horizontal = T)
+boxplot(students2014$ika, main = "Boxplot of student ages", xlab = "age", horizontal = TRUE)
 
 
 ```
