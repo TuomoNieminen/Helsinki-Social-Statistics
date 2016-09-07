@@ -361,7 +361,7 @@ barplot(gender_os_tbl, beside = FALSE)
 gender_os_tbl <- table(students2014$sukup, students2014$kone)
 
 # Barplot of 'gender_os_tbl'
-barplot(gender_os_tbl, beside = TRUE, legend=rownames(gender_os_tbl))
+barplot(gender_os_tbl, beside = TRUE, legend.text = rownames(gender_os_tbl))
 
 ```
 
