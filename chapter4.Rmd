@@ -405,7 +405,7 @@ show_correlation <- function(df, guess) {
   else if(diff < 0.2) fb <- "awsome!"
   else if(diff < 0.3) fb <- "nice try!"
   else if(diff < 0.4) fb <- "not too bad."
-  else if(diff > 0.4) fb <- "try again?"
+  else if(diff >= 0.4) fb <- "try again?"
   plot(x, y, type = "p", col = "grey40", pch= 19, xlab="", ylab="")
   title(main = paste0("Results", "\n", 
                       "guess: ",guess," ",
