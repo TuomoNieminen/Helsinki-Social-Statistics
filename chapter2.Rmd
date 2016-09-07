@@ -75,8 +75,6 @@ students2014$kenka
 
 *** =sct
 ```{r}
-test_function("head", incorrect_msg = "Did you use the head() function?")
-test_function("str", incorrect_msg = "Did you use the str() function?")
 test_output_contains("students2014$kenka", incorrect_msg = "Did you use the $-sign to access the shoe size variable?")
 
 # test if the students code produces an error
@@ -146,9 +144,9 @@ str(my_boolean)
 
 *** =sct
 ```{r}
-test_student_typed("my_boolean <- TRUE", not_typed_msg="Did you change the value of `my_boolean`?")
 test_object("my_initials", eval=FALSE, incorrect_msg = "Did you assign your initials to `my_initials`?")
-test_student_typed("my_numeric_object <- 10.5", not_typed_msg="Did you assign correct value to  `my_numeric`?")
+test_object("my_boolean", incorrect_msg="Did you change the value of `my_boolean`?")
+test_object("my_numeric_object", incorrect_msg="Did you assign correct value to  `my_numeric`?")
 
 test_output_contains("str(my_boolean)", incorrect_msg = "Did you use `str()` on `my_boolean`?")
 test_output_contains("str(my_initials)", incorrect_msg = "Did you use `str()` on `my_initials`?")
@@ -174,6 +172,7 @@ In R is is also possible to create factors from numerical objects using the func
 *** =instructions
 - Create objects `student_age` and `student_age_cut`
 - use `str()` to inspect `student_age_cut`
+- Use `head()` to print the first six values of `student_age`
 - Use `head()` to print the first six values of `student_age_cut`
 
 
@@ -212,7 +211,7 @@ student_age_cut <- cut(student_age, breaks = c(15, 25, 35, 100))
 # Inspect the data type of student_age_cut
 
 
-# Print the first 6 elements of student_age_cut
+# Print the first 6 elements of student_age and student_age_cut
 
 
 
@@ -231,7 +230,8 @@ student_age_cut <- cut(student_age, breaks = c(15, 25, 35, 100))
 # Inspect the data type of student_age_cut
 str(student_age_cut)
 
-# Print the first 6 elements of student_age_cut
+# Print the first 6 elements of student_age and student_age_cut
+head(student_age)
 head(student_age_cut)
 
 
@@ -242,7 +242,8 @@ head(student_age_cut)
 
 test_function("str", args="object", incorrect_msg = "Did you use the `str()` to look at the object 'student_age_cut'?")
 
-test_function("head", args="x", incorrect_msg = "Did you use the `head()` to look at the first six elements of `student_age_cut`?")
+test_output_contains("head(student_age", incorrect_msg = "Did you use `head()` and look at the first six elements of `student_age`?")
+test_output_contains("head(student_age_cut)", incorrect_msg = "Did you use `head()` to look at the first six elements of `student_age_cut`?")
 
 # test if the students code produces an error
 test_error()
@@ -333,20 +334,23 @@ Data types and measurement scales are somewhat related. When asking simple "Yes 
 | Ordinal        |    x    |     x     |         |    x   |
 | Measurement    |    x    |           |         |        |
 
-Use the R Console to inspect the `students2014` data with the function `str()` and select the correct answer. The data is already loaded for you. Remember that in the console `Enter` executes lines.
+
+Use the R Console to inspect the `students2014` data with the function `str()` and select the correct answer from below. The data is already loaded for you. Remember that in the console `Enter` executes lines.
+
+Choose one.  
 
 *** =instructions
-- Variable `kone` is from ordinal scale.
-- Variable `ika` and `pituus` are character values. 
-- You can use boolean data type for variables `ika` and `pituus`.
-- Variable `kone` is from categorical scale.
-- It is meaningful to use factors for measurement scale.
+- Variable `kone` is from ordinal scale.  
+- Variable `ika` and `pituus` are character values.  
+- You can use boolean data type for variables `ika` and `pituus`.  
+- Variable `kone` is from categorical scale.  
+- It is meaningful to use factors for measurement scale.  
 
 
 *** =hint
 - There is no natural order in categorical scale. 
-- You can put the values in a meaningful order, then it's ordinal scale. 
-- Factors create a unique encoding for all the different values. Using factors loses its purpose when you have a lot of different values.
+- If you can put the values in a meaningful order, then it's ordinal scale. 
+- Using factors probably loses its purpose when you have a lot of different values.
 - Character values have quotations marks. `chr` is short for character. 
 
 *** =pre_exercise_code
