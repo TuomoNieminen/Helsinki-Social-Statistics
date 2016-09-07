@@ -14,7 +14,9 @@ Next we learn to do that by ourselves with a little toy example. See the sample 
 *** =instructions
 - In our toy example, the dataset is called `data`. Print out its contains.
 - On the rows are the dudes that answered in the survey. The columns are the items (questions). Let's say that all the items measure the same phenomenon.
-
+- Create `summamuuttuja` by calculating the row sums. Print the data again. Do you notice something new?
+- Create `summamuuttuja_2`. Notice that in the calculations, the row sums are divided by the number of variables (3). So actually `summamuuttuja_2` contains the row means.
+- Print the data yet again. YOu have successfully combined variables!
 
 *** =hint
 - See how the compaining of variables is done from the sample code.
@@ -412,7 +414,7 @@ Mosaic plots are good when you want see the proportions of a table with a quick 
 
 *** =instructions
 - Execute `gender_os_prop`.
-- Use the `plot()` function to create a plot of the `gender_os_prop`. Add a descriptive title to the plot.
+- Use the `plot()` function to create a plot of the `gender_os_prop`. Add a title `OS by gender` to the plot.
 
 *** =hint
 - The `plot()` function can be used for many kinds of data. When there is a table object as an argument, `plot()` produces a mosaicplot.
