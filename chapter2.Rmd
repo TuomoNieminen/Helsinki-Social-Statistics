@@ -94,7 +94,7 @@ There are different data types in R. The most commonly used are:
 
 - Numbers and decimal values are called **numeric**
 - Text or character values are called **characters**
-- Boolean values (`TRUE` or `FALSE`) are called **logical**
+- [Boolean values](https://en.wikipedia.org/wiki/Boolean_data_type) (`TRUE` or `FALSE`) are called **logical**
 
 When creating character values, one needs to use quotation marks (both `' '` and `" "` will work). For example `"Statistics<3"` would be a character value in R. Numeric and boolean values do not need quotation marks. 
 
