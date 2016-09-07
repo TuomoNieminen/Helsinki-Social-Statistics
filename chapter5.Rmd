@@ -6,19 +6,18 @@ description : Cross-tabulations let you explore dependencies hidden deep within 
 
 ## Combining variables
 
-Often in a survey there are many questions that measure the same phenomenon. The phenomenon could be for example trustfulness or prejudice of some sort. Single survey questions are nice, but they do not help us to see the big picture. To get a better outlook of a phenomenon, we can use the sum of variables.
+Often in a survey there are many questions that measure the same phenomenon. The phenomenon could be for example trustfulness or prejudice of some sort. Single survey questions are nice, but they do not help us to see the big picture. To get a better outlook of a phenomenon, we can combain multiple variables into one. This can be done by summing up the one person's answers. We can also combain the variables by taking the means of one person's answers. 
 
-Next we learn to do the sum of variables by ourselves with a little toy example. See the sample code!
+Next we learn to do that by ourselves with a little toy example. See the sample code!
 
 
 *** =instructions
 - In our toy example, the dataset is called `data`. Print out its contains.
 - On the rows are the dudes that answered in the survey. The columns are the items (questions). Let's say that all the items measure the same phenomenon.
-- To get the sum of variables, we need to calculate the mean of every persons answers. The function `rowMeans()` will do it for you.
-- The mean vector we got is the sum of variables. Simple, isn't it?
+
 
 *** =hint
-- The sum of variables can be computed also with sum: the row sums could be used instead of the row means. 
+- See how the compaining of variables is done from the sample code.
 
 
 *** =pre_exercise_code
@@ -38,9 +37,11 @@ colnames(data)<-c("Item_1", "Item_2", "Item_3")
 # In our toy example, the dataset is called 'data'. Print out its contains.
 data
 
-# Calculate the means for every person. 
-sum_of_var <- rowMeans(data)
+# Calculate the sums for every person for 'summamuuttuja_1'. Then create summamuuttuja_2
+data$summamuuttuja_1  <- rowSums(data)
+data$summamuuttuja_2  <- data$summamuuttuja_1 / 3
 
+# Print the data again.
 ```
 
 
@@ -50,7 +51,7 @@ sum_of_var <- rowMeans(data)
 data
 
 # Calculate the means for every person. 
-sum_of_var <- rowMeans(data)
+data$summamuuttuja <- rowMeans(data)
 
 ```
 
@@ -213,7 +214,7 @@ The function `table()` can take more than one variable and produce more complex 
 See how the `prop.table()` works with multiple variables from the sample code. Also you will learn useful function `addmargins()` which calculates the margins of the table.
 
 *** =instructions
-- Execute `gender_work_tbl` and see how the table of variable `sukup` and `toita` looks like. 
+- Create object `gender_work_tbl` and see how the table of variable `sukup` and `toita` looks like. 
 - Look at the proportional table of `gender_work_tbl`.
 - Look what happens when you use the `addmargins()` function on `gender_work_tbl`.
 - Create `gender_os_tbl` with variables `sukup` and `kone` from the `students2014`
@@ -248,8 +249,11 @@ students2014$kenka <- as.numeric(students2014$kenka)
 ```{r}
 # students2014 is available
 
-# Create a table of 'sukup' and 'toita'. Look at the proportional table and freguency table with margins.
+# Create a table of 'sukup' and 'toita'. Print the table.
 gender_work_tbl <- table(students2014$sukup, students2014$toita)
+
+
+# Look at the proportional table and freguency table with margins.
 prop.table(gender_work_tbl)
 addmargins(gender_work_tbl)
 
@@ -269,20 +273,23 @@ gender_os_tbl <-
 ```{r}
 # students2014 is available
 
-# Create a table of 'sukup' and 'toita'. Look at the proportional table and freguency table with margins.
+# Create a table of 'sukup' and 'toita'. Print the table.
 gender_work_tbl <- table(students2014$sukup, students2014$toita)
+
+
+# Look at the proportional table and freguency table with margins.
 prop.table(gender_work_tbl)
 addmargins(gender_work_tbl)
 
 # Create a table of 'sukup' and 'kone' from the 'students2014'
 gender_os_tbl <- table(students2014$sukup, students2014$kone)
 
-# Print 'my_tbl'
+# Print 'os_gender_tbl'
 gender_os_tbl
     
-# Add margins to 'my_tbl'
-addmargins(gender_os_tbl)  
-  
+# Add margins to 'os_gender_tbl'
+addmargins(gender_os_tbl)
+    
 ```
 
 
