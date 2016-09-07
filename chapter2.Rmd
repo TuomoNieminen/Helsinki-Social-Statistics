@@ -242,7 +242,7 @@ head(student_age_cut)
 
 test_function("str", args="object", incorrect_msg = "Did you use the `str()` to look at the object 'student_age_cut'?")
 
-test_output_contains("head(student_age", incorrect_msg = "Did you use `head()` and look at the first six elements of `student_age`?")
+test_output_contains("head(student_age)", incorrect_msg = "Did you use `head()` and look at the first six elements of `student_age`?")
 test_output_contains("head(student_age_cut)", incorrect_msg = "Did you use `head()` to look at the first six elements of `student_age_cut`?")
 
 # test if the students code produces an error
