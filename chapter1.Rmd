@@ -71,7 +71,7 @@ success_msg("Great! Move on to the first exercise.")
 
 On your right you see the R editor area - the script - and below that the R console. The editor area is just a simple text editor where you write code - just like text.
 
-You can first write code to the editor area and then tell R that you want to execute a line of code where your cursor currently is by pressing `Ctrl + Enter`. Input and output will then appear in the console.
+You can first write code to the editor area and then tell R that you want to execute a line of code where your cursor currently is by pressing `Ctrl + Enter` (`Cmd + Enter` on a mac). Input and output will then appear in the console.
 
 It is also possible to write code directly to the console and use `Enter` to execute, but working with the script area is preferred.
 
@@ -146,9 +146,12 @@ Let's continue with something simple. R can do amazing things like scrape websit
 The `^` operator raises the number to its left to the power of the number to its right: for example `3^2` is 9. With this knowledge, follow the instructions below to complete the exercise.
 
 *** =instructions
-- Study and execute the examples in the R script.
+- Study and execute the examples in the R script. (Use `Ctrl + Enter` or `Cmd + Enter`)
 - Type `2^5` in the editor and calculate 2 to the power 5.
 - When done, click 'Submit Answer'.
+
+*** =hint
+- If you have trouble accessing the `^` -sign, you can also use double star `**`.
 
 
 *** =pre_exercise_code
@@ -346,6 +349,8 @@ student_age <- students2014$ika
 
 *** =solution
 ```{r}
+# students2014 data is available
+
 # Create object student_height
 student_height <- students2014$pituus
 
