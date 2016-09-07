@@ -16,6 +16,8 @@ These are always the first things to do after the data is collected and preproce
 -  You can browse the different plots by clicking on "Next/Previous plot".
 - Click 'Submit Answer' to move to the first exercise.
 
+*** = hint
+- Simply click 'Submit Answer' to move to the next exercise.
 
 
 *** =pre_exercise_code
