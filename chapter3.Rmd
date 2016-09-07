@@ -156,8 +156,8 @@ summary(students2014)
 
 *** =sct
 ```{r}
-test_student_typed("summary(students2014$pituus)", not_typed_msg = "Please call summary() on the numeric object students2014$pituus.")
-test_student_typed("summary(students2014)", not_typed_msg="Please call summary() on the data.frame object `students2014`")
+test_output_contains("summary(students2014$pituus)", incorrect_msg = "Please call summary() on the numeric object students2014$pituus.")
+test_output_contains("summary(students2014)", incorrect_msg="Please call summary() on the data.frame object `students2014`")
 
 test_error()
 success_msg("Well done!")
@@ -331,8 +331,6 @@ barplot(age_counts)
 *** =sct
 ```{r}
 
-test_output_contains("table(students2014$ika)", incorrect_msg = "Please print out a table of the original `ika` variable.")
-
 test_object("age_cut", incorrect_msg = "Please use `breaks = c(0, 16, 20, 24, 30, 100)` to create the object age_cut.")
 
 test_object("age_counts",incorrect_msg = "Please create the object `age_counts` using `table()`.")
@@ -415,7 +413,7 @@ hist(students2014$pituus, breaks = 20, col = "blue", xlab = "height", main = "My
 test_function("hist", args=c("x","breaks","main","xlab"))
 
 test_error()
-success_msg("Very well done!")
+success_msg("Very good, young padawan, but you still have much to learn.")
 
 ```
 
