@@ -101,7 +101,7 @@ When creating character values, one needs to use quotation marks (both `' '` and
 You can use the function `str()` (str is short for structure) to find out what data type the object is.
 
 *** =instructions
-- Create character object `my_initials` by assigning your initials in it.
+- Create character object `my_character` by assigning your initials in it.
 - Assign the number 10.5 in `my_numeric_object`. Note that the decimal separator in R is dot instead of comma. 
 - Create the object `my_boolean` by executing the line. Note that when creating boolean values, no quotation marks are needed.
 - Change the value of `my_boolean` to `TRUE`
@@ -120,7 +120,7 @@ You can use the function `str()` (str is short for structure) to find out what d
 *** =sample_code
 ```{r}
 # Create objects with different data types
-my_initials <-
+my_character <-
 my_numeric_object <-
 my_boolean <- FALSE
 
@@ -132,19 +132,19 @@ my_boolean <- FALSE
 *** =solution
 ```{r}
 # Create objects with different data types
-my_initials <- "A.B.C."
+my_character <- "A.B.C."
 my_numeric_object <- 10.5
 my_boolean <- TRUE
 
 # See how the objects look with the function str()
-str(my_initials)
+str(my_character)
 str(my_numeric_object)
 str(my_boolean)
 ```
 
 *** =sct
 ```{r}
-test_object("my_initials", eval=FALSE, incorrect_msg = "Did you assign your initials to `my_initials`?")
+test_object("my_character", eval=FALSE, incorrect_msg = "Did you assign your initials to `my_initials`?")
 test_object("my_boolean", incorrect_msg="Did you change the value of `my_boolean`?")
 test_object("my_numeric_object", incorrect_msg="Did you assign correct value to  `my_numeric`?")
 
