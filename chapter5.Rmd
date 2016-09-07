@@ -4,7 +4,7 @@ description : Cross-tabulations let you explore dependencies hidden deep within 
 
 --- type:NormalExercise lang:r xp:100 skills:1 key:e1b927030f
 
-## The sum of the variables
+## Combining variables
 
 Often in a survey there are many questions that measure the same phenomenon. The phenomenon could be for example trustfulness or prejudice of some sort. Single survey questions are nice, but they do not help us to see the big picture. To get a better outlook of a phenomenon, we can use the sum of variables.
 
@@ -372,6 +372,7 @@ Mosaic plots are good when you want see the proportions of a table with a quick 
 
 *** =hint
 - The `plot()` function can be used for many kinds of data. When there is a table object as an argument, `plot()` produces a mosaicplot.
+- You can add a title to the plot with the `main` argument.
 
 *** =pre_exercise_code
 ```{r}
@@ -413,6 +414,7 @@ gender_os_prop <- prop.table(table(students2014$sukup, students2014$kone))
 
 # Plot 'gender_os_prop'. Add a title.
 plot(gender_os_prop, main = "OS by gender")
+
 
 ```
 
