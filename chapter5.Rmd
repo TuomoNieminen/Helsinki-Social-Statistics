@@ -138,7 +138,8 @@ prop.table(table(students2014$kone))
 ```{r}
 # submission correctness tests
 
-test_function("prop.table", args=c("table(students2014$kone)"), incorrect_msg = "Did you use prop.table on a table of `kone`?")
+test_function("prop.table", args=c("x"), incorrect_msg = "Did you use prop.table on a table of `kone`?")
+
 test_error()
 
 success_msg("Making progress, good work!")
@@ -274,7 +275,7 @@ addmargins(my_tbl)
 *** =sct
 ```{r}
 test_object("my_tbl")
-test_function("addmargins", args=c("my_tbl"), incorrect_msg = "Did you use the `addmargins()` function?")
+test_function("addmargins", args=c("A"), incorrect_msg = "Did you use the `addmargins()` function?")
 test_output_contains("my_tbl", incorrect_msg = "Did you print `my_tbl`?")
 
 test_error()
@@ -350,7 +351,7 @@ barplot(my_tbl, beside = FALSE, legend=rownames(my_tbl))
 *** =sct
 ```{r}
 
-test_function("barplot", args=c("my_tbl", "beside", "legend"), incorrect_msg = "Did you use arguments `beside` and `legend` in the barplot?")
+test_function("barplot", args=c("height", "beside", "legend"), incorrect_msg = "Did you use arguments `beside` and `legend` in the barplot?")
 
 test_error()
 
