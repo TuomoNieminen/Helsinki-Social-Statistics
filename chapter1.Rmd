@@ -372,7 +372,7 @@ success_msg("Excellent! You are making great progress.")
 ```
 
 
---- type:NormalExercise lang:r xp:100 skills:1
+--- type:NormalExercise lang:r xp:100 skills:1 key:962c1fd4f6
 ## Good arguments
 
 During this course you will operate on many of R's ready-made functions. As we already saw, functions can take objects as arguments (inside the parenthesis) and then perform actions using the objects. Using a function to produce an output is called *calling* a function.
