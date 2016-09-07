@@ -4,7 +4,7 @@ description : Cross-tabulations let you explore dependencies hidden deep within 
 
 --- type:NormalExercise lang:r xp:100 skills:1 key:e1b927030f
 
-## The sum of the variable
+## The sum of the variables
 
 Often in a survey there are many questions that measure the same phenomenon. The phenomenon could be for example trustfulness or prejudice of some sort. Single survey questions are nice, but they do not help us to see the big picture. To get a better outlook of a phenomenon, we can use the sum of variables.
 
@@ -12,22 +12,24 @@ Next we learn to do the sum of variables by ourselves with a little toy example.
 
 
 *** =instructions
-- In our toy example, the dataset is called 'data'. Print out its contains.
-- On the rows are the dudes that answered in the survey. The columns are the questions. Let's say that all the questions measure the same phenomenon.
+- In our toy example, the dataset is called `data`. Print out its contains.
+- On the rows are the dudes that answered in the survey. The columns are the items (questions). Let's say that all the items measure the same phenomenon.
 - To get the sum of variables, we need to calculate the mean of every persons answers. The function `rowMeans()` will do it for you.
-- The mean vector we got is the sum of variables
+- The mean vector we got is the sum of variables. Simple, isn't it?
 
 *** =hint
-- 
-- 
+- The sum of variables can be computed also with sum: the row sums could be used instead of the row means. 
+
 
 *** =pre_exercise_code
 ```{r}
-Dude_1 <- c(2, 3, 2)
-Dude_2 <- c(4, 5, 5)
-Dude_3 <- c(1, 4, 3)
-data<-data.frame(rbind(Dude_1, Dude_2, Dude_3))
-colnames(data)<-c("Question_1", "Question_2", "Question_3")
+Emma <- c(2, 3, 2)
+Pihla <- c(4, 5, 5)
+Marianne <- c(1, 2, 1)
+Liisi <- c(2, 3, 3)
+Petteri <- c(4, 1, 3)
+data<-data.frame(rbind(Emma, Pihla, Marianne, Liisi, Petteri))
+colnames(data)<-c("Item_1", "Item_2", "Item_3")
 ```
 
 *** =sample_code
@@ -36,7 +38,7 @@ colnames(data)<-c("Question_1", "Question_2", "Question_3")
 data
 
 # Calculate the means for every person. 
-means<- rowMeans(data)
+sum_of_var <- rowMeans(data)
 
 ```
 
@@ -46,18 +48,14 @@ means<- rowMeans(data)
 data
 
 # Calculate the means for every person. 
-means<- rowMeans(data)
-
-# the 'means' vector is the sum of variables. 
+sum_of_var <- rowMeans(data)
 
 ```
 
 *** =sct
 ```{r}
-
 test_error()
 success_msg("Summing those variables up pretty nicely!")
-
 ```
 
 --- type:NormalExercise lang:r xp:100 skills:1 key:24b2372fff
@@ -66,11 +64,11 @@ success_msg("Summing those variables up pretty nicely!")
 
 Cross tabulation is important form of presenting information. From tables one can see details that plots and pictures do not necessarily convey. Let's do couple of simple tables from the `students2014` data.
 
-Maybe the most basic functions to do cross tabulations in R are `table()` and `prop.table()`. With the `table()` function you can create freguency tables and with the function `prop.table()` proportional tables are created., The `prop.table()` function needs a table object as an argument. Look the examples to see how tables are created.
+Maybe the most basic functions to do cross tabulations in R are `table()` and `prop.table()`. With the `table()` function you can create freguency tables and with the function `prop.table()` proportional tables are created. The `prop.table()` function needs a table object as an argument. Look the examples to see how tables are created.
 
 *** =instructions
-- Create the object `tbl` and print its contents to see how the table looks like.
-- Create proportional table by using the `tbl` object and see the results.
+- Create the object `gender_tbl` and print its contents to see how the table looks like.
+- Create proportional table by using the `gender_tbl` object and see the results.
 - Use the `table()` and `prop.table()` functions to create another proportional table of the variable `kone` from the `students2014` dataset.
 
 *** =hint
@@ -102,13 +100,13 @@ students2014$kenka <- as.numeric(students2014$kenka)
 # students2014 is available
 
 # Create a table of 'sukup' in 'students2014'
-tbl <- table(students2014$sukup)
+gender_tbl <- table(students2014$sukup)
 
 # Print the table
-tbl
+gender_tbl
 
 # Create a proportional table of 'sukup' in 'students2014'
-prop.table(tbl)
+prop.table(gender_tbl)
 
 # Create a proportional table of 'kone' in 'students2014'
 
@@ -121,13 +119,13 @@ prop.table(tbl)
 # students2014 is available
 
 # Create a table of 'sukup' in 'students2014'
-tbl <- table(students2014$sukup)
+gender_tbl <- table(students2014$sukup)
 
 # Print the table
-tbl
+gender_tbl
 
 # Create a proportional table of 'sukup' in 'students2014'
-prop.table(tbl)
+prop.table(gender_tbl)
 
 # Create a proportional table of 'kone' in 'students2014'
 prop.table(table(students2014$kone))
@@ -138,7 +136,7 @@ prop.table(table(students2014$kone))
 ```{r}
 # submission correctness tests
 
-test_function("prop.table", args=c("x"), incorrect_msg = "Did you use prop.table on a table of `kone`?")
+test_function("prop.table", args=c("x"), incorrect_msg = "Did you use `prop.table()` on a table of `kone`?")
 
 test_error()
 
@@ -202,11 +200,11 @@ The function `table()` can take more than one variable and produce more complex 
 See how the `prop.table()` works with multiple variables from the sample code. Also you will learn useful function `addmargins()` which calculates the margins of the table.
 
 *** =instructions
-- Execute `tbl` and see how the table of variable `sukup` and `toita` looks like. 
-- Look at the proportional table of `tbl`.
-- Look what happens when you use the `addmargins()` function on `tbl`.
-- Create `my_tbl` with variables `sukup` and `kone` from the `students2014`
-- Print `my_tbl` and add margins to it.
+- Execute `gender_work_tbl` and see how the table of variable `sukup` and `toita` looks like. 
+- Look at the proportional table of `gender_work_tbl`.
+- Look what happens when you use the `addmargins()` function on `gender_work_tbl`.
+- Create `gender_os_tbl` with variables `sukup` and `kone` from the `students2014`
+- Print `gender_os_tbl` and add margins to it.
 
 *** =hint
 - Did you separate the variable names with comma (`,`) inside the `table()` function?
@@ -237,17 +235,17 @@ students2014$kenka <- as.numeric(students2014$kenka)
 # students2014 is available
 
 # Create a table of 'sukup' and 'toita'. Look at the proportional table and freguency table with margins.
-tbl <- table(students2014$sukup, students2014$toita)
-prop.table(tbl)
-addmargins(tbl)
+gender_work_tbl <- table(students2014$sukup, students2014$toita)
+prop.table(gender_work_tbl)
+addmargins(gender_work_tbl)
 
 # Create a table of 'sukup' and 'kone' from the 'students2014'
-my_tbl <-
+gender_os_tbl <-
 
-# Print 'my_tbl'
+# Print 'os_gender_tbl'
 
     
-# Add margins to 'my_tbl'
+# Add margins to 'os_gender_tbl'
   
   
 ```
@@ -257,26 +255,26 @@ my_tbl <-
 # students2014 is available
 
 # Create a table of 'sukup' and 'toita'. Look at the proportional table and freguency table with margins.
-tbl <- table(students2014$sukup, students2014$toita)
-prop.table(tbl)
-addmargins(tbl)
+gender_work_tbl <- table(students2014$sukup, students2014$toita)
+prop.table(gender_work_tbl)
+addmargins(gender_work_tbl)
 
 # Create a table of 'sukup' and 'kone' from the 'students2014'
-my_tbl <- table(students2014$sukup, students2014$kone)
+gender_os_tbl <- table(students2014$sukup, students2014$kone)
 
 # Print 'my_tbl'
-my_tbl
+gender_os_tbl
     
 # Add margins to 'my_tbl'
-addmargins(my_tbl)  
+addmargins(gender_os_tbl)  
   
 ```
 
 *** =sct
 ```{r}
-test_object("my_tbl")
+test_object("gender_os_tbl")
 test_function("addmargins", args=c("A"), incorrect_msg = "Did you use the `addmargins()` function?")
-test_output_contains("my_tbl", incorrect_msg = "Did you print `my_tbl`?")
+test_output_contains("gender_os_tbl", incorrect_msg = "Did you print `gender_os_tbl`?")
 
 test_error()
 
@@ -294,10 +292,10 @@ Now we know how to create a table and next we want to visualize it. The basic fu
 The `barplot()` function has many arguments, and it is often useful to see the help page of the function with `help(barplot)` or `?barplot`. We will pay special attention to the arguments `beside` and `legend`. You will notice the difference in plots, see the example code!
 
 *** =instructions
-- Execute objects `my_tbl`.
-- Plot barplot of `my_tbl` when `beside` is `FALSE`.
+- Execute objects `gender_os_tbl`.
+- Plot barplot of `gender_os_tbl` when `beside` is `FALSE`.
 - Change `beside` to `TRUE`. Do you see the difference?
-- Do a better barplot of `my_tbl` by adding a legend. You can add a legend with code `legend=rownames(my_tbl)`. Note that the  `rownames()` is also a function, and it takes the table as an argument.
+- Do a better barplot of `gender_os_tbl` by adding a legend. You can add a legend with code `legend=rownames(gender_os_tbl)`. Note that the  `rownames()` is also a function, and it takes the table as an argument.
 
 
 *** =hint
@@ -328,11 +326,11 @@ students2014$kenka <- as.numeric(students2014$kenka)
 ```{r}
 # students2014 is available
 
-# Let's create 'my_tbl'
-my_tbl <- table(students2014$sukup, students2014$kone)
+# Let's create 'gender_os_tbl'
+gender_os_tbl <- table(students2014$sukup, students2014$kone)
 
-# Barplot of 'my_tbl'
-barplot(my_tbl, beside = FALSE)
+# Barplot of 'gender_os_tbl'
+barplot(gender_os_tbl, beside = FALSE)
 
 ```
 
@@ -340,11 +338,11 @@ barplot(my_tbl, beside = FALSE)
 ```{r}
 # students2014 is available
 
-# Let's create 'my_tbl'
-my_tbl <- table(students2014$sukup, students2014$kone)
+# Let's create 'gender_os_tbl'
+gender_os_tbl <- table(students2014$sukup, students2014$kone)
 
-# Barplot of 'my_tbl'
-barplot(my_tbl, beside = FALSE, legend=rownames(my_tbl))
+# Barplot of 'gender_os_tbl'
+barplot(gender_os_tbl, beside = FALSE, legend=rownames(gender_os_tbl))
 
 ```
 
@@ -369,8 +367,8 @@ The `barplot()` function creates nice plots but sometimes, especially with propo
 Mosaic plots are good when you want see the proportions of a table with a quick look. Unlike in barplots, the bars in the mosaic plot have different widths. With different bar widths, you immediately notice the size differences between the cells of the table. 
 
 *** =instructions
-- Execute `my_prop_tbl`.
-- Use the `plot()` function to create a plot of the `my_prop_tbl`. Add a descriptive title to the plot.
+- Execute `gender_os_prop`.
+- Use the `plot()` function to create a plot of the `gender_os_prop`. Add a descriptive title to the plot.
 
 *** =hint
 - The `plot()` function can be used for many kinds of data. When there is a table object as an argument, `plot()` produces a mosaicplot.
@@ -399,9 +397,9 @@ students2014$kenka <- as.numeric(students2014$kenka)
 # students2014 is available
 
 # Proportional table of 'sukup' and 'kone'
-my_prop_tbl <- prop.table(table(students2014$kone, students2014$sukup))
+gender_os_prop <- prop.table(table(students2014$kone, students2014$sukup))
 
-# Plot 'my_prop_tbl'. Add a title. 
+# Plot 'gender_os_prop'. Add a title. 
 
 
 ```
@@ -411,10 +409,10 @@ my_prop_tbl <- prop.table(table(students2014$kone, students2014$sukup))
 # students2014 is available
 
 # Proportional table of 'sukup' and 'kone'
-my_prop_tbl <- prop.table(table(students2014$sukup, students2014$kone))
+gender_os_prop <- prop.table(table(students2014$sukup, students2014$kone))
 
-# Plot 'my_prop_tbl'. Add a title.
-plot(my_prop_tbl, main = "OS by gender")
+# Plot 'gender_os_prop'. Add a title.
+plot(gender_os_prop, main = "OS by gender")
 
 ```
 
