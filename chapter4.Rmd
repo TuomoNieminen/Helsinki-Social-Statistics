@@ -409,7 +409,7 @@ show_correlation <- function(df, guess) {
 # Functions simulate() and show_correlation() are available
 
 # Simulate n values and draw a scatterplot
-data <- simulate(n = 60)
+data <- simulate(n = 100)
 
 # What is the correlation?
 guess <- 0
