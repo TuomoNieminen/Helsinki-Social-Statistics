@@ -15,6 +15,7 @@ Here you will get to apply some functions that are helpful for inspecting data: 
 - Execute the function `head()` and see the results
 - Inspect the data types in the `students2014` data with the function `str()`
 - Use the $-sign to access the students shoe size (`kenka`) in `students2014` data
+- Note that `students2014$ika` prints out all the ages of the students in `students2014`
 
 *** =hint
 - The data is stored in object `students2014`
