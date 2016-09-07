@@ -125,10 +125,10 @@ Try it!
 
 *** =sct
 ```{r}
-test_student_typed("Hello world!", not_typed_msg="Please type 'Hello world!' in the editor.")
+test_student_typed("Hello world!", not_typed_msg="Please type \"Hello world!\" in the editor.")
 
 test_error()
-success_msg("Great work! You have now executed your first line of code :)")
+success_msg("You're learning well, padawan.")
 ```
 
 
@@ -199,7 +199,7 @@ The `^` operator raises the number to its left to the power of the number to its
 ```{r}
 test_output_contains("2^5", incorrect_msg = "The exponentiation example is not correct. Please write `2 ^ 5` on a new line.")
 
-success_msg("Great work! Head over to the next exercise.")
+success_msg("Good job! Head over to the next exercise.")
 ```
 
 --- type:NormalExercise lang:r xp:100 skills:1 key:856fab934f
@@ -282,7 +282,8 @@ test_object("my_name", eval = F, incorrect_msg = "Did you assign your name to `m
 test_object("my_message", eval = F, incorrect_msg = "Did you assign a message to `my_message`?")
 
 test_error(incorrect_msg = "Did you use quotation marks to assign your name and a message to the objects `my_name` and `my_message`")
-success_msg(paste0("Great job ", my_name, ". ", my_message, "!"))
+
+success_msg(paste0("Great work ", my_name, ". ", my_message, "!"))
 ```
 
 
@@ -374,16 +375,18 @@ success_msg("Excellent! You are making great progress.")
 --- type:NormalExercise lang:r xp:100 skills:1 key:962c1fd4f6
 ## Good arguments
 
-During this course you will operate on many of R's ready-made functions. As we already saw, functions take objects as their arguments and then perform actions using the objects. Using a function is called *calling* it.
+During this course you will operate on many of R's ready-made functions. As we already saw, functions can take objects as arguments (inside the parenthesis) and then perform actions using the objects. Using a function to produce an output is called *calling* a function.
 
-Functions usually have more than one possible argument. Some of them can have default values and others need to be specified. The arguments have names, which can (and often should) be used when specifying their values. The recommended style is to specify all but the first argument by name, when calling a function.
+Functions usually have more than one possible argument. Some of the arguments can have default values and others need to be specified. The arguments have names, which can (and often should) be used when specifying their values. The recommended style is to specify all but the first argument by name, when calling a function.  
+
+Multiple arguments are always separated with a comma.  
 
 *** =instructions
-- Execute the example codes where the function `head()` is used to explore the first couple observations in the `students2014` dataset.
+- Execute the example codes where the function `head()` is used to explore the first couple observations in the `students2014` dataset.  
 - Create object `first_ten_students` by calling `head()` with `n = 10`.
 
 *** =hint
-- Remember to separate the arguments with a comma
+- Remember to separate the function arguments with a comma
 - The answer is of the form: `first_ten_students <- head(arguments_here)`
 
 
@@ -407,18 +410,18 @@ students2014$kenka <- as.numeric(students2014$kenka)
 
 *** =sample_code
 ```{r}
-# students2014 is available
+# students2014 data object is available
 
 # Use the function head() on the object students2014
-head(students2014, n = 4)
+head(students2014, n = 2)
 
 # Argument 'n' of head() has a default value 6
 head(students2014)
 
 # These calls are identical. Try them.
-head(students2014, n = 3) # recommended style
-head(students2014, 3)     # style usually not recommended
-head(n = 3, students2014) # style not recommended
+head(students2014, n = 3)     # recommended style
+head(x = students2014, 3)     # style not recommended
+head(n = 3, x = students2014) # style not recommended
 
 # Save the first ten observations of the data
 first_ten_students <- 
@@ -428,18 +431,18 @@ first_ten_students <-
 
 *** =solution
 ```{r}
-# students2014 is available
+# students2014 data object is available
 
 # Use the function head() on the object students2014
-head(students2014, n = 4)
+head(students2014, n = 2)
 
 # Argument 'n' of head() has a default value 6
 head(students2014)
 
 # These calls are identical. Try them.
-head(students2014, n = 3) # recommended style
-head(students2014, 3)     # style usually not recommended
-head(n = 3, students2014) # style not recommended
+head(students2014, n = 3)     # recommended style
+head(x = students2014, 3)     # style not recommended
+head(n = 3, x = students2014) # style not recommended
 
 first_ten_students <- head(students2014, n = 10)
 
@@ -450,9 +453,9 @@ first_ten_students <- head(students2014, n = 10)
 ```{r}
 test_error(incorrect_msg = "Your code seems to produce an error. Did you create the object `first_ten_students` as instructed?")
 
-test_object("first_ten_students")
+test_object("first_ten_students", incorrect_msg = "Plead use `head()` with the correct arguments to create the object `first_ten_students`.")
 
-success_msg("Great job!")
+success_msg("Nicely done!")
 ```
 
 --- type:MultipleChoiceExercise lang:r xp:100 skills:1 key:8d2100f40a
@@ -489,5 +492,5 @@ msg2 <- "Yes, correct!"
 test_mc(correct = 2, feedback_msgs = c(msg1, msg2, msg3, msg4, msg5))
 
 # Final message the student will see upon completing the exercise
-success_msg("Great work! Next time we'll explore the data :)")
+success_msg("Well done!")
 ```
