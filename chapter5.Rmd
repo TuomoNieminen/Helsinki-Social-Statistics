@@ -37,11 +37,18 @@ colnames(data)<-c("Item_1", "Item_2", "Item_3")
 # In our toy example, the dataset is called 'data'. Print out its contains.
 data
 
-# Calculate the sums for every person for 'summamuuttuja_1'. Then create summamuuttuja_2
-data$summamuuttuja_1  <- rowSums(data)
-data$summamuuttuja_2  <- data$summamuuttuja_1 / 3
+# Let's create a combined variable by summing up the items for each person
+data$summamuuttuja <- rowSums(data)
 
-# Print the data again.
+# Print out the data again
+
+
+# We can also use the mean of the items
+data$summamuuttuja_2 <- data$summamuuttuja / 3
+
+# Print out the data again
+
+
 ```
 
 
@@ -50,8 +57,17 @@ data$summamuuttuja_2  <- data$summamuuttuja_1 / 3
 # In our toy example, the dataset is called 'data'. Print out its contains.
 data
 
-# Calculate the means for every person. 
-data$summamuuttuja <- rowMeans(data)
+# Let's create a combined variable by summing up the items for each person
+data$summamuuttuja <- rowSums(data)
+
+# Print out the data again
+
+
+# We can also use the mean of the items
+data$summamuuttuja_2 <- data$summamuuttuja / 3
+
+# Print out the data again
+
 
 ```
 
