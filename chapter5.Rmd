@@ -306,13 +306,13 @@ success_msg("Great! Good work!")
 Now we know how to create a table and next we want to visualize it. The basic functions to use when plotting tables are 
 `barplot()` and `plot()`. 
 
-The `barplot()` function has many arguments, and it is often useful to see the help page of the function with `help(barplot)` or `?barplot`. We will pay special attention to the arguments `beside` and `legend`. You will notice the difference in plots, see the example code!
+The `barplot()` function has many arguments, and it is often useful to see the help page of the function with `help(barplot)` or `?barplot`. We will pay special attention to the arguments `beside` and `legend.text`. You will notice the difference in plots, see the example code!
 
 *** =instructions
 - Execute objects `gender_os_tbl`.
 - Plot barplot of `gender_os_tbl` when `beside` is `FALSE`.
 - Change `beside` to `TRUE`. Do you see the difference?
-- Do a better barplot of `gender_os_tbl` by adding a legend. You can add a legend with code `legend=rownames(gender_os_tbl)`. Note that the  `rownames()` is also a function, and it takes the table as an argument.
+- Do a better barplot of `gender_os_tbl` by adding a legend. You can add a legend with code `legend.text = rownames(gender_os_tbl)`. Note that the  `rownames()` is also a function, and it takes the table as an argument.
 
 
 *** =hint
