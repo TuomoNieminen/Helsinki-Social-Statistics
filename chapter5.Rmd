@@ -6,6 +6,8 @@ description : Cross-tabulations let you explore dependencies hidden deep within 
 
 ## Combining variables
 
+testi
+
 Often in a survey there are many questions that measure the same phenomenon. The phenomenon could be for example trustfulness or prejudice of some sort. Single survey questions are nice, but they do not help us to see the big picture. To get a better outlook of a phenomenon, we can use the sum of variables.
 
 Next we learn to do the sum of variables by ourselves with a little toy example. See the sample code!
