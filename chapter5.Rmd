@@ -369,7 +369,7 @@ barplot(gender_os_tbl, beside = TRUE, legend=rownames(gender_os_tbl))
 *** =sct
 ```{r}
 
-test_function("barplot", args=c("height", "beside", "legend"), not_called_msg = "Did you use arguments `beside` and `legend` in the barplot?")
+test_function("barplot", args=c("beside", "legend"), not_called_msg = "Did you use arguments `beside` and `legend` in the barplot?")
 
 test_error()
 
