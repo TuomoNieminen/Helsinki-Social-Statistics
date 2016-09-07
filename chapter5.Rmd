@@ -32,6 +32,7 @@ data<-data.frame(rbind(Emma, Pihla, Marianne, Liisi, Petteri))
 colnames(data)<-c("Item_1", "Item_2", "Item_3")
 ```
 
+
 *** =sample_code
 ```{r}
 # In our toy example, the dataset is called 'data'. Print out its contains.
@@ -41,6 +42,7 @@ data
 sum_of_var <- rowMeans(data)
 
 ```
+
 
 *** =solution
 ```{r}
@@ -52,11 +54,13 @@ sum_of_var <- rowMeans(data)
 
 ```
 
+
 *** =sct
 ```{r}
 test_error()
 success_msg("Summing those variables up pretty nicely!")
 ```
+
 
 --- type:NormalExercise lang:r xp:100 skills:1 key:24b2372fff
 
@@ -95,6 +99,7 @@ students2014$pituus <- as.numeric(students2014$pituus)
 students2014$kenka <- as.numeric(students2014$kenka)
 ```
 
+
 *** =sample_code
 ```{r}
 # students2014 is available
@@ -114,6 +119,7 @@ prop.table(gender_tbl)
 
 ```
 
+
 *** =solution
 ```{r}
 # students2014 is available
@@ -132,6 +138,7 @@ prop.table(table(students2014$kone))
 
 ```
 
+
 *** =sct
 ```{r}
 # submission correctness tests
@@ -143,6 +150,7 @@ test_error()
 success_msg("Making progress, good work!")
 
 ```
+
 
 --- type:MultipleChoiceExercise lang:r xp:50 skills:1 key:6fad9de433
 
@@ -174,6 +182,7 @@ Open and read the meta file. What does `95` mean in the variable `opalku`?
 open_meta <- function() browseURL("http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS-meta.txt")
 ```
 
+
 *** =sct
 ```{r}
 msg1 = "Sorry, that's not the right answer. Look again!"
@@ -188,6 +197,7 @@ test_mc(correct = 2, feedback_msgs = c(msg1,msg2,msg3,msg4,msg5))
 success_msg("Good work!")
 
 ```
+
 
 --- type:NormalExercise lang:r xp:100 skills:1 key:a7f8986e45
 
@@ -230,6 +240,7 @@ students2014$pituus <- as.numeric(students2014$pituus)
 students2014$kenka <- as.numeric(students2014$kenka)
 ```
 
+
 *** =sample_code
 ```{r}
 # students2014 is available
@@ -249,6 +260,7 @@ gender_os_tbl <-
   
   
 ```
+
 
 *** =solution
 ```{r}
@@ -270,6 +282,7 @@ addmargins(gender_os_tbl)
   
 ```
 
+
 *** =sct
 ```{r}
 test_object("gender_os_tbl")
@@ -281,6 +294,7 @@ test_error()
 success_msg("Great! Good work!")
 
 ```
+
 
 --- type:NormalExercise lang:r xp:100 skills:1 key:242f06b715
 
@@ -322,6 +336,7 @@ students2014$pituus <- as.numeric(students2014$pituus)
 students2014$kenka <- as.numeric(students2014$kenka)
 ```
 
+
 *** =sample_code
 ```{r}
 # students2014 is available
@@ -333,6 +348,7 @@ gender_os_tbl <- table(students2014$sukup, students2014$kone)
 barplot(gender_os_tbl, beside = FALSE)
 
 ```
+
 
 *** =solution
 ```{r}
@@ -346,6 +362,7 @@ barplot(gender_os_tbl, beside = FALSE, legend=rownames(gender_os_tbl))
 
 ```
 
+
 *** =sct
 ```{r}
 
@@ -357,6 +374,7 @@ test_error()
 success_msg("You are doing very well!")
 
 ```
+
 
 --- type:NormalExercise lang:r xp:100 skills:1 key:954e6d31e8
 
@@ -393,6 +411,7 @@ students2014$pituus <- as.numeric(students2014$pituus)
 students2014$kenka <- as.numeric(students2014$kenka)
 ```
 
+
 *** =sample_code
 ```{r}
 # students2014 is available
@@ -404,6 +423,7 @@ gender_os_prop <- prop.table(table(students2014$kone, students2014$sukup))
 
 
 ```
+
 
 *** =solution
 ```{r}
@@ -417,6 +437,7 @@ plot(gender_os_prop, main = "OS by gender")
 
 
 ```
+
 
 *** =sct
 ```{r}
