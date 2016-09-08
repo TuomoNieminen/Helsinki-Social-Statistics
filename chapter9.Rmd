@@ -2,7 +2,7 @@
 title       : Hypothesis testing
 description : UNDER CONSTRUCTION
 
---- type:NormalExercise lang:r xp:100 skills:1
+--- type:NormalExercise lang:r xp:100 skills:1 key:ee77c10ab2
 
 ## Exercise 1
 
@@ -49,7 +49,7 @@ success_msg("Good work!")
 
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1
+--- type:NormalExercise lang:r xp:100 skills:1 key:c033eeaa78
 
 ## Exercise 2
 
@@ -96,7 +96,7 @@ success_msg("Good work!")
 
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1
+--- type:NormalExercise lang:r xp:100 skills:1 key:0b42a1089b
 
 ## Exercise 3
 
@@ -143,7 +143,7 @@ success_msg("Good work!")
 
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1
+--- type:NormalExercise lang:r xp:100 skills:1 key:8dfc56d628
 
 ## Exercise 4
 
@@ -190,7 +190,7 @@ success_msg("Good work!")
 
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1
+--- type:NormalExercise lang:r xp:100 skills:1 key:9b63d0cb6a
 
 ## Exercise 5
 
