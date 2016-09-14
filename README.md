@@ -6,18 +6,18 @@
 # List of functions
 
 ## chapter 1
+- $
 - read.table()
-- with() (does not play well with DC, should not be used)
+- with() (does not play well with DC, only used to write a readable example)
 - plot()
 - mean()
-- $
 - head()
 
 
 ## chapter 2
+- $
 - head()
 - str()
-- $
 - cut()
 - c()
 
