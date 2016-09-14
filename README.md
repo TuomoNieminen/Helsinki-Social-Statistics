@@ -3,6 +3,63 @@
 <a href=https://www.datacamp.com//teach/repositories/65844921/go target="_blank"><img src="https://s3.amazonaws.com/assets.datacamp.com/img/github/content-engineering-repos/course_button.png" width="150"></a>
 <a href=https://www.datacamp.com//teach/repositories target="_blank"><img src="https://s3.amazonaws.com/assets.datacamp.com/img/github/content-engineering-repos/dashboard_button.png" width="150"></a>
 
+# List of functions
+
+## chapter 1
+- read.table()
+- with() (does not play well with DC, should not be used)
+- plot()
+- mean()
+- $
+- head()
+
+
+## chapter 2
+- head()
+- str()
+- $
+- cut()
+- c()
+
+## chapter 3
+- $
+- barplot()
+- hist()
+- boxplot()
+- summary()
+- table()
+
+## chapter 4
+- $
+- plot()
+- cor()
+- sd()
+- kmeans()
+- head()
+- as.numeric()
+- jitter()
+
+## chapter 5
+- $
+- rowSums()
+- table()
+- prop.table()
+- addmargins()
+- barplot()
+- plot()
+
+## chapter 6
+
+## chapter 7
+
+## chapter 8
+
+## chapter 9
+
+## chapter 10
+
+# DataCamp course creation
+
 Changes you make to this GitHub repository are automatically reflected in the linked DataCamp course. This means that you can enjoy all the advantages of version control, collaboration, issue handling ... of GitHub.
 
 ## Workflow
