@@ -19,7 +19,7 @@ Researchers and experts often use programming to visualize and explore data and 
 
 ***= hint
 - Press 'Submit Answer' when you're ready to move forward.
-
+- If you changed the code and it produces an error, you can reset the changes by clicking the reset button next to 'Submit Answer'.
 
 *** =pre_exercise_code
 ```{r}
