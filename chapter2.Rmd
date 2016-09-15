@@ -89,6 +89,8 @@ success_msg("Good work!")
 --- type:NormalExercise lang:r xp:100 skills:1 key:e4360dcfec
 ## Data types (1)
 
+**Please note that problems related to this exercise have been fixed on 15.9.2016**
+
 In this section you learn about the data types in R. You will also get familiar with vectors and their usage. What does data types and vectors have to do with each other? A lot, you'll see! 
 
 There are different data types in R. The most commonly used are:
@@ -106,7 +108,7 @@ You can use the function `str()` (str is short for structure) to find out what d
 - Assign the number 10.5 in `my_numeric_object`. Note that the decimal separator in R is dot instead of comma. 
 - Create the object `my_boolean` by executing the line. Note that when creating boolean values, no quotation marks are needed.
 - Change the value of `my_boolean` to `TRUE`
-- Inspect the data types with function `str()`.
+- Inspect the data types of the objects with `str()`.
 
 *** =hint
 - When creating a character object, remember to use quotation marks.
@@ -145,13 +147,13 @@ str(my_boolean)
 
 *** =sct
 ```{r}
-test_object("my_character", eval=FALSE, incorrect_msg = "Did you assign your initials to `my_initials`?")
+test_object("my_character", eval=FALSE, incorrect_msg = "Did you assign your initials to `my_character`?")
+test_object("my_numeric_object", incorrect_msg="Did you assign the correct value to `my_numeric_object`?")
 test_object("my_boolean", incorrect_msg="Did you change the value of `my_boolean`?")
-test_object("my_numeric_object", incorrect_msg="Did you assign correct value to  `my_numeric`?")
 
-test_output_contains("str(my_boolean)", incorrect_msg = "Did you use `str()` on `my_boolean`?")
-test_output_contains("str(my_initials)", incorrect_msg = "Did you use `str()` on `my_initials`?")
+test_output_contains("str(my_character)", incorrect_msg = "Did you use `str()` on `my_character`?")
 test_output_contains("str(my_numeric_object)", incorrect_msg = "Did you use `str()` on `my_numeric_object`?")
+test_output_contains("str(my_boolean)", incorrect_msg = "Did you use `str()` on `my_boolean`?")
 
 # test if the students code produces an error
 test_error()
