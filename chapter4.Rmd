@@ -88,7 +88,7 @@ The help page of a function called *func* can be opened by two methods: `help(fu
 - Draw a scatter plot of student shoesize versus height. Compute the correlation using `cor()`.
 - Use the information on the help page and make the following adjustments to the plot:
 - Add this main title: "Scatter plot of student shoesize versus height".
-- Add this subtitle: "correlation: x". Replace x with the actual correlation, rounded to two decimal places.
+- Add this subtitle: "Correlation: x". Replace x with the actual correlation, rounded to two decimal places.
 
 *** =hint
 - See the previous exersize for tips on drawing a scatterplot and computing correlation.
@@ -131,7 +131,7 @@ shoesize <- students2014$kenka
 height <- students2014$pituus
 
 # Draw a scatterplot of shoesize and height
-plot(shoesize, height, main = "Scatter plot of student shoesize versus height", sub = "correlation: 0.85")
+plot(shoesize, height, main = "Scatter plot of student shoesize versus height", sub = "Correlation: 0.85")
 
 # Compute the correlation of shoesize and height
 cor(shoesize, height)
