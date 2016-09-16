@@ -11,15 +11,16 @@ Because of these reasons, R is a very popular language among the scientific comm
 
 Researchers and experts often use programming to visualize and explore data and implement new statistical methods. The purpose of this course is to expose you to the basics of programming and data analysis with R.
 
+Follow the instructions below to complete the exercise.
+
 *** =instructions
-- Study the code written in script.R, which has been used to load a dataset and produce the graphic next to it.
-- A hashtag marks a line as a comment. Comments make it easier for others and yourself to understand the code.
-- Notice that it would be very easy to draw the same or similar graph again, by re-using the code.
-- Press 'Submit Answer' and move on to the next exercise.
+- Take a peek at the code written on the right in script.R. When you opened this exercise, the code gave R the instructions to (1) load a dataset and (2) produce the graphic next to it.
+- Could you tell which lines of code relates to (1) or (2)? Hint: A hashtag marks a line as a comment line.
+- When you're done pondering, simply click 'Submit Answer' and move on to the first exercise!
 
 ***= hint
-- Press 'Submit Answer' when you're ready to move forward.
-- If you changed the code and it produces an error, you can reset the changes by clicking the reset button next to 'Submit Answer'.
+- Simply press 'Submit Answer' when you're ready to move forward.
+
 
 *** =pre_exercise_code
 ```{r}
@@ -32,7 +33,7 @@ with(students2014, plot(x = kenka, y = pituus, col = sukup, pch = 20, main = "Sc
 
 *** =sample_code
 ```{r}
-# This is a very simple example of the power of R
+# This is an example of the power of R
 
 # Create a character object holding data location
 data_url <- "http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS-data.txt"
@@ -40,7 +41,7 @@ data_url <- "http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS-data.txt"
 # Load and save data with the read.table() function
 students2014 <- read.table(data_url, sep = "\t", header = TRUE)
 
-# Draw a graph of shoesize and hight using plot()
+# Draw a graph of student shoesize and hight using plot()
 with(students2014, plot(x = kenka, y = pituus, col = sukup, pch = 20, main = "Scatter plot of student shoesize and height \n(color indicates sex)"))
 
 
@@ -48,7 +49,7 @@ with(students2014, plot(x = kenka, y = pituus, col = sukup, pch = 20, main = "Sc
 
 *** =solution
 ```{r}
-# This is a very simple example of the power of R
+# This is an example of the power of R
 
 # Create a character object holding data location
 data_url <- "http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS-data.txt"
@@ -56,7 +57,7 @@ data_url <- "http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS-data.txt"
 # Load and save data with the read.table() function
 students2014 <- read.table(data_url, sep = "\t", header = TRUE)
 
-# Draw a graph of shoesize and hight using plot()
+# Draw a graph of student shoesize and hight using plot()
 with(students2014, plot(x = kenka, y = pituus, col = sukup, pch = 20, main = "Scatter plot of student shoesize and height \n(color indicates sex)"))
 
 ```
