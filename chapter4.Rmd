@@ -131,7 +131,7 @@ shoesize <- students2014$kenka
 height <- students2014$pituus
 
 # Draw a scatterplot of shoesize and height
-plot(shoesize, height, main = "Scatter plot of student shoesize versus height", sub = "Correlation: 0.85")
+plot(shoesize, height, main = "Scatter plot of student shoesize versus height", sub = "correlation: 0.85")
 
 # Compute the correlation of shoesize and height
 cor(shoesize, height)
