@@ -15,9 +15,10 @@ operator  | description
 `x | y`   | x OR y
 
 ### 6.2 Long term frequency
-Use sample to demonstrate the long term frequency of some condition as a function of the sample size. 
+Use sample() to demonstrate the long term frequency of some condition as a function of the sample size. 
 
-- for example the frequency of succesfully choosing a male student from the data
+- Example: the frequency of succesfully choosing a male student from the data
+- Compare to prop.table() ?
 
 ### 6.3 Selecting a subset
 Introduction to using subset()
@@ -25,25 +26,44 @@ Introduction to using subset()
 - newdata <- subset(data, conditions)
 
 ### 6.4 Proportions and probability
-Use the logical operators to answer questions of probability
+Use the logical operators to answer probability questions
 
-- e.g. what is the probability the a randomly selected student is male
-- nrow()
+- Example: what is the probability the a randomly selected students height is less than 160
+- nrow() 
 
 ### 6.5 Conditioning
-Use the logical operators to answer more difficult questions of probability and demostrate conditioning
+Use the logical operators to answer more difficult probability questions and demonstrate conditioning
 
 - What is the probability that a randomly selected female student has a windows computer?
 
 ## 7. Probability distributions
 
 
-### 7.1 Distributions: continious or discrete?
+### 7.1 Distributions: continuous or discrete?
 
 - multiplechoice?
-- precode?/console?: plots of continious/discrete plots
+- precode?/console?: plots of continuous/discrete plots
+
+- perhaps move this to the end? (tuomo)
 
 ### 7.2 Uniform distribution
+
+- Could use sample() to demonstrate discrete uniform distribution and/or create own probability distribution.
+- Example: 
+
+```{r}
+tomorrow <- c("cat attacks baby","world ends","I eat pasta")
+probabilities <- c(0.2, 0.3, 0.5)
+# draw a sample
+sample(tomorrow, size = 1, prob = probabilities)
+```
+
+```{r}
+# draw a sample 100 times and visualize the distribution
+x <- sample(tomorrow, size = 100, replace = T, prob = probabilities)
+barplot(table(x))
+```
+
 
 ### 7.3 Binomial distribution
 
