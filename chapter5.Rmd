@@ -92,14 +92,19 @@ Cross tabulation is important form of presenting information. From tables one ca
 
 Maybe the most basic functions to do cross tabulations in R are `table()` and `prop.table()`. With the `table()` function you can create freguency tables and with the function `prop.table()` proportional tables are created. The `prop.table()` function needs a table object as an argument. Look the examples to see how tables are created.
 
+Function `prop.table()` prints out the proportional values of the table that is given as an argument. We can make the table output more reader friendly by converting the proportional values into percentages (%). This can be done by multiplying the proportional values by 100. For example the proportional value `0.153` is turned into percentages with calculation `0.153 * 100 = 15,3%`.
+
 *** =instructions
 - Create the object `gender_tbl` and print its contents to see how the table looks like.
 - Create proportional table by using the `gender_tbl` object and see the results.
-- Use the `table()` and `prop.table()` functions to create another proportional table of the variable `kone` from the `students2014` dataset.
+- Use the `table()` and `prop.table()` functions to create another proportional table of the variable `kone` from the `students2014` dataset. Save the table in `os_tbl` object.
+- Turn the proportional values in `os_tbl` into percentages by executing the last line of the sample. Note that you can multiply the tables values by multiplying the table object! 
+- There is a function `round()` used in the last line of code. Can you guess what it does to the table? (Hint: type `?round` to the console to see the help page of the function).
 
 *** =hint
 - Remember to use the $-sign to access variables of the `students2014` dataset.
 - Function `prop.table()` needs a product of the function `table()` as an argument to work correctly. 
+- you can multiply the tables values by multiplying the table object, for example `os_tbl * 5`.
 
 
 *** =pre_exercise_code
@@ -136,8 +141,10 @@ gender_tbl
 prop.table(gender_tbl)
 
 # Create a proportional table of 'kone' in 'students2014'
+os_tbl <-
 
-
+# Make the os_tbl table pretty! From proportional table to percentages:
+round(os_tbl*100, digits = 2)
 
 ```
 
@@ -156,7 +163,10 @@ gender_tbl
 prop.table(gender_tbl)
 
 # Create a proportional table of 'kone' in 'students2014'
-prop.table(table(students2014$kone))
+os_tbl <- prop.table(table(students2014$kone))
+
+# Make the os_tbl table pretty! From proportional table to percentages:
+round(os_tbl*100, digits = 1)
 
 ```
 
@@ -235,6 +245,7 @@ See how the `prop.table()` works with multiple variables from the sample code. A
 - Create object `gender_work_tbl` and see how the table of variable `sukup` and `toita` looks like. 
 - Look at the proportional table of `gender_work_tbl`.
 - Look what happens when you use the `addmargins()` function on `gender_work_tbl`.
+- Create and examine the percentage table `gender_work_pct`. Round the table to make it more reader friendly. Look at the margins of the table. 
 - Create `gender_os_tbl` with variables `sukup` and `kone` from the `students2014`
 - Print `gender_os_tbl` and add margins to it.
 
@@ -270,10 +281,14 @@ students2014$kenka <- as.numeric(students2014$kenka)
 # Create a table of 'sukup' and 'toita'. Print the table.
 gender_work_tbl <- table(students2014$sukup, students2014$toita)
 
-
 # Look at the proportional table and freguency table with margins.
 prop.table(gender_work_tbl)
 addmargins(gender_work_tbl)
+
+# Look at the percentage table and add margins to it
+gender_work_pct <- prop.table(gender_work_tbl)*100
+round(gender_work_pct, digits = 1)
+round(addmargins(gender_work_pct), digits = 1)
 
 # Create a table of 'sukup' and 'kone' from the 'students2014'
 gender_os_tbl <-
@@ -282,7 +297,7 @@ gender_os_tbl <-
 
     
 # Add margins to 'os_gender_tbl'
-  
+
   
 ```
 
@@ -294,10 +309,14 @@ gender_os_tbl <-
 # Create a table of 'sukup' and 'toita'. Print the table.
 gender_work_tbl <- table(students2014$sukup, students2014$toita)
 
-
 # Look at the proportional table and freguency table with margins.
 prop.table(gender_work_tbl)
 addmargins(gender_work_tbl)
+
+# Look at the percentage table and add margins to it
+gender_work_pct <- prop.table(gender_work_tbl)*100
+round(gender_work_pct, digits = 1)
+round(addmargins(gender_work_pct), digits = 1)
 
 # Create a table of 'sukup' and 'kone' from the 'students2014'
 gender_os_tbl <- table(students2014$sukup, students2014$kone)
