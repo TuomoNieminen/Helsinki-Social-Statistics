@@ -1,0 +1,75 @@
+Suunnitelma DataCampin osioille 6, 7, 8, 9  
+
+## 6. Probability, concepts
+
+### 6.1 Logical operators
+Introduce the R logical operators
+
+operator  | description
+----------|------------
+`==`      | exactly equal to
+`!=`      | not equal to
+`<`       | less than
+`>=`      | greater or equal to
+`x & y`   | x AND y
+`x | y`   | x OR y
+
+### 6.2 Long term frequency
+Use sample to demonstrate the long term frequency of some condition as a function of the sample size. 
+
+- for example the frequency of succesfully choosing a male student from the data
+
+### 6.3 Selecting a subset
+Introduction to using subset()
+
+- newdata <- subset(data, conditions)
+
+### 6.4 Proportions and probability
+Use the logical operators to answer questions of probability
+
+- e.g. what is the probability the a randomly selected student is male
+- nrow()
+
+### 6.5 Conditioning
+Use the logical operators to answer more difficult questions of probability and demostrate conditioning
+
+- What is the probability that a randomly selected female student has a windows computer?
+
+
+
+## 8. Simulations and confidence intervals
+
+
+### 8.1 Advanced vectors
+Introduce the bracket notation and indexing 
+
+- 1:10 notation
+- Brackets and indexing
+
+### 8.2 Looping
+Simple demonstration of the for loop
+
+- Simple exercise utilizing a loop and filling a vector
+
+### 8.3 Bootstrapping
+Leikitään, että students2014 edustaa perusjoukkoa
+
+- Samplataan datasta 30 oppilasta lasketaan (esim) pituuden keskiarvo. toistetaan useita kertoja ja tallennetaan tulokset
+- Tuotetaan odotusarvon estimaattorin empiirinen jakauma ja tarkastellaan sitä. histogram(), summary()
+
+### 8.4 Central limit theorem
+Yleistetään edellisen tehtävän huomio tarkastelemalla jonkun toisen muuttujan keskiarvon empiiristä jakaumaa
+
+- Huomioidaan millä välillä suurin osa arvoista (95%) on
+
+### 8.5 A Confidence interval
+Otetaan yksi otos ja lasketaan analyyttisesti 95% luottamusväli
+
+- sama parametri kuin edellisessä tehtävässä. 
+- Vertaillaan empiirisiin tuloksiin.
+
+### 8.6 Confidence interval demo
+Otetaan nyt monta otosta (for loop) ja lasketaan luottamusvälit jokaisen kohdalla. Tallennetaan ne.
+
+- Piirretään kuva josta nähdään kuinka suuri osuus luottamusväleistä sisältää todellisen parametrin arvon (samaan tyyliin kuin https://tuomonieminen.shinyapps.io/CIdemo/)
+- Tämä on varmaankin enemmänkin demonstraatio kuin tehtävä
