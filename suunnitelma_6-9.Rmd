@@ -35,6 +35,26 @@ Use the logical operators to answer more difficult questions of probability and 
 
 - What is the probability that a randomly selected female student has a windows computer?
 
+## 7. Probability distributions
+
+
+### 7.1 Distributions: continious or discrete?
+
+- multiplechoice?
+- precode?/console?: plots of continious/discrete plots
+
+### 7.2 Uniform distribution
+
+### 7.3 Binomial distribution
+
+### 7.4 Normal distribution
+
+### 7.5 Create your own functions
+
+### 7.6 Standardization
+
+- create function to standardize
+- normitus <- function(x) x - mean(x) / sd(x)
 
 
 ## 8. Simulations and confidence intervals
@@ -73,3 +93,16 @@ Otetaan nyt monta otosta (for loop) ja lasketaan luottamusvälit jokaisen kohdal
 
 - Piirretään kuva josta nähdään kuinka suuri osuus luottamusväleistä sisältää todellisen parametrin arvon (samaan tyyliin kuin https://tuomonieminen.shinyapps.io/CIdemo/)
 - Tämä on varmaankin enemmänkin demonstraatio kuin tehtävä
+
+## 9. Hypothesis testing
+
+### 9.1 Statistical hypothesis testing
+- basic consepts
+
+### 9.2 Meet the tests!
+- maybe more than one exercise...
+- t/z/p-tests, t-distribution
+
+### 9.3 Peculiar p-values
+
+### 9.4 (Null hypothesis:) which way to go?!
