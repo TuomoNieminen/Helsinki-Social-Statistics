@@ -12,9 +12,10 @@ In this chapter we'll expand on these tools and we'll also look at how to explor
 *** =instructions
 - Draw a scatter plot of students shoesizes and heights with `plot()`. Does a linear relationship between the variables look plausible?
 - Compute the correlation between shoesizes and heights. What is your interpretation?
+- Click Submit Answer to move to the next exercise.
 
 *** =hint
-- Simply execute the example codes.
+- Simply execute the example codes and click Submit Answer.
 
 
 *** =pre_exercise_code
@@ -88,9 +89,10 @@ The help page of a function called *func* can be opened by two methods: `help(fu
 - Draw a scatter plot of student shoesize versus height. Compute the correlation using `cor()`.
 - Use the information on the help page and make the following adjustments to the plot:
 - Add this main title: "Scatter plot of student shoesize versus height".
-- Add this subtitle: "Correlation: x". Replace x with the actual correlation, rounded to two decimal places.
+- Add this subtitle: "Correlation: 0.XX". Replace 0.XX with the actual correlation, rounded to two decimal places.
 
 *** =hint
+- Please note that the tests are sensitive to capital letters and missing spaces etc.
 - See the previous exersize for tips on drawing a scatterplot and computing correlation.
 
 *** =pre_exercise_code
