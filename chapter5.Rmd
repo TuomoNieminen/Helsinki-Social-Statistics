@@ -6,20 +6,22 @@ description : Cross-tabulations let you explore dependencies hidden deep within 
 
 ## Combining variables
 
-Often in a survey there are many questions that measure the same phenomenon. The phenomenon could be for example trustfulness or prejudice of some sort. Single survey questions are nice, but they do not help us to see the big picture. To get a better outlook of a phenomenon, we can combain multiple variables into one. This can be done by summing up the one person's answers. We can also combain the variables by taking the means of one person's answers. 
+Often in a survey there are many questions that measure the same phenomenon. The phenomenon could be for example trustfulness or prejudice of some sort. Single survey questions are nice, but they do not help us to see the big picture. 
 
-Next we learn to do that by ourselves with a little toy example. See the sample code!
+To get a better outlook of a phenomenon, we can combine multiple questions into one variable. This can be done by summing up the person's answers. We can also combine the questions by taking the mean of the person's answers. 
+
+Next we learn how to do that by ourselves with a little toy example. See the sample code!
 
 
 *** =instructions
-- In our toy example, the dataset is called `data`. Print out its contains.
+- In our toy example, the dataset is called `data`. Print out its contents.
 - On the rows are the dudes that answered in the survey. The columns are the items (questions). Let's say that all the items measure the same phenomenon.
 - Create `summamuuttuja` by calculating the row sums. Print the data again. Do you notice something new?
 - Create `summamuuttuja_2`. Notice that in the calculations, the row sums are divided by the number of variables (3). So actually `summamuuttuja_2` contains the row means.
-- Print the data yet again. YOu have successfully combined variables!
+- Print the data yet again. Yau! You have successfully combined variables!
 
 *** =hint
-- See how the compaining of variables is done from the sample code.
+- See how the combining of variables is done from the sample code.
 
 
 *** =pre_exercise_code
@@ -63,13 +65,13 @@ data
 data$summamuuttuja <- rowSums(data)
 
 # Print out the data again
-
+data
 
 # We can also use the mean of the items
 data$summamuuttuja_2 <- data$summamuuttuja / 3
 
 # Print out the data again
-
+data
 
 ```
 
