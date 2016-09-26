@@ -96,7 +96,7 @@ Function `prop.table()` prints out the proportional values of the table that is 
 
 *** =instructions
 - Create the object `gender_tbl` and print its contents to see how the table looks like.
-- Create proportional table by using the `gender_tbl` object and see the results.
+- See from the sample code how to create a proportional table ( row 7).
 - Use the `table()` and `prop.table()` functions to create another proportional table of the variable `kone` from the `students2014` dataset. Save the table in `os_prop` object.
 - Turn the proportional values in `os_prop` into percentages by executing the last line of the sample. Note that you can multiply the tables values by multiplying the table object! 
 - There is a function `round()` used in the last line of code. Can you guess what it does to the table? (Hint: type `?round` to the console to see the help page of the function).
@@ -280,10 +280,10 @@ addmargins(gender_work_tbl)
 # Create a table of 'sukup' and 'kone' from the 'students2014'
 gender_os_tbl <-
 
-# Print 'os_gender_tbl'
+# Print 'gender_os_tbl'
 
     
-# Add margins to 'os_gender_tbl'
+# Add margins to 'gender_os_tbl'
 
 
 ```
@@ -303,10 +303,10 @@ addmargins(gender_work_tbl)
 # Create a table of 'sukup' and 'kone' from the 'students2014'
 gender_os_tbl <- table(students2014$sukup, students2014$kone)
 
-# Print 'os_gender_tbl'
+# Print 'gender_os_tbl'
 gender_os_tbl
     
-# Add margins to 'os_gender_tbl'
+# Add margins to 'gender_os_tbl'
 addmargins(gender_os_tbl)
   
 ```
