@@ -95,16 +95,15 @@ Maybe the most basic functions to do cross tabulations in R are `table()` and `p
 Function `prop.table()` prints out the proportional values of the table that is given as an argument. We can make the table output more reader friendly by converting the proportional values into percentages (%). This can be done by multiplying the proportional values by 100. For example the proportional value `0.153` is turned into percentages with calculation `0.153 * 100 = 15,3%`.
 
 *** =instructions
-- Create the object `gender_tbl` and print its contents to see how the table looks like.
 - See from the sample code how to create a proportional table ( row 7).
 - Use the `table()` and `prop.table()` functions to create another proportional table of the variable `kone` from the `students2014` dataset. Save the table in `os_prop` object.
-- Turn the proportional values in `os_prop` into percentages by executing the last line of the sample. Note that you can multiply the tables values by multiplying the table object! 
+- Turn the proportional values in `os_prop` into percentages. Note that you can multiply all of the tables values by multiplying the table object! 
 - There is a function `round()` used in the last line of code. Can you guess what it does to the table? (Hint: type `?round` to the console to see the help page of the function).
 
 *** =hint
 - Remember to use the $-sign to access variables of the `students2014` dataset.
-- Function `prop.table()` needs a product of the function `table()` as an argument to work correctly. 
-- you can multiply the tables values by multiplying the table object, for example `os_tbl * 5`.
+- Remember to close the parenthesis of all function calls.
+- Function `prop.table()` needs output of the function `table()` as an argument to work correctly. 
 
 
 *** =pre_exercise_code
@@ -140,7 +139,7 @@ prop.table(table(students2014$sukup))
 # Create a proportional table of 'kone' in 'students2014'
 os_prop <-
   
-# Make the os_tbl table pretty! From proportional table to percentages:
+# Make the os_prop table pretty! From proportional table to percentages:
 round(os_prop*100, digits = 2)
 
 ```
@@ -159,7 +158,7 @@ prop.table(table(students2014$sukup))
 # Create a proportional table of 'kone' in 'students2014'
 os_prop <- prop.table(table(students2014$kone))
   
-# Make the os_tbl table pretty! From proportional table to percentages:
+# Make the os_prop table pretty! From proportional table to percentages:
 round(os_prop*100, digits = 2)
 
 ```
@@ -169,7 +168,8 @@ round(os_prop*100, digits = 2)
 ```{r}
 # submission correctness tests
 
-test_function("prop.table", args=c("x"), incorrect_msg = "Did you use prop.table on a table of `kone`?")
+
+test_object("os_prop", incorrect_msg = "Please use table() and prop.table() on `kone` in `students2014` to create the object os_prop.")
 
 test_error()
 
@@ -315,7 +315,10 @@ addmargins(gender_os_tbl)
 *** =sct
 ```{r}
 test_object("gender_os_tbl")
-test_function("addmargins", args=c("A"), incorrect_msg = "Did you use the `addmargins()` function?")
+
+test_output_contains("gender_os_tbl", incorrect_msg = "Please print out the table you created")
+
+test_output_contains("addmargins(gender_os_table)", incorrect_msg = "Please use the addmargins function on your table")
 
 test_error()
 
