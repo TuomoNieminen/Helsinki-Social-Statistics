@@ -179,7 +179,7 @@ In base R graphics, the function `barplot()` can be used to draw a bar plot. The
 
 *** =instructions
 - Use `summary()` and `table()` on `kone` in the data frame `students2014`. Many of the values of `kone` are `<NA>`, not available. Why do you think this could be?
-- Adjust the code `os_counts <- NULL`: Use `table()` and assign the counts of the different operating systems to `os_counts`.
+- Adjust the code `os_counts <- NULL`: Use `table()` and instead of `NULL` (a special, empty data type), assign the counts of the different operating systems to the object `os_counts`.
 - Use the function `barplot()` to draw a bar plot. Use the counts of the different operating systems as the first argument.
 
 *** =hint
@@ -208,7 +208,7 @@ students2014$kenka <- as.numeric(students2014$kenka)
 ```{r}
 # students2014 is available
 
-# Look at the counts of different levels of 'kone'.
+# 2 ways to look at the counts of different levels of 'kone'.
 summary(students2014$kone)
 table(students2014$kone)
 
@@ -225,7 +225,7 @@ os_counts <- NULL
 ```{r}
 # students2014 is available
 
-# The counts of different levels of 'kone'.
+# 2 ways to look at the counts of different levels of 'kone'
 summary(students2014$kone)
 table(students2014$kone)
 
