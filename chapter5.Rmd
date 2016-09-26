@@ -97,8 +97,8 @@ Function `prop.table()` prints out the proportional values of the table that is 
 *** =instructions
 - Create the object `gender_tbl` and print its contents to see how the table looks like.
 - Create proportional table by using the `gender_tbl` object and see the results.
-- Use the `table()` and `prop.table()` functions to create another proportional table of the variable `kone` from the `students2014` dataset. Save the table in `os_tbl` object.
-- Turn the proportional values in `os_tbl` into percentages by executing the last line of the sample. Note that you can multiply the tables values by multiplying the table object! 
+- Use the `table()` and `prop.table()` functions to create another proportional table of the variable `kone` from the `students2014` dataset. Save the table in `os_prop` object.
+- Turn the proportional values in `os_prop` into percentages by executing the last line of the sample. Note that you can multiply the tables values by multiplying the table object! 
 - There is a function `round()` used in the last line of code. Can you guess what it does to the table? (Hint: type `?round` to the console to see the help page of the function).
 
 *** =hint
@@ -132,19 +132,16 @@ students2014$kenka <- as.numeric(students2014$kenka)
 # students2014 is available
 
 # Create a table of 'sukup' in 'students2014'
-gender_tbl <- table(students2014$sukup)
-
-# Print the table
-gender_tbl
+table(students2014$sukup)
 
 # Create a proportional table of 'sukup' in 'students2014'
-prop.table(gender_tbl)
+prop.table(table(students2014$sukup))
 
 # Create a proportional table of 'kone' in 'students2014'
-os_tbl <-
-
+os_prop <-
+  
 # Make the os_tbl table pretty! From proportional table to percentages:
-round(os_tbl*100, digits = 2)
+round(os_prop*100, digits = 2)
 
 ```
 
@@ -154,19 +151,16 @@ round(os_tbl*100, digits = 2)
 # students2014 is available
 
 # Create a table of 'sukup' in 'students2014'
-gender_tbl <- table(students2014$sukup)
-
-# Print the table
-gender_tbl
+table(students2014$sukup)
 
 # Create a proportional table of 'sukup' in 'students2014'
-prop.table(gender_tbl)
+prop.table(table(students2014$sukup))
 
 # Create a proportional table of 'kone' in 'students2014'
-os_tbl <- prop.table(table(students2014$kone))
-
+os_prop <- prop.table(table(students2014$kone))
+  
 # Make the os_tbl table pretty! From proportional table to percentages:
-round(os_tbl*100, digits = 1)
+round(os_prop*100, digits = 2)
 
 ```
 
@@ -239,19 +233,17 @@ Tables get more interesting when there is more than one variable. You can find f
 
 The function `table()` can take more than one variable and produce more complex cross tabulations. When using `table()` with more than one variable, one needs to separate the variables with a comma (`,`). 
 
-See how the `prop.table()` works with multiple variables from the sample code. Also you will learn useful function `addmargins()` which calculates the margins of the table.
+You will also learn useful function `addmargins()` which calculates the margins of the table. Look at the sample code to see how `addmargins()` works. 
 
 *** =instructions
 - Create object `gender_work_tbl` and see how the table of variable `sukup` and `toita` looks like. 
-- Look at the proportional table of `gender_work_tbl`.
 - Look what happens when you use the `addmargins()` function on `gender_work_tbl`.
-- Create and examine the percentage table `gender_work_pct`. Round the table to make it more reader friendly. Look at the margins of the table. 
 - Create `gender_os_tbl` with variables `sukup` and `kone` from the `students2014`
 - Print `gender_os_tbl` and add margins to it.
 
 *** =hint
 - Did you separate the variable names with comma (`,`) inside the `table()` function?
-- Both `prop.table()` and `addmargins()` need a product of `table()` function as an argument to work correctly. 
+- Function `addmargins()` needs a product of `table()` function as an argument to work correctly. 
 
 
 *** =pre_exercise_code
@@ -281,14 +273,9 @@ students2014$kenka <- as.numeric(students2014$kenka)
 # Create a table of 'sukup' and 'toita'. Print the table.
 gender_work_tbl <- table(students2014$sukup, students2014$toita)
 
-# Look at the proportional table and freguency table with margins.
-prop.table(gender_work_tbl)
-addmargins(gender_work_tbl)
 
-# Look at the percentage table and add margins to it
-gender_work_pct <- prop.table(gender_work_tbl)*100
-round(gender_work_pct, digits = 1)
-round(addmargins(gender_work_pct), digits = 1)
+# Add margins to gender_work_tbl
+addmargins(gender_work_tbl)
 
 # Create a table of 'sukup' and 'kone' from the 'students2014'
 gender_os_tbl <-
@@ -298,7 +285,7 @@ gender_os_tbl <-
     
 # Add margins to 'os_gender_tbl'
 
-  
+
 ```
 
 
@@ -308,15 +295,10 @@ gender_os_tbl <-
 
 # Create a table of 'sukup' and 'toita'. Print the table.
 gender_work_tbl <- table(students2014$sukup, students2014$toita)
+gender_work_tbl
 
-# Look at the proportional table and freguency table with margins.
-prop.table(gender_work_tbl)
+# Add margins to gender_work_tbl
 addmargins(gender_work_tbl)
-
-# Look at the percentage table and add margins to it
-gender_work_pct <- prop.table(gender_work_tbl)*100
-round(gender_work_pct, digits = 1)
-round(addmargins(gender_work_pct), digits = 1)
 
 # Create a table of 'sukup' and 'kone' from the 'students2014'
 gender_os_tbl <- table(students2014$sukup, students2014$kone)
@@ -326,7 +308,7 @@ gender_os_tbl
     
 # Add margins to 'os_gender_tbl'
 addmargins(gender_os_tbl)
-    
+  
 ```
 
 
@@ -334,7 +316,6 @@ addmargins(gender_os_tbl)
 ```{r}
 test_object("gender_os_tbl")
 test_function("addmargins", args=c("A"), incorrect_msg = "Did you use the `addmargins()` function?")
-test_output_contains("gender_os_tbl", incorrect_msg = "Did you print `gender_os_tbl`?")
 
 test_error()
 
