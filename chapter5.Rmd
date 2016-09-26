@@ -318,7 +318,7 @@ test_object("gender_os_tbl")
 
 test_output_contains("gender_os_tbl", incorrect_msg = "Please print out the table you created")
 
-test_output_contains("addmargins(gender_os_table)", incorrect_msg = "Please use the addmargins function on your table")
+test_output_contains("addmargins(gender_os_tbl)", incorrect_msg = "Please use the addmargins function on your table")
 
 test_error()
 
