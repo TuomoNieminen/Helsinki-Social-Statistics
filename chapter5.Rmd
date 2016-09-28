@@ -6,20 +6,22 @@ description : Cross-tabulations let you explore dependencies hidden deep within 
 
 ## Combining variables
 
-Often in a survey there are many questions that measure the same phenomenon. The phenomenon could be for example trustfulness or prejudice of some sort. Single survey questions are nice, but they do not help us to see the big picture. To get a better outlook of a phenomenon, we can combain multiple variables into one. This can be done by summing up the one person's answers. We can also combain the variables by taking the means of one person's answers. 
+Often in a survey there are many questions that measure the same phenomenon. The phenomenon could be for example trustfulness or prejudice of some sort. Single survey questions are nice, but they do not help us to see the big picture. 
 
-Next we learn to do that by ourselves with a little toy example. See the sample code!
+To get a better outlook of a phenomenon, we can combine multiple questions into one variable. This can be done by summing up the person's answers. We can also combine the questions by taking the mean of the person's answers. 
+
+Next we learn how to do that by ourselves with a little toy example. See the sample code!
 
 
 *** =instructions
-- In our toy example, the dataset is called `data`. Print out its contains.
+- In our toy example, the dataset is called `data`. Print out its contents.
 - On the rows are the dudes that answered in the survey. The columns are the items (questions). Let's say that all the items measure the same phenomenon.
 - Create `summamuuttuja` by calculating the row sums. Print the data again. Do you notice something new?
 - Create `summamuuttuja_2`. Notice that in the calculations, the row sums are divided by the number of variables (3). So actually `summamuuttuja_2` contains the row means.
-- Print the data yet again. YOu have successfully combined variables!
+- Print the data yet again. Yau! You have successfully combined variables!
 
 *** =hint
-- See how the compaining of variables is done from the sample code.
+- See how the combining of variables is done from the sample code.
 
 
 *** =pre_exercise_code
@@ -63,13 +65,13 @@ data
 data$summamuuttuja <- rowSums(data)
 
 # Print out the data again
-
+data
 
 # We can also use the mean of the items
 data$summamuuttuja_2 <- data$summamuuttuja / 3
 
 # Print out the data again
-
+data
 
 ```
 
@@ -92,14 +94,18 @@ Cross tabulation is important form of presenting information. From tables one ca
 
 Maybe the most basic functions to do cross tabulations in R are `table()` and `prop.table()`. With the `table()` function you can create freguency tables and with the function `prop.table()` proportional tables are created. The `prop.table()` function needs a table object as an argument. Look the examples to see how tables are created.
 
+Function `prop.table()` prints out the proportional values of the table that is given as an argument. We can make the table output more reader friendly by converting the proportional values into percentages (%). This can be done by multiplying the proportional values by 100. For example the proportional value `0.153` is turned into percentages with calculation `0.153 * 100 = 15,3%`.
+
 *** =instructions
-- Create the object `gender_tbl` and print its contents to see how the table looks like.
-- Create proportional table by using the `gender_tbl` object and see the results.
-- Use the `table()` and `prop.table()` functions to create another proportional table of the variable `kone` from the `students2014` dataset.
+- See from the sample code how to create a proportional table ( row 7).
+- Use the `table()` and `prop.table()` functions to create another proportional table of the variable `kone` from the `students2014` dataset. Save the table in `os_prop` object.
+- Turn the proportional values in `os_prop` into percentages. Note that you can multiply all of the tables values by multiplying the table object! 
+- There is a function `round()` used in the last line of code. Can you guess what it does to the table? (Hint: type `?round` to the console to see the help page of the function).
 
 *** =hint
 - Remember to use the $-sign to access variables of the `students2014` dataset.
-- Function `prop.table()` needs a product of the function `table()` as an argument to work correctly. 
+- Remember to close the parenthesis of all function calls.
+- Function `prop.table()` needs output of the function `table()` as an argument to work correctly. 
 
 
 *** =pre_exercise_code
@@ -127,17 +133,16 @@ students2014$kenka <- as.numeric(students2014$kenka)
 # students2014 is available
 
 # Create a table of 'sukup' in 'students2014'
-gender_tbl <- table(students2014$sukup)
-
-# Print the table
-gender_tbl
+table(students2014$sukup)
 
 # Create a proportional table of 'sukup' in 'students2014'
-prop.table(gender_tbl)
+prop.table(table(students2014$sukup))
 
 # Create a proportional table of 'kone' in 'students2014'
-
-
+os_prop <-
+  
+# Make the os_prop table pretty! From proportional table to percentages:
+round(os_prop*100, digits = 2)
 
 ```
 
@@ -147,16 +152,16 @@ prop.table(gender_tbl)
 # students2014 is available
 
 # Create a table of 'sukup' in 'students2014'
-gender_tbl <- table(students2014$sukup)
-
-# Print the table
-gender_tbl
+table(students2014$sukup)
 
 # Create a proportional table of 'sukup' in 'students2014'
-prop.table(gender_tbl)
+prop.table(table(students2014$sukup))
 
 # Create a proportional table of 'kone' in 'students2014'
-prop.table(table(students2014$kone))
+os_prop <- prop.table(table(students2014$kone))
+  
+# Make the os_prop table pretty! From proportional table to percentages:
+round(os_prop*100, digits = 2)
 
 ```
 
@@ -165,7 +170,8 @@ prop.table(table(students2014$kone))
 ```{r}
 # submission correctness tests
 
-test_function("prop.table", args=c("x"), incorrect_msg = "Did you use prop.table on a table of `kone`?")
+
+test_object("os_prop", incorrect_msg = "Please use table() and prop.table() on `kone` in `students2014` to create the object os_prop.")
 
 test_error()
 
@@ -229,18 +235,17 @@ Tables get more interesting when there is more than one variable. You can find f
 
 The function `table()` can take more than one variable and produce more complex cross tabulations. When using `table()` with more than one variable, one needs to separate the variables with a comma (`,`). 
 
-See how the `prop.table()` works with multiple variables from the sample code. Also you will learn useful function `addmargins()` which calculates the margins of the table.
+You will also learn useful function `addmargins()` which calculates the margins of the table. Look at the sample code to see how `addmargins()` works. 
 
 *** =instructions
 - Create object `gender_work_tbl` and see how the table of variable `sukup` and `toita` looks like. 
-- Look at the proportional table of `gender_work_tbl`.
 - Look what happens when you use the `addmargins()` function on `gender_work_tbl`.
 - Create `gender_os_tbl` with variables `sukup` and `kone` from the `students2014`
 - Print `gender_os_tbl` and add margins to it.
 
 *** =hint
 - Did you separate the variable names with comma (`,`) inside the `table()` function?
-- Both `prop.table()` and `addmargins()` need a product of `table()` function as an argument to work correctly. 
+- Function `addmargins()` needs a product of `table()` function as an argument to work correctly. 
 
 
 *** =pre_exercise_code
@@ -271,19 +276,18 @@ students2014$kenka <- as.numeric(students2014$kenka)
 gender_work_tbl <- table(students2014$sukup, students2014$toita)
 
 
-# Look at the proportional table and freguency table with margins.
-prop.table(gender_work_tbl)
+# Add margins to gender_work_tbl
 addmargins(gender_work_tbl)
 
 # Create a table of 'sukup' and 'kone' from the 'students2014'
 gender_os_tbl <-
 
-# Print 'os_gender_tbl'
+# Print 'gender_os_tbl'
 
     
-# Add margins to 'os_gender_tbl'
-  
-  
+# Add margins to 'gender_os_tbl'
+
+
 ```
 
 
@@ -293,29 +297,30 @@ gender_os_tbl <-
 
 # Create a table of 'sukup' and 'toita'. Print the table.
 gender_work_tbl <- table(students2014$sukup, students2014$toita)
+gender_work_tbl
 
-
-# Look at the proportional table and freguency table with margins.
-prop.table(gender_work_tbl)
+# Add margins to gender_work_tbl
 addmargins(gender_work_tbl)
 
 # Create a table of 'sukup' and 'kone' from the 'students2014'
 gender_os_tbl <- table(students2014$sukup, students2014$kone)
 
-# Print 'os_gender_tbl'
+# Print 'gender_os_tbl'
 gender_os_tbl
     
-# Add margins to 'os_gender_tbl'
+# Add margins to 'gender_os_tbl'
 addmargins(gender_os_tbl)
-    
+  
 ```
 
 
 *** =sct
 ```{r}
 test_object("gender_os_tbl")
-test_function("addmargins", args=c("A"), incorrect_msg = "Did you use the `addmargins()` function?")
-test_output_contains("gender_os_tbl", incorrect_msg = "Did you print `gender_os_tbl`?")
+
+test_output_contains("gender_os_tbl", incorrect_msg = "Please print out the table you created")
+
+test_output_contains("addmargins(gender_os_tbl)", incorrect_msg = "Please use the addmargins function on your table")
 
 test_error()
 
