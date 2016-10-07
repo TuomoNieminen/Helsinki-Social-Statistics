@@ -6,11 +6,13 @@ description : UNDER CONSTRUCTION
 
 ## Selecting a subset()
 
-Earlier in chapters 3 and 4 you learned how to explore data with simple visualizations and summaries. But often there is a need to concretely zoom in on a specific part of the data by selecting a subset.
+Earlier in chapters 3 and 4 you learned how to look at your data with visualizations and summaries. This is great, but often there is a need to zoom in on a **subset** of the data matching some **condition**.
 
-There are multiple ways to select a subset in R. Here we will start with perhaps the simplest method: the `subset()` function.
+There are multiple ways to select a subset in R. Perhaps the most convenient is method the `subset()` function.
 
-``subset()` is a general function that works on multiple data formats. The first argument is the data, and the second argument the conditions for selecting parts of the data. When used on a data.frame, `subset()` returns the rows which match the conditions.
+`subset()` is a generic function that works with several data formats. The first argument of `subset()` is the data, and the second argument are the conditions for selecting parts of the data.  
+
+When used on a data.frame, `subset()` returns the rows of the data.frame which match the specified **logical conditions**.
 
 *** =instructions
 - instruction 1
@@ -68,7 +70,9 @@ success_msg("Great work!")
 
 ## Logical comparison
 
-Selecting a subset is done by using logical operators. Logical operators create boolean vectors (`TRUE`, `FALSE`). The basic logical comparison operators in R are:
+What you just saw inside the `subset()` function was  **logical comparison**. Logical comparison creates boolean vectors which can then be used to for example select subsets of data. 
+
+The logical comparison operators in R are:  
 
 operator  | description
 ----------|------------
@@ -79,7 +83,8 @@ operator  | description
 `<=`      | less or equal to
 `>=`      | greater or equal to
 
-When used with vectors, a logical comparison also produces a vector by doing the comparison on each element separately.
+
+When used with vectors, logical comparison produces a logical vector.
 
 *** =instructions
 - execute and study the example codes
@@ -88,7 +93,7 @@ When used with vectors, a logical comparison also produces a vector by doing the
 
 *** =hint
 - The third example should point you in the right direction
-- If you're uncertain, choose a comparison value and try out a bunch of different operators to figure out what might work.
+- If you're uncertain, just choose a value and try out a bunch of different operators to figure out what might work.
 
 
 *** =pre_exercise_code
@@ -100,16 +105,17 @@ When used with vectors, a logical comparison also produces a vector by doing the
 *** =sample_code
 ```{r}
 # exactly equal
-5 == 5
+5 == 5 # TRUE
 
-# not equal
-"cat" != "dog"
+# Not equal
+"cat" != "dog" # TRUE
 
-# greater or equal
-c(0,1,2) >= 1
+# Greater or equal
+c(0,1,2) >= 1 # FALSE TRUE TRUE
 
-# use a logical operator to produce a vector TRUE, FALSE, FALSE
+# Use logical comparison to produce a result TRUE FALSE FALSE
 c(2,3,4)
+
 ```
 
 *** =solution
@@ -123,7 +129,7 @@ c(2,3,4)
 # greater or equal
 c(0,1,2) >= 1
 
-# use a logical operator to produce a vector TRUE, FALSE, FALSE
+# use a logical comparison to produce a result TRUE FALSE FALSE
 c(2,3,4) < 3
 
 ```
@@ -147,20 +153,22 @@ success_msg("Well done! Logic is the beginning of wisdom, not the end - Spock")
 
 ## Logical operators
 
-Logical conditions are usually combined with the following logical operators:
+Logical conditions can be combined with the following logical operators:
 
 operator  | description
 ----------|------------
-`!x`      | NOT x
-`x & y`   | x AND y
-`x | y`   | x OR y
+`!a`      | NOT a
+`a & b`   | a AND b
+`a \| b`  | a OR b
 
 
-The logical operators work like logical conditions when used on vectors: they compare the elements one at a time. In R, `T` and `F` can be used to abbreviate `TRUE` and `FALSE`. So for example:
+The logical operators work like logical conditions: they compare the elements of vectors one at a time. 
+
+In R, `T` and `F` can be used to abbreviate `TRUE` and `FALSE`. So, for example:
 
 `c(F, T) & c(T, T)`   
 
-produces a boolean vector `FALSE TRUE`. With these tools you are ready to do some serious subsetting.
+produces a logical vector `FALSE TRUE`. With these tools you are ready to do some serious subsetting.
 
 *** =instructions
 - instruction 1
@@ -180,10 +188,11 @@ produces a boolean vector `FALSE TRUE`. With these tools you are ready to do som
 ```{r}
 # sample code here
 
+# create a subset
 subdata <- subset(data, var1 <= value & var2 <= value)
 
 
-
+# create your subset here
 
 ```
 
@@ -213,13 +222,15 @@ success_msg("Nice! You are the operator indeed.")
 
 ## Classical probability
 
-Probability is the measure of the likelihood that an event will occur. Probability is quantified as a number between 0 and 1. Probability is an essential tool in statistics since statstics is primaly interested in measuring uncertainty.
+Probability is the measure of the likelihood that an event will occur. It is quantified as a number between 0 and 1. Probability is an **essential** tool for statistics since the discipline is primarily interested in measuring uncertainty.
 
-A simplistic definition for the probability of an event is that it equals to the proportion of favourable cases. So the probability of an event A out of all possible outcomes $\Omage$ is:
+The classical definition of probability is the proportion of favourable cases. The probability for event A out of all possible outcomes $\Omega$ is:
 
 $$P(A) = \frac{n(A)}{n(\Omega)}$$
 
-where n() gives the number of elements. in R, instead of n() we have the functions `length()` for vectors and `nrow()` for data.frames to tget the number of elements.
+where n() gives the number of elements. 
+
+In R, instead of n() we have the functions `length()` for vectors and `nrow()` for data.frames to get the number of elements.
 
 
 *** =instructions
