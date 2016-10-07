@@ -8,11 +8,9 @@ description : UNDER CONSTRUCTION
 
 Earlier in chapters 3 and 4 you learned how to look at your data with visualizations and summaries. This is great, but often there is a need to zoom in on a **subset** of the data matching some **condition**.
 
-There are multiple ways to select a subset in R. Perhaps the most convenient is method the `subset()` function.
+There are multiple ways to select a subset in R. Perhaps the most convenient method is the `subset()` function. `subset()` is a generic function that works with several data formats. The first argument of `subset()` is the data, and the second argument are the **logical conditions** for selecting parts of the data.  
 
-`subset()` is a generic function that works with several data formats. The first argument of `subset()` is the data, and the second argument are the conditions for selecting parts of the data.  
-
-When used on a data.frame, `subset()` returns the rows of the data.frame which match the specified **logical conditions**.
+When used on a data.frame, `subset()` returns the rows of the data.frame which match the specified logical conditions.
 
 *** =instructions
 - instruction 1
@@ -70,7 +68,7 @@ success_msg("Great work!")
 
 ## Logical comparison
 
-What you just saw inside the `subset()` function was  **logical comparison**. Logical comparison creates boolean vectors which can then be used to select subsets of data. 
+What you just saw inside the `subset()` function was  **logical comparison**. Logical comparison creates logical vectors which can then be used to select subsets of data. 
 
 The logical comparison operators in R are:  
 
@@ -161,9 +159,9 @@ operator                | description
 a `&` b                 | a AND b
 a <code>&#124;</code> b | a OR b  
 
-The logical operators work like logical conditions: they compare the elements of vectors one at a time and can produce logical vectors.
+Logical operators work like logical conditions: they compare the elements of vectors one at a time and can produce logical vectors.
 
-So, for example `c(F, T) & c(T, T)` produces a logical vector `FALSE TRUE`. (`T` and `F` can be used to abbreviate `TRUE` and `FALSE`).  
+So, for example `c(F, T) & c(T, T)` produces a logical vector `FALSE TRUE`. In R, `T` and `F` can be used to abbreviate `TRUE` and `FALSE`.  
 
 With these tools you are ready to do some serious subsetting.
 
@@ -225,7 +223,7 @@ The classical definition of probability is the proportion of favourable cases. T
 
 $$P(A) = \frac{n(A)}{n(\Omega)}$$
 
-where n() gives the number of elements. 
+where n() gives the number of outcomes (elements). 
 
 In R, instead of n() we have the functions `length()` for vectors and `nrow()` for data.frames to get the number of elements.
 
