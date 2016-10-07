@@ -155,11 +155,11 @@ success_msg("Well done! Logic is the beginning of wisdom, not the end - Spock")
 
 Logical conditions can be combined with the following logical operators:
 
-operator      | description
-------------- | -----------
-`!`a          | NOT a
-a `&` b       | a AND b
-a `&#124;` b  | a OR b  
+operator                | description
+----------------------- | -----------
+`!`a                    | NOT a
+a `&` b                 | a AND b
+a <code>&#124;</code> b | a OR b  
 
 The logical operators work like logical conditions: they compare the elements of vectors one at a time and can produce logical vectors.
 
