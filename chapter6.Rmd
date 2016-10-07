@@ -133,7 +133,7 @@ c(2,3,4) < 3
 # submission correctness tests
 
 # example tests:
-test_output_contains("c(2,3,4) < 3", "Please make the necessary adustments to produce the output TRUE FALSE FALSE")
+test_output_contains("{c(2,3,4) < 3}", "Please make the necessary adustments to produce the output TRUE FALSE FALSE")
 
 # test if the students code produces an error
 test_error()
