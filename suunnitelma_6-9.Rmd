@@ -1,9 +1,14 @@
 Suunnitelma DataCampin osioille 6, 7, 8, 9  
 
-## 6. Probability, concepts
+## 6. Subsets and conditioning
 
-### 6.1 Logical operators
-Introduce the R logical operators
+### 6.1 Selecting a subset
+Introduction to using subset()
+
+- newdata <- subset(data, conditions)
+
+### 6.2 Logical conditions
+Introduce the R logical conditions
 
 operator  | description
 ----------|------------
@@ -11,8 +16,16 @@ operator  | description
 `!=`      | not equal to
 `<`       | less than
 `>=`      | greater or equal to
+
+### 6.3 Logical operators
+
+operator  | description
+----------|------------
+! x       | NOT x
 `x & y`   | x AND y
 `x | y`   | x OR y
+
+-  more subsetting
 
 ### 6.2 Long term frequency
 Use sample() to demonstrate the long term frequency of some condition as a function of the sample size. 
@@ -20,10 +33,6 @@ Use sample() to demonstrate the long term frequency of some condition as a funct
 - Example: the frequency of succesfully choosing a male student from the data
 - Compare to prop.table() ?
 
-### 6.3 Selecting a subset
-Introduction to using subset()
-
-- newdata <- subset(data, conditions)
 
 ### 6.4 Proportions and probability
 Use the logical operators to answer probability questions
