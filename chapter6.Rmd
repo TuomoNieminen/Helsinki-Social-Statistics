@@ -163,7 +163,7 @@ a `&#124;` b  | a OR b
 
 The logical operators work like logical conditions: they compare the elements of vectors one at a time and can produce logical vectors.
 
-So, for example `c(F, T) & c(T, T)` produces a logical vector `FALSE TRUE`. (In R, `T` and `F` can be used to abbreviate `TRUE` and `FALSE`).  
+So, for example `c(F, T) & c(T, T)` produces a logical vector `FALSE TRUE`. (`T` and `F` can be used to abbreviate `TRUE` and `FALSE`).  
 
 With these tools you are ready to do some serious subsetting.
 
