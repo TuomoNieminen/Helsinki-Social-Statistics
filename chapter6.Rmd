@@ -70,7 +70,7 @@ success_msg("Great work!")
 
 ## Logical comparison
 
-What you just saw inside the `subset()` function was  **logical comparison**. Logical comparison creates boolean vectors which can then be used to for example select subsets of data. 
+What you just saw inside the `subset()` function was  **logical comparison**. Logical comparison creates boolean vectors which can then be used to select subsets of data. 
 
 The logical comparison operators in R are:  
 
@@ -155,20 +155,16 @@ success_msg("Well done! Logic is the beginning of wisdom, not the end - Spock")
 
 Logical conditions can be combined with the following logical operators:
 
-operator  | description
-----------|------------
-`!a`      | NOT a
-`a & b`   | a AND b
-`a \| b`  | a OR b
+- `!`a  (NOT a)
+- a `&` b (a AND b)
+- a `|` b  (a OR b)
 
 
-The logical operators work like logical conditions: they compare the elements of vectors one at a time. 
+The logical operators work like logical conditions: they compare the elements of vectors one at a time and can produce logical vectors.
 
-In R, `T` and `F` can be used to abbreviate `TRUE` and `FALSE`. So, for example:
+So, for example `c(F, T) & c(T, T)` produces a logical vector `FALSE TRUE`. (In R, `T` and `F` can be used to abbreviate `TRUE` and `FALSE`).  
 
-`c(F, T) & c(T, T)`   
-
-produces a logical vector `FALSE TRUE`. With these tools you are ready to do some serious subsetting.
+With these tools you are ready to do some serious subsetting.
 
 *** =instructions
 - instruction 1
