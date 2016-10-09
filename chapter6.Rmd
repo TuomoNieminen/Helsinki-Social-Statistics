@@ -1,5 +1,5 @@
 ---
-title       : Subsets and conditioning
+title       : Subsets
 description : UNDER CONSTRUCTION
 
 --- type:NormalExercise lang:r xp:100 skills:1 key:c12d1b7017
