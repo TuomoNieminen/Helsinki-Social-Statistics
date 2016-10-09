@@ -133,7 +133,7 @@ success_msg("Such indices. Wow. Much intelligent.")
 
 --- type:NormalExercise lang:r xp:100 skills:1 key:8e0ac16859
 
-## Creating vectors
+## Easy vectors
 
 There are some convenient quick ways to create vectors with integer values (whole numbers) in R. The following two lines produce identical results
 
