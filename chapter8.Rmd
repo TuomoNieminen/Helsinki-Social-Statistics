@@ -7,7 +7,11 @@ description : UNDER CONSTRUCTION
 
 ## The confidence interval
 
-Intriduction to the subject of the sampling distribution and confidence.
+- Introduction to sampling distributions and confidence intervals.
+- Give the formula for a confidence interval of the mean
+- State the relationship to the normal distribution.
+- Try to invoke a question "why?".
+
 
 *** =instructions
 - instruction 1
