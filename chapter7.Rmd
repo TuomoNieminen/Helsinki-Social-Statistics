@@ -4,9 +4,11 @@ description : UNDER CONSTRUCTION
 
 --- type:NormalExercise lang:r xp:100 skills:1 key:ef878aeeea
 
-## Exercise 1
+## Distributions: continuous or discrete?
 
-Under construction.
+In this chapter you will learn about [random variables](https://en.wikipedia.org/wiki/Random_variable) and [probability distributions](https://en.wikipedia.org/wiki/Probability_distribution). 
+
+Random variables can have a set of different values. Every value has a probability of occurance. The probabilities of the values form a probability distribution for the random variable. Random variables and probability distributions can be discrete or continous.
 
 *** =instructions
 - instruction 1
@@ -19,7 +21,21 @@ Under construction.
 
 *** =pre_exercise_code
 ```{r}
-# pre exercise code here
+students2014 <- read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS-data.txt", sep="\t", header=TRUE)
+
+# keep a couple background variables
+students2014 <- students2014[,c("sukup","toita","ika","pituus","kenka","kone")]
+
+# recode kone -variable NA values as factor levels
+students2014$kone <- addNA(students2014$kone)
+
+# choose rows without missing values
+students2014 <- students2014[complete.cases(students2014),]
+
+# integers to numeric
+students2014$ika <- as.numeric(students2014$ika)
+students2014$pituus <- as.numeric(students2014$pituus)
+students2014$kenka <- as.numeric(students2014$kenka)
 ```
 
 *** =sample_code
@@ -51,9 +67,16 @@ success_msg("Good work!")
 
 --- type:NormalExercise lang:r xp:100 skills:1 key:6c27606d58
 
-## Exercise 2
+## Uniform distribution
 
-Under construction.
+[Discrete uniform distribution](https://en.wikipedia.org/wiki/Discrete_uniform_distribution)
+
+[Continious uniform distribution](https://en.wikipedia.org/wiki/Uniform_distribution_(continuous))
+
+- `dunif()`: density of the uniform distribution
+- `punif()`: distribution function of uniform distribution
+- `qunif()`: quantile function of uniform distribution
+- `runif()`: (random) sample from uniform distribution
 
 *** =instructions
 - instruction 1
@@ -98,9 +121,16 @@ success_msg("Good work!")
 
 --- type:NormalExercise lang:r xp:100 skills:1 key:8194f8b921
 
-## Exercise 3
+## Binomial distribution
 
-Under construction.
+[Binomial distribution](https://en.wikipedia.org/wiki/Binomial_distribution) is a well known discrete probability distribution. The distribution has two parameters: the number of trials (often marked by *n*) and success probability in each trial (usually marked by *p*).
+
+Some of the basic functions associated with binomial distribution are:
+
+- `dbinom()`: density of the binomial distribution
+- `pbinom()`: distribution function of binomial distribution
+- `qbinom()`: quantile function of binomial distribution
+- `rbinom()`: (random) sample from binomial distribution
 
 *** =instructions
 - instruction 1
@@ -145,9 +175,16 @@ success_msg("Good work!")
 
 --- type:NormalExercise lang:r xp:100 skills:1 key:6780cce146
 
-## Exercise 4
+## Normal distribution
 
-Under construction.
+[Normal distribution](https://en.wikipedia.org/wiki/Normal_distribution) is continious distribution and it is often used in statistics. It has two parameters (expected value and standard deviation) which determine the shape and place of the distribution.
+
+In R the functions associated with normal distiribution are:
+- `dnorm()`: density of the normal distribution
+- `pnorm()`: distribution function of normal distribution
+- `qnorm()`: quantile function of normal distribution
+- `rnorm()`: (random) sample from normal distribution
+
 
 *** =instructions
 - instruction 1
@@ -192,9 +229,80 @@ success_msg("Good work!")
 
 --- type:NormalExercise lang:r xp:100 skills:1 key:5e0e2af080
 
-## Exercise 5
+## Create your own functions
 
-Under construction.
+There are countless of ready-made functions for you in R. At this point of the course, we have used many functions, for example like `plot()`, `mean()` and `rnorm()`. But it is possible to create your own functions too. Now we will look at the definition of a simple function and learn how to use it (*call* it).
+
+A little recap of functions:
+Functions usually have one or more arguments, for which the user can define values when calling the function. Multiple arguments are separated with a comma. The arguments have names, which can (and often should) be used when specifying their values.
+
+The recommended style is to specify all but the first argument by name, when calling a function.
+
+*** =instructions
+- Look at the definition of the `apple_count()` function and execute the function calls that are defined, starting from line 5.
+- Create object `my_apples` by directly assigning the output of `apple_count()` to it. Call `apple_count()` with `new_apples = 10` and `apples_stock = 2`. Print `my_apples` to see the output of the function.
+
+*** =hint
+- The answer is of the form: `my_apples <- apple_count(arg1 = ?, arg2 = ?)`
+
+*** =pre_exercise_code
+```{r}
+apple_count <- function(number, k = 5) return(number + k)
+```
+
+*** =sample_code
+```{r}
+# Create a simple function with two arguments, of which 'apples_stock' has a default value (5)
+apple_count <- function(new_apples, apples_stock = 5) return(new_apples + apples_stock)
+
+# Call the apple_count() function. Can you guess the result?
+apple_count(new_apples = 2)
+
+# These calls are identical. Try them.
+apple_count(5, apples_stock = -4) # recommended style
+apple_count(5, -4)     # style usually not recommended
+apple_count(apples_stock = -4, new_apples = 5) # style not recommended
+
+# Call apple_count() to create the object 'my_apples'. Print the results.
+my_apples <- 
+
+
+```
+
+*** =solution
+```{r}
+# Create a simple function with two arguments, of which 'apples_stock' has a default value (5)
+apple_count <- function(new_apples, apples_stock = 5) return(new_apples + apples_stock)
+
+# Call the apple_count() function. Can you guess the result?
+apple_count(new_apples = 2)
+
+# These calls are identical. Try them.
+apple_count(5, apples_stock = -4) # recommended style
+apple_count(5, -4)     # style usually not recommended
+apple_count(apples_stock = -4, new_apples = 5) # style not recommended
+
+# Call apple_count() to create the object 'my_apples'. Print the results.
+my_apples <- apple_count(10, apples_stock = 2)
+
+
+```
+
+*** =sct
+```{r}
+test_object("my_apples")
+
+test_error()
+success_msg("Great job!")
+```
+
+--- type:NormalExercise lang:r xp:100 skills:1 key:8ca0f12d3d
+
+## Normalization
+
+Sometimes you have to repeat the same codes for multiple variables. In these cases it can be useful to create your own function to perform the same lines of code for different values. 
+
+[Normalization](https://en.wikipedia.org/wiki/Normalization_(statistics)) is used when we want to transform a normal distribution to a standardized normal distribution. 
 
 *** =instructions
 - instruction 1
