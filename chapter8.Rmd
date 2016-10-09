@@ -1,59 +1,98 @@
 ---
-title       : Confidence intervals
+title       : Simulations
 description : UNDER CONSTRUCTION
+
+
 
 --- type:NormalExercise lang:r xp:100 skills:1 key:23abc9f934
 
-## Exercise 1
+## Advanced vectors (1)
 
-Under construction.
+Vectors store multiple values of the same data type. The values in vectors have indices: the first value in a vector has a index `1`, the second value has `2` and so on. 
+
+You can get a single value from a vector by using indices and bracets `[ ]`. Using a single index number inside the bracets gives you a single value from the vector. Using a vector of indices gives you a vector of values from the vector.
+
+Note that you can also rearrange values in a vector by using indices. Look at the example code to see how indices work. 
 
 *** =instructions
-- instruction 1
-- instruction 2
+- Create the name vector.
+- See how the indices work by executing the example lines.
+- Create a new vector `girls` with values `Liisa` and `Anna` from `names` by using indices.
+- Create a new vector `boys` with values `Pekka` and `Matti` from `names` by using indices.
 
 *** =hint
-- hint 1
-- hint 2
-
+- Note that space between the vector object and bracets produces an error.
+- Remember that vectors are created with the function `c()`.
+- Indices vectors `c(1,2)` and `c(2,1)` do not produce the same outcome. The order of the values is different.
 
 *** =pre_exercise_code
 ```{r}
-# pre exercise code here
 ```
+
 
 *** =sample_code
 ```{r}
-# sample code here
+# Let's create a vector
+names <- c('Matti', 'Pekka', 'Liisa', 'Anna')
+
+# The first value in the vector
+names[1]
+
+# The 2. and 3. value in the vector
+names[c(2, 3)]
+
+# Rearranged
+names[c(3, 2)]
+
+# Separate the names vector into two vectors by using indices
+girls <-
+boys <-
+
 ```
 
 *** =solution
 ```{r}
-#solution code here
+# Let's create a vector
+names <- c('Matti', 'Pekka', 'Liisa', 'Anna')
+
+# The first value in the vector
+names[1]
+
+# The 2. and 3. value in the vector
+names[c(2, 3)]
+
+# Rearranged
+names[c(4, 3)]
+
+# Separate the names vector into two vectors by using indices
+girls <- names[c(3, 4)]
+boys <- names[c(2, 1)]
+
 ```
 
 *** =sct
 ```{r}
-# submission correctness tests
 
-# example tests:
-# test_output_contains("output")
-# test_object("object_name")
-# test_function("function_name", args=c("arg1"))
+test_object("girls", incorrect_msg = "Did you create `girls`?")
+test_object("boys", incorrect_msg = "Did you create `boys`?")
 
-# test if the students code produces an error
 test_error()
 
 # Final message the student will see upon completing the exercise
-success_msg("Good work!")
+success_msg("Such indices. Wow. Much intelligent.")
 
 ```
 
 --- type:NormalExercise lang:r xp:100 skills:1 key:8e0ac16859
 
-## Exercise 2
+## Advanced vectors (2)
 
-Under construction.
+There is quick way to create a vector with integer (whole numbers) values in R. The following two lines produce identical results
+
+`1:5
+c(1,2,3,4,5)`
+
+This is especially useful for creating vectors to use as index values.
 
 *** =instructions
 - instruction 1
@@ -71,7 +110,14 @@ Under construction.
 
 *** =sample_code
 ```{r}
-# sample code here
+# df is available
+
+# Create an integer vector
+1:10
+
+# access some values
+df$var[1:5]
+
 ```
 
 *** =solution
@@ -98,56 +144,21 @@ success_msg("Good work!")
 
 --- type:NormalExercise lang:r xp:100 skills:1 key:a26cc4ab51
 
-## Exercise 3
+## Looping (1)
 
-Under construction.
+In programming, often times there is the need to repeat an action multiple times. In statistical programming you might for example have a theory and you wish to explore that theory by simulation.
 
-*** =instructions
-- instruction 1
-- instruction 2
+The structure of a for-loop is:
 
-*** =hint
-- hint 1
-- hint 2
+`for (counter in vector) {
+  commands
+}`
+
+Inside the curly braces are some commands and the current value of the counter can be used there. The commands are repeated until all the values of the vector have been looped through. 
+
+This may seem confusing but don't worry, examples will make it more clear.
 
 
-*** =pre_exercise_code
-```{r}
-# pre exercise code here
-```
-
-*** =sample_code
-```{r}
-# sample code here
-```
-
-*** =solution
-```{r}
-#solution code here
-```
-
-*** =sct
-```{r}
-# submission correctness tests
-
-# example tests:
-# test_output_contains("output")
-# test_object("object_name")
-# test_function("function_name", args=c("arg1"))
-
-# test if the students code produces an error
-test_error()
-
-# Final message the student will see upon completing the exercise
-success_msg("Good work!")
-
-```
-
---- type:NormalExercise lang:r xp:100 skills:1 key:65d85c42aa
-
-## Exercise 4
-
-Under construction.
 
 *** =instructions
 - instruction 1
@@ -165,7 +176,15 @@ Under construction.
 
 *** =sample_code
 ```{r}
-# sample code here
+# loop through character values and print them
+for(letter in c("a","b","c")) {
+  print(letter)
+  }
+
+# loop through integers, perform and action and print.
+for(i in 1:3) {
+  print(i+5)
+  }
 ```
 
 *** =solution
@@ -192,9 +211,16 @@ success_msg("Good work!")
 
 --- type:NormalExercise lang:r xp:100 skills:1 key:b830d50ea8
 
-## Exercise 5
+## Looping (2)
 
-Under construction.
+A loop can be used to fill a vector with values. This is often useful because it is likely to want to store the results of looping.
+
+One simple way to achieve this is to first create an empty vector using for example:
+
+`numeric(10)`
+
+which creates a numeric vector of ten zeroes. The vector can then be filled with new values using indeces.
+
 
 *** =instructions
 - instruction 1
@@ -212,7 +238,20 @@ Under construction.
 
 *** =sample_code
 ```{r}
-# sample code here
+# the size of our experiment
+N <- 10
+
+# create a numeric vector and print out thevalues
+x <- numeric(N)
+x
+
+# fill the vector with new values
+for(i in 1:N) {
+  x[i] <- i
+}
+
+# print out the new values
+x
 ```
 
 *** =solution
@@ -237,3 +276,169 @@ success_msg("Good work!")
 
 ```
 
+
+--- type:NormalExercise lang:r xp:100 skills:1 key:65d85c42aa
+
+## The sampling distribution
+
+Usually, whenever you have a set of data, that data is only a sample from a target population. Therefore all the statistics calculated from the data involve uncertainty. But how much uncertainty?  
+
+The key to answering this question is the sampling distribution of the statistic.
+
+Let's pretend for a moment that the data that we have actually is the target population. Let's see what happens if take samples from that population, calculate a statistic each time and store the results.
+
+
+*** =instructions
+- instruction 1
+- instruction 2
+
+*** =hint
+- hint 1
+- hint 2
+
+
+*** =pre_exercise_code
+```{r}
+# pre exercise code here
+```
+
+*** =sample_code
+```{r}
+# df is available
+
+# create an empty vector
+N <- 100
+means <- numeric(N)
+
+for(i in 1:N) {
+  sample_data <- sample(df, 50)
+  means[i] <- mean(sample_data$var)
+ }
+ 
+#explore means
+summary(means)
+hist(means)
+
+```
+
+*** =solution
+```{r}
+#solution code here
+```
+
+*** =sct
+```{r}
+# submission correctness tests
+
+# example tests:
+# test_output_contains("output")
+# test_object("object_name")
+# test_function("function_name", args=c("arg1"))
+
+# test if the students code produces an error
+test_error()
+
+# Final message the student will see upon completing the exercise
+success_msg("Good work!")
+
+```
+
+--- type:NormalExercise lang:r xp:100 skills:1
+
+## The central limit theorem
+
+Yleistetään edellisen tehtävän huomio
+
+*** =instructions
+- instruction 1
+- instruction 2
+
+*** =hint
+- hint 1
+- hint 2
+
+
+*** =pre_exercise_code
+```{r}
+# pre exercise code here
+```
+
+*** =sample_code
+```{r}
+# df is available
+
+#explore means
+summary(means)
+hist(means)
+
+```
+
+*** =solution
+```{r}
+#solution code here
+```
+
+*** =sct
+```{r}
+# submission correctness tests
+
+# example tests:
+# test_output_contains("output")
+# test_object("object_name")
+# test_function("function_name", args=c("arg1"))
+
+# test if the students code produces an error
+test_error()
+
+# Final message the student will see upon completing the exercise
+success_msg("Good work!")
+
+```
+
+--- type:NormalExercise lang:r xp:100 skills:1
+
+## The confidence interval
+
+Under constructions
+
+*** =instructions
+- instruction 1
+- instruction 2
+
+*** =hint
+- hint 1
+- hint 2
+
+
+*** =pre_exercise_code
+```{r}
+# pre exercise code here
+```
+
+*** =sample_code
+```{r}
+# exampe code
+
+```
+
+*** =solution
+```{r}
+#solution code here
+```
+
+*** =sct
+```{r}
+# submission correctness tests
+
+# example tests:
+# test_output_contains("output")
+# test_object("object_name")
+# test_function("function_name", args=c("arg1"))
+
+# test if the students code produces an error
+test_error()
+
+# Final message the student will see upon completing the exercise
+success_msg("Good work!")
+
+```
