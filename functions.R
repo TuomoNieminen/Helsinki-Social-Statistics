@@ -1,5 +1,6 @@
 
-  # get small dataset
+# Data for part 1
+# ---------------
 
 # load data from web
 students2014 <- read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS-data.txt", sep="\t", header=TRUE)
@@ -15,8 +16,47 @@ students2014$pituus <- as.numeric(students2014$pituus)
 students2014$kenka <- as.numeric(students2014$kenka)
 
 
+# Metafile
+# ----------
+
 # open metadata in a browser window
 open_meta <- function() browseURL("http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS-meta.txt")
+
+
+# Data for part 2
+# ---------------
+
+# create data for part 2
+
+# read data
+df <- read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS2-data.txt", sep="\t", header=TRUE)
+
+# variables to keep
+learning2014 <- df[,c("Age", "Gender", "Attitude","Points", "Deep_adj", "Surf_adj", "Stra_adj")]
+# scale Attitude to 1 - 5
+learning2014$Attitude <- learning2014$Attitude / 10
+# new colnames
+colnames(learning2014) <- c("age", "gender","attitude", "points", "deep", "surf", "stra")
+# suffle the data (first six students were really old!)
+learning2014 <- learning2014[sample(nrow(learning2014)),]
+rownames(learning2014) <- NULL
+# round
+learning2014 <- round(learning2014, 1)
+# peek at first 6 rows
+head(learning2014)
+
+write.table(file = "learning2014.txt", learning2014, sep = "\t")
+
+get_data2 <- function() read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/learning2014.txt",                                    sep = "\t", header = TRUE)
+open_meta2 <- function() browseURL("http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS2-meta.txt")
+
+# Kimmon analyyseja
+browseURL("http://www.helsinki.fi/~kvehkala/JYTmooc/Abstract-Vehkalahti.pdf")
+browseURL("http://www.helsinki.fi/~kvehkala/JYTmooc/Kimmo_Vehkalahti_ISI60.pdf")
+
+
+# Some utility functions
+# ---------------------
 
 # draw SURVO style barplot
 leafplot <- function(x, char = "*") {
