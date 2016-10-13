@@ -47,7 +47,7 @@ head(learning2014)
 
 write.table(file = "learning2014.txt", learning2014, sep = "\t")
 
-get_data2 <- function() read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/learning2014.txt",                                    sep = "\t", header = TRUE)
+get_data2 <- function() read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/learning2014.txt", sep = "\t", header = TRUE)
 open_meta2 <- function() browseURL("http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS2-meta.txt")
 
 # Kimmon analyyseja
