@@ -10,7 +10,7 @@ Earlier in chapters 3 and 4 you learned how to look at your data with visualizat
 
 There are multiple ways to select a subset in R. Perhaps the most convenient method is the `subset()` function. `subset()` is a generic function that works with several data formats. The first argument of `subset()` is the data, and the second argument are the **logical conditions** for selecting parts of the data.  
 
-When used on a data.frame, `subset()` returns the rows of the data.frame which match the specified logical conditions.
+When used on a data.frame, `subset()` returns the rows of the data.frame which match the specified logical conditions. You will soon learn more about logical conditions.
 
 *** =instructions
 - instruction 1
