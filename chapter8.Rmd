@@ -3,6 +3,167 @@ title       : Confidence
 description : UNDER CONSTRUCTION
 
 
+
+--- type:NormalExercise lang:r xp:100 skills:1 key:23abc9f934
+
+## Indices and brackets
+
+Vectors store multiple values of the same data type. The values in vectors have indices: the first value in a vector has a index `1`, the second value has `2` and so on. 
+
+You can set or get a single value from a vector by using indices and brackets `[ ]`. Using an index number inside the bracets gives access to a single value from the vector. Using a vector of indices gives access to a vector of values.
+
+It is also possible to rearrange the values in a vector by using indices. Look at the example code to see how indices work. 
+
+*** =instructions
+- Create the name vector.
+- See how the indices work by executing the example lines.
+- Use `names` with brackets and indices to create a new vector `girls` with values "Liisa" and "Anna" (in that order).
+- Use `names` with brackets and indices to create a new vector `boys` with values "Pekka" and "Heikki" (in that order)
+
+*** =hint
+- Note that space between the vector object and bracets produces an error.
+- Remember that vectors are created with the function `c()`.
+- Index vectors `c(1,2)` and `c(2,1)` do not produce the same outcome. The order of the values is different.
+
+*** =pre_exercise_code
+```{r}
+```
+
+
+*** =sample_code
+```{r}
+# Let's create a vector
+names <- c("Matti", "Pekka", "Liisa", "Anna")
+
+# Acess the first value of the vector
+names[1]
+
+# Change the first value of the vector
+names[1] <- "Heikki"
+
+# Acess the 1. and 3. value of the vector
+names[c(1, 3)]
+
+# Separate the names vector into two vectors with the specified ordering by using indices
+girls <-
+boys <-
+
+```
+
+*** =solution
+```{r}
+# Let's create a vector
+names <- c("Matti", "Pekka", "Liisa", "Anna")
+
+# Acess the first value of the vector
+names[1]
+
+# Change the first value of the vector
+names[1] <- "Heikki"
+
+# Acess the 1. and 3. value of the vector
+names[c(1, 3)]
+
+# Separate the names vector into two vectors by using indices
+girls <- names[c(3, 4)]
+boys <- names[c(2, 1)]
+
+```
+
+*** =sct
+```{r}
+
+test_object("girls", incorrect_msg = "Did you create `girls`?")
+test_object("boys", incorrect_msg = "Did you create `boys`? Are the values in the correct order?")
+
+test_error()
+
+# Final message the student will see upon completing the exercise
+success_msg("Such indices. Wow. Much intelligent.")
+
+```
+
+--- type:NormalExercise lang:r xp:100 skills:1 key:8e0ac16859
+
+## Easy vectors
+
+Sometimes you need a very long index vector. In this case it would be a lot of work to create the vector with `c()`. Luckily, there are multiple convenient ways to create long vectors in R.
+
+For index values, a specially useful one is the following method: `start:end`, which creates an integer vector with all the values between start and end. The following two lines hence produce identical results
+
+```
+1:5  
+c(1,2,3,4,5)
+```
+
+
+*** =instructions
+- Study and execute the example codes
+- Print out every second value of the attitude vector from the 2. value until the 20th value. Hint: these correspond to the even numbered indeces of the vetor: 2, 4, .. , 20
+
+*** =hint
+- First you need to  an index vector with values 2, 4, .. , 20. The examples show how to create such a vector
+- You can then use the index vector together with brackets (`[ ]`) to complete the task
+
+
+*** =pre_exercise_code
+```{r}
+learning2014 <- read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/learning2014.txt", sep = "\t", header = TRUE)
+attitude <- learning2014$attitude
+names(attitude) <- 1:length(attitude)
+```
+
+*** =sample_code
+```{r}
+# attitude is available
+
+# Create an integer vector
+1:5
+
+# Create an integer vector with even values
+(1:5)*2
+
+# Access the values 5 - 10 of attitude
+attitude[5:10]
+
+# Access every second value of attitude from 2. to the 20th
+
+
+```
+
+*** =solution
+```{r}
+# attitude is available
+
+# Create an integer vector
+1:5
+
+# Create an integer vector with even values
+(1:5)*2
+
+# Access the values 5 - 10 of attitude
+attitude[5:10]
+
+# Access every second value of attitude from 2. to the 20th
+attitude[(1:10)*2]
+
+
+```
+
+*** =sct
+```{r}
+# submission correctness tests
+
+test_output_contains("attitude[(1:10)*2]")
+
+# test if the students code produces an error
+test_error()
+
+# Final message the student will see upon completing the exercise
+success_msg("Great work!")
+
+```
+
 --- type:NormalExercise lang:r xp:100 skills:1 key:1df061a41a
 
 ## The confidence interval
@@ -56,162 +217,19 @@ success_msg("Good work!")
 ```
 
 
---- type:NormalExercise lang:r xp:100 skills:1 key:23abc9f934
-
-## Indeces and brackets
-
-Vectors store multiple values of the same data type. The values in vectors have indices: the first value in a vector has a index `1`, the second value has `2` and so on. 
-
-You can set or get a single value from a vector by using indices and bracets `[ ]`. Using an index number inside the bracets gives access to a single value from the vector. Using a vector of indices gives access to a vector of values.
-
-It is also possible to rearrange the values in a vector by using indices. Look at the example code to see how indices work. 
-
-*** =instructions
-- Create the name vector.
-- See how the indices work by executing the example lines.
-- Create a new vector `girls` with values `Liisa` and `Anna` (in that order) from `names` by using indices.
-- Create a new vector `boys` with values `Pekka` and `Matti` (in that order) from `names` by using indices.
-
-*** =hint
-- Note that space between the vector object and bracets produces an error.
-- Remember that vectors are created with the function `c()`.
-- Indices vectors `c(1,2)` and `c(2,1)` do not produce the same outcome. The order of the values is different.
-
-*** =pre_exercise_code
-```{r}
-```
-
-
-*** =sample_code
-```{r}
-# Let's create a vector
-names <- c('Matti', 'Pekka', 'Liisa', 'Anna')
-
-# Acess the first value of the vector
-names[1]
-
-# Acess the 2. and 3. value of the vector
-names[c(2, 3)]
-
-# Rearranged
-names[c(3, 2)]
-
-# Separate the names vector into two vectors by using indices
-girls <-
-boys <-
-
-```
-
-*** =solution
-```{r}
-# Let's create a vector
-names <- c('Matti', 'Pekka', 'Liisa', 'Anna')
-
-# Acess the first value of the vector
-names[1]
-
-# Acess the 2. and 3. value of the vector
-names[c(2, 3)]
-
-# Rearranged
-names[c(3, 2)]
-
-# Separate the names vector into two vectors by using indices
-girls <- names[c(3, 4)]
-boys <- names[c(2, 1)]
-
-```
-
-*** =sct
-```{r}
-
-test_object("girls", incorrect_msg = "Did you create `girls`?")
-test_object("boys", incorrect_msg = "Did you create `boys`? Are the values in the correct order?")
-
-test_error()
-
-# Final message the student will see upon completing the exercise
-success_msg("Such indices. Wow. Much intelligent.")
-
-```
-
---- type:NormalExercise lang:r xp:100 skills:1 key:8e0ac16859
-
-## Easy vectors
-
-There are some convenient quick ways to create vectors with integer values (whole numbers) in R. The following two lines produce identical results
-
-`1:5  
-c(1,2,3,4,5)`
-
-This is especially useful for creating vectors to use as index values.
-
-There is also a quick and easy way to create a numeric vector of just zeroes with `numeric(length)`.
-
-*** =instructions
-- instruction 1
-- instruction 2
-
-*** =hint
-- hint 1
-- hint 2
-
-
-*** =pre_exercise_code
-```{r}
-# pre exercise code here
-```
-
-*** =sample_code
-```{r}
-# df is available
-
-# Create an integer vector
-1:10
-
-# Create an empty numeric vector
-numeric(10)
-
-# access var in df using indices
-df$var[1:5]
-
-```
-
-*** =solution
-```{r}
-#solution code here
-```
-
-*** =sct
-```{r}
-# submission correctness tests
-
-# example tests:
-# test_output_contains("output")
-# test_object("object_name")
-# test_function("function_name", args=c("arg1"))
-
-# test if the students code produces an error
-test_error()
-
-# Final message the student will see upon completing the exercise
-success_msg("Good work!")
-
-```
-
 --- type:NormalExercise lang:r xp:100 skills:1 key:a26cc4ab51
 
 ## Looping (1)
 
 In programming, often times there is the need to repeat an action multiple times. In statistical programming you might for example have a theory you wish to explore by simulation.
 
-The structure of a for-loop is:
+The **for-loop** is perhaps the most common loop. The structure of a for-loop is:
 
 `for (counter in vector) {
   commands
 }`
 
-Inside the curly braces are regular commands such as function calls and the current value of the counter can be used there. The commands are repeated until all the values of the vector have been looped through. 
+The for-loop loops trough the values of a vector by changing the value of the counter. Inside the curly braces are regular commands such as function calls and the current value of the counter can be used there. The commands are repeated until all the values of the vector have been looped through. 
 
 
 
@@ -240,27 +258,42 @@ for(letter in c("a","b","c")) {
 for(i in 1:5) {
   print(i + 5)
 }
+
+# write a for-loop that prints out "I am looping!" 50 times
+
+
 ```
 
 *** =solution
 ```{r}
-#solution code here
+# loop through characters
+for(letter in c("a","b","c")) {
+  print(letter)
+}
+
+# loop through integers
+for(i in 1:5) {
+  print(i + 5)
+}
+
+# write a for-loop that prints out "I am looping!" 50 times
+for(i in 1:50) {
+  print("I am looping!")
+}
+
 ```
 
 *** =sct
 ```{r}
 # submission correctness tests
 
-# example tests:
-# test_output_contains("output")
-# test_object("object_name")
-# test_function("function_name", args=c("arg1"))
+test_output_contains("for(i in 1:50) print('I am looping!')", incorrect_msg = "Did you write a for-loop that prints out 'I'm looping!' at least 50 times?")
 
 # test if the students code produces an error
 test_error()
 
 # Final message the student will see upon completing the exercise
-success_msg("Good work!")
+success_msg("Nice work! Repetition is the key to success :)")
 
 ```
 
@@ -268,7 +301,7 @@ success_msg("Good work!")
 
 ## Looping (2)
 
-A loop can be used to fill a vector with values. This is often useful because it is likely to want to store the results of looping.
+A loop can be used to fill a vector with values. This is often useful in order to store the results of looping.
 
 One simple way to achieve this is to first create an empty vector using for example `numeric()`. The vector can then be filled with new values using indeces.
 
