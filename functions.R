@@ -47,7 +47,8 @@ head(learning2014)
 
 write.table(file = "learning2014.txt", learning2014, sep = "\t")
 
-get_data2 <- function() read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/learning2014.txt", sep = "\t", header = TRUE)
+learning2014 <-  read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/learning2014.txt", sep = "\t", header = TRUE)
+
 open_meta2 <- function() browseURL("http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS2-meta.txt")
 
 # Kimmon analyyseja
@@ -57,6 +58,29 @@ browseURL("http://www.helsinki.fi/~kvehkala/JYTmooc/Kimmo_Vehkalahti_ISI60.pdf")
 
 # Some utility functions
 # ---------------------
+
+get_z <- function(alpha) {
+  par(mar = c(7,4,5,4))
+  a <- alpha/2
+  x <- (-50:50)/10
+  y <- dnorm(x)
+  q1 <- qnorm(a); q2 <- qnorm(1-a)
+  
+  # draw the plot
+  main <- paste("Critical values and regions of the N(0,1) distribution \n",
+                " alpha/2 =", a)
+  plot(x, y, type ="l", main = main, xlab = "", yaxt = "n", ylab = "")
+  mtext(paste0("-z = qnorm(",1 - a,") = ",round(q1,2),"\n",
+               "z = qnorm(",a,") = ",round(q2,2)),side=1, line = 5, cex = 1.5)
+  
+  # highlight critical regions
+  x1 <- x[x<=q1]; x2 <- x[x>=q2]
+  polygon(c(min(x1),x1, max(x1), min(x2), x2, max(x2)),
+          c(0, dnorm(x1),0, 0, dnorm(x2), 0), col = "grey60")
+  text(x = c(-3.5, 3.5), y = c(0.08,0.08), labels = paste0(a*100,"%"), cex = 1.5)
+  text(x = 0, y = 0.08, labels=paste0(100*(1-alpha),"%"), cex = 1.5)
+  return(q2)
+}
 
 # draw SURVO style barplot
 leafplot <- function(x, char = "*") {
