@@ -2,6 +2,46 @@
 title       : Conditions and subsets
 description : UNDER CONSTRUCTION
 
+--- type:NormalExercise lang:r xp:100 skills:1
+## Exercise title
+
+Exercise info
+
+*** =instructions
+- instruction 1
+
+*** =hint
+- hint 1
+
+*** =pre_exercise_code
+```{r}
+df <-  read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/learning2014.txt", sep = "\t", header = TRUE)
+barplot(table(cut(df$points, (0:11)*3, include.lowest=T)), las = 2, main = "Distribution of students exam points", xlab = "points")
+
+```
+
+*** =sample_code
+```{r}
+# sample code here
+```
+
+*** =solution
+```{r}
+#solution code here
+```
+
+*** =sct
+```{r}
+
+# test_output_contains("output")
+# test_object("object_name")
+# test_function("function_name", args=c("arg1"))
+
+test_error()
+success_msg("Good work!")
+```
+
+
 --- type:NormalExercise lang:r xp:100 skills:1 key:c12d1b7017
 
 ## Selecting a subset()
