@@ -42,6 +42,8 @@ learning2014 <- learning2014[sample(nrow(learning2014)),]
 rownames(learning2014) <- NULL
 # round
 learning2014 <- round(learning2014, 1)
+# recode gender to factor
+learning2014$gender <- factor(learning2014$gender, levels = c(1,2), labels = c("M","N"))
 # peek at first 6 rows
 head(learning2014)
 
