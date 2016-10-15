@@ -4,48 +4,69 @@ description : UNDER CONSTRUCTION
 
 --- type:NormalExercise lang:r xp:100 skills:1 key:ef878aeeea
 
-## Distributions: continuous or discrete?
+## Random variables and their probability distributions
 
 In this chapter you will learn about [random variables](https://en.wikipedia.org/wiki/Random_variable) and [probability distributions](https://en.wikipedia.org/wiki/Probability_distribution). 
 
 Random variables can have a set of different values. Every value has a probability of occurance. The probabilities of the values form a probability distribution for the random variable. Random variables and probability distributions can be discrete or continous.
 
+There are things or events that are known to follow certain probability distributions (like the heights of people usually are normally distributed), but there are also many phenomenas that have their unique distributions. See the sample code to get the general idea. 
+
 *** =instructions
-- instruction 1
-- instruction 2
+- Create variable tomorrow with events `cat attacks baby`, `world ends` and `I eat pasta`.
+- Set probabilities to the events of variable `tomorrow`.
+- Draw [*a sample*](https://en.wikipedia.org/wiki/Sample_(statistics)) from tomorrow with a sample size 1. Are you suprised with the outcome?
+- Draw another sample, this time with sample size `100`. Save the results to `x`. Note the argument `replace` in the function `sample()`. What do you think it does? Remember, you can always seek help about the function arguments with `?*name_of_the_function*`
+- Notice how the bar heights in the barplot are related to the probabilities we set earlier.
 
 *** =hint
-- hint 1
-- hint 2
+- Did you specify the sample size correctly in `x`? If not, the code will produce an error.
+- The argument `size` is used to determine the sample size.
 
 
 *** =pre_exercise_code
 ```{r}
-students2014 <- read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS-data.txt", sep="\t", header=TRUE)
 
-# keep a couple background variables
-students2014 <- students2014[,c("sukup","toita","ika","pituus","kenka","kone")]
-
-# recode kone -variable NA values as factor levels
-students2014$kone <- addNA(students2014$kone)
-
-# choose rows without missing values
-students2014 <- students2014[complete.cases(students2014),]
-
-# integers to numeric
-students2014$ika <- as.numeric(students2014$ika)
-students2014$pituus <- as.numeric(students2014$pituus)
-students2014$kenka <- as.numeric(students2014$kenka)
 ```
 
 *** =sample_code
 ```{r}
-# sample code here
+# create variable 'tomorrow' 
+tomorrow <- c("cat attacks baby","world ends","I eat pasta")
+
+# set probabilities to events
+probabilities <- c(0.2, 0.3, 0.5)
+
+# draw a sample
+sample(tomorrow, size = 1, prob = probabilities)
+
+
+# draw a sample 100 times
+x <- sample(tomorrow, size = , replace = TRUE, prob = probabilities)
+
+# visualize the distribution
+barplot(table(x))
+
 ```
 
 *** =solution
 ```{r}
-#solution code here
+# create variable 'tomorrow' 
+tomorrow <- c("cat attacks baby","world ends","I eat pasta")
+
+# set probabilities to events
+probabilities <- c(0.2, 0.3, 0.5)
+
+# draw a sample
+sample(tomorrow, size = 1, prob = probabilities)
+
+
+# draw a sample 100 times and visualize the distribution
+x <- sample(tomorrow, size = 100, replace = TRUE, prob = probabilities)
+
+# visualize the distribution
+barplot(table(x))
+
 ```
 
 *** =sct
@@ -61,61 +82,7 @@ students2014$kenka <- as.numeric(students2014$kenka)
 test_error()
 
 # Final message the student will see upon completing the exercise
-success_msg("Good work!")
-
-```
-
---- type:NormalExercise lang:r xp:100 skills:1 key:6c27606d58
-
-## Uniform distribution
-
-[Discrete uniform distribution](https://en.wikipedia.org/wiki/Discrete_uniform_distribution)
-
-[Continious uniform distribution](https://en.wikipedia.org/wiki/Uniform_distribution_(continuous))
-
-- `dunif()`: density of the uniform distribution
-- `punif()`: distribution function of uniform distribution
-- `qunif()`: quantile function of uniform distribution
-- `runif()`: (random) sample from uniform distribution
-
-*** =instructions
-- instruction 1
-- instruction 2
-
-*** =hint
-- hint 1
-- hint 2
-
-
-*** =pre_exercise_code
-```{r}
-# pre exercise code here
-```
-
-*** =sample_code
-```{r}
-# sample code here
-```
-
-*** =solution
-```{r}
-#solution code here
-```
-
-*** =sct
-```{r}
-# submission correctness tests
-
-# example tests:
-# test_output_contains("output")
-# test_object("object_name")
-# test_function("function_name", args=c("arg1"))
-
-# test if the students code produces an error
-test_error()
-
-# Final message the student will see upon completing the exercise
-success_msg("Good work!")
+success_msg("Good work! And now you know the probability of world ending...")
 
 ```
 
@@ -123,7 +90,7 @@ success_msg("Good work!")
 
 ## Binomial distribution
 
-[Binomial distribution](https://en.wikipedia.org/wiki/Binomial_distribution) is a well known discrete probability distribution. The distribution has two parameters: the number of trials (often marked by *n*) and success probability in each trial (usually marked by *p*).
+[Binomial distribution](https://en.wikipedia.org/wiki/Binomial_distribution) is a well known discrete probability distribution. The distribution has two parameters: the number of trials (often marked by *n*) and success probability in each trial (usually marked by *p*). An event, that follows binomial distribution is an event with a fixed number of independent trials, each of which can only have two possible outcomes. An example of an binomial experiment could be tossing a coin 20 times to see how many heads occur.
 
 Some of the basic functions associated with binomial distribution are:
 
@@ -132,8 +99,10 @@ Some of the basic functions associated with binomial distribution are:
 - `qbinom()`: quantile function of binomial distribution
 - `rbinom()`: (random) sample from binomial distribution
 
+You can use the `help()` or `?` for any of these functions to see more about them. 
+
 *** =instructions
-- instruction 1
+- Let's first make a random sample, that follows binomial distribution. This can be done with `rbinom()`. 
 - instruction 2
 
 *** =hint
@@ -148,7 +117,10 @@ Some of the basic functions associated with binomial distribution are:
 
 *** =sample_code
 ```{r}
-# sample code here
+#
+random_bin <- rbinom(150, 3, prob = 0.5)
+
+
 ```
 
 *** =solution
@@ -177,7 +149,7 @@ success_msg("Good work!")
 
 ## Normal distribution
 
-[Normal distribution](https://en.wikipedia.org/wiki/Normal_distribution) is continious distribution and it is often used in statistics. It has two parameters (expected value and standard deviation) which determine the shape and place of the distribution.
+[Normal distribution](https://en.wikipedia.org/wiki/Normal_distribution) is continious distribution and it is often used in statistics. It has two parameters (expected value and standard deviation) which determine the shape and place of the distribution. Normal distribution can be found in many human related topics. For example, if you take a village full of people, their heights will create a distribution that resembles a normal distribution. 
 
 In R the functions associated with normal distiribution are:
 - `dnorm()`: density of the normal distribution
@@ -236,18 +208,22 @@ There are countless of ready-made functions for you in R. At this point of the c
 A little recap of functions:
 Functions usually have one or more arguments, for which the user can define values when calling the function. Multiple arguments are separated with a comma. The arguments have names, which can (and often should) be used when specifying their values.
 
-The recommended style is to specify all but the first argument by name, when calling a function.
 
 *** =instructions
-- Look at the definition of the `apple_count()` function and execute the function calls that are defined, starting from line 5.
+- Look at the definition of the `apple_count()` function and execute the function calls that are defined.
 - Create object `my_apples` by directly assigning the output of `apple_count()` to it. Call `apple_count()` with `new_apples = 10` and `apples_stock = 2`. Print `my_apples` to see the output of the function.
+- Apples are gone bad! Worms! Create new function `good_apples_count()` that tells how many of the apples are still edible. Give the function to arguments: `apple_amount` and `bad_apples`. Set the amount of apples to be 15 by default.
+- You find 4 rotten apples in your stock. Use your function to get the number of the good apples. Save the answer to `my_good_apples`.
 
 *** =hint
-- The answer is of the form: `my_apples <- apple_count(arg1 = ?, arg2 = ?)`
+- The answer for `my_apples` is of the form: `my_apples <- apple_count(arg1 = ?, arg2 = ?)`
+- See how a new function is created by looking the code of `apple_count`. 
+- The amount of good apples is the difference of `apple_amount` and `bad_apples`.
+- You can set the default value in `function(arg1 = *insert_default_value_here*, ...) ...`
 
 *** =pre_exercise_code
 ```{r}
-apple_count <- function(number, k = 5) return(number + k)
+apple_count <- function(new_apples, apples_stock = 5) return(new_apples + apples_stock)
 ```
 
 *** =sample_code
@@ -258,15 +234,16 @@ apple_count <- function(new_apples, apples_stock = 5) return(new_apples + apples
 # Call the apple_count() function. Can you guess the result?
 apple_count(new_apples = 2)
 
-# These calls are identical. Try them.
-apple_count(5, apples_stock = -4) # recommended style
-apple_count(5, -4)     # style usually not recommended
-apple_count(apples_stock = -4, new_apples = 5) # style not recommended
-
 # Call apple_count() to create the object 'my_apples'. Print the results.
 my_apples <- 
 
 
+# New function here!
+good_apples_count <-
+
+# How many good apples do you have?
+my_good_apples <- 
+  
 ```
 
 *** =solution
@@ -277,32 +254,86 @@ apple_count <- function(new_apples, apples_stock = 5) return(new_apples + apples
 # Call the apple_count() function. Can you guess the result?
 apple_count(new_apples = 2)
 
-# These calls are identical. Try them.
-apple_count(5, apples_stock = -4) # recommended style
-apple_count(5, -4)     # style usually not recommended
-apple_count(apples_stock = -4, new_apples = 5) # style not recommended
-
 # Call apple_count() to create the object 'my_apples'. Print the results.
 my_apples <- apple_count(10, apples_stock = 2)
 
 
+# New function here!
+good_apples_count <- function(apple_amount = 15, bad_apples) return(apple_amount - bad_apples)
+
+# How many good apples do you have?
+my_good_apples <- good_apples_count(bad_apples = 4)
+  
 ```
 
 *** =sct
 ```{r}
 test_object("my_apples")
+test_object("my_good_apples")
 
 test_error()
-success_msg("Great job!")
+success_msg("Not eating worms tonight! Nicely done!")
 ```
 
 --- type:NormalExercise lang:r xp:100 skills:1 key:8ca0f12d3d
 
-## Normalization
+## Standardization
 
-Sometimes you have to repeat the same codes for multiple variables. In these cases it can be useful to create your own function to perform the same lines of code for different values. 
+When we have a normal distribution that has 0 as expected value and 1 as standard deviation, the distribution is called *standard* normal distribution. A handy thing is that in standard normal distributions about 68% of the observations are within one deviation amount away from the expected value and within two deviations away are 95% of the observations. This can be convinient sometimes. [Standardization](https://en.wikipedia.org/wiki/Standard_score) is used when we want to transform a normal distribution to a standardized normal distribution. 
 
-[Normalization](https://en.wikipedia.org/wiki/Normalization_(statistics)) is used when we want to transform a normal distribution to a standardized normal distribution. 
+
+*** =instructions
+- instruction 1
+- instruction 2
+
+*** =hint
+- hint 1
+- hint 2
+
+
+*** =pre_exercise_code
+```{r}
+learning2014 <-  read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/learning2014.txt", sep = "\t", header = TRUE)
+```
+
+*** =sample_code
+```{r}
+# sample code here
+```
+
+*** =solution
+```{r}
+#solution code here
+```
+
+*** =sct
+```{r}
+# submission correctness tests
+
+# example tests:
+# test_output_contains("output")
+# test_object("object_name")
+# test_function("function_name", args=c("arg1"))
+
+# test if the students code produces an error
+test_error()
+
+# Final message the student will see upon completing the exercise
+success_msg("Good work!")
+
+```
+--- type:NormalExercise lang:r xp:100 skills:1 key:6c27606d58
+
+## Uniform distribution
+
+[Discrete uniform distribution](https://en.wikipedia.org/wiki/Discrete_uniform_distribution)
+
+[Continious uniform distribution](https://en.wikipedia.org/wiki/Uniform_distribution_(continuous))
+
+- `dunif()`: density of the uniform distribution
+- `punif()`: distribution function of uniform distribution
+- `qunif()`: quantile function of uniform distribution
+- `runif()`: (random) sample from uniform distribution
 
 *** =instructions
 - instruction 1
