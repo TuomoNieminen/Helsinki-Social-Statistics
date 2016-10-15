@@ -3,7 +3,7 @@ title       : Conditions and subsets
 description : UNDER CONSTRUCTION
 
 --- type:NormalExercise lang:r xp:100 skills:1
-## Exercise title
+## Welcome to part 2
 
 Exercise info
 
@@ -46,45 +46,65 @@ success_msg("Good work!")
 
 ## Selecting a subset()
 
-Earlier in chapters 3 and 4 you learned how to look at your data with visualizations and summaries. This is great, but often there is a need to zoom in on a **subset** of the data matching some **condition**.
+Earlier in chapters 3 and 4 you learned how to look at your data with visualizations and summaries. This is great, but often there is a need to zoom in on a **subset** of the data matching some *condition*.
 
-There are multiple ways to select a subset in R. Perhaps the most convenient method is the `subset()` function. `subset()` is a generic function that works with several data formats. The first argument of `subset()` is the data, and the second argument are the **logical conditions** for selecting parts of the data.  
+There are multiple ways to select a subset in R. Perhaps the most convenient method is the `subset()` function. `subset()` is a generic function that works with several data formats. The first argument of `subset()` is the data, and the second argument are the *logical conditions* for selecting parts of the data.  
 
 When used on a data.frame, `subset()` returns the rows of the data.frame which match the specified logical conditions. You will soon learn more about logical conditions.
 
 *** =instructions
-- instruction 1
-- instruction 2
+- Execute the example codes
+- Look at the first 6 rows of the strategic learners subdata
+- Create your own subset by selecting the students with attitude less than 3
 
 *** =hint
-- hint 1
-- hint 2
+- Use the functions `head()` and `subset()` as in the example codes.
+- The strategic learning variable is named `stra`. The attitude variable is named `attitude`.
+- Use the operator `<` similarily to it's counterpart `>` in the example.
 
 
 *** =pre_exercise_code
 ```{r}
-# pre exercise code here
+learning2014 <- read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/learning2014.txt", sep = "\t", header = TRUE)
+
 ```
 
 *** =sample_code
 ```{r}
+# learning2014 is available
 
-# Look at the first 6 rows of data
-head(data)
+# Look at the first 6 rows of the learning data
+head(learning2014)
 
-# select a subset from data
-subdata <- subset(data, conditions)
+# select students with above (>) 4 strategic learning
+stra_learners <- subset(learning2014, stra > 4)
 
-# Look at the first 6 rows of the subdata
-head(subdata)
+# Look at the first 6 rows of stra_learners
 
-# select a subset from data
+
+# select students with below (<) 3 attitude
+attitude_low <- 
+
 
 ```
 
 *** =solution
 ```{r}
-#solution code here
+# learning2014 is available
+
+# Look at the first 6 rows of data
+head(learning2014)
+
+# select students with above (>) 4 strategic learning
+stra_learners <- subset(learning2014, stra > 4)
+
+# Look at the first 6 rows of the subdata
+head(stra_learners)
+
+# select students with below (<) 3 attitude
+attitude_low <- subset(learning2014, attitude < 3)
+
+
 ```
 
 *** =sct
@@ -92,9 +112,8 @@ head(subdata)
 # submission correctness tests
 
 # example tests:
-# test_output_contains("output")
-# test_object("object_name")
-# test_function("function_name", args=c("arg1"))
+test_output_contains("head(stra_learners)")
+test_object("attitude_low")
 
 # test if the students code produces an error
 test_error()
@@ -108,9 +127,9 @@ success_msg("Great work!")
 
 ## Logical comparison
 
-What you just saw inside the `subset()` function was  **logical comparison**. Logical comparison creates logical vectors which can then be used to select subsets of data. 
+What you just saw inside the `subset()` function was  **logical comparison**. Logical comparison creates logical vectors, which can then be used to select subsets of data for example.
 
-The logical comparison operators in R are:  
+Logical conditions have other uses as well and are generally important in programming tasks. The logical comparison operators in R are:  
 
 operator  | description
 ----------|------------
@@ -125,9 +144,9 @@ operator  | description
 When used with vectors, logical comparison produces a logical vector.
 
 *** =instructions
-- execute and study the example codes
-- Select a suitable logical comparison operator and a suitable comparison value to produce a vector `TRUE, FALSE, FALSE`
-- Extra: Can you think of another way to create the same vector?
+- Execute and study the example codes
+- Add to the row with c("a","b","c"): select a suitable logical comparison operator and a suitable comparison value to produce a result vector `FALSE, FALSE, TRUE`
+- Add to the row with c(1,3,2): select a suitable logical comparison operator and a suitable comparison value to produce a result vector `FALSE, FALSE, TRUE`
 
 *** =hint
 - The third example should point you in the right direction
@@ -136,8 +155,7 @@ When used with vectors, logical comparison produces a logical vector.
 
 *** =pre_exercise_code
 ```{r}
-
-
+# no pec
 ```
 
 *** =sample_code
@@ -148,27 +166,34 @@ When used with vectors, logical comparison produces a logical vector.
 # Not equal
 "cat" != "dog" # TRUE
 
-# Greater or equal
-c(0,1,2) >= 1 # FALSE TRUE TRUE
+# Greater or equal 3 times
+c(0,1,2) >= 1 # F,T,T
 
-# Use logical comparison to produce a result TRUE FALSE FALSE
-c(2,3,4)
+# Use logical comparison to produce a result F,F,T
+c("a","b","c")
+
+# Use logical comparison to produce a result T,F,T
+c(1,3,2)
+
 
 ```
 
 *** =solution
 ```{r}
 # exactly equal
-5 == 5
+5 == 5 # TRUE
 
-# not equal
-"cat" != "dog"
+# Not equal
+"cat" != "dog" # TRUE
 
-# greater or equal
-c(0,1,2) >= 1
+# Greater or equal 3 times
+c(0,1,2) >= 1 # F,T,T
 
-# use a logical comparison to produce a result TRUE FALSE FALSE
-c(2,3,4) < 3
+# Use logical comparison to produce a result F,F,T
+c("a","b","c") == "c"
+
+# Use logical comparison to produce a result T,F,T
+c(1,3,2) < 3
 
 ```
 
@@ -177,13 +202,15 @@ c(2,3,4) < 3
 # submission correctness tests
 
 # example tests:
-test_output_contains("c(2,3,4)<3", incorrect_msg = "Please make the necessary adustments to produce the output TRUE FALSE FALSE")
+test_output_contains("c('a','b','c')=='c'", incorrect_msg = "Please make the necessary adustments to produce the output FALSE FALSE TRUE"))
+
+test_output_contains("c(1,3,2)<3", incorrect_msg = "Please make the necessary adustments to produce the output TRUE FALSE TRUE")
 
 # test if the students code produces an error
 test_error()
 
 # Final message the student will see upon completing the exercise
-success_msg("Well done! Logic is the beginning of wisdom, not the end - Spock")
+success_msg("Well done! Logic is the beginning of wisdom, not the end.")
 
 ```
 
@@ -195,55 +222,79 @@ Logical conditions can be combined with the following logical operators:
 
 operator                | description
 ----------------------- | -----------
-`!`a                    | NOT a
-a `&` b                 | a AND b
-a <code>&#124;</code> b | a OR b  
+`!`a                    | not a
+a `&` b                 | a and b
+a <code>&#124;</code> b | a or b  
 
 Logical operators work like logical conditions: they compare the elements of vectors one at a time and can produce logical vectors.
 
-So, for example `c(F, T) & c(T, T)` produces a logical vector `FALSE TRUE`. In R, `T` and `F` can be used to abbreviate `TRUE` and `FALSE`.  
+In R, `T` and `F` can be used to abbreviate `TRUE` and `FALSE`. So, for example `c(F, T) & c(T, T)` produces a logical vector `FALSE TRUE` because `F & T` equals `FALSE` and `T & T` equals `TRUE`. 
 
-With these tools you are ready to do some serious subsetting.
+It is also possible to use parenthesis when using multiple conditions, to control the order of the operators. With these tools you are now ready to do some serious subsetting.
 
 *** =instructions
-- instruction 1
-- instruction 2
+- Create and print out four subsets matching the following conditions: 
+- (gender is male) and (deep learning is greater than 4.2) and (points is not zero)
+- (age is 25 or age is 26) and (attitude is greater than 3.5)
+- (gender is female) and (strategic learning is greater than 4.2)
+- (deep learning is more than 4.2) and (points is zero or points is greater than 30)
 
 *** =hint
-- hint 1
-- hint 2
+- The instructions include the correct use of parenthesis when using the logical operators and conditions
 
 
 *** =pre_exercise_code
 ```{r}
-# pre exercise code here
+learning2014 <- read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/learning2014.txt", sep = "\t", header = TRUE)
+# recode gender to factor
+learning2014$gender <- factor(learning2014$gender, levels = c(1,2), labels = c("M","N"))
+
 ```
 
 *** =sample_code
 ```{r}
-# sample code here
+# learning2014 is available
 
-# create a subset
-subdata <- subset(data, var1 <= value & var2 <= value)
+# male students who scored high on deep learning and have points
+subset(learning2014, (gender == "M") & (deep > 4.2) & (points != 0))
+
+# 25 or 26 old students who scored high on attitude
+subset(learning2014, (age == 25 | age == 26) & attitude > 3.5)
+
+# female students who scored high on strategic learning
 
 
-# create your subset here
+# students who scored high on deep learning for whom points is 0 or greater than 30
+
+
 
 ```
 
 *** =solution
 ```{r}
-#solution code here
+# learning2014 is available
+
+# male students who scored high on deep learning and have points
+subset(learning2014, (gender == "M") & (deep > 4.2) & (points != 0))
+
+# 25 or 26 old students who scored high on attitude
+subset(learning2014, (age == 25 | age == 26) & attitude > 3.5)
+
+# female students who scored high on strategic learning
+subset(learning2014, (gender == "N") & (stra > 4.2))
+
+# students who scored high on deep learning for whom points is 0 or greater than 30
+subset(learning2014, deep > 4.2 & (points == 0 | points > 30))
+
+
 ```
 
 *** =sct
 ```{r}
 # submission correctness tests
 
-# example tests:
-# test_output_contains("output")
-# test_object("object_name")
-# test_function("function_name", args=c("arg1"))
+test_output_contains("subset(learning2014,(gender=='N')&(stra>4.2))", incorrect_msg="Please print out the subset containing the female students with high stra variable")
+test_output_contains("subset(learning2014,deep>4.2&(points==0|points>30))", incorrect_msg="Please print out the subset containing the students who scored high on deep learning and had either no points or very high points")
 
 # test if the students code produces an error
 test_error()
