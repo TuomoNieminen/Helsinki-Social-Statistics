@@ -2,7 +2,7 @@
 title       : Conditions and subsets
 description : UNDER CONSTRUCTION
 
---- type:NormalExercise lang:r xp:100 skills:1
+--- type:NormalExercise lang:r xp:100 skills:1 key:d64c2a9918
 ## Welcome to part 2
 
 Exercise info
