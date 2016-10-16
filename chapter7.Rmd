@@ -86,6 +86,145 @@ success_msg("Good work! And now you know the probability of world ending...")
 
 ```
 
+--- type:NormalExercise lang:r xp:100 skills:1 key:6780cce146
+
+## Normal distribution (1)
+
+[Normal distribution](https://en.wikipedia.org/wiki/Normal_distribution) is continious distribution and it is often used in statistics. It has two parameters (expected value and standard deviation) which determine the shape and place of the distribution. Normal distribution can be found in many human related topics. For example, if you take a village full of people, their heights will create a distribution that resembles a normal distribution. 
+
+In R the functions associated with normal distiribution are:
+- `dnorm()`: density of the normal distribution
+- `pnorm()`: distribution function of normal distribution
+- `qnorm()`: quantile function of normal distribution
+- `rnorm()`: (random) sample from normal distribution
+
+In this exercise, we will focus on the `rnorm()` function. It draws a random sample from normal distribution (with specified parameters).
+
+*** =instructions
+- Execute the line for `my_sample`. Note the mean and standard deviation values.
+- Draw a histogram of `my_sample`. Do you notice the shape of the distribution?
+- Calculate the mean and standard deviation of `my_sample`. Save the values to `my_sample_mean` and `my_sample_sd`. Print the results.
+- Change the mean value to `35` in the `rnorm()` function and run all the codes again. What happened to the normal distribution?
+- Change the sd value to `0.1` in the `rnorm()` function and run all the codes again. What happened to the normal distribution?
+
+*** =hint
+- The `hist()` function has a mandatory argument `breaks` that needs to be specified.
+- You can calculate mean with the function `mean()`.
+- You can calculate standard deviation with the function `sd()`.
+
+*** =pre_exercise_code
+```{r}
+# pre exercise code here
+```
+
+*** =sample_code
+```{r}
+# Create a sample from normal distribution. In this case, the first argument (500) means the sample size.
+my_sample <- rnorm(500, mean = 5, sd = 2.5)
+
+# Histogram of my_sample
+hist(my_sample, breaks = 50)
+
+# Calculate the mean and standard deviation of my_sample. Print the results.
+my_sample_mean <-
+my_sample_sd <-
+
+
+
+
+```
+
+*** =solution
+```{r}
+# Create a sample from normal distribution. In this case, the first argument (500) means the sample size.
+my_sample <- rnorm(500, mean = 35, sd = 0.1)
+
+# Histogram of my_sample
+hist(my_sample, breaks = 50)
+
+# Calculate the mean and standard deviation of my_sample. Print the results.
+my_sample_mean <- mean(my_sample)
+my_sample_sd <- sd(my_sample)
+
+my_sample_mean
+my_sample_sd  
+
+```
+
+*** =sct
+```{r}
+# submission correctness tests
+
+# example tests:
+# test_output_contains("output")
+# test_object("object_name")
+# test_function("function_name", args=c("arg1"))
+
+# test if the students code produces an error
+test_error()
+
+# Final message the student will see upon completing the exercise
+success_msg("Good work!")
+
+```
+--- type:NormalExercise lang:r xp:100 skills:1 key:6780cce146
+
+## Normal distribution (2)
+
+[Normal distribution](https://en.wikipedia.org/wiki/Normal_distribution) is continious distribution and it is often used in statistics. It has two parameters (expected value and standard deviation) which determine the shape and place of the distribution. Normal distribution can be found in many human related topics. For example, if you take a village full of people, their heights will create a distribution that resembles a normal distribution. 
+
+In R the functions associated with normal distiribution are:
+- `dnorm()`: density of the normal distribution
+- `pnorm()`: distribution function of normal distribution
+- `qnorm()`: quantile function of normal distribution
+- `rnorm()`: (random) sample from normal distribution
+
+
+*** =instructions
+- instruction 1
+- instruction 2
+
+*** =hint
+- hint 1
+- hint 2
+
+
+*** =pre_exercise_code
+```{r}
+# pre exercise code here
+```
+
+*** =sample_code
+```{r}
+x_points <- seq(-5, 15, length = 500)
+density<-dnorm(x_points, mean = 5, sd = 2.5)
+plot(x_points, density, type = 'l', col = 'red', lwd = 2)
+
+pnorm(0, mean = 5, sd = 2.5, lower.tail = TRUE)
+pnorm(0, mean = 5, sd = 2.5, lower.tail = FALSE)
+```
+
+*** =solution
+```{r}
+#solution code here
+```
+
+*** =sct
+```{r}
+# submission correctness tests
+
+# example tests:
+# test_output_contains("output")
+# test_object("object_name")
+# test_function("function_name", args=c("arg1"))
+
+# test if the students code produces an error
+test_error()
+
+# Final message the student will see upon completing the exercise
+success_msg("Good work!")
+
+```
 --- type:NormalExercise lang:r xp:100 skills:1 key:8194f8b921
 
 ## Binomial distribution
@@ -121,60 +260,6 @@ You can use the `help()` or `?` for any of these functions to see more about the
 random_bin <- rbinom(150, 3, prob = 0.5)
 
 
-```
-
-*** =solution
-```{r}
-#solution code here
-```
-
-*** =sct
-```{r}
-# submission correctness tests
-
-# example tests:
-# test_output_contains("output")
-# test_object("object_name")
-# test_function("function_name", args=c("arg1"))
-
-# test if the students code produces an error
-test_error()
-
-# Final message the student will see upon completing the exercise
-success_msg("Good work!")
-
-```
-
---- type:NormalExercise lang:r xp:100 skills:1 key:6780cce146
-
-## Normal distribution
-
-[Normal distribution](https://en.wikipedia.org/wiki/Normal_distribution) is continious distribution and it is often used in statistics. It has two parameters (expected value and standard deviation) which determine the shape and place of the distribution. Normal distribution can be found in many human related topics. For example, if you take a village full of people, their heights will create a distribution that resembles a normal distribution. 
-
-In R the functions associated with normal distiribution are:
-- `dnorm()`: density of the normal distribution
-- `pnorm()`: distribution function of normal distribution
-- `qnorm()`: quantile function of normal distribution
-- `rnorm()`: (random) sample from normal distribution
-
-
-*** =instructions
-- instruction 1
-- instruction 2
-
-*** =hint
-- hint 1
-- hint 2
-
-
-*** =pre_exercise_code
-```{r}
-# pre exercise code here
-```
-
-*** =sample_code
-```{r}
-# sample code here
 ```
 
 *** =solution
