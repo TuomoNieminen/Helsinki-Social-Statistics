@@ -5,7 +5,7 @@ description : UNDER CONSTRUCTION
 --- type:NormalExercise lang:r xp:100 skills:1 key:d64c2a9918
 ## Welcome to part 2
 
-Exercise info
+info about data
 
 *** =instructions
 - instruction 1
@@ -15,8 +15,21 @@ Exercise info
 
 *** =pre_exercise_code
 ```{r}
+# data
 df <-  read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/learning2014.txt", sep = "\t", header = TRUE)
-barplot(table(cut(df$points, (0:11)*3, include.lowest=T)), las = 2, main = "Distribution of students exam points", xlab = "points")
+points <- table(cut(df$points, (0:11)*3, include.lowest=T))
+deep <- table(cut(df$deep, 1:5, include.lowest = T))
+stra <- table(cut(df$stra, 1:5, include.lowest = T))
+surf <- table(cut(df$surf, 1:5, include.lowest = T))
+
+# plots
+barplot(table(df$gender), main = "Distribution of students gender")
+boxplot(df$age, main = "Box plot of students age", xlab = "age", horizontal = T)
+barplot(points, las = 2, main = "Distribution of students exam points", xlab = "")
+barplot(surf, main = "Distribution of students scores on surface learning")
+barplot(deep, main = "Distribution of students scores on deep learning")
+barplot(stra, main = "Distribution of students scores on strategic learning")
+
 
 ```
 
@@ -167,12 +180,12 @@ When used with vectors, logical comparison produces a logical vector.
 "cat" != "dog" # TRUE
 
 # Greater or equal 3 times
-c(0,1,2) >= 1 # F,T,T
+c(0,1,2) >= 1 # F, T, T
 
-# Use logical comparison to produce a result F,F,T
+# Use logical comparison to produce a result F, F, T
 c("a","b","c")
 
-# Use logical comparison to produce a result T,F,T
+# Use logical comparison to produce a result T, F, T
 c(1,3,2)
 
 
@@ -202,7 +215,7 @@ c(1,3,2) < 3
 # submission correctness tests
 
 # example tests:
-test_output_contains("c('a','b','c')=='c'", incorrect_msg = "Please make the necessary adustments to produce the output FALSE FALSE TRUE"))
+test_output_contains("c('a','b','c')=='c'", incorrect_msg = "Please make the necessary adustments to produce the output FALSE FALSE TRUE")
 
 test_output_contains("c(1,3,2)<3", incorrect_msg = "Please make the necessary adustments to produce the output TRUE FALSE TRUE")
 
@@ -228,26 +241,23 @@ a <code>&#124;</code> b | a or b
 
 Logical operators work like logical conditions: they compare the elements of vectors one at a time and can produce logical vectors.
 
-In R, `T` and `F` can be used to abbreviate `TRUE` and `FALSE`. So, for example `c(F, T) & c(T, T)` produces a logical vector `FALSE TRUE` because `F & T` equals `FALSE` and `T & T` equals `TRUE`. 
-
-It is also possible to use parenthesis when using multiple conditions, to control the order of the operators. With these tools you are now ready to do some serious subsetting.
+In R, simply typing `T` and `F` can be used to abreviate boolean values `TRUE` and `FALSE`. So, for example `c(F, T) & c(T, T)` produces a logical vector `FALSE TRUE` because `F & T` equals `FALSE` and `T & T` equals `TRUE`. 
+It is also possible to use parenthesis when using multiple conditions, to control the evaluation of the operators. With these tools you are now ready to do some serious subsetting.
 
 *** =instructions
 - Create and print out four subsets matching the following conditions: 
-- (gender is male) and (deep learning is greater than 4.2) and (points is not zero)
-- (age is 25 or age is 26) and (attitude is greater than 3.5)
-- (gender is female) and (strategic learning is greater than 4.2)
-- (deep learning is more than 4.2) and (points is zero or points is greater than 30)
+- (gender is male) AND (deep learning is greater than 4.5)
+- (age is 25 OR age is 26) AND (attitude is greater than 3.5)
+- (gender is female) AND (strategic learning is greater than 4.5)
+- (deep learning is more than 4) AND (points is zero OR points is greater than 30)
 
 *** =hint
-- The instructions include the correct use of parenthesis when using the logical operators and conditions
+- The instructions show the correct use of parenthesis when using the logical operators and conditions
 
 
 *** =pre_exercise_code
 ```{r}
 learning2014 <- read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/learning2014.txt", sep = "\t", header = TRUE)
-# recode gender to factor
-learning2014$gender <- factor(learning2014$gender, levels = c(1,2), labels = c("M","N"))
 
 ```
 
@@ -255,13 +265,13 @@ learning2014$gender <- factor(learning2014$gender, levels = c(1,2), labels = c("
 ```{r}
 # learning2014 is available
 
-# male students who scored high on deep learning and have points
-subset(learning2014, (gender == "M") & (deep > 4.2) & (points != 0))
+# male students who scored very high on deep learning
+subset(learning2014, (gender == "M") & (deep > 4.5))
 
 # 25 or 26 old students who scored high on attitude
-subset(learning2014, (age == 25 | age == 26) & attitude > 3.5)
+subset(learning2014, (age == 25 | age == 26) & (attitude > 3.5))
 
-# female students who scored high on strategic learning
+# female students who scored very high on strategic learning
 
 
 # students who scored high on deep learning for whom points is 0 or greater than 30
@@ -274,17 +284,17 @@ subset(learning2014, (age == 25 | age == 26) & attitude > 3.5)
 ```{r}
 # learning2014 is available
 
-# male students who scored high on deep learning and have points
-subset(learning2014, (gender == "M") & (deep > 4.2) & (points != 0))
+# male students who scored very high on deep learning
+subset(learning2014, (gender == "M") & (deep > 4.5))
 
 # 25 or 26 old students who scored high on attitude
-subset(learning2014, (age == 25 | age == 26) & attitude > 3.5)
+subset(learning2014, (age == 25 | age == 26) & (attitude > 3.5))
 
-# female students who scored high on strategic learning
-subset(learning2014, (gender == "N") & (stra > 4.2))
+# female students who scored very high on strategic learning
+subset(learning2014, (gender == "N") & (stra > 4.5))
 
 # students who scored high on deep learning for whom points is 0 or greater than 30
-subset(learning2014, deep > 4.2 & (points == 0 | points > 30))
+subset(learning2014, deep > 4 & (points == 0 | points > 30))
 
 
 ```
@@ -293,14 +303,14 @@ subset(learning2014, deep > 4.2 & (points == 0 | points > 30))
 ```{r}
 # submission correctness tests
 
-test_output_contains("subset(learning2014,(gender=='N')&(stra>4.2))", incorrect_msg="Please print out the subset containing the female students with high stra variable")
-test_output_contains("subset(learning2014,deep>4.2&(points==0|points>30))", incorrect_msg="Please print out the subset containing the students who scored high on deep learning and had either no points or very high points")
+test_output_contains("subset(learning2014,(gender=='N')&(stra>4.5))", incorrect_msg="Please print out the subset containing the female students with high strategic learning scores")
+test_output_contains("subset(learning2014,deep>4&(points==0|points>30))", incorrect_msg="Please print out the subset containing the students who scored high on deep learning and had either no points or very high points")
 
 # test if the students code produces an error
 test_error()
 
 # Final message the student will see upon completing the exercise
-success_msg("Nice! You are the operator indeed.")
+success_msg("Excellent! You are the operator indeed.")
 
 ```
 
@@ -310,13 +320,9 @@ success_msg("Nice! You are the operator indeed.")
 
 Probability is the measure of the likelihood that an event will occur. It is quantified as a number between 0 and 1. Probability is an **essential** tool for statistics since the discipline is primarily interested in measuring uncertainty.
 
-The classical definition of probability is the proportion of favourable cases. The probability for event A out of all possible outcomes $\Omega$ is:
+The classical definition of probability is the proportion of favourable cases over all possible outcomes Thus, the probability of an event $A$ with $f$ favourable cases out of $N$ possible outcomes is:
 
-$$P(A) = \frac{n(A)}{n(\Omega)}$$
-
-where n() gives the number of outcomes (elements). 
-
-In R, instead of n() we have the functions `length()` for vectors and `nrow()` for data.frames to get the number of elements.
+$$P(A) = \frac{f}{N}$$
 
 
 *** =instructions
