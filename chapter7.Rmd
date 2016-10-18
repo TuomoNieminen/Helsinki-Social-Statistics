@@ -181,7 +181,7 @@ In R the functions associated with normal distiribution are:
 
 
 *** =instructions
-- instruction 1
+- Let's assume we have a random variable X, that get's values 
 - instruction 2
 
 *** =hint
@@ -191,17 +191,18 @@ In R the functions associated with normal distiribution are:
 
 *** =pre_exercise_code
 ```{r}
-# pre exercise code here
+
 ```
 
 *** =sample_code
 ```{r}
-x_points <- seq(-5, 15, length = 500)
-density<-dnorm(x_points, mean = 5, sd = 2.5)
+x_points <- seq(-5, 25, length = 50)
+density<-dnorm(x_points, mean = 10, sd = 3.5)
 plot(x_points, density, type = 'l', col = 'red', lwd = 2)
 
 pnorm(0, mean = 5, sd = 2.5, lower.tail = TRUE)
 pnorm(0, mean = 5, sd = 2.5, lower.tail = FALSE)
+
 ```
 
 *** =solution
@@ -407,18 +408,13 @@ test_error()
 success_msg("Good work!")
 
 ```
---- type:NormalExercise lang:r xp:100 skills:1 key:6c27606d58
+--- type:MultipleChoiceExercise lang:r xp:100 skills:1 key:6c27606d58
 
 ## Uniform distribution
 
-[Discrete uniform distribution](https://en.wikipedia.org/wiki/Discrete_uniform_distribution)
+The uniform distribution can be [discrete uniform distribution](https://en.wikipedia.org/wiki/Discrete_uniform_distribution) or
 
-[Continious uniform distribution](https://en.wikipedia.org/wiki/Uniform_distribution_(continuous))
-
-- `dunif()`: density of the uniform distribution
-- `punif()`: distribution function of uniform distribution
-- `qunif()`: quantile function of uniform distribution
-- `runif()`: (random) sample from uniform distribution
+[continious uniform distribution](https://en.wikipedia.org/wiki/Uniform_distribution_(continuous)).
 
 *** =instructions
 - instruction 1
@@ -432,29 +428,22 @@ success_msg("Good work!")
 *** =pre_exercise_code
 ```{r}
 # pre exercise code here
-```
-
-*** =sample_code
-```{r}
-# sample code here
-```
-
-*** =solution
-```{r}
-#solution code here
+x <- seq(-5, 20, length = 25)
+y<-'density'
+par(lwd=2, mfrow=c(2,2))
+plot(x, dunif(x, 0, 15), type='s', ylim=c(0,.1), col="red", ylab=y, main='Plot 1: Density plot')
+plot(x, dunif(x, 0, 15), type='h', ylim=c(0,.1), col="red", ylab=y, main='Plot 2: Density plot')
+plot(x, punif(x, 0, 15), type='l', col="red", ylab=y, main='Plot 1: Density plot')
+plot(x, punif(x, 0, 15), type='s', col="red", ylab=y, main='Plot 2: Density plot')
 ```
 
 *** =sct
 ```{r}
-# submission correctness tests
+msg1 = "Sorry, that's not the right answer. Look again!"
+msg2 = "You are totally right! Proceed to the next exercise"
 
-# example tests:
-# test_output_contains("output")
-# test_object("object_name")
-# test_function("function_name", args=c("arg1"))
 
-# test if the students code produces an error
-test_error()
+# test_mc(correct = 2, feedback_msgs = c(msg1,msg2,msg3,msg4,msg5))
 
 # Final message the student will see upon completing the exercise
 success_msg("Good work!")
