@@ -326,27 +326,69 @@ $$P(A) = \frac{f}{N}$$
 
 
 *** =instructions
-- instruction 1
-- instruction 2
+- For the next questions assume that we randomly pick a single student from the learning2014 data.
+- What is the probability that the student is female?
+- What is the probability that the student has scored more than 3 on attitude?
+- What is the probability that the student is male and has scored more than 4  on attitude?
+- Round the answers to 2 digits and save them to the objects as in the example
 
 *** =hint
-- hint 1
-- hint 2
+- Use the table created and count the number of favourable cases (f) and the number of all possible cases (N)
+- The asked probabilities are then f / N
 
 
 *** =pre_exercise_code
 ```{r}
-# pre exercise code here
+learning2014 <-  read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/learning2014.txt", sep = "\t", header = TRUE)
+
 ```
 
 *** =sample_code
 ```{r}
-# sample code here
+# learning2014 is available
+
+# transform attitude into a factor and cross table with gender
+attitude <- cut(learning2014$attitude, 1:5, include.lowest = T)
+gndr_att <- table(learning2014$gender, attitude)
+addmargins(gndr_att)
+
+# P(gender = M)
+p1 <- round(61/183, digits = 2)
+
+# P(gender = N)
+p2 <- 
+
+# P(attitude > 3)  
+p3 <-
+
+# P(gender = M, attitude > 4)
+p4 <- 
+
+
 ```
 
 *** =solution
 ```{r}
-#solution code here
+# learning2014 is available
+
+# transform attitude into a factor and cross table with gender
+attitude <- cut(learning2014$attitude, 1:5, include.lowest = T)
+gndr_att <- table(learning2014$gender, attitude)
+addmargins(gndr_att)
+
+# P(gender = M)
+p1 <- round(61/183, digits = 2)
+
+# P(gender = N)
+p2 <- round(122/183, digits = 2)
+
+# P(attitude > 3)  
+p3 <- round((85+19)/183, digits = 2)
+
+# P(gender = M, attitude > 4)
+p4 <- round(12/183, digits = 2)
+
+
 ```
 
 *** =sct
@@ -354,15 +396,16 @@ $$P(A) = \frac{f}{N}$$
 # submission correctness tests
 
 # example tests:
-# test_output_contains("output")
-# test_object("object_name")
-# test_function("function_name", args=c("arg1"))
+test_object("p2")
+test_object("p3")
+test_object("p4")
 
 # test if the students code produces an error
 test_error()
 
 # Final message the student will see upon completing the exercise
-success_msg("Good work!")
+success_msg("Great! You are probably a genius!")
+
 
 ```
 
