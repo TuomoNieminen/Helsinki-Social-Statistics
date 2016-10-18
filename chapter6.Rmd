@@ -159,7 +159,8 @@ When used with vectors, logical comparison produces a logical vector.
 *** =instructions
 - Execute and study the example codes
 - Add to the row with c("a","b","c"): select a suitable logical comparison operator and a suitable comparison value to produce a result vector `FALSE, FALSE, TRUE`
-- Add to the row with c(1,3,2): select a suitable logical comparison operator and a suitable comparison value to produce a result vector `FALSE, FALSE, TRUE`
+- Add to the row with c(1,3,2): select a suitable logical comparison operator and a suitable comparison value to produce a result vector `TRUE, FALSE, TRUE`
+- Bonus: can you think of other ways of achieving the same results?
 
 *** =hint
 - The third example should point you in the right direction
@@ -241,11 +242,12 @@ a <code>&#124;</code> b | a or b
 
 Logical operators work like logical conditions: they compare the elements of vectors one at a time and can produce logical vectors.
 
-In R, simply typing `T` and `F` can be used to abreviate boolean values `TRUE` and `FALSE`. So, for example `c(F, T) & c(T, T)` produces a logical vector `FALSE TRUE` because `F & T` equals `FALSE` and `T & T` equals `TRUE`. 
-It is also possible to use parenthesis when using multiple conditions, to control the evaluation of the operators. With these tools you are now ready to do some serious subsetting.
+In R, `T` and `F` can be used to abreviate `TRUE` and `FALSE`. So, for example `c(F, T) & c(T, T)` produces a logical vector `FALSE TRUE` because `F & T` equals `FALSE` and `T & T` equals `TRUE`. 
+
+It is also possible to use parenthesis to control the evaluation of the operators. See how this works from the example codes.
 
 *** =instructions
-- Create and print out four subsets matching the following conditions: 
+- Create and print out four subsets of the learning2014 data matching the following conditions: 
 - (gender is male) AND (deep learning is greater than 4.5)
 - (age is 25 OR age is 26) AND (attitude is greater than 3.5)
 - (gender is female) AND (strategic learning is greater than 4.5)
@@ -318,9 +320,9 @@ success_msg("Excellent! You are the operator indeed.")
 
 ## Classical probability
 
-Probability is the measure of the likelihood that an event will occur. It is quantified as a number between 0 and 1. Probability is an **essential** tool for statistics since the discipline is primarily interested in measuring uncertainty.
+Probability is the measure of the likelihood that an event will occur and it is quantified as a number between 0 and 1. Probability is an **essential** tool for statistics since the discipline is primarily interested in measuring uncertainty.
 
-The classical definition of probability is the proportion of favourable cases over all possible outcomes Thus, the probability of an event $A$ with $f$ favourable cases out of $N$ possible outcomes is:
+The classical definition of probability is the proportion of favourable cases over all possible outcomes. Thus, the probability of event $A$ with $f$ number of favourable cases out of $N$ possible outcomes is:
 
 $$P(A) = \frac{f}{N}$$
 
