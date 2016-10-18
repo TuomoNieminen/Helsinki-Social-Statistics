@@ -263,9 +263,9 @@ Since we are using a sample, clearly there is some uncertainty involved in our p
 
 This is where we need statistical theory. It turns out that the following formula produces an interval around the estimate which contains the true parameter value a specified high percentage of the time ($100 \cdot (1-\alpha)$%) 
 
-$$\text{estimate] +- z(\alpha/2) \cdot \frac{s}{\sqrt{n}}$$
+$$\text{estimate} +- z(\alpha/2) \cdot \frac{s}{\sqrt{n}}$$
 
-Here $s$ is the sample standard deviation, $n$ is the sample size and $z(\frac{\alpha}{2})$ is a critical value from the $N(0,1)$ distribution. $\frac{s}{\sqrt{n}$ is called the *standard error* of the estimate. 
+Here $s$ is the sample standard deviation, $n$ is the sample size and $z(\frac{\alpha}{2})$ is a critical value from the $N(0,1)$ distribution. $\frac{s}{\sqrt{n}}$ is called the *standard error* of the estimate. 
 
 I know what you're thinking. It's confusing: where did the normal distribution come from and what's with all that $z(\frac{\alpha}{2})$ stuff? The answers lie in the **sampling distribution** which we will soon get to.
 
@@ -486,7 +486,7 @@ points <- learning2014$points
 ```{r}
 # points is available
 
-# Create an empty vector of lenght N
+# Create an empty vector of length N
 N <- 100
 means <- numeric(N)
 means
