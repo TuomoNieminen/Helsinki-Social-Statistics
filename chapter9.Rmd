@@ -6,7 +6,9 @@ description : UNDER CONSTRUCTION
 
 ## Statistical hypothesis testing
 
-Under construction.
+In [statistical hypothesis testing](https://en.wikipedia.org/wiki/Statistical_hypothesis_testing) we want to test if our claim or something we assume is supported by the data. So we set our [*null hypothesis*](https://en.wikipedia.org/wiki/Null_hypothesis) and our [*alternative hypothesis*](https://en.wikipedia.org/wiki/Alternative_hypothesis), and see what the numbers tell us about them.  
+
+After setting the hypotheses, we can look at the data and calculate the test statistic. What test statistic to use, depends on the test you are doing. With the test statistics, you can calculate the (famous) p-value. The p-value tells you something about the hypotheses and it can be used as a guide line. The p-value and other knowledge of the field you are testing, you can reject or not reject the null hypothesis. 
 
 *** =instructions
 - instruction 1
