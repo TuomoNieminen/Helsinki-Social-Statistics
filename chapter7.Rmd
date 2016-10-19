@@ -167,21 +167,17 @@ test_error()
 success_msg("Good work!")
 
 ```
+
 --- type:NormalExercise lang:r xp:100 skills:1 key:271171917b
 
 ## Normal distribution (2)
 
-[Normal distribution](https://en.wikipedia.org/wiki/Normal_distribution) is continious distribution and it is often used in statistics. It has two parameters (expected value and standard deviation) which determine the shape and place of the distribution. Normal distribution can be found in many human related topics. For example, if you take a village full of people, their heights will create a distribution that resembles a normal distribution. 
+It is good to know the formulas behind every calculations when you are dealing with probabilities. But in reality you rarely do the calculations by hand. 
 
-In R the functions associated with normal distiribution are:
-- `dnorm()`: density of the normal distribution
-- `pnorm()`: distribution function of normal distribution
-- `qnorm()`: quantile function of normal distribution
-- `rnorm()`: (random) sample from normal distribution
-
+The function `pnorm()` can be used to calculate probabilities from normal distributions. 
 
 *** =instructions
-- Let's assume we have a random variable X, that get's values 
+- hmm
 - instruction 2
 
 *** =hint
@@ -196,6 +192,7 @@ In R the functions associated with normal distiribution are:
 
 *** =sample_code
 ```{r}
+
 x_points <- seq(-5, 25, length = 50)
 density<-dnorm(x_points, mean = 10, sd = 3.5)
 plot(x_points, density, type = 'l', col = 'red', lwd = 2)
@@ -242,7 +239,7 @@ Some of the basic functions associated with binomial distribution are:
 You can use the `help()` or `?` for any of these functions to see more about them. 
 
 *** =instructions
-- Let's first make a random sample, that follows binomial distribution. This can be done with `rbinom()`. 
+- instruction 1
 - instruction 2
 
 *** =hint
@@ -257,7 +254,7 @@ You can use the `help()` or `?` for any of these functions to see more about the
 
 *** =sample_code
 ```{r}
-#
+# Sampling. 
 random_bin <- rbinom(250, 50, prob = 0.5)
 
 hist(random_bin, 25)
