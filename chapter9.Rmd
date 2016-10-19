@@ -4,7 +4,7 @@ description : UNDER CONSTRUCTION
 
 --- type:NormalExercise lang:r xp:100 skills:1 key:ee77c10ab2
 
-## Exercise 1
+## Statistical hypothesis testing
 
 Under construction.
 
@@ -19,12 +19,14 @@ Under construction.
 
 *** =pre_exercise_code
 ```{r}
-# pre exercise code here
+learning2014 <-  read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/learning2014.txt", sep = "\t", header = TRUE)
 ```
 
 *** =sample_code
 ```{r}
 # sample code here
+
+hist(learning2014$age, 35)
 ```
 
 *** =solution
@@ -51,101 +53,7 @@ success_msg("Good work!")
 
 --- type:NormalExercise lang:r xp:100 skills:1 key:c033eeaa78
 
-## Exercise 2
-
-Under construction.
-
-*** =instructions
-- instruction 1
-- instruction 2
-
-*** =hint
-- hint 1
-- hint 2
-
-
-*** =pre_exercise_code
-```{r}
-# pre exercise code here
-```
-
-*** =sample_code
-```{r}
-# sample code here
-```
-
-*** =solution
-```{r}
-#solution code here
-```
-
-*** =sct
-```{r}
-# submission correctness tests
-
-# example tests:
-# test_output_contains("output")
-# test_object("object_name")
-# test_function("function_name", args=c("arg1"))
-
-# test if the students code produces an error
-test_error()
-
-# Final message the student will see upon completing the exercise
-success_msg("Good work!")
-
-```
-
---- type:NormalExercise lang:r xp:100 skills:1 key:0b42a1089b
-
-## Exercise 3
-
-Under construction.
-
-*** =instructions
-- instruction 1
-- instruction 2
-
-*** =hint
-- hint 1
-- hint 2
-
-
-*** =pre_exercise_code
-```{r}
-# pre exercise code here
-```
-
-*** =sample_code
-```{r}
-# sample code here
-```
-
-*** =solution
-```{r}
-#solution code here
-```
-
-*** =sct
-```{r}
-# submission correctness tests
-
-# example tests:
-# test_output_contains("output")
-# test_object("object_name")
-# test_function("function_name", args=c("arg1"))
-
-# test if the students code produces an error
-test_error()
-
-# Final message the student will see upon completing the exercise
-success_msg("Good work!")
-
-```
-
---- type:NormalExercise lang:r xp:100 skills:1 key:8dfc56d628
-
-## Exercise 4
+## Meet the tests! (1)
 
 Under construction.
 
@@ -192,7 +100,101 @@ success_msg("Good work!")
 
 --- type:NormalExercise lang:r xp:100 skills:1 key:9b63d0cb6a
 
-## Exercise 5
+## Meet the tests! (2)
+
+Under construction.
+
+*** =instructions
+- instruction 1
+- instruction 2
+
+*** =hint
+- hint 1
+- hint 2
+
+
+*** =pre_exercise_code
+```{r}
+# pre exercise code here
+```
+
+*** =sample_code
+```{r}
+# sample code here
+```
+
+*** =solution
+```{r}
+#solution code here
+```
+
+*** =sct
+```{r}
+# submission correctness tests
+
+# example tests:
+# test_output_contains("output")
+# test_object("object_name")
+# test_function("function_name", args=c("arg1"))
+
+# test if the students code produces an error
+test_error()
+
+# Final message the student will see upon completing the exercise
+success_msg("Good work!")
+
+```
+
+--- type:NormalExercise lang:r xp:100 skills:1 key:0b42a1089b
+
+## Peculiar p-values
+
+Under construction.
+
+*** =instructions
+- instruction 1
+- instruction 2
+
+*** =hint
+- hint 1
+- hint 2
+
+
+*** =pre_exercise_code
+```{r}
+# pre exercise code here
+```
+
+*** =sample_code
+```{r}
+# sample code here
+```
+
+*** =solution
+```{r}
+#solution code here
+```
+
+*** =sct
+```{r}
+# submission correctness tests
+
+# example tests:
+# test_output_contains("output")
+# test_object("object_name")
+# test_function("function_name", args=c("arg1"))
+
+# test if the students code produces an error
+test_error()
+
+# Final message the student will see upon completing the exercise
+success_msg("Good work!")
+
+```
+
+--- type:NormalExercise lang:r xp:100 skills:1 key:8dfc56d628
+
+## (Null hypothesis:) which way to go?!
 
 Under construction.
 
