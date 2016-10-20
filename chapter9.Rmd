@@ -2,13 +2,13 @@
 title       : Hypothesis testing
 description : UNDER CONSTRUCTION
 
---- type:NormalExercise lang:r xp:100 skills:1 key:ee77c10ab2
+--- type:MultipleChoiceExercise lang:r xp:100 skills:1 key:ee77c10ab2
 
 ## Statistical hypothesis testing
 
 In [statistical hypothesis testing](https://en.wikipedia.org/wiki/Statistical_hypothesis_testing) we want to test if our claim or something we assume is supported by the data. So we set our [*null hypothesis*](https://en.wikipedia.org/wiki/Null_hypothesis) and our [*alternative hypothesis*](https://en.wikipedia.org/wiki/Alternative_hypothesis), and see what the numbers tell us about them.  
 
-After setting the hypotheses, we can look at the data and calculate the test statistic. What test statistic to use, depends on the test you are doing. With the test statistics, you can calculate the (famous) p-value. The p-value tells you something about the hypotheses and it can be used as a guide line. The p-value and other knowledge of the field you are testing, you can reject or not reject the null hypothesis. 
+
 
 *** =instructions
 - instruction 1
@@ -21,19 +21,7 @@ After setting the hypotheses, we can look at the data and calculate the test sta
 
 *** =pre_exercise_code
 ```{r}
-learning2014 <-  read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/learning2014.txt", sep = "\t", header = TRUE)
-```
 
-*** =sample_code
-```{r}
-# sample code here
-
-hist(learning2014$age, 35)
-```
-
-*** =solution
-```{r}
-#solution code here
 ```
 
 *** =sct
@@ -57,7 +45,7 @@ success_msg("Good work!")
 
 ## Meet the tests! (1)
 
-Under construction.
+After setting the hypotheses, we can look at the data and calculate the test statistic. What test statistic to use, depends on the test you are doing. With the test statistics, you can calculate the (famous) p-value. The p-value tells you something about the hypotheses and it can be used as a guide line. The p-value and other knowledge of the field you are testing, you can reject or not reject the null hypothesis. 
 
 *** =instructions
 - instruction 1
@@ -71,6 +59,7 @@ Under construction.
 *** =pre_exercise_code
 ```{r}
 # pre exercise code here
+learning2014 <-  read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/learning2014.txt", sep = "\t", header = TRUE)
 ```
 
 *** =sample_code
