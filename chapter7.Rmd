@@ -10,18 +10,19 @@ In this chapter you will learn about [random variables](https://en.wikipedia.org
 
 Random variables can have a set of different values. Every value has a probability of occurance. The probabilities of the values form a probability distribution for the random variable. Random variables and probability distributions can be discrete or continous.
 
-There are things or events that are known to follow certain probability distributions (like the heights of people usually are normally distributed), but there are also many phenomenas that have their unique distributions. See the sample code to get the general idea. 
+There are things or events that are known to follow certain probability distributions (like the heights of people usually are normally distributed), but there are also many phenomenas that have their unique distributions. In R you can create a sample from distribution with the function `sample()`. See the example code to get the general idea. 
 
 *** =instructions
-- Create variable tomorrow with events `cat attacks baby`, `world ends` and `I eat pasta`.
+- Create variable `tomorrow` with events `cat attacks baby`, `world ends` and `I eat pasta`.
 - Set probabilities to the events of variable `tomorrow`.
-- Draw [*a sample*](https://en.wikipedia.org/wiki/Sample_(statistics)) from tomorrow with a sample size 1. Are you suprised with the outcome?
-- Draw another sample, this time with sample size `100`. Save the results to `x`. Note the argument `replace` in the function `sample()`. What do you think it does? Remember, you can always seek help about the function arguments with `?*name_of_the_function*`
-- Notice how the bar heights in the barplot are related to the probabilities we set earlier.
+- Draw a [*sample*](https://en.wikipedia.org/wiki/Sample_(statistics)) from tomorrow with a sample size 1. Are you suprised with the outcome?
+- Draw another sample, this time with sample size `100`. Save the results to `my_sample`. Note the argument `replace` in the function `sample()`. What do you think it does? 
+- Visualize the sample with bar plot. Notice how the bar heights in the barplot are related to the probabilities we set earlier.
+- Remember, you can always seek help about the function arguments with `?*name_of_the_function*`
 
 *** =hint
-- Did you specify the sample size correctly in `x`? If not, the code will produce an error.
-- The argument `size` is used to determine the sample size.
+- Did you specify the sample size correctly in the object `my_sample`? If not, the code will produce an error.
+- The argument `size` in the `sample()` function is used to determine the sample size.
 
 
 *** =pre_exercise_code
@@ -42,10 +43,10 @@ sample(tomorrow, size = 1, prob = probabilities)
 
 
 # draw a sample 100 times
-x <- sample(tomorrow, size = , replace = TRUE, prob = probabilities)
+my_sample <- sample(tomorrow, size = , replace = TRUE, prob = probabilities)
 
 # visualize the distribution
-barplot(table(x))
+barplot(table(my_sample))
 
 ```
 
@@ -62,10 +63,10 @@ sample(tomorrow, size = 1, prob = probabilities)
 
 
 # draw a sample 100 times and visualize the distribution
-x <- sample(tomorrow, size = 100, replace = TRUE, prob = probabilities)
+my_sample <- sample(tomorrow, size = 100, replace = TRUE, prob = probabilities)
 
 # visualize the distribution
-barplot(table(x))
+barplot(table(my_sample))
 
 ```
 
@@ -93,6 +94,7 @@ success_msg("Good work! And now you know the probability of world ending...")
 [Normal distribution](https://en.wikipedia.org/wiki/Normal_distribution) is continious distribution and it is often used in statistics. It has two parameters (expected value and standard deviation) which determine the shape and place of the distribution. Normal distribution can be found in many human related topics. For example, if you take a village full of people, their heights will create a distribution that resembles a normal distribution. 
 
 In R the functions associated with normal distiribution are:
+
 - `dnorm()`: density of the normal distribution
 - `pnorm()`: distribution function of normal distribution
 - `qnorm()`: quantile function of normal distribution
