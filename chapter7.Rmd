@@ -15,10 +15,9 @@ There are things or events that are known to follow certain probability distribu
 *** =instructions
 - Create variable `tomorrow` with events `cat attacks baby`, `world ends` and `I eat pasta`.
 - Set probabilities to the events of variable `tomorrow`.
-- Draw a [*sample*](https://en.wikipedia.org/wiki/Sample_(statistics)) from tomorrow with a sample size 1. Are you suprised with the outcome?
-- Draw another sample, this time with sample size `100`. Save the results to `my_sample`. Note the argument `replace` in the function `sample()`. What do you think it does? 
+- Draw a [*sample*](https://en.wikipedia.org/wiki/Sample_(statistics)) from tomorrow when the sample size is 1. Are you suprised with the outcome?
+- Draw another sample, this time with sample size = `100`. Save the results to `my_sample`. Note the argument `replace` in the function `sample()`. What do you think it does? 
 - Visualize the sample with bar plot. Notice how the bar heights in the barplot are related to the probabilities we set earlier.
-- Remember, you can always seek help about the function arguments with `?*name_of_the_function*`
 
 *** =hint
 - Did you specify the sample size correctly in the object `my_sample`? If not, the code will produce an error.
@@ -91,7 +90,7 @@ success_msg("Good work! And now you know the probability of world ending...")
 
 ## Normal distribution (1)
 
-[Normal distribution](https://en.wikipedia.org/wiki/Normal_distribution) is continious distribution and it is often used in statistics. It has two parameters (expected value and standard deviation) which determine the shape and place of the distribution. Normal distribution can be found in many human related topics. For example, if you take a village full of people, their heights will create a distribution that resembles a normal distribution. 
+[Normal distribution](https://en.wikipedia.org/wiki/Normal_distribution) is continious distribution and it is often used in statistics. It has two parameters (expected value and standard deviation) which determine the shape and place of the distribution. Many human attributes are can be said to be normally distributed. For example, if you take a village full of people, their heights will create a distribution that resembles a normal distribution. 
 
 In R the functions associated with normal distiribution are:
 
@@ -174,13 +173,13 @@ success_msg("Good work!")
 
 ## Normal distribution (2)
 
-It is good to know the formulas behind every calculations when you are dealing with probabilities. But in reality you rarely do the calculations by hand. 
+It is good to know the formulas behind every calculations when you are dealing with probabilities. But in reality you rarely do the calculations by hand. And why would you, when you have R to calculate them for you!
 
 The function `pnorm()` can be used to calculate probabilities from normal distributions. 
 
 *** =instructions
-- hmm
-- instruction 2
+- Draw a *density* histogram of variable `deep` from the `learning2014` data. You can plot a density plot instead of frequency one by setting the argument `freq` to `FALSE` in the histogram plot function. Do not use the argument `breaks`. We can see that the distribution of variable deep resembles a normal distribution. 
+- If we wanted to know what is the probability that deep learning is smaller than 3?
 
 *** =hint
 - hint 1
@@ -189,24 +188,66 @@ The function `pnorm()` can be used to calculate probabilities from normal distri
 
 *** =pre_exercise_code
 ```{r}
-
+learning2014 <-  read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/learning2014.txt", sep = "\t", header = TRUE)
 ```
 
 *** =sample_code
 ```{r}
+# learning2014 is available
 
-x_points <- seq(-5, 25, length = 50)
-density<-dnorm(x_points, mean = 10, sd = 3.5)
-plot(x_points, density, type = 'l', col = 'red', lwd = 2)
+# Histogram of 'deep'
+hist(learning2014$deep, freq = F)
 
-pnorm(0, mean = 5, sd = 2.5, lower.tail = TRUE)
-pnorm(0, mean = 5, sd = 2.5, lower.tail = FALSE)
+# The mean and sd of 'deep'
+deep_mean <- mean(learning2014$deep)
+deep_sd <- sd(learning2014$deep)
+
+# Calcu
+
+dnorm(3, mean = deep_mean, sd = deep_sd)
+deep_sequence <- seq(0, 5, length = 50) # this creates a vector that has 50 values from 0 to 5
+density<-dnorm(deep_sequence, mean = deep_mean, sd = deep_sd)
+
+draw<-function(x){
+  plot(deep_sequence, density, type = 'l', col = 'red', lwd = 2, xlim=c(0,5))
+  y<-dnorm(deep_sequence[deep_sequence<=x], mean = deep_mean, sd = deep_sd)
+  polygon(c(0, deep_sequence[deep_sequence<=x], x), c(0, y,0), col = "orange")
+}
+
+draw(5)
+
+pnorm(5, mean = deep_mean, sd = deep_sd, lower.tail = TRUE)
+pnorm(0, mean = deep_mean, sd = deep_sd, lower.tail = FALSE)
 
 ```
 
 *** =solution
 ```{r}
 #solution code here
+
+get_z <- function(alpha) {
+  par(mar = c(7,4,5,4))
+  a <- alpha/2
+  x <- (-50:50)/10
+  y <- dnorm(x)
+  q1 <- qnorm(a); q2 <- qnorm(1-a)
+  # draw the plot
+  main <- paste("Critical values and regions of the N(0,1) distribution \n",
+                " alpha/2 =", a)
+  plot(x, y, type ="l", main = main, xlab = "", yaxt = "n", ylab = "")
+  mtext(paste0("-z = qnorm(",1 - a,") = ",round(q1,2),"\n",
+                 "z = qnorm(",a,") = ",round(q2,2)),side=1, line = 5, cex = 1.5)
+  
+  # highlight critical regions
+  x1 <- x[x<=q1]; x2 <- x[x>=q2]
+  polygon(c(min(x1),x1, max(x1)),
+          c(0, dnorm(x1), 0), col = "grey60")
+  text(x = c(-3.5, 3.5), y = c(0.08,0.08), labels = paste0(a*100,"%"), cex = 1.5)
+  text(x = 0, y = 0.08, labels=paste0(100*(1-alpha),"%"), cex = 1.5)
+  return(q2)
+}
+
+get_z(.3)
 ```
 
 *** =sct
@@ -365,42 +406,59 @@ success_msg("Not eating worms tonight! Nicely done!")
 
 ## Standardization
 
-When we have a normal distribution that has 0 as expected value and 1 as standard deviation, the distribution is called *standard* normal distribution. A handy thing is that in standard normal distributions about 68% of the observations are within one deviation amount away from the expected value and within two deviations away are 95% of the observations. This can be convinient sometimes. [Standardization](https://en.wikipedia.org/wiki/Standard_score) is used when we want to transform a normal distribution to a standardized normal distribution. 
+When we have a normal distribution that has 0 as expected value and 1 as standard deviation, the distribution is called *standard* normal distribution. A handy thing is that in standard normal distributions about 68% of the observations are within one deviation amount away from the expected value and within two deviations away are 95% of the observations. This can be convinient sometimes. [Standardization](https://en.wikipedia.org/wiki/Standard_score) is used when we want to transform a normal distribution to a standardized normal distribution. Standardized normal distribution has 0 as expected value and 1 as standard deviation. 
 
+The formula for standarzation is:
+$$z = \frac{\mu - \overline{x}}{\sigma}$$
 
 *** =instructions
-- instruction 1
+- Let's create a function that standardizes normal distributions. Save the function as `standarzation`.
 - instruction 2
 
 *** =hint
-- hint 1
+- The code `*name_if_the_function* <- function(...) return (...)` is used when creating a function.
 - hint 2
 
 
 *** =pre_exercise_code
 ```{r}
-learning2014 <-  read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/learning2014.txt", sep = "\t", header = TRUE)
+learning2014 <- read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/learning2014.txt", sep = "\t", header = TRUE)
 ```
 
 *** =sample_code
 ```{r}
-# sample code here
-age_mean <- mean(learning2014$age)
-age_sd<- sd(learning2014$age)
-normal_age <- rnorm(250, age_mean, age_sd)
-age_year<-seq(15, 60, length = 250)
-plot(age_year, normal_age)
+# learning2014 is available
 
-hist(learning2014$age, 50)
+# Draw a histogram of variable 'age'
+hist(learning2014$age, breaks=25)
 
-stand<-function(x) (x-mean(x))/sd(x)
-hist(stand(learning2014$age), 50)
+# Create function standardation
+standarzation <- 
+
+# Standardize variable 'age' by using the function you created
+standard_age <-
+
+# Draw a histogram of standardized variable 'age'
+hist(standard_age, breaks=25)
 
 ```
 
 *** =solution
 ```{r}
-#solution code here
+# learning2014 is available
+
+# Draw a histogram of variable 'age'
+hist(learning2014$age, breaks=25)
+
+# Create function standardation
+standarzation <- function(x) return( ( x-mean(x) ) / sd(x) )
+
+# Standardize variable 'age' by using the function you created
+standard_age <- standarzation(learning2014$age)
+
+# Draw a plot of standardized variable 'age'
+hist(standard_age, breaks=25)
+
 ```
 
 *** =sct
