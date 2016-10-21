@@ -513,8 +513,8 @@ At the right you can see four plots. Can you guess which ones are the density pl
 # pre exercise code here
 x <- seq(-5, 20, length = 50)
 y<-'density'
-color<-"steel blue"
-par(lwd=2, mfrow=c(2,2))
+color<-"orange"
+par(lwd=2, mfrow=c(2,2), cex.lab=1.5, cex.main=1.2)
 plot(x, dunif(x, 0, 15), type='s', ylim=c(0,.15), col=color, ylab=y, main='Plot A')
 plot(x, punif(x, 0, 15), type='l', col=color, ylab=y, main='Plot B')
 plot(x, dnorm(x, 5, 2), type='l',col=color, ylab=y, main='Plot C')
