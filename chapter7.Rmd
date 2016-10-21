@@ -99,12 +99,12 @@ In R the functions associated with normal distiribution are:
 - `qnorm()`: quantile function of normal distribution
 - `rnorm()`: (random) sample from normal distribution
 
-In this exercise, we will focus on the `rnorm()` function. It draws a random sample from normal distribution (with specified parameters).
+In this exercise, we will focus on the `rnorm()` function. It draws a random sample from normal distribution (with specified parameters). 
 
 *** =instructions
-- Execute the line for `my_sample`. Note the mean and standard deviation values.
-- Draw a histogram of `my_sample`. Do you notice the shape of the distribution?
-- Calculate the mean and standard deviation of `my_sample`. Save the values to `my_sample_mean` and `my_sample_sd`. Print the results.
+- Execute the line for `normal_sample`. Note the mean and standard deviation values.
+- Draw a histogram of `normal_sample`. Do you notice the shape of the distribution?
+- Calculate the mean and standard deviation of `normal_sample`. Save the values to `normal_mean` and `normal_sd`. Print the results.
 - Change the mean value to `35` in the `rnorm()` function and run all the codes again. What happened to the normal distribution?
 - Change the sd value to `0.1` in the `rnorm()` function and run all the codes again. What happened to the normal distribution?
 
@@ -121,14 +121,14 @@ In this exercise, we will focus on the `rnorm()` function. It draws a random sam
 *** =sample_code
 ```{r}
 # Create a sample from normal distribution. In this case, the first argument (500) means the sample size.
-my_sample <- rnorm(500, mean = 5, sd = 2.5)
+normal_sample <- rnorm(500, mean = 5, sd = 2.5)
 
 # Histogram of my_sample
-hist(my_sample, breaks = 50)
+hist(normal_sample, breaks = 50)
 
 # Calculate the mean and standard deviation of my_sample. Print the results.
-my_sample_mean <-
-my_sample_sd <-
+normal_mean <-
+normal_sd <-
 
 
 
@@ -138,17 +138,17 @@ my_sample_sd <-
 *** =solution
 ```{r}
 # Create a sample from normal distribution. In this case, the first argument (500) means the sample size.
-my_sample <- rnorm(500, mean = 35, sd = 0.1)
+normal_sample <- rnorm(500, mean = 35, sd = 0.1)
 
 # Histogram of my_sample
-hist(my_sample, breaks = 50)
+hist(normal_sample, breaks = 50)
 
 # Calculate the mean and standard deviation of my_sample. Print the results.
-my_sample_mean <- mean(my_sample)
-my_sample_sd <- sd(my_sample)
+normal_mean <- mean(normal_sample)
+normal_sd <- sd(normal_sample)
 
-my_sample_mean
-my_sample_sd  
+normal_mean
+normal_sd
 
 ```
 
@@ -411,7 +411,7 @@ When we have a normal distribution that has 0 as expected value and 1 as standar
 The formula for standarzation is
 $$z = \frac{x - \mu}{\sigma}$$
 
-where x is the object we want to standardize, $$\mu$$ is mean and $$\sigma$$ stands for standard deviation. 
+where x is the object we want to standardize, $\mu$ is mean and $\sigma$ stands for standard deviation. 
 
 *** =instructions
 - Draw first a histogram of `age` from the `learning2014`. Note the x-axis of the histogram: the numbers are ages and you can see how they are distributed in the data.
