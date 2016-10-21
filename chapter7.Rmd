@@ -178,8 +178,11 @@ It is good to know the formulas behind every calculations when you are dealing w
 The function `pnorm()` can be used to calculate probabilities from normal distributions. 
 
 *** =instructions
-- Draw a *density* histogram of variable `deep` from the `learning2014` data. You can plot a density plot instead of frequency one by setting the argument `freq` to `FALSE` in the histogram plot function. Do not use the argument `breaks`. We can see that the distribution of variable deep resembles a normal distribution. 
-- If we wanted to know what is the probability that deep learning is smaller than 3?
+-The distribution of variable deep resembles a normal distribution (look at the density histogram of deep). The density histogram is drawn with the argument `freq = FALSE` in the `hist()` function.
+- If we wanted to know what is the probability that deep learning is smaller than 3 amongst the students, we could calculate it with the `pnorm()` function.
+- If we would be interested in the probability that deep learning is greater than 3 amongst the students, we can change the `lower.tail` to `FALSE` to get the correct result.
+- Calculations can be done to get the probability that deep learning is between 3 and 4. See the sample code.
+- What is the probability that deep learning is over 4.5 ? Save the answer to object `high_learning`.
 
 *** =hint
 - hint 1
@@ -189,6 +192,8 @@ The function `pnorm()` can be used to calculate probabilities from normal distri
 *** =pre_exercise_code
 ```{r}
 learning2014 <-  read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/learning2014.txt", sep = "\t", header = TRUE)
+
+hist(learning2014$deep, freq = F, col='orange')
 ```
 
 *** =sample_code
@@ -196,58 +201,57 @@ learning2014 <-  read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/learning20
 # learning2014 is available
 
 # Histogram of 'deep'
-hist(learning2014$deep, freq = F)
+hist(learning2014$deep, freq = F, col='orange')
 
-# The mean and sd of 'deep'
-deep_mean <- mean(learning2014$deep)
-deep_sd <- sd(learning2014$deep)
+# The probability of deep being smaller than 3. Note the lower.tail = TRUE argument.
+pnorm(3, mean = mean(learning2014$deep), sd = sd(learning2014$deep), lower.tail = TRUE)
 
-# Calcu
+# The probability of deep being greater than 3. Note the lower.tail = FALSE argument.
+pnorm(3, mean = mean(learning2014$deep), sd = sd(learning2014$deep), lower.tail = FALSE)
 
-dnorm(3, mean = deep_mean, sd = deep_sd)
-deep_sequence <- seq(0, 5, length = 50) # this creates a vector that has 50 values from 0 to 5
-density<-dnorm(deep_sequence, mean = deep_mean, sd = deep_sd)
+# The probability of deep being between 3 and 4.
+prob_three <- pnorm(3, mean = mean(learning2014$deep), sd = sd(learning2014$deep), lower.tail = TRUE)
+prob_four <- pnorm(4, mean = mean(learning2014$deep), sd = sd(learning2014$deep), lower.tail = TRUE)
 
-draw<-function(x){
-  plot(deep_sequence, density, type = 'l', col = 'red', lwd = 2, xlim=c(0,5))
-  y<-dnorm(deep_sequence[deep_sequence<=x], mean = deep_mean, sd = deep_sd)
-  polygon(c(0, deep_sequence[deep_sequence<=x], x), c(0, y,0), col = "orange")
+prob_four - prob_three
+
+#  The probability of deep being over 4.5
+
+
+# Function to visualize the probabilities, kesken...
+draw<-function(x_value){
+  x <- seq(0, 5, length = 50)
+  plot(x, dnorm(x, mean(learning2014$deep), sd(learning2014$deep)), type = 'l', col = 'red', lwd = 2, xlim=c(0,5))
+  y<-dnorm(x[x<=x_value], mean(learning2014$deep), sd(learning2014$deep))
+  polygon(c(0, x[x<=x_value], x_value), c(0, y, 0), col = "orange", border = "orange")
 }
 
-draw(5)
-
-pnorm(5, mean = deep_mean, sd = deep_sd, lower.tail = TRUE)
-pnorm(0, mean = deep_mean, sd = deep_sd, lower.tail = FALSE)
+draw(3)
 
 ```
 
 *** =solution
 ```{r}
-#solution code here
+# learning2014 is available
 
-get_z <- function(alpha) {
-  par(mar = c(7,4,5,4))
-  a <- alpha/2
-  x <- (-50:50)/10
-  y <- dnorm(x)
-  q1 <- qnorm(a); q2 <- qnorm(1-a)
-  # draw the plot
-  main <- paste("Critical values and regions of the N(0,1) distribution \n",
-                " alpha/2 =", a)
-  plot(x, y, type ="l", main = main, xlab = "", yaxt = "n", ylab = "")
-  mtext(paste0("-z = qnorm(",1 - a,") = ",round(q1,2),"\n",
-                 "z = qnorm(",a,") = ",round(q2,2)),side=1, line = 5, cex = 1.5)
-  
-  # highlight critical regions
-  x1 <- x[x<=q1]; x2 <- x[x>=q2]
-  polygon(c(min(x1),x1, max(x1)),
-          c(0, dnorm(x1), 0), col = "grey60")
-  text(x = c(-3.5, 3.5), y = c(0.08,0.08), labels = paste0(a*100,"%"), cex = 1.5)
-  text(x = 0, y = 0.08, labels=paste0(100*(1-alpha),"%"), cex = 1.5)
-  return(q2)
-}
+# Histogram of 'deep'
+hist(learning2014$deep, freq = F, col='orange')
 
-get_z(.3)
+# The probability of deep being smaller than 3. Note the lower.tail = TRUE argument.
+pnorm(3, mean = mean(learning2014$deep), sd = sd(learning2014$deep), lower.tail = TRUE)
+
+# The probability of deep being greater than 3. Note the lower.tail = FALSE argument.
+pnorm(3, mean = mean(learning2014$deep), sd = sd(learning2014$deep), lower.tail = FALSE)
+
+# The probability of deep being between 3 and 4.
+prob_three <- pnorm(3, mean = mean(learning2014$deep), sd = sd(learning2014$deep), lower.tail = TRUE)
+prob_four <- pnorm(4, mean = mean(learning2014$deep), sd = sd(learning2014$deep), lower.tail = TRUE)
+
+prob_four - prob_three
+
+#  The probability of deep being over 4.5
+high_learning <- pnorm(4.5, mean = mean(learning2014$deep), sd = sd(learning2014$deep), lower.tail = FALSE)
+
 ```
 
 *** =sct
