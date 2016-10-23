@@ -307,7 +307,7 @@ dbinom(2, size = 8, prob = 0.3)
 binom_prob <- 0.3
 
 # Visualization (you don't need to do anything for this code). 
-plot(dbinom(0:8, size = 8 , prob = binom_prop), type="h", lwd=2, col="steel blue")
+plot(dbinom(0:8, size = 8 , prob = binom_prob), type="h", lwd=2, col="steel blue")
 
 ```
 
@@ -323,7 +323,7 @@ dbinom(7, size = 8, prob = 0.3)
 binom_prob <- 0.9
 
 # Visualization (you don't need to do anything for this code). 
-plot(dbinom(0:8, size = 8 , prob = binom_prop), type="h", lwd=2, col="steel blue")
+plot(dbinom(0:8, size = 8 , prob = binom_prob), type="h", lwd=2, col="steel blue")
 
 ```
 
