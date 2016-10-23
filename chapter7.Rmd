@@ -16,7 +16,7 @@ There are things or events that are known to follow certain probability distribu
 - Create variable `tomorrow` with events `cat attacks baby`, `world ends` and `I eat pasta`.
 - Set probabilities to the events of variable `tomorrow`.
 - Draw a [*sample*](https://en.wikipedia.org/wiki/Sample_(statistics)) from tomorrow when the sample size is 1. Are you suprised with the outcome?
-- Draw another sample, this time with sample size = `100`. Save the results to `my_sample`. Note the argument `replace` in the function `sample()`. What do you think it does? 
+- Draw another sample, this time with sample size = `100`. Add the argument `replace = TRUE` to the `sample()` function. What do you think it the `replace` argument does? Save the sample to `my_sample`. 
 - Visualize the sample with bar plot. Notice how the bar heights in the barplot are related to the probabilities we set earlier.
 
 *** =hint
@@ -31,40 +31,38 @@ There are things or events that are known to follow certain probability distribu
 
 *** =sample_code
 ```{r}
-# create variable 'tomorrow' 
+# Create variable 'tomorrow' 
 tomorrow <- c("cat attacks baby","world ends","I eat pasta")
 
-# set probabilities to events
+# Set probabilities to events
 probabilities <- c(0.2, 0.3, 0.5)
 
-# draw a sample
+# Draw a sample. You can try this many times.
 sample(tomorrow, size = 1, prob = probabilities)
 
+# Draw a sample 100 times
 
-# draw a sample 100 times
-my_sample <- sample(tomorrow, size = , replace = TRUE, prob = probabilities)
 
-# visualize the distribution
+# Visualize the distribution
 barplot(table(my_sample))
 
 ```
 
 *** =solution
 ```{r}
-# create variable 'tomorrow' 
+# Create variable 'tomorrow' 
 tomorrow <- c("cat attacks baby","world ends","I eat pasta")
 
-# set probabilities to events
+# Set probabilities to events
 probabilities <- c(0.2, 0.3, 0.5)
 
-# draw a sample
+# Draw a sample. You can try this many times.
 sample(tomorrow, size = 1, prob = probabilities)
 
-
-# draw a sample 100 times and visualize the distribution
+# Draw a sample 100 times and visualize the distribution
 my_sample <- sample(tomorrow, size = 100, replace = TRUE, prob = probabilities)
 
-# visualize the distribution
+# Visualize the distribution
 barplot(table(my_sample))
 
 ```
@@ -524,7 +522,7 @@ msg2 = "The discrete one does exist, sorry. Also, plot C is normal distribution.
 msg3 = "You are totally right! Proceed to the next exercise."
 msg4 = "Sorry, plot C is normal distribution. But you got plot D right!"
 
-# test_mc(correct = 3, feedback_msgs = c(msg1,msg2,msg3,msg4))
+test_mc(correct = 3, feedback_msgs = c(msg1,msg2,msg3,msg4))
 
 # Final message the student will see upon completing the exercise
 success_msg("Nicely done!")
