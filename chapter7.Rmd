@@ -185,8 +185,11 @@ The function `pnorm()` can be used to calculate probabilities from normal distri
 - What is the probability that deep learning is over 4.5 ? Save the answer to object `high_learning`.
 
 *** =hint
-- hint 1
-- hint 2
+- Look at the help pages  with `?pnorm` or `help(pnorm)`.
+- Use the mean and standard deviation of variable `deep` as arguments for the `pnorm()` function
+- You can access a variable of a dataset with the $-sign.
+- Remember to use the `lower.tail` argument in the `pnorm()` function. It determines which "side" you are calculating.
+- You can do calculations with the `pnorm()` function. 
 
 *** =pre_exercise_code
 ```{r}
@@ -275,12 +278,16 @@ Some of the basic functions associated with binomial distribution are:
 You can use the `help()` or `?` for any of these functions to see more about them. 
 
 *** =instructions
-- instruction 1
-- instruction 2
+- Let's say that we know a probability of buing a t-shirt from store is 0.3. There are 8 people in the store looking around. What is the probability of two of them buing a t-shirt? 
+- What is the probability of seven of them buing a t-shirt? 
+- Probability of buying a t-shirt is saved in the `binom_prob` object. The plot function below visualizes the binomial distribution with that probability. Try and change the probability to 0.4, 0.5, ... and draw a plot to see what happens to the distribution. Is the distribution symmetric at some point? 
+- Some extra information: the function `plot()` has arguments `lwd` which determines the line weight in the plot. The argument `col` is used to specify the color of the lines and `type` has several values to choose from which all produce a different kind of plot. See `?plot` to see the different types options.
 
 *** =hint
-- hint 1
-- hint 2
+- To get the probability of seven people buying a t-shirt, you just need to change the 2 to 7 in the `dbinom()` function on the line two.
+- Try different values to `binom_prob` and execute the `plot()` function after changing the value. Remember to execute the code for `binom_prob` also before drawing the plot.
+- Probabilities need to be decimal numbers between 0-1 (e.g. 0.7).
+- YOu don't need to do anything for the `plot()` function.
 
 
 *** =pre_exercise_code
@@ -290,16 +297,34 @@ You can use the `help()` or `?` for any of these functions to see more about the
 
 *** =sample_code
 ```{r}
-# Sampling. 
-random_bin <- rbinom(250, 50, prob = 0.5)
+# What is the probability of 2 of them buing a t-shirt?
+dbinom(2, size = 8, prob = 0.3)
 
-hist(random_bin, 25)
+# What is the probability of 7 of them buing a t-shirt?
+
+
+# See what happens to the distribution, if you change the probability
+binom_prob <- 0.3
+
+# Visualization (you don't need to do anything for this code). 
+plot(dbinom(0:8, size = 8 , prob = binom_prop), type="h", lwd=2, col="steel blue")
 
 ```
 
 *** =solution
 ```{r}
-#solution code here
+# What is the probability of 2 of them buing a t-shirt?
+dbinom(2, size = 8, prob = 0.3)
+
+# What is the probability of 7 of them buing a t-shirt?
+dbinom(7, size = 8, prob = 0.3)
+
+# See what happens to the distribution, if you change the probability
+binom_prob <- 0.9
+
+# Visualization (you don't need to do anything for this code). 
+plot(dbinom(0:8, size = 8 , prob = binom_prop), type="h", lwd=2, col="steel blue")
+
 ```
 
 *** =sct
@@ -315,7 +340,7 @@ hist(random_bin, 25)
 test_error()
 
 # Final message the student will see upon completing the exercise
-success_msg("Good work!")
+success_msg("Wonderful! Keep going!")
 
 ```
 
