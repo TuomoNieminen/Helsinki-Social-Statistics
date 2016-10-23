@@ -188,7 +188,6 @@ The function `pnorm()` can be used to calculate probabilities from normal distri
 - hint 1
 - hint 2
 
-
 *** =pre_exercise_code
 ```{r}
 learning2014 <-  read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/learning2014.txt", sep = "\t", header = TRUE)
