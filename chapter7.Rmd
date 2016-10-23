@@ -72,13 +72,7 @@ barplot(table(my_sample))
 *** =sct
 ```{r}
 # submission correctness tests
-
-# example tests:
-# test_output_contains("output")
-# test_object("object_name")
-# test_function("function_name", args=c("arg1"))
-
-# test if the students code produces an error
+test_object("my_sample", incorrect_msg = "Did you save the sample to `my_sample`?")
 test_error()
 
 # Final message the student will see upon completing the exercise
@@ -155,13 +149,9 @@ normal_sd
 *** =sct
 ```{r}
 # submission correctness tests
+test_object("normal_mean", incorrect_msg = "Did you save the mean of `my_sample` to `normal_mean`?")
+test_object("normal_sd", incorrect_msg = "Did you save the standard deviation of `my_sample` to `normal_sd`?")
 
-# example tests:
-# test_output_contains("output")
-# test_object("object_name")
-# test_function("function_name", args=c("arg1"))
-
-# test if the students code produces an error
 test_error()
 
 # Final message the student will see upon completing the exercise
@@ -249,11 +239,7 @@ high_learning <- pnorm(4.5, mean = mean(learning2014$deep), sd = sd(learning2014
 *** =sct
 ```{r}
 # submission correctness tests
-
-# example tests:
-# test_output_contains("output")
-# test_object("object_name")
-# test_function("function_name", args=c("arg1"))
+test_object("high_learning", incorrect_msg = "Did you calculate the probability of deep being over 4.5 and save it to `high_learning`?")
 
 # test if the students code produces an error
 test_error()
@@ -279,7 +265,7 @@ You can use the `help()` or `?` for any of these functions to see more about the
 
 *** =instructions
 - Let's say that we know a probability of buing a t-shirt from store is 0.3. There are 8 people in the store looking around. What is the probability of two of them buing a t-shirt? 
-- What is the probability of seven of them buing a t-shirt? 
+- What is the probability of seven of them buing a t-shirt? Save the answer to object `seven_shirts_sold`.
 - Probability of buying a t-shirt is saved in the `binom_prob` object. The plot function below visualizes the binomial distribution with that probability. Try and change the probability to 0.4, 0.5, ... and draw a plot to see what happens to the distribution. Is the distribution symmetric at some point? 
 - Some extra information: the function `plot()` has arguments `lwd` which determines the line weight in the plot. The argument `col` is used to specify the color of the lines and `type` has several values to choose from which all produce a different kind of plot. See `?plot` to see the different types options.
 
@@ -287,7 +273,7 @@ You can use the `help()` or `?` for any of these functions to see more about the
 - To get the probability of seven people buying a t-shirt, you just need to change the 2 to 7 in the `dbinom()` function on the line two.
 - Try different values to `binom_prob` and execute the `plot()` function after changing the value. Remember to execute the code for `binom_prob` also before drawing the plot.
 - Probabilities need to be decimal numbers between 0-1 (e.g. 0.7).
-- YOu don't need to do anything for the `plot()` function.
+- You don't need to do anything for the `plot()` function.
 
 
 *** =pre_exercise_code
@@ -303,7 +289,7 @@ dbinom(2, size = 8, prob = 0.3)
 # What is the probability of 7 of them buing a t-shirt?
 
 
-# See what happens to the distribution, if you change the probability
+# See what happens to the distribution if you change the probability
 binom_prob <- 0.3
 
 # Visualization (you don't need to do anything for this code). 
@@ -317,7 +303,7 @@ plot(dbinom(0:8, size = 8 , prob = binom_prob), type="h", lwd=2, col="steel blue
 dbinom(2, size = 8, prob = 0.3)
 
 # What is the probability of 7 of them buing a t-shirt?
-dbinom(7, size = 8, prob = 0.3)
+seven_shirts_sold <- dbinom(7, size = 8, prob = 0.3)
 
 # See what happens to the distribution, if you change the probability
 binom_prob <- 0.9
@@ -330,11 +316,7 @@ plot(dbinom(0:8, size = 8 , prob = binom_prob), type="h", lwd=2, col="steel blue
 *** =sct
 ```{r}
 # submission correctness tests
-
-# example tests:
-# test_output_contains("output")
-# test_object("object_name")
-# test_function("function_name", args=c("arg1"))
+test_object("seven_shirts_sold", incorrect_msg = "Did you save the probability of 7 of them buing a t-shirt into `seven_shirts_sold`?")
 
 # test if the students code produces an error
 test_error()
@@ -413,8 +395,8 @@ my_good_apples <- good_apples_count(bad_apples = 4)
 
 *** =sct
 ```{r}
-test_object("my_apples")
-test_object("my_good_apples")
+test_object("my_apples", incorrect_msg ="Did you save results of `apple_count()` to `my_apple`?")
+test_object("my_good_apples", incorrect_msg ="Did you save results of `good_apples_count()` to `my_good_apples`?")
 
 test_error()
 success_msg("Not eating worms tonight! Nicely done!")
@@ -455,7 +437,7 @@ learning2014 <- read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/learning201
 # learning2014 is available
 
 # Draw a histogram of variable 'age'
-hist(learning2014$age, breaks=25)
+hist(learning2014$age, breaks=25, col="orange")
 
 # Create function standardation. 
 standarzation <- 
@@ -464,7 +446,7 @@ standarzation <-
 standard_age <-
 
 # Draw a histogram of standardized variable 'age'
-hist(standard_age, breaks=25)
+hist(standard_age, breaks=25, col="orange")
 
 ```
 
@@ -473,7 +455,7 @@ hist(standard_age, breaks=25)
 # learning2014 is available
 
 # Draw a histogram of variable 'age'
-hist(learning2014$age, breaks=25)
+hist(learning2014$age, breaks=25, col="orange")
 
 # Create function standardation
 standarzation <- function(x) return( ( x-mean(x) ) / sd(x) )
@@ -482,24 +464,20 @@ standarzation <- function(x) return( ( x-mean(x) ) / sd(x) )
 standard_age <- standarzation(learning2014$age)
 
 # Draw a plot of standardized variable 'age'
-hist(standard_age, breaks=25)
+hist(standard_age, breaks=25, col="orange")
 
 ```
 
 *** =sct
 ```{r}
 # submission correctness tests
-
-# example tests:
-# test_output_contains("output")
-# test_object("object_name")
-# test_function("function_name", args=c("arg1"))
+test_object("standard_age", incorrect_msg ="Did you save the standarzation results of to `standard_age`?")
 
 # test if the students code produces an error
 test_error()
 
 # Final message the student will see upon completing the exercise
-success_msg("Good work!")
+success_msg("This was not an easy one. Well done!")
 
 ```
 --- type:MultipleChoiceExercise lang:r xp:100 skills:1 key:6c27606d58
