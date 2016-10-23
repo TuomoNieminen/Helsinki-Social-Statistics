@@ -178,7 +178,7 @@ It is good to know the formulas behind every calculations when you are dealing w
 The function `pnorm()` can be used to calculate probabilities from normal distributions. 
 
 *** =instructions
--The distribution of variable deep resembles a normal distribution (look at the density histogram of deep). The density histogram is drawn with the argument `freq = FALSE` in the `hist()` function.
+- The distribution of variable deep resembles a normal distribution (look at the density histogram of deep). The density histogram is drawn with the argument `freq = FALSE` in the `hist()` function.
 - If we wanted to know what is the probability that deep learning is smaller than 3 amongst the students, we could calculate it with the `pnorm()` function.
 - If we would be interested in the probability that deep learning is greater than 3 amongst the students, we can change the `lower.tail` to `FALSE` to get the correct result.
 - Calculations can be done to get the probability that deep learning is between 3 and 4. See the sample code.
@@ -217,16 +217,6 @@ prob_four - prob_three
 
 #  The probability of deep being over 4.5
 
-
-# Function to visualize the probabilities, kesken...
-draw<-function(x_value){
-  x <- seq(0, 5, length = 50)
-  plot(x, dnorm(x, mean(learning2014$deep), sd(learning2014$deep)), type = 'l', col = 'red', lwd = 2, xlim=c(0,5))
-  y<-dnorm(x[x<=x_value], mean(learning2014$deep), sd(learning2014$deep))
-  polygon(c(0, x[x<=x_value], x_value), c(0, y, 0), col = "orange", border = "orange")
-}
-
-draw(3)
 
 ```
 
