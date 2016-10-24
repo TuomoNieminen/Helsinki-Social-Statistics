@@ -44,6 +44,7 @@ success_msg("Good work!")
 ## (Null hypothesis:) which way to go?!
 
 After setting the hypotheses, we can look at the data and calculate the test statistic. What test statistic to use, depends on the test you are doing. With the test statistics, you can calculate the (famous) p-value. The p-value tells you something about the hypotheses and it can be used as a guide line. The p-value and other knowledge of the field you are testing, you can reject or not reject the null hypothesis. 
+
 The null hypothesis is usually the commonly or previously known. The alternative hypothesis on the other hand can have direction. Are students getting fewer exam points than previous years? Are people buing more groceries from store nowadays than in the '90s? Have the voting rates changed?
 
 *** =instructions
