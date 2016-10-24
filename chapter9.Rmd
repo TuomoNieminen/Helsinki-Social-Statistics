@@ -96,8 +96,7 @@ success_msg("Good work!")
 
 T-test is very common statistical test. It can be used to test if the means of two groups differ from each other statistically. So it has hypotheses 
 
-$$H_0: \overline{x}_{group 1} = \overline{x}_{group 2}
-H_1: \overline{x}_{group 1} \neq \overline{x}_{group 2}$$
+$$ H_0: \overline{x}_1 = \overline{x}_2 \\ H_1: \overline{x}_1 \neq \overline{x}_2 $$
 
 *** =instructions
 - instruction 1
