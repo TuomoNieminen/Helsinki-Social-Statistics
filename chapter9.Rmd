@@ -1,13 +1,12 @@
 ---
 title       : Hypothesis testing
-description : UNDER CONSTRUCTION
+description : We all might be statistically different, but maybe we are part of the 68%.
 
 --- type:MultipleChoiceExercise lang:r xp:100 skills:1 key:ee77c10ab2
 
 ## Statistical hypothesis testing
 
 In [statistical hypothesis testing](https://en.wikipedia.org/wiki/Statistical_hypothesis_testing) we want to test if our claim or something we assume is supported by the data. So we set our [*null hypothesis*](https://en.wikipedia.org/wiki/Null_hypothesis) and our [*alternative hypothesis*](https://en.wikipedia.org/wiki/Alternative_hypothesis), and see what the numbers tell us about them.  
-
 
 
 *** =instructions
@@ -40,12 +39,58 @@ test_error()
 success_msg("Good work!")
 
 ```
+--- type:NormalExercise lang:r xp:100 skills:1 key:8dfc56d628
+
+## (Null hypothesis:) which way to go?!
+
+After setting the hypotheses, we can look at the data and calculate the test statistic. What test statistic to use, depends on the test you are doing. With the test statistics, you can calculate the (famous) p-value. The p-value tells you something about the hypotheses and it can be used as a guide line. The p-value and other knowledge of the field you are testing, you can reject or not reject the null hypothesis. 
+The null hypothesis is usually the commonly or previously known. The alternative hypothesis on the other hand can have direction. Are students getting fewer exam points than previous years? Are people buing more groceries from store nowadays than in the '90s? Have the voting rates changed?
+
+*** =instructions
+- instruction 1
+- instruction 2
+
+*** =hint
+- hint 1
+- hint 2
+
+
+*** =pre_exercise_code
+```{r}
+# pre exercise code here
+```
+
+*** =sample_code
+```{r}
+# sample code here
+```
+
+*** =solution
+```{r}
+#solution code here
+```
+
+*** =sct
+```{r}
+# submission correctness tests
+
+# example tests:
+# test_output_contains("output")
+# test_object("object_name")
+# test_function("function_name", args=c("arg1"))
+
+# test if the students code produces an error
+test_error()
+
+# Final message the student will see upon completing the exercise
+success_msg("Good work!")
+
+```
 
 --- type:NormalExercise lang:r xp:100 skills:1 key:c033eeaa78
 
 ## Meet the tests! (1)
 
-After setting the hypotheses, we can look at the data and calculate the test statistic. What test statistic to use, depends on the test you are doing. With the test statistics, you can calculate the (famous) p-value. The p-value tells you something about the hypotheses and it can be used as a guide line. The p-value and other knowledge of the field you are testing, you can reject or not reject the null hypothesis. 
 One of the tests is to test whether some variable is distributed as we assume. Often statistical assumptions hold if the variables are normally distributed. 
 
 *** =instructions
@@ -94,38 +139,80 @@ success_msg("Good work!")
 
 ## Meet the tests! (2)
 
-T-test is very common statistical test. It can be used to test if the means of two groups differ from each other statistically. So it has hypotheses 
+T-test is very common statistical test. It can be used for example to test if the means of two groups differ from each other statistically. You can also test if the mean of some variable is statistically different from predetermined value. 
 
-$$H_0: mean_1 = mean_2 \\
-H_1: mean_1 \neq mean_{2}$$
+The t-test in done in R with the `t.test()` function. The same function does one or two sided tests or a paired t-test. You can check the help page (use `?t.test`) of the function to see the arguments and options. By default, the alternative hypothesis is "two.sided".
 
 *** =instructions
-- instruction 1
-- instruction 2
+- Create subsets of the `learning2014` dataset: separate the dataset by gender. Save new subsets to `women` and `men` objects. Variable `gender` is a factor with two levels: 'N' and 'M'.
+- In the data there was variable `deep` which descripted the deep learning scores of the students. Maybe deep learning is different with women and men? Let's test that. 
+- But first it is important to look at the descriptive statistics. Do you remember a handy function called `summary()`? Look what the summaries say about variable `deep` on both sexes.
+- The `t.test()` function prints you the results of the test on the console. In the print you can see numbers the test produced: test statistics (*t*-value), degrees of freedom (df) and the p-value. It also calculates the 95% confidence interval and sample estimates.
+- So there was no such difference in deep learning scores between genders (why we can make that conclusion?) but how about the strategic learning (variable `stra`) between genders? 
+- Look at the summaries of `stra` for women and men and to the t-test. See the print of the test
+- Save the p-value to the object `p`. Use all the decimals the print shows you.
 
 *** =hint
-- hint 1
-- hint 2
+- To get the men's subset, you need to specify the gender to be 'M'. You need to have to equation marks (see chapter 6: Logical comparison).
+- `women` and `men` are data frames, and you can get the variables from data frame with $-mark. 
+- You can see the first six rows of data frame with the function `head()`.
+- Remember that dot is the decimal mark in R, not comma.
+- The p-value has 5 decimals (0.xxxxx) and you need to write all of them to pass the exercise. 
 
 
 *** =pre_exercise_code
 ```{r}
-# pre exercise code here
+learning2014 <-  read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/learning2014.txt", sep = "\t", header = TRUE)
 ```
 
 *** =sample_code
 ```{r}
 # Separate dataset by gender
 women <- subset(learning2014, gender == 'N')
-men <- subset(learning2014, gender == 'M')
+men <-
 
-# T-test
+# Summaries of 'deep'
+summary(women$deep)
+
+
+# T-test of 'deep'
 t.test(women$deep, men$deep)
+
+# Summaries of 'stra'
+
+
+
+# T-test of 'stra'
+
+
+# P-value
+p <- 
+
 ```
 
 *** =solution
 ```{r}
-#solution code here
+# Separate dataset by gender
+women <- subset(learning2014, gender == 'N')
+men <- subset(learning2014, gender == 'M')
+
+# Summaries of 'deep'
+summary(women$deep)
+summary(men$deep)
+
+# T-test of 'deep'
+t.test(women$deep, men$deep)
+
+# Summaries of 'stra'
+summary(women$stra)
+summary(men$stra)
+
+# T-test of 'stra'
+t.test(women$stra, men$stra)
+
+# P-value
+p <- 0.04945
+
 ```
 
 *** =sct
@@ -192,50 +279,4 @@ success_msg("Good work!")
 
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1 key:8dfc56d628
-
-## (Null hypothesis:) which way to go?!
-
-Under construction.
-
-*** =instructions
-- instruction 1
-- instruction 2
-
-*** =hint
-- hint 1
-- hint 2
-
-
-*** =pre_exercise_code
-```{r}
-# pre exercise code here
-```
-
-*** =sample_code
-```{r}
-# sample code here
-```
-
-*** =solution
-```{r}
-#solution code here
-```
-
-*** =sct
-```{r}
-# submission correctness tests
-
-# example tests:
-# test_output_contains("output")
-# test_object("object_name")
-# test_function("function_name", args=c("arg1"))
-
-# test if the students code produces an error
-test_error()
-
-# Final message the student will see upon completing the exercise
-success_msg("Good work!")
-
-```
 
