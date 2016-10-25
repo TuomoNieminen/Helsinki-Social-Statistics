@@ -2,7 +2,7 @@
 title       : Conditions and subsets
 description : UNDER CONSTRUCTION
 
---- type:NormalExercise lang:r xp:100 skills:1 key:da73cb2b07
+--- type:NormalExercise lang:r xp:100 skills:1
 ## Wellcome to part 2
 
 In the following chapters (6-10) we will be using a dataset collected from students in the Faculty of Social Sciences in the University of Helsinki. The students filled out this questionaire[link] and the answers were later combined into the following combination variables:
@@ -12,7 +12,7 @@ In the following chapters (6-10) we will be using a dataset collected from stude
 - *surf*: mean score of questions related to surface learning
 - *attitude*: mean score of questions related to attitude toward statistics  
 
-The *learning2014* dataset includes these variables along with the students age and gender. The data also includes the students points in a statistics exam.
+The *learning2014* dataset includes these variables along with the students age and gender. The data also includes the students points in a statistics exam. Zero points means that the student did not attend an exam.
 
 *** =instructions
 - Look at the structure of learning2014
