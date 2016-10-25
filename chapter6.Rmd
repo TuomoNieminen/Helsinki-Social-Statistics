@@ -2,7 +2,7 @@
 title       : Conditions and subsets
 description : UNDER CONSTRUCTION
 
---- type:NormalExercise lang:r xp:100 skills:1 key:da73cb2b07
+--- type:NormalExercise lang:r xp:100 skills:1
 ## Wellcome to part 2
 
 In the following chapters (6-10) we will be using a dataset collected from students in the Faculty of Social Sciences in the University of Helsinki. The students filled out this questionaire[link] and the answers were later combined into the following combination variables:
@@ -352,7 +352,7 @@ a <code>&#124;</code> b | a or b
 
 Logical operators work like logical conditions: they compare the elements of vectors one at a time and can produce logical vectors.
 
-So, for example `c(F, T) & c(T, T)` produces a logical vector `FALSE TRUE` because `F & T` equals `FALSE` and `T & T` equals `TRUE`. 
+So, for example `c(F, T) & c(T, T)` produces a logical vector `FALSE TRUE` because `F & T` equals `FALSE` and `T & T` equals `TRUE` (T and F abbreviate FALSE and TRUE).
 
 It is also possible to use parenthesis to control the evaluation of the operators. See how this works from the example codes.
 
@@ -544,7 +544,7 @@ As you saw before, conditioning is closely related to selecting a subset. The co
 
 Formally, conditional probability is defined by the Bayes formula
 
-$$P(A | B) = \frac{P(A and B)}{P(B)}$$
+$$P(A | B) = \frac{P(A \text{ and } B)}{P(B)}$$
 
 But we won't directly need to apply that definition here. 
 
