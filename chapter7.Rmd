@@ -32,12 +32,12 @@ There are things or events that are known to follow certain probability distribu
 *** =sample_code
 ```{r}
 # Create variable 'tomorrow' 
-tomorrow <- c("cat attacks baby","world ends","I eat pasta")
+tomorrow <- c("cat attacks baby","I eat pasta", "world ends")
 
 # Set probabilities to events
-probabilities <- c(0.2, 0.3, 0.5)
+probabilities <- c(0.2, 0.5, 0.3)
 
-# Draw a sample. You can try this many times.
+# Draw a sample. Do it a couple of times
 sample(tomorrow, size = 1, prob = probabilities)
 
 # Draw a sample 100 times
@@ -51,12 +51,12 @@ barplot(table(my_sample))
 *** =solution
 ```{r}
 # Create variable 'tomorrow' 
-tomorrow <- c("cat attacks baby","world ends","I eat pasta")
+tomorrow <- c("cat attacks baby","I eat pasta", "world ends")
 
 # Set probabilities to events
-probabilities <- c(0.2, 0.3, 0.5)
+probabilities <- c(0.2, 0.5, 0.3)
 
-# Draw a sample. You can try this many times.
+# Draw a sample. Do it a couple of times
 sample(tomorrow, size = 1, prob = probabilities)
 
 # Draw a sample 100 times and visualize the distribution
@@ -83,13 +83,6 @@ success_msg("Good work! And now you know the probability of world ending...")
 ## Normal distribution (1)
 
 [Normal distribution](https://en.wikipedia.org/wiki/Normal_distribution) is continious distribution and it is often used in statistics. It has two parameters (expected value and standard deviation) which determine the shape and place of the distribution. Many human attributes are can be said to be normally distributed. For example, if you take a village full of people, their heights will create a distribution that resembles a normal distribution. 
-
-In R the functions associated with normal distiribution are:
-
-- `dnorm()`: density of the normal distribution
-- `pnorm()`: distribution function of normal distribution
-- `qnorm()`: quantile function of normal distribution
-- `rnorm()`: (random) sample from normal distribution
 
 In this exercise, we will focus on the `rnorm()` function. It draws a random sample from normal distribution (with specified parameters). 
 
@@ -147,8 +140,8 @@ normal_sd
 *** =sct
 ```{r}
 # submission correctness tests
-test_object("normal_mean", incorrect_msg = "Did you save the mean of `my_sample` to `normal_mean`?")
-test_object("normal_sd", incorrect_msg = "Did you save the standard deviation of `my_sample` to `normal_sd`?")
+test_object("normal_mean", incorrect_msg = "Did you save the mean of `normal_sample` to `normal_mean`?")
+test_object("normal_sd", incorrect_msg = "Did you save the standard deviation of `normal_sample` to `normal_sd`?")
 
 test_error()
 
@@ -163,14 +156,22 @@ success_msg("Good work!")
 
 It is good to know the formulas behind every calculations when you are dealing with probabilities. But in reality you rarely do the calculations by hand. And why would you, when you have R to calculate them for you!
 
-The function `pnorm()` can be used to calculate probabilities from normal distributions. 
+In R the functions associated with normal distiribution are:
+
+- `dnorm()`: density of the normal distribution
+- `pnorm()`: distribution function of normal distribution
+- `qnorm()`: quantile function of normal distribution
+- `rnorm()`: (random) sample from normal distribution
+
+You already used the function `rnorm()` in the previous exercise.
+The function `pnorm()` can be used to calculate probabilities from normal distributions. Let's see how it works!
 
 *** =instructions
 - The distribution of variable deep resembles a normal distribution (look at the density histogram of deep). The density histogram is drawn with the argument `freq = FALSE` in the `hist()` function.
 - If we wanted to know what is the probability that deep learning is smaller than 3 amongst the students, we could calculate it with the `pnorm()` function.
 - If we would be interested in the probability that deep learning is greater than 3 amongst the students, we can change the `lower.tail` to `FALSE` to get the correct result.
 - Calculations can be done to get the probability that deep learning is between 3 and 4. See the sample code.
-- What is the probability that deep learning is over 4.5 ? Save the answer to object `high_learning`.
+- What is the probability that deep learning is over 4.5 ? Save the answer to object `high_learning` and print it.
 
 *** =hint
 - Look at the help pages  with `?pnorm` or `help(pnorm)`.
@@ -208,6 +209,7 @@ prob_four - prob_three
 #  The probability of deep being over 4.5
 
 
+
 ```
 
 *** =solution
@@ -231,6 +233,7 @@ prob_four - prob_three
 
 #  The probability of deep being over 4.5
 high_learning <- pnorm(4.5, mean = mean(learning2014$deep), sd = sd(learning2014$deep), lower.tail = FALSE)
+high_learning
 
 ```
 
@@ -281,10 +284,10 @@ You can use the `help()` or `?` for any of these functions to see more about the
 
 *** =sample_code
 ```{r}
-# What is the probability of 2 of them buing a t-shirt?
+# What is the probability of 2 of them buying a t-shirt?
 dbinom(2, size = 8, prob = 0.3)
 
-# What is the probability of 7 of them buing a t-shirt?
+# What is the probability of 7 of them buying a t-shirt?
 
 
 # See what happens to the distribution if you change the probability
@@ -404,18 +407,20 @@ success_msg("Not eating worms tonight! Nicely done!")
 
 ## Standardization
 
-When we have a normal distribution that has 0 as expected value and 1 as standard deviation, the distribution is called *standard* normal distribution. A handy thing is that in standard normal distributions about 68% of the observations are within one deviation amount away from the expected value and within two deviations away are 95% of the observations. This can be convinient sometimes. [Standardization](https://en.wikipedia.org/wiki/Standard_score) is used when we want to transform a normal distribution to a standardized normal distribution. Standardized normal distribution has 0 as expected value and 1 as standard deviation. 
+Standardized normal distribution has 0 as expected value and 1 as standard deviation. A handy thing is that in standard normal distributions about 68% of the observations are within one deviation amount away from the expected value and within two deviations away are 95% of the observations. This can be convinient sometimes. [Standardization](https://en.wikipedia.org/wiki/Standard_score) is used when we want to transform a normal distribution to a standardized normal distribution. 
 
-The formula for standarzation is
+The formula for standardization is
 $$z = \frac{x - \mu}{\sigma}$$
 
 where x is the object we want to standardize, $\mu$ is mean and $\sigma$ stands for standard deviation. 
 
+To standardize multiple variables you will need to calculate means and standard deviations for all them. You could do it one varaible at the time, but it takes time and the same function codes are repeated. In these kind of cases, it is useful to create one function that does the functionality we want and use it instead.
+
 *** =instructions
-- Draw first a histogram of `age` from the `learning2014`. Note the x-axis of the histogram: the numbers are ages and you can see how they are distributed in the data.
-- Let's create a function that standardizes normal distributions. Save the function as `standarzation`. See the pattern above. You can check from the previous exercise how functions are made. 
-- Standardize variable `age` by using the function you created.
-- Draw a histogram of standardized variable `standard_age`. Note what happened to the x-axis.
+- Draw first a histogram of `deep` from the `learning2014`. Note the x-axis of the histogram: the numbers are deep learning scores and you can see how they are distributed in the data.
+- Let's create a function that standardizes normal distributions. Save the function as `std`. See the pattern above. You can check from the previous exercise how functions are made. 
+- Standardize variable `deep` by using the function you created.
+- Draw a histogram of standardized variable `std_deep`. Note what happened to the x-axis.
 
 
 *** =hint
@@ -434,17 +439,17 @@ learning2014 <- read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/learning201
 ```{r}
 # learning2014 is available
 
-# Draw a histogram of variable 'age'
-hist(learning2014$age, breaks=25, col="orange")
+# Draw a histogram of variable 'deep'
+hist(learning2014$deep, breaks=25, col="orange")
 
 # Create function standardation. 
-standarzation <- 
+std <- 
 
-# Standardize variable 'age' by using the function you created
-standard_age <-
+# Standardize variable 'deep' by using the function you created
+std_deep <-
 
-# Draw a histogram of standardized variable 'age'
-hist(standard_age, breaks=25, col="orange")
+# Draw a histogram of standardized variable 'deep'
+hist(std_deep, breaks=25, col="orange")
 
 ```
 
@@ -452,24 +457,24 @@ hist(standard_age, breaks=25, col="orange")
 ```{r}
 # learning2014 is available
 
-# Draw a histogram of variable 'age'
-hist(learning2014$age, breaks=25, col="orange")
+# Draw a histogram of variable 'deep'
+hist(learning2014$deep, breaks=25, col="orange")
 
 # Create function standardation
-standarzation <- function(x) return( ( x-mean(x) ) / sd(x) )
+std <- function(x) return( (x-mean(x)) / sd(x) )
 
-# Standardize variable 'age' by using the function you created
-standard_age <- standarzation(learning2014$age)
+# Standardize variable 'deep' by using the function you created
+std_deep <- std(learning2014$deep)
 
-# Draw a plot of standardized variable 'age'
-hist(standard_age, breaks=25, col="orange")
+# Draw a plot of standardized variable 'deep'
+hist(std_deep, breaks=25, col="orange")
 
 ```
 
 *** =sct
 ```{r}
 # submission correctness tests
-test_object("standard_age", incorrect_msg ="Did you save the standarzation results of to `standard_age`?")
+test_object("std_deep", incorrect_msg ="Did you save the results of std() function to `std_deep`?")
 
 # test if the students code produces an error
 test_error()
