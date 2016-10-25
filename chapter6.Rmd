@@ -2,7 +2,7 @@
 title       : Conditions and subsets
 description : UNDER CONSTRUCTION
 
---- type:NormalExercise lang:r xp:100 skills:1 key:da73cb2b07
+--- type:NormalExercise lang:r xp:100 skills:1
 ## Wellcome to part 2
 
 In the following chapters (6-10) we will be using a dataset collected from students in the Faculty of Social Sciences in the University of Helsinki. The students filled out this questionaire[link] and the answers were later combined into the following combination variables:
@@ -191,7 +191,7 @@ When used on a data.frame, `subset()` returns the rows of the data.frame which m
 learning2014 <- read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/learning2014.txt", sep = "\t", header = TRUE)
 
 # Look at the first six observations
-head(students2014)
+head(learning2014)
 
 ```
 
@@ -200,7 +200,7 @@ head(students2014)
 # learning2014 is available
 
 # Look at the first six observations
-head(students2014)
+head(learning2014)
 
 # select students with above (>) 4 strategic learning
 stra_learners <- subset(learning2014, stra > 4)
@@ -219,7 +219,7 @@ attitude_low <-
 # learning2014 is available
 
 # Look at the first six observations
-head(students2014)
+head(learning2014)
 
 # select students with above (>) 4 strategic learning
 stra_learners <- subset(learning2014, stra > 4)
@@ -527,7 +527,7 @@ test_object("p2")
 test_object("p3")
 test_object("p4")
 
-test_output_contains("c(p1, p2, p3, p4)")
+test_output_contains("round(c(p1, p2, p3, p4),2)")
 
 # test if the students code produces an error
 test_error()
@@ -607,7 +607,7 @@ p3 <- 12 / 19
 p4 <- 7 / 19
 
 # Print out the probabilities
-round(c(p1), digits = 2)
+round(c(p1, p2, p3, p4), digits = 2)
 
 ```
 
@@ -620,7 +620,7 @@ test_object("p1")
 test_object("p2")
 test_object("p3")
 test_object("p4")
-test_output_contains("round(c(p1,p2,p3,p4), 2)")
+test_output_contains("round(c(p1, p2, p3, p4), 2)")
 
 # test if the students code produces an error
 test_error()
