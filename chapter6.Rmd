@@ -2,7 +2,7 @@
 title       : Conditions and subsets
 description : UNDER CONSTRUCTION
 
---- type:NormalExercise lang:r xp:100 skills:1 key:da73cb2b07
+--- type:NormalExercise lang:r xp:100 skills:1
 ## Wellcome to part 2
 
 In the following chapters (6-10) we will be using a dataset collected from students in the Faculty of Social Sciences in the University of Helsinki. The students filled out this questionaire[link] and the answers were later combined into the following combination variables:
@@ -119,17 +119,16 @@ barplot(stra, main = "Distribution of students scores on strategic learning")
 ```{r}
 # learning2014 is available
 
-# cut() is used to transform deep into a categorical variable (factor data type)
-# table() is used to get the counts of different categories
+# Counts of deep learning categories
 deep <- table(cut(learning2014$deep, breaks = 1:5, include.lowest = T))
 
-# barplot() is used to visualize the counts computed above
+# Visualize the counts
 barplot(deep, main = "Distribution of students scores on deep learning")
 
-# Transform the variable attitude into a factor and compute the counts
+# Compute counts of attitude
 
 
-# Visualize the counts with a bar plot
+# Visualize the counts
 
 
 
@@ -139,17 +138,16 @@ barplot(deep, main = "Distribution of students scores on deep learning")
 ```{r}
 # learning2014 is available
 
-# Use cut() to transform deep into a categorical variable (factor data type)
-# Use table to get the counts of different categories
+# Counts of deep learning categories
 deep <- table(cut(learning2014$deep, breaks = 1:5, include.lowest = T))
 
-# Use barplot to visualize the counts computed above
+# Visualize the counts
 barplot(deep, main = "Distribution of students scores on deep learning")
 
-# Transform the variable attitude into a factor and compute the counts
+# Compute counts of attitude
 attitude <- table(cut(learning2014$attitude, breaks = 1:5, include.lowest = T))
 
-# Visualize the counts with a bar plot
+# Visualize the counts
 barplot(attitude, main = "Distribution of students scores on attitude towards statistics")
 
 
