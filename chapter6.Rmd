@@ -2,7 +2,7 @@
 title       : Conditions and subsets
 description : UNDER CONSTRUCTION
 
---- type:NormalExercise lang:r xp:100 skills:1 key:da73cb2b07
+--- type:NormalExercise lang:r xp:100 skills:1
 ## Wellcome to part 2
 
 In the following chapters (6-10) we will be using a dataset collected from students in the Faculty of Social Sciences in the University of Helsinki. The students filled out this questionaire[link] and the answers were later combined into the following combination variables:
@@ -458,7 +458,7 @@ learning2014 <-  read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/learning20
 # transform attitude into a factor and cross table with gender
 attitude <- cut(learning2014$attitude, 1:5, include.lowest = T)
 gndr_att <- table(learning2014$gender, attitude)
-addmargins(gndr_att)
+print(addmargins(gndr_att))
 
 ```
 
@@ -566,7 +566,7 @@ learning2014 <-  read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/learning20
 # transform attitude into a factor and cross table with gender
 attitude <- cut(learning2014$attitude, 1:5, include.lowest = T)
 gndr_att <- table(learning2014$gender, attitude)
-addmargins(gndr_att)
+print(addmargins(gndr_att))
 
 ```
 
