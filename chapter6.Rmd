@@ -2,7 +2,7 @@
 title       : Conditions and subsets
 description : UNDER CONSTRUCTION
 
---- type:NormalExercise lang:r xp:100 skills:1 key:da73cb2b07
+--- type:NormalExercise lang:r xp:100 skills:1
 ## Wellcome to part 2
 
 In the following chapters (6-10) we will be using a dataset collected from students in the Faculty of Social Sciences in the University of Helsinki. The students filled out this questionaire[link] and the answers were later combined into the following combination variables:
@@ -80,7 +80,7 @@ success_msg("Good work!")
 
 In this exercise you will use already familiar tools to get a little more intimate with your data. A couple quick notes related to the example code:
 
-- `1:5` creates an integer vector identical to `c(1,2,3,4,5)`
+- breaks = `1:5` is identical to breaks =  `c(1, 2, 3, 4, 5)`
 - `T` can be used to abbreviate `TRUE`
 - The argument *include.lowest* makes the lowest break point value given to `cut()` inclusive
 
