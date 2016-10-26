@@ -414,7 +414,7 @@ $$z = \frac{x - \mu}{\sigma}$$
 
 where x is the object we want to standardize, $\mu$ is mean and $\sigma$ stands for standard deviation. 
 
-To standardize multiple variables you will need to calculate means and standard deviations for all them. You could do it one varaible at the time, but it takes time and the same function codes are repeated. In these kind of cases, it is useful to create one function that does the functionality we want and use it instead.
+To standardize multiple variables you will need to calculate means and standard deviations for all them. You could do it one variable at the time, but it takes time and the same function codes are repeated. In these kind of cases, it is useful to create one function that does the functionality we want and use it instead.
 
 *** =instructions
 - Draw first a histogram of `deep` from the `learning2014`. Note the x-axis of the histogram: the numbers are deep learning scores and you can see how they are distributed in the data.
