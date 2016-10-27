@@ -2,7 +2,7 @@
   title       : Estimation
 description : UNDER CONSTRUCTION
 
---- type:NormalExercise lang:r xp:100 skills:1 key:44d1f23e51
+--- type:NormalExercise lang:r xp:100 skills:1
 ## Exploring estimates with R
 
 In this chapter we will focus on point and interval estimation. Interval estimation is based on the important concept of the *sampling distribution*, which is a somewhat theoretical concept and therefore takes a while to get used to.
@@ -212,7 +212,7 @@ attitude[(1:10)*2]
 ```{r}
 # submission correctness tests
 
-test_student_typed("1:10", incorrect_msg = "Did you use `:` to create and print out the specified integer vector?")
+test_student_typed("1:10", not_typed_msg = "Did you use `:` to create and print out the specified integer vector?")
 test_output_contains("attitude[(1:10)*2]")
 
 # test if the students code produces an error
