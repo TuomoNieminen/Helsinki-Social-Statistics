@@ -5,37 +5,27 @@ description : UNDER CONSTRUCTION
 --- type:NormalExercise lang:r xp:100 skills:1 key:d64c2a9918
 ## Welcome to part 2
 
-info about data
+Welcome. In these next chapters (6-10) we will be using a data set again collected from the students of the faculty of social sciences in the university of Helsinki. The data is from this questionare[link]. The questions have been combined into three combination variables:
+
+- deep (score from questions measuring deep learning)
+- stra (score from questions measuring strategic learning)
+- surf (score from questions measuing surface learning)
 
 *** =instructions
-- instruction 1
+- Look at the structure of learning2014 with `str()`.
+- Look at the first six observations of the learning data
 
 *** =hint
-- hint 1
+- str() gives the structure of an object
 
 *** =pre_exercise_code
 ```{r}
-# data
-df <-  read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/learning2014.txt", sep = "\t", header = TRUE)
-points <- table(cut(df$points, (0:11)*3, include.lowest=T))
-deep <- table(cut(df$deep, 1:5, include.lowest = T))
-stra <- table(cut(df$stra, 1:5, include.lowest = T))
-surf <- table(cut(df$surf, 1:5, include.lowest = T))
-
-# plots
-barplot(table(df$gender), main = "Distribution of students gender")
-boxplot(df$age, main = "Box plot of students age", xlab = "age", horizontal = T)
-barplot(points, las = 2, main = "Distribution of students exam points", xlab = "")
-barplot(surf, main = "Distribution of students scores on surface learning")
-barplot(deep, main = "Distribution of students scores on deep learning")
-barplot(stra, main = "Distribution of students scores on strategic learning")
-
 
 ```
 
 *** =sample_code
 ```{r}
-# sample code here
+# learning2014 is available
 ```
 
 *** =solution
@@ -54,6 +44,90 @@ test_error()
 success_msg("Good work!")
 ```
 
+--- type:NormalExercise lang:r xp:100 skills:1
+## Exercise title
+
+Exercise info
+
+*** =instructions
+- instruction 1
+
+*** =hint
+- hint 1
+
+*** =pre_exercise_code
+```{r}
+# load the data
+learning2014 <-  read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/learning2014.txt", sep = "\t", header = TRUE)
+
+# use cut() to code variables as factors
+# use table() to get the frequencies of the factors levels
+points <- table(cut(learning2014$points, (0:11)*3, include.lowest=T))
+deep <- table(cut(learning2014$deep, 1:5, include.lowest = T))
+stra <- table(cut(learning2014$stra, 1:5, include.lowest = T))
+
+# age
+boxplot(learning2014$age, main = "Box plot of students age", xlab = "age", horizontal = T)
+# gender
+barplot(table(learning2014$gender), main = "Distribution of students gender")
+# exam points
+barplot(points, las = 2, main = "Distribution of students exam points", xlab = "")
+# combined variables
+barplot(deep, main = "Distribution of students scores on deep learning")
+barplot(stra, main = "Distribution of students scores on strategic learning")
+
+```
+
+*** =sample_code
+```{r}
+# learning2014 is available
+
+# use cut() to code deep learning as a categorical variable (factor)
+# use table() to get the frequencies of the factors levels
+deep <- table(cut(learning2014$deep, c(1,2,3,4,5), include.lowest = T))
+
+# use table and cut to create object surf here
+
+
+# draw a bar plot of deep learning
+barplot(deep, main = "Distribution of students scores on deep learning")
+
+# draw a bar plot of surface learning
+
+```
+
+*** =solution
+```{r}
+# learning2014 is available
+
+# use cut() to code deep learning as a categorical variable (factor)
+# use table() to get the frequencies of the factors levels
+deep <- table(cut(learning2014$deep, c(1,2,3,4,5), include.lowest = T))
+
+# use table and cut to create object surf here
+surf <- table(cut(learning2014$surf, c(1,2,3,4,5), include.lowest = T))
+
+
+# draw a bar plot of deep learning
+barplot(deep, main = "Distribution of students scores on deep learning")
+
+# draw a bar plot of surface learning
+barplot(surf, main = "Distribution of students scores on surface learning")
+
+
+```
+
+*** =sct
+```{r}
+
+# test_output_contains("output")
+test_object("surf")
+# test_function("function_name", args=c("arg1"))
+
+test_error()
+success_msg("Good work!")
+
+```
 
 --- type:NormalExercise lang:r xp:100 skills:1 key:c12d1b7017
 

@@ -100,6 +100,7 @@ c(1,2,3,4,5)
 
 *** =instructions
 - Study and execute the example codes
+- Print out an integer vector with values 1, 2, ..., 10
 - Print out every second value of the attitude vector, starting from the 2. value until the 20th value. These values correspond to the even numbered indeces of the vector: 2, 4, .. , 20
 
 *** =hint
@@ -127,6 +128,9 @@ names(attitude) <- 1:length(attitude)
 # Access the values 5 - 10 of attitude
 attitude[5:10]
 
+# Print out an integer vector with values from 1 to 10
+
+
 # Access every second value of attitude from 2. to the 20th index
 
 
@@ -145,6 +149,9 @@ attitude[5:10]
 # Access the values 5 - 10 of attitude
 attitude[5:10]
 
+# Print out an integer vector with values from 1 to 10
+1:10
+
 # Access every second value of attitude from 2. to the 20th index
 attitude[(1:10)*2]
 
@@ -155,6 +162,7 @@ attitude[(1:10)*2]
 ```{r}
 # submission correctness tests
 
+test_output_contains("1:10")
 test_output_contains("attitude[(1:10)*2]")
 
 # test if the students code produces an error
