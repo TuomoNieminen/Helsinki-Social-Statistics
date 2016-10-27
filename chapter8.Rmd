@@ -7,8 +7,6 @@ description : UNDER CONSTRUCTION
 
 In this chapter we will focus on point and interval estimation. Interval estimation is based on the important concept of the *sampling distribution*, which is a somewhat theoretical concept and therefore takes a while to get used to.
 
-If we could collect our random sample again and again and again and calculate the mean for each of the samples the resulting distribution of these sample means would be the sampling distribution of the sample mean.
-
 The sampling distribution is a kind of mind game: If we could collect our random sample again and again and again and calculate the mean for each of the samples, the resulting distribution of these sample means would be the sampling distribution (of the sample mean).
 
 It turns out that for a lot of important point estimates, the sampling distribution can be approximated with the normal distribution with certain known parameters! This is due to a fascinating phenomenom called the *central limit theorem*.
