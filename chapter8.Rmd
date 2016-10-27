@@ -1,18 +1,68 @@
 ---
-title       : Estimation
+  title       : Estimation
 description : UNDER CONSTRUCTION
 
+--- type:NormalExercise lang:r xp:100 skills:1
+## Exploring estimates with R
 
+In this chapter we will focus on point and interval estimation. Interval estimation is based on the important concept of the *sampling distribution*, which is a somewhat theoretical concept and therefore takes a while to get used to.
+
+You can think of the sampling distribution as a kind of mind game: When we have a random sample of data, we can calculate statistics such as the mean of that sample. But what if we could collect the random sample again and again and again and calculate the mean for each of the samples. What would then be the distribution of these calculated means? This theoretical distribution is called the sampling distribution.
+
+It turns out that for a lot of important point estimates, the sampling distribution can be approximated with the normal distribution with certain known parameters! This is due to a fascinating phenomenom called the *central limit theorem*.
+
+To explore these concepts, we will start this chapter with some technical tools we will need for constructing *loops* and *simulations*. 
+
+*** =instructions
+- Here in DataCamp, when a single expression continues over multiple rows, the whole chunk of code needs to be executed at once. This can be done by first painting (selecting) all the lines in the expression with a mouse and then pressing `Ctrl + Enter` as normal.
+- Execute the while for-loop expression ending to the line where the curly bracket closes
+- Click submit answer to move on to the next exercise
+
+*** =hint
+- If you cannot paint (select) the expression for some reason, you can just click submit answer instead.
+
+*** =pre_exercise_code
+```{r}
+# pre exercise code here
+```
+
+*** =sample_code
+```{r}
+# Execute me
+for(i in 1:10) {
+  print("I am a loop")
+}
+
+
+
+
+```
+
+*** =solution
+```{r}
+# Execute me
+for(i in 1:10) {
+  print("I am a loop")
+}
+
+
+
+
+```
+
+*** =sct
+```{r}
+test_error()
+success_msg("Good work!")
+```
 
 --- type:NormalExercise lang:r xp:100 skills:1 key:23abc9f934
 
 ## Indices and brackets
 
-Vectors store multiple values of the same data type. The values in vectors have indices: the first value in a vector has a index `1`, the second value has `2` and so on. 
+Vectors in R store multiple values of the same data type. The values in vectors have indices: the first value in a vector has a index `1`, the second value `2` and so on. 
 
-You can set or get a single value from a vector by using indices and brackets `[ ]`. Using an index number inside the bracets gives access to a single value from the vector. Using a vector of indices gives access to a vector of values.
-
-It is also possible to rearrange the values in a vector by using indices. Look at the example code to see how indices work. 
+You can set or get a single value from a vector by using indices and brackets `[ ]`. Using an index number inside the bracets gives access to a single value from the vector. Using a vector of indices gives access to multiple values (another vector). Therefore it is also possible to rearrange the values in a vector by using indices. Look at the example code to see how indices work. 
 
 *** =instructions
 - Create the name vector.
@@ -22,7 +72,6 @@ It is also possible to rearrange the values in a vector by using indices. Look a
 
 *** =hint
 - Note that space between the vector object and bracets produces an error.
-- Remember that vectors are created with the function `c()`.
 - Index vectors `c(1,2)` and `c(2,1)` do not produce the same outcome. The order of the values is different.
 
 *** =pre_exercise_code
@@ -48,7 +97,8 @@ names[c(1, 3)]
 girls <-
 boys <-
 
-```
+
+  ```
 
 *** =solution
 ```{r}
@@ -90,7 +140,7 @@ success_msg("Such indices. Wow. Much intelligent.")
 
 Sometimes you need a very long index vector. In that case it would be a lot of work to create the vector by combining integer values with `c()`. Luckily, there are convenient ways to create long vectors in R.
 
-For index values, a specially useful one is the method `start:end`, which creates an integer vector with all the values between start and end (inclusive). The following two lines hence produce identical results
+For index values, a specially useful one is the method `start:end`, which creates an integer vector with all the values from start to end. The following two lines hence produce identical results
 
 ```
 1:5  
@@ -100,6 +150,7 @@ c(1,2,3,4,5)
 
 *** =instructions
 - Study and execute the example codes
+- Use `:` to create and print out an integer vector with the values 1, 2, ..., 10
 - Print out every second value of the attitude vector, starting from the 2. value until the 20th value. These values correspond to the even numbered indeces of the vector: 2, 4, .. , 20
 
 *** =hint
@@ -118,7 +169,7 @@ names(attitude) <- 1:length(attitude)
 ```{r}
 # attitude is available
 
-# Create an integer vector
+# Create and print an integer vector with values 1,2,..,5
 1:5
 
 # Create an integer vector with even values 2, 4, .. , 10
@@ -126,6 +177,9 @@ names(attitude) <- 1:length(attitude)
 
 # Access the values 5 - 10 of attitude
 attitude[5:10]
+
+# Create and print an integer vector with values 1,2,..,10
+
 
 # Access every second value of attitude from 2. to the 20th index
 
@@ -145,6 +199,9 @@ attitude[5:10]
 # Access the values 5 - 10 of attitude
 attitude[5:10]
 
+# Create and print an integer vector with values 1,2,..,10
+1:10
+
 # Access every second value of attitude from 2. to the 20th index
 attitude[(1:10)*2]
 
@@ -155,6 +212,7 @@ attitude[(1:10)*2]
 ```{r}
 # submission correctness tests
 
+test_student_typed("1:10", incorrect_msg = "Did you use `:` to create and print out the specified integer vector?")
 test_output_contains("attitude[(1:10)*2]")
 
 # test if the students code produces an error
@@ -169,25 +227,25 @@ success_msg("Great work!")
 
 ## Point estimation
 
-Let us now get back to statistical analysis and estimation. When given a sample of data from a population, the goal of statistical analysis is to use that sample to draw conclusions about the population. In a simple case we are interested of a single variable (such as students points in an exam) and want to estimate the *expected value* of that variable. The expected value is the average value in the population - the population mean. 
+Let us now get back to statistical analysis and estimation. When given a sample of data from a population, the goal of statistical analysis is to use that sample to draw conclusions about the population. In a simple case we are interested in a single variable (such as students points in an exam) and want to estimate the *expected value* of that variable. The expected value is the average value in the target population - the population mean. 
 
-We can't directly calculate the population average because we only have a sample, so we have to **estimate** it. Obtaining a point estimate of a population parameter is easy: just use the corresponding sample statistic.
+We can't directly calculate the population average because we only have a sample, so we have to **estimate** it. Obtaining a point estimate of a population parameter is rather easy: just use the corresponding sample statistic.
 
 population parameter                    | estimate
 --------------------------------------- | --------
 expected value $\mu$                    | sample mean $\bar{x}$
 population standard deviation $\sigma$  | sample standard deviation $s$
 
+In statistics, estimates are often denoted with a hat. So for example $\hat{\mu} = \bar{x}$.
 
 *** =instructions
-- Estimate the expected value of `points`
+- Estimate the expected value of `points`. Remember that R has convenient functions for these kind of calculations. If you can't remember them, use your favourite search engine or take a hint.
 - Estimate the population standard deviation of `points`
-- Print out the estimated values
-- Remember that R has convenient functions for these kind of calculations. If you can't remember them, you can for example use you favourite search engine and type "compute <operation here> in r" or take a hint.
+- Combine the estimates to the estimates vector (replace `NA`). Notice how `c()` can be used to give names to the values.
 
 *** =hint
-- The table above shows the relationships between the sample statistics and the population parameters
-- Mean can be computed with `mean()`
+- The table above shows the relationships between the sample statistics and the population parameters.
+- Use the table to figure out which operation you could use to produce the estimate.
 
 
 
@@ -204,13 +262,14 @@ learning2014 <-  read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/learning20
 points <- learning2014$points
 
 # estimate the expected value of points
-mu <- 
-
+mu_hat <- 
+  
 # estimate the population standard deviation of points
-s <- sd(points)
+sigma_hat <- sd(points)
 
-# Print out the estimated values
-
+# Combine the estimates to a named vector and print out the rounded values
+estimates <- c("mu_hat" = NA, "sigma_hat" = NA)
+round(estimates, 2)
 
 
 
@@ -224,14 +283,14 @@ s <- sd(points)
 points <- learning2014$points
 
 # estimate the expected value of points
-mu <- mean(points)
+mu_hat <- mean(points)
 
 # estimate the population standard deviation of points
-s <- sd(points)
+sigma_hat <- sd(points)
 
 # Print out the estimated values
-mu
-s
+estimates <- c("mu_hat" = mu_hat, "sigma_hat" = sigma_hat)
+round(estimates, 2)
 
 
 ```
@@ -241,16 +300,15 @@ s
 # submission correctness tests
 
 test_function("mean", args=c("x"))
-test_object("mu")
+test_object("mu_hat", incorrect_msg = "Please create the object mu_hat. Use the correct function on the points vector")
 
-test_output_contains("mu")
-test_output_contains("sigma")
+test_output_contains("round(estimates, 2)", incorrect_msg = "Please insert the estimate objects to the estimates vector and do ont remove the row with `round()`")
 
 # test if the students code produces an error
 test_error()
 
 # Final message the student will see upon completing the exercise
-success_msg("Great work!")
+success_msg("Very nice! You get full points for point estimation.")
 
 ```
 
@@ -259,22 +317,21 @@ success_msg("Great work!")
 
 ## Interval estimation
 
-Since we are using a sample, clearly there is some uncertainty involved in our point  estimate. But how much uncertainty?
+Since we are using a random sample, clearly there is uncertainty involved in our point estimate. But how much uncertainty? This is where we need statistical theory. One way to approach this question is to try to come up with an interval around the the point estimate which we could be confident that the interval contains the true parameter value a high percentage of the time. 
 
-This is where we need statistical theory. It turns out that the following formula produces an interval around the estimate which contains the true parameter value a specified high percentage of the time ($100 \cdot (1-\alpha)$%) 
+It turns out that the following formula produces an interval which contains the true population mean a specified high percentage of the time ($100 \cdot (1-\alpha)$%) 
 
-$$\text{estimate} +- z(\alpha/2) \cdot \frac{s}{\sqrt{n}}$$
+$$\text{mean} +- z(\alpha/2) \cdot \frac{s}{\sqrt{n}}$$
+  
+where $s$ is the sample standard deviation, $n$ is the sample size and $z(\frac{\alpha}{2})$ is a critical value from the $N(0,1)$ distribution. $\frac{s}{\sqrt{n}}$ is called the *standard error* of the estimate. 
 
-Here $s$ is the sample standard deviation, $n$ is the sample size and $z(\frac{\alpha}{2})$ is a critical value from the $N(0,1)$ distribution. $\frac{s}{\sqrt{n}}$ is called the *standard error* of the estimate. 
-
-I know what you're thinking. It's confusing: where did the normal distribution come from and what's with all that $z(\frac{\alpha}{2})$ stuff? The answers lie in the **sampling distribution** which we will soon get to.
+I know what you're thinking. It's confusing: where did the normal distribution come from, what's with all that $z(\frac{\alpha}{2})$ stuff and what critical value? All the answers lie in the **sampling distribution** which we will soon get to.
 
 
 *** =instructions
-- Compute the estimate for the expected value of points, the sample standard deviation and the number of observations
-- Compute the standard error of the estimate (the sample mean)
+- Compute the standard error of the sample mean
 - Compute the critical value z using a 99% confidence level (alpha = 0.01)
-- Print out the confidence interval CI
+- Round the values to 1 digit and print out the interval estimate
 
 *** =hint
 - The formula for the standard error is s/sqrt(n)
@@ -296,22 +353,23 @@ points <- learning2014$points
 # Number of observations
 n <- length(points)
 
-# Estimate the expected value and standard deviation of points
-mu <- mean(points)
+# Sample mean and standard deviation of points
+mu_hat <- mean(points)
 s <- sd(points)
 
-# Compute the standard error of mu. sqrt() computes the square root.
+# Compute the standard error of the sample mean. sqrt() computes the square root.
 error <- 
-  
-# Use qnorm(1 - alpha/2) to compute the critical value z
-z <- 
+
+# Compute the critical value z
+z <- qnorm(0.01/2, lower.tail = F) 
 
 # Compute the confidence interval
-lower_ci <- mu - z*error
-upper_ci <- mu + z*error
+lower_ci <- mu_hat - NA
+upper_ci <- mu_hat + NA
 
-# Print out the results in a (rounded and named) vector
-CI <- round(c("estimate" = mu, "lower99%" = lower_ci, "upper99%" = upper_ci),1)
+# Combine, round and print out the results
+interval_estimate <- c("estimate" = mu_hat, "lower99%" = lower_ci, "upper99%" = upper_ci)
+
 
 
 ```
@@ -324,20 +382,22 @@ CI <- round(c("estimate" = mu, "lower99%" = lower_ci, "upper99%" = upper_ci),1)
 n <- length(points)
 
 # estimate the expected value and standard deviation of points
-mu <- mean(points)
+mu_hat <- mean(points)
 s <- sd(points)
 
-# estimate the standard error of mu
+# Compute the standard error of the sample mean. sqrt() computes the square root.
 error <- s/sqrt(n)
-  
+
 # Use qnorm(1 - alpha/2) to get the value of z with the specified confidence level
 z <- qnorm(1 - 0.01/2)
 
 # compute the confidence interval and print out the results
-lower_ci <- mu - z*error
-upper_ci <- mu + z*error
+lower_ci <- mu_hat - z*error
+upper_ci <- mu_hat + z*error
 
-CI <- round(c("estimate" = mu, "lower_ci" = lower_ci, "upper_ci" = upper_ci),1)
+# Combine, round and print out the results
+interval_estimate <- c("estimate" = mu_hat, "lower_ci" = lower_ci, "upper_ci" = upper_ci)
+round(interval_estimate)
 
 
 ```
@@ -346,10 +406,9 @@ CI <- round(c("estimate" = mu, "lower_ci" = lower_ci, "upper_ci" = upper_ci),1)
 ```{r}
 # submission correctness tests
 test_object("error")
-test_object("z")
 test_object("lower_ci")
 test_object("upper_ci")
-test_output_contains("CI")
+test_output_contains("round(interval_estimate)")
 
 # test if the students code produces an error
 test_error()
@@ -365,29 +424,31 @@ success_msg("You are awsome with 99% confidence!")
 
 ## Looping
 
-In programming, often times there is the need to repeat an action multiple times. In statistical programming you might for example have a theory you wish to explore by simulation.
+In programming, often there is the need to repeat an action multiple times. In statistical programming you might for example have a theory you wish to explore by simulation.
 
 The **for-loop** is perhaps the most common loop. The structure of a for-loop is:
 
 ```
 for (counter in vector) {
   commands
+  more commands
 }
 ```
 
-The for-loop iterates trough the values of a vector by changing the value of the counter one value at a time. Inside the curly braces are regular commands such as function calls and the current value of the counter can be used there.
+The for-loop iterates trough the values of a vector by changing the value of the counter one value at a time. The counter first takes on the first and value of th vector, then the second and so on. Inside the curly braces is the *body* of the loop, which can contain regular commands such as function calls. The current value of the counter can be used there.
 
-The commands are repeated until all the values of the vector have been looped through.
+The commands are repeated until the counter has taken on all the values of the vector.
 
 
 *** =instructions
-- Execute the example codes. Remember that here in DataCamp, executing a command over multiple lines is done by selecting all the lines with a mouse first (by painting) and then hitting Ctrl+Enter normally. Alternatively you can  also click submit.
-- Create your own for-loop which prints out "I am looping" 50 times.
-- Hints: Remember that `1:n` creates an integer vector of length n. Inside the loop body (curly braces) you have to use the `print()` function to print.
+- Execute the example codes. Remember that here in DataCamp, executing a command over multiple lines is done by selecting all the lines with a mouse first and then hitting `Ctrl+Enter` normally. Alternatively you could also click submit to execute the whole script.R
+- In an honor of the electronic duo Daft Punk and their 2001 Album "Discovery", construct a for-loop that prints out "One more time!" 27 times.
+- Hints: (1) Remember that `1:n` creates an integer vector of length n. (2) Inside the loop body (curly braces) you have to use the `print()` function to print.
 
 *** =hint
-- It does not matter what name you give to your counter. You can for example use `i` as is done in the second example. You don't need to access your counter in this exercise.
-- Remember to use quotation marks to create characters
+- It does not matter what name you give to your counter. You can for example use `i` as is done in the second example.
+- In this exercise you don't need to use the values of your counter.
+- Remember to use quotation marks to print characters
 
 
 *** =pre_exercise_code
@@ -397,17 +458,17 @@ The commands are repeated until all the values of the vector have been looped th
 
 *** =sample_code
 ```{r}
-# loop through characters a,b,c,d
+# Loop through and print the characters a, b, c, d
 for(letter in c("a","b","c")) {
   print(letter)
 }
 
-# loop through integers 1,2,3,4,5
+# Loop through integers 1, 2, 3, 4, 5
 for(i in 1:5) {
   print(i + 5)
 }
 
-# write a for-loop that prints out "I am looping" 50 times
+# Write a for-loop that prints out "One more time!" 27 times
 
 
 
@@ -422,14 +483,14 @@ for(letter in c("a","b","c")) {
   print(letter)
 }
 
-# loop through integers 1,2,3,4,5
+# loop through integers 1, 2, 3, 4, 5
 for(i in 1:5) {
   print(i + 5)
 }
 
-# write a for-loop that prints out "I am looping" 50 times
-for(i in 1:50) {
-  print("I am looping")
+# Write a for-loop that prints out "One more time!" 27 times
+for(i in 1:27) {
+  print("One more time!")
 }
 
 
@@ -439,7 +500,7 @@ for(i in 1:50) {
 ```{r}
 # submission correctness tests
 
-test_output_contains("'I am looping'", times = 50, incorrect_msg = "Did you write a for-loop that prints out 'I'm looping' 50 times?")
+test_output_contains("'One more time!'", times = 27, incorrect_msg = "Did you write a for-loop that prints out 'One more time!' 27 times?")
 
 # test if the students code produces an error
 test_error()
@@ -455,24 +516,25 @@ success_msg("Excellent work! Repetition is the key to success :)")
 
 ## The sampling distribution
 
+Remember that you can think of the sampling distribution as a kind of mind game:  If we could collect our random sample again and again and again and calculate a statistic for each of the samples the resulting distribution would give us the sampling distribution of that statistic.
 
-Usually, whenever you have a set of data, that data is only a sample from a target population. Therefore all the statistics calculated from the data involve uncertainty. But how much uncertainty? Do we know the distribution of the statistic?
+In reality, we can't ofcourse produce this distribution, or can we? 
 
-What if we could also estimate how a statistic is distributed between different kinds of samples? What if we knew the **sampling distribution** of the statistic that produced our estimate. Well, lets start by simulating that distribution.
+Let's pretend for a moment that the data we have actually *is* the target population we are sampling from. Let's see what happens if we repeatedly take samples from our data, and calculate a statistic each time, storing the results. This satisfies the idea of the sampling distribution, meaning that we can actually simulate that distribution! 
 
-Let's pretend for a moment that the data that we have actually *is* the target population we are sampling from. Let's see what happens if we repeatedly take samples from that population, and calculate a statistic each time, storing the results.
+This method (called [bootstrapping](https://en.wikipedia.org/wiki/Bootstrapping_(statistics))) is widely used to explore different sampling distribution.
 
 
 *** =instructions
-- Create an empty means vector and print it
-- Execute the for-loop to fill the means vector with means from random samples of points.
+- Print out the empty means vector
+- Execute the for-loop. What does it do?
+- Print out the means vector
 - Use `summary()` on means
-- Draw a histogram of the means
-- Use `quantile()` with means as the first argument. define the argument `probs = c(0.01, 0.99)/2`. The output is the range that contains 99% of the values.
+- Draw a histogram of the sampling disribution of the means. See the help page of hist and make it a density histogram.
 
 
 *** =hint
-- `hist()` draws a histogram
+- `hist()` draws a histogram and freq = F can be used to draw a density histogram
 
 
 *** =pre_exercise_code
@@ -484,20 +546,23 @@ points <- learning2014$points
 
 *** =sample_code
 ```{r}
-# points is available
+# points is available. Do not remove the line below.
+set.seed(777)
 
 # Create an empty vector of length N
 N <- 100
 means <- numeric(N)
-means
 
-# repeat N times: draw a random sample and compute the mean
+# Print out the empty vector
+
+
+# Repeat N times: (1) draw a random sample, (2) compute the mean and (3) store it in the means vector
 for(i in 1:N) {
   points_sample <- sample(points, size = 50, replace = F)
   means[i] <- mean(points_sample)
- }
- 
-# Explore the sampling distribution
+}
+
+# Explore the sampling distribution of the mean
 
 
 
@@ -506,23 +571,26 @@ for(i in 1:N) {
 
 *** =solution
 ```{r}
-# points is available
+# points is available. Do not remove the line below.
+set.seed(777)
 
-# Create an empty vector of lenght N
+# Create an empty vector of length N
 N <- 100
 means <- numeric(N)
+
+# Print out the empty vector
 means
 
-# Repeat N times: (1) draw a random sample (2) compute and save the mean
+# Repeat N times: (1) draw a random sample, (2) compute the mean and (3) store it in the means vector
 for(i in 1:N) {
   points_sample <- sample(points, size = 50, replace = F)
   means[i] <- mean(points_sample)
- }
- 
+}
+
 # Explore the sampling distribution
+means
 summary(means)
-hist(means)
-quantile(mean, probs = c(0.01, 0.99)/2)
+hist(means, freq = F)
 
 ```
 
@@ -530,9 +598,9 @@ quantile(mean, probs = c(0.01, 0.99)/2)
 ```{r}
 # submission correctness tests
 
-test_function("summary", args=c("arg1"))
-test_function("hist", args=c("arg1"))
-test_function("quantile",args=c("x", "probs"))
+test_output_contains("means")
+test_function("summary", args=c("object"))
+test_function("hist", args=c("x","freq"))
 
 # test if the students code produces an error
 test_error()
@@ -560,16 +628,37 @@ Yleistetään edellisen tehtävän huomio
 
 *** =pre_exercise_code
 ```{r}
-# pre exercise code here
+learning2014 <-  read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/learning2014.txt", sep = "\t", header = TRUE)
+points <- learning2014$points
+set.seed(777)
+
+# Create an empty vector of length N
+N <- 100
+means <- numeric(N)
+
+# Repeat N times: (1) draw a random sample, (2) compute the mean and (3) store it in the means vector
+for(i in 1:N) {
+  points_sample <- sample(points, size = 50, replace = F)
+  means[i] <- mean(points_sample)
+}
+
+# Explore the sampling distribution
+hist(means, freq = F)
 ```
 
 *** =sample_code
 ```{r}
 # df is available
 
-#explore means
-summary(means)
-hist(means)
+N <- 100
+
+# Repeat N times: (1) draw a random sample, (2) compute the mean and (3) store it in the means vector
+for(i in 1:N) {
+  points_sample <- sample(points, size = 50, replace = F)
+  means[i] <- mean(points_sample)
+}
+
+
 
 ```
 
