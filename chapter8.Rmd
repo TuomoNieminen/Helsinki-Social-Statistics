@@ -249,7 +249,7 @@ Inside the curly braces is the *body* of the loop, which can contain regular com
 
 *** =instructions
 - Execute the example codes. Remember that here in DataCamp, executing a command over multiple lines is done by selecting all the lines with a mouse first and then hitting `Ctrl+Enter` normally. Alternatively you could also click submit to execute the whole script.R
-- In an honor of the electronic duo Daft Punk and their 2001 Album "Discovery", construct a for-loop that prints out "One more time!" 27 times.
+- In an honor of the legendary electronic duo *Daft Punk* and their 2001 Album *Discovery*, construct a for-loop that prints out "One more time!" 27 times.
 - Hints: (1) Remember that `1:n` creates an integer vector of length n. (2) Inside the loop body (curly braces) you have to use the `print()` function to print.
 
 *** =hint
