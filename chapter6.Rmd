@@ -1,12 +1,14 @@
 ---
-title       : Conditions and subsets
+  title       : Conditions and subsets
 description : UNDER CONSTRUCTION
 
 --- type:NormalExercise lang:r xp:100 skills:1 key:da73cb2b07
-## Wellcome to part 2
+## Welcome to part 2!
 
-In the following chapters (6-10) we will be using a dataset collected from students in the Faculty of Social Sciences in the University of Helsinki. The students filled out this questionaire[link] and the answers were later combined into the following combination variables:
+In the following chapters (6-10) we will be using a dataset collected from students in the Faculty of Social Sciences in the University of Helsinki. The students filled out this questionaire[link], which produced the dataset described [here](http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS2-meta.txt).
 
+The answers were later combined into the following combination variables:
+  
 - *deep*: mean score of questions related to deep learning
 - *stra*: mean score of questions related to strategic learning
 - *surf*: mean score of questions related to surface learning
@@ -74,91 +76,76 @@ test_error()
 success_msg("Good work!")
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1 key:d64c2a9918
+--- type:MultipleChoiceExercise lang:r 
 
 ## Exlore your data
 
-In this exercise you will use already familiar tools to get a little more intimate with your data. A couple quick notes related to the example code:
 
-- breaks = `1:5` is identical to breaks =  `c(1, 2, 3, 4, 5)`
-- `T` can be used to abbreviate `TRUE`
-- The argument *include.lowest* makes the lowest break point value given to `cut()` inclusive
-
-Follow the instructions below to complete the exercise:
-
-*** =instructions
-- Browse through the different plots to look at the distributions of the variables in learning2014
-- Similarily to the example code: Create object `attitude` by transforming attitude into a factor and compute the counts with table()
-- Visualize the counts with a bar plot
-- Give your plot the main title: "Distribution of students scores on attitude towards statistics"
+Choose one
+  
+  *** =instructions
+- option 1
+- option 2
+- option 3
+- option 4
 
 *** =hint
-- Use the variable `attitude` in the learning2014 data identically to the example codes where the variable is `deep`.
-- The argument main can be used inside the barplot() function to add a main title
+- hint 1
+- hint 2
 
 *** =pre_exercise_code
 ```{r}
 # data
 learning2014 <-  read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/learning2014.txt", sep = "\t", header = TRUE)
+
+# level counts of factorized variables for barplots
 points <- table(cut(learning2014$points, (0:11)*3, include.lowest=T))
+
 deep <- table(cut(learning2014$deep, 1:5, include.lowest = T))
 stra <- table(cut(learning2014$stra, 1:5, include.lowest = T))
 surf <- table(cut(learning2014$surf, 1:5, include.lowest = T))
-
-# plots
-barplot(table(learning2014$gender), main = "Distribution of students gender")
-boxplot(learning2014$age, main = "Box plot of students age", xlab = "age", horizontal = T)
-barplot(points, las = 2, main = "Distribution of students exam points", xlab = "")
-barplot(surf, main = "Distribution of students scores on surface learning")
-barplot(deep, main = "Distribution of students scores on deep learning")
-barplot(stra, main = "Distribution of students scores on strategic learning")
-
-```
-
-*** =sample_code
-```{r}
-# learning2014 is available
-
-# Counts of deep learning categories
-deep <- table(cut(learning2014$deep, breaks = 1:5, include.lowest = T))
-
-# Visualize the counts
-barplot(deep, main = "Distribution of students scores on deep learning")
-
-# Compute counts of attitude
-
-
-# Visualize the counts
-
-
-
-```
-
-*** =solution
-```{r}
-# learning2014 is available
-
-# Counts of deep learning categories
-deep <- table(cut(learning2014$deep, breaks = 1:5, include.lowest = T))
-
-# Visualize the counts
-barplot(deep, main = "Distribution of students scores on deep learning")
-
-# Compute counts of attitude
 attitude <- table(cut(learning2014$attitude, breaks = 1:5, include.lowest = T))
 
-# Visualize the counts
-barplot(attitude, main = "Distribution of students scores on attitude towards statistics")
+# histograms of combination variables
+hist(learning2014$surf, main = "Distribution of students scores on surface learning",
+     breaks = 30, col = "yellow")
+hist(learning2014$deep, main = "Distribution of students scores on deep learning",
+     breaks = 30, col = "blue")
+hist(learning2014$stra, main = "Distribution of students scores on strategic learning",
+     breaks = 30, col = "green")
+hist(learning2014$attitude, main ="Distribution of students scores on attitude towards statistics",
+     breaks = 30, col = "cornsilk4")
 
+# barplots of combination variable
+barplot(surf, main = "Distribution of students scores on surface learning", 
+        col = "yellow")
+barplot(deep, main = "Distribution of students scores on deep learning", 
+        col = "blue")
+barplot(stra, main = "Distribution of students scores on strategic learning", 
+        col = "green")
+barplot(attitude, main = "Distribution of students scores on attitude towards statistics",
+        col = "cornsilk4")
+
+# Age, Gender
+boxplot(learning2014$age, main = "Box plot of students age", xlab = "age", horizontal = T)
+barplot(table(learning2014$gender), main = "Distribution of students gender")
+
+# exam points
+barplot(points, las = 2, main = "Distribution of students exam points", xlab = "")
 
 ```
+
+
 
 *** =sct
 ```{r}
 
-test_object("attitude")
+msg1 = ""
+msg2 = ""
+msg3 = ""
+msg4 = ""
 
-test_error()
+test_mc(correct = 4, feedback_msgs = c(msg1,msg2,msg3,msg4))
 success_msg("Great work!")
 ```
 
@@ -174,7 +161,8 @@ There are multiple ways to select a subset in R. Perhaps the most convenient met
 When used on a data.frame, `subset()` returns the rows of the data.frame which match the logical conditions. You will soon learn more about logical conditions.
 
 *** =instructions
-- Create object stra_learners by executing the example codes
+- Look at the first six observations of `learning2014`
+- Create object `stra_learners` by executing the example codes
 - Look at the first 6 rows of the strategic learners subdata
 - Create your own subset by selecting the students with attitude less than 3
 
@@ -264,7 +252,7 @@ operator  | description
 `<=`      | less or equal to
 `>=`      | greater or equal to
 
-Follow the instructions below to complete the exercise.  
+Follow the instructions below to complete the exercise. Take your time, this might not be a quick exercise.
 
 *** =instructions
 - Execute and study the example codes
@@ -284,7 +272,10 @@ Follow the instructions below to complete the exercise.
 
 *** =sample_code
 ```{r}
-# exactly equal
+# In the comments below: T = TRUE, F = FALSE
+# (R also understands these abbreviations)
+
+# Exactly equal
 5 == 5 # TRUE
 
 # Not equal
@@ -304,11 +295,14 @@ c(1, 3, 2)
 
 *** =solution
 ```{r}
-# exactly equal
+# In the comments below: T = TRUE, F = FALSE
+# (R also understands these abbreviations)
+
+# Exactly equal
 5 == 5 # TRUE
 
 # Not equal
-"cat" != "dog" # TRUE
+"cat" != "dog" # -> TRUE
 
 # Greater or equal 3 times
 c(0,1,2) >= 1 # F,T,T
@@ -343,16 +337,16 @@ success_msg("Well done! Remember Spock's words: Logic is the beginning of wisdom
 ## Logical operators
 
 Logical conditions can be combined with the following logical operators:
-
-operator                | description
+  
+  operator                | description
 ----------------------- | -----------
-`!`a                    | not a
-a `&` b                 | a and b
-a <code>&#124;</code> b | a or b  
-
+  `!`a                    | NOT a
+a `&` b                 | a AND b
+a <code>&#124;</code> b | a OR b  
+  
 Logical operators work like logical conditions: they compare the elements of vectors one at a time and can produce logical vectors.
 
-So, for example `c(F, T) & c(T, T)` produces a logical vector `FALSE TRUE` because `F & T` equals `FALSE` and `T & T` equals `TRUE` (T and F abbreviate FALSE and TRUE).
+So, for example `F & T` evaluates to `FALSE` and `F | T` evaluates to `TRUE`. Therefore `c(F, T) & c(T, T)` produces a logical vector `FALSE TRUE`.
 
 It is also possible to use parenthesis to control the evaluation of the operators. See how this works from the example codes.
 
@@ -434,15 +428,17 @@ success_msg("Excellent! You are the operator indeed.")
 Probability is the measure of the likelihood that an event will occur. It is quantified as a number between 0 and 1. Probability is an **essential** tool for statistics since the discipline is primarily interested in measuring uncertainty.
 
 The classical definition of probability is the proportion of favourable cases over all possible outcomes. Thus, the probability of event $A$ with $f$ favourable cases out of $N$ possible outcomes is:
-
-$$P(A) = \frac{f}{N}$$
-
-For the questions below assume that we randomly pick a single student from the learning2014 data.
+  
+  $$P(A) = \frac{f}{N}$$
+  
+For the questions below assume that we randomly pick a single student from the learning2014 data. 
 
 *** =instructions
+- Execute the sample codes that create a cross table of gender and attitude categories
 - What is the probability that the student is female?
 - What is the probability that the student has scored more than 3 on attitude?
 - What is the probability that the student is male and has scored more than 4  on attitude?
+- Save the probabilities to the objects p2, p3, p4 (instead of `NA`, not available)
 - Combine all the probabilities to a vector with `c()` and print it out, rounded to 2 digits
 
 *** =hint
@@ -475,14 +471,14 @@ addmargins(gndr_att)
 p1 <- 61 / 183
 
 # P(gender = N)
-p2 <- 
-
+p2 <- NA
+  
 # P(attitude > 3)  
-p3 <-
-
+p3 <- NA
+  
 # P(gender = M, attitude > 4)
-p4 <- 
-
+p4 <- NA
+  
 # Print out the probabilities
 round(c(p1), digits = 2)
 
@@ -505,13 +501,13 @@ p1 <- 61 / 183
 p2 <- 122 / 183
 
 # P(attitude > 3)  
-p3 <- (85+19) / 183
+p3 <- (85 + 19) / 183
 
 # P(gender = M, attitude > 4)
 p4 <- 12 / 183
 
 # Print out the probabilities
-round(c(p1, p2, p3, p4),2)
+round(c(p1, p2, p3, p4), digits = 2)
 
 
 ```
@@ -540,12 +536,12 @@ success_msg("Great! You are probably a genius!")
 
 ## Conditional probability
 
-As you saw before, conditioning is closely related to selecting a subset. The condition defines the subset of the possible cases. This is also a good way to think about conditional probability: The condition defines the subset of possible outcomes.
+As you saw before, conditioning is closely related to selecting a subset. The condition(s) defines the subset of the possible cases. This is also a good way to think about conditional probability: The condition defines the subset of possible outcomes.
 
 Formally, conditional probability is defined by the Bayes formula
 
 $$P(A | B) = \frac{P(A \text{ and } B)}{P(B)}$$
-
+  
 But we won't directly need to apply that definition here. 
 
 For the questions below assume that we randomly pick a single student from the learning2014 data. 
@@ -554,6 +550,8 @@ For the questions below assume that we randomly pick a single student from the l
 - What is the probability that the student has scored over 4 on attitude, on the condition that the student is female?
 - What is the probability that the student is male, on the condition that the student has scored over 4 on attitude?
 - What is the probability that the student is female, on the condition that the student has scored over 4 on attitude?
+- Save the probabilities to the objects p2, p3, p4 (instead of `NA`, not available)
+- Combine all the probabilities to a vector with `c()` and print it out, rounded to 2 digits
 
 *** =hint
 - Remember that classical probability is the frequency of favourable outcomes over all possible outcomes Now, the condition determines the subset for the possible outcomes
@@ -562,28 +560,28 @@ For the questions below assume that we randomly pick a single student from the l
 *** =pre_exercise_code
 ```{r}
 learning2014 <-  read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/learning2014.txt", sep = "\t", header = TRUE)
-
 # transform attitude into a factor and cross table with gender
 attitude <- cut(learning2014$attitude, 1:5, include.lowest = T)
 gndr_att <- table(learning2014$gender, attitude)
-print(addmargins(gndr_att))
 
 ```
 
 *** =sample_code
 ```{r}
+# Print me!
+addmargins(gndr_att)
 
 # P(attitude > 4 | gender = M)
 p1 <- 12 / 61
 
 # P(attitude > 4 | gender = N)
-p2 <- 
+p2 <- NA
 
 # P(gender = M | attitude > 4)
-p3 <- 
+p3 <- NA
 
 # P(gender = N | attitude > 4)
-p4 <- 
+p4 <- NA
 
 # Print out the probabilities
 round(c(p1), digits = 2)
@@ -592,6 +590,9 @@ round(c(p1), digits = 2)
 
 *** =solution
 ```{r}
+# Print me!
+addmargins(gndr_att)
+
 # P(attitude > 4 | gender = M)
 p1 <-  12 / 61
 
