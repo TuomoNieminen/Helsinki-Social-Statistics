@@ -76,7 +76,7 @@ test_error()
 success_msg("Good work!")
 ```
 
---- type:MultipleChoiceExercise lang:r xp:50 skills:1 key:d64c2a9918
+--- type:MultipleChoiceExercise lang:r xp:50 skills:1
 
 ## Exlore your data
 
@@ -125,15 +125,16 @@ barplot(deep, main = "Distribution of students scores on deep learning",
 barplot(stra, main = "Distribution of students scores on strategic learning", 
         col = "chartreuse2")
 barplot(attitude, main = "Distribution of students scores on attitude towards statistics",
-        col = "burlywood1")
+        col = "coral")
 
 # Age, Gender
 boxplot(learning2014$age, main = "Box plot of students age", xlab = "age", horizontal = T)
-barplot(table(learning2014$gender), main = "Distribution of students gender")
+barplot(table(learning2014$gender), main = "Distribution of students gender", 
+        col = "azure2")
 
 # exam points
 barplot(points, las = 2, main = "Distribution of students exam points", 
-        xlab = "", col = "coral")
+        xlab = "", col = "burlywood1")
 
 ```
 
