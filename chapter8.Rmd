@@ -69,8 +69,8 @@ It is also possible to rearrange the values in a vector by using indices. Look a
 *** =instructions
 - Create the name vector.
 - See how the indices work by executing the example lines.
-- Use brackets and indices on `names` to create a new vector `girls` with values "Liisa" and "Anna" (in that order).
-- Use brackets and indices on `names` to create a new vector `boys` with values "Pekka" and "Heikki" (in that order)
+- Use brackets and indices on `names` to create a new vector `girls` with values "Liisa" and "Anna" (in that order). DO NOT use `girls <- c("Liisa", "Anna")`.
+- Use brackets and indices on `names` to create a new vector `boys` with values "Pekka" and "Heikki" (in that order). DO NOT use `boys <- c("Pekka", "Heikki")`
 
 *** =hint
 - Note that space between the vector object and bracets produces an error.
