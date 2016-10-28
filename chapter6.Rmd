@@ -76,21 +76,22 @@ test_error()
 success_msg("Good work!")
 ```
 
---- type:MultipleChoiceExercise lang:r  key:d64c2a9918
+--- type:MultipleChoiceExercise lang:r xp:50 skills:1
 
 ## Exlore your data
 
+Some text here.
 
-Choose one
+Choose one:
   
-  *** =instructions
+*** =instructions
 - option 1
-- option 2
-- option 3
-- option 4
+- option 2  
+- option 3  
+- option 4  
 
 *** =hint
-- hint 1
+- hint 1  
 - hint 2
 
 *** =pre_exercise_code
