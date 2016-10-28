@@ -5,7 +5,7 @@ description : UNDER CONSTRUCTION
 --- type:NormalExercise lang:r xp:100 skills:1 key:da73cb2b07
 ## Welcome to part 2!
 
-In the following chapters (6-10) we will be using a dataset collected from students in the Faculty of Social Sciences in the University of Helsinki. The students filled out this questionaire[link], which produced the dataset described [here](http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS2-meta.txt).
+In the following chapters (6-10) we will be using a dataset collected from students in the Faculty of Social Sciences in the University of Helsinki. The students filled out [this questionaire](https://elomake.helsinki.fi/lomakkeet/54219/lomake.html), which produced the dataset described [here](http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS2-meta.txt).
 
 The answers were later combined into the following combination variables:
   
@@ -76,7 +76,7 @@ test_error()
 success_msg("Good work!")
 ```
 
---- type:MultipleChoiceExercise lang:r xp:50 skills:1 key:d64c2a9918
+--- type:MultipleChoiceExercise lang:r xp:50 skills:1
 
 ## Exlore your data
 
