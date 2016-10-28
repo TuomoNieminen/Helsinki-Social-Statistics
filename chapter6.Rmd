@@ -76,7 +76,7 @@ test_error()
 success_msg("Good work!")
 ```
 
---- type:MultipleChoiceExercise lang:r 
+--- type:MultipleChoiceExercise lang:r  key:d64c2a9918
 
 ## Exlore your data
 
