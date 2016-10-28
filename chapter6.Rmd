@@ -76,7 +76,7 @@ test_error()
 success_msg("Good work!")
 ```
 
---- type:MultipleChoiceExercise lang:r xp:50 skills:1 key:d64c2a9918
+--- type:MultipleChoiceExercise lang:r xp:50 skills:1
 
 ## Exlore your data
 
@@ -109,23 +109,23 @@ attitude <- table(cut(learning2014$attitude, breaks = 1:5, include.lowest = T))
 
 # histograms of combination variables
 hist(learning2014$surf, main = "Distribution of students scores on surface learning",
-     breaks = 30, col = "yellow")
+     breaks = 30, col = "gold")
 hist(learning2014$deep, main = "Distribution of students scores on deep learning",
-     breaks = 30, col = "blue")
+     breaks = 30, col = "deepskyblue1")
 hist(learning2014$stra, main = "Distribution of students scores on strategic learning",
-     breaks = 30, col = "green")
+     breaks = 30, col = "chartreuse2")
 hist(learning2014$attitude, main ="Distribution of students scores on attitude towards statistics",
-     breaks = 30, col = "cornsilk4")
+     breaks = 30, col = "burlywood1")
 
 # barplots of combination variable
 barplot(surf, main = "Distribution of students scores on surface learning", 
-        col = "yellow")
+        col = "gold")
 barplot(deep, main = "Distribution of students scores on deep learning", 
-        col = "blue")
+        col = "deepskyblue1")
 barplot(stra, main = "Distribution of students scores on strategic learning", 
-        col = "green")
+        col = "chartreuse2")
 barplot(attitude, main = "Distribution of students scores on attitude towards statistics",
-        col = "cornsilk4")
+        col = "burlywood1")
 
 # Age, Gender
 boxplot(learning2014$age, main = "Box plot of students age", xlab = "age", horizontal = T)
@@ -133,7 +133,7 @@ barplot(table(learning2014$gender), main = "Distribution of students gender")
 
 # exam points
 barplot(points, las = 2, main = "Distribution of students exam points", 
-        xlab = "", col = "chocolate1")
+        xlab = "", col = "coral")
 
 ```
 
