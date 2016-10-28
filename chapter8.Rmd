@@ -153,7 +153,7 @@ c(1,2,3,4,5)
 *** =instructions
 - Study and execute the example codes
 - Use `:` to create an integer vector with the values 1, 2, ..., 10
-- Access every second value of the attitude vector, starting from the 2. value until the 20th value. These values correspond to the even numbered indeces of the vector: 2, 4, .. , 20
+- Access every second value of the `attitude` vector, starting from the 2. value until the 20th value. These values correspond to the even numbered indeces of the vector: 2, 4, .. , 20
 
 *** =hint
 - First you will need an index vector with values 2, 4, .. , 20. The example shows how to create such a vector
@@ -163,19 +163,21 @@ c(1,2,3,4,5)
 *** =pre_exercise_code
 ```{r}
 learning2014 <- read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/learning2014.txt", sep = "\t", header = TRUE)
-attitude <- learning2014$attitude
-names(attitude) <- 1:length(attitude)
 ```
 
 *** =sample_code
 ```{r}
-# attitude is available
+# learning2014 is available
 
 # Create an integer vector with values 1,2,..,5
 1:5
 
 # Create an integer vector with even values 2, 4, .. , 10
 (1:5)*2
+
+# Create object attitude and give the data points names 1, 2, ..
+attitude <- learning2014$attitude
+names(attitude) <- 1:length(attitude)
 
 # Access the values 5 - 10 of attitude
 attitude[5:10]
@@ -190,13 +192,17 @@ attitude[5:10]
 
 *** =solution
 ```{r}
-# attitude is available
+# learning2014 is available
 
 # Create an integer vector with values 1,2,..,5
 1:5
 
 # Create an integer vector with even values
 (1:5)*2
+
+# Create object attitude and give the data points names 1, 2, ..
+attitude <- learning2014$attitude
+names(attitude) <- 1:length(attitude)
 
 # Access the values 5 - 10 of attitude
 attitude[5:10]
@@ -247,13 +253,13 @@ Inside the curly braces is the *body* of the loop, which can contain regular com
 
 *** =instructions
 - Execute the example codes. Remember that here in DataCamp, executing a command over multiple lines is done by selecting all the lines with a mouse first and then hitting `Ctrl+Enter` normally. Alternatively you could also click submit to execute the whole script.R
-- In an honor of the legendary electronic duo *Daft Punk* and their 2001 Album *Discovery*, construct a for-loop that prints out "One more time!" 27 times.
-- Hints: (1) Remember that `1:n` creates an integer vector of length n. (2) Inside the loop body (curly braces) you have to use the `print()` function to print.
+- In an honor of the legendary electronic duo *Daft Punk* and their 2001 album *Discovery*, construct a for-loop that prints out "One more time!" 27 times.
+- Hints: (1) Remember that `1:n` creates an integer vector of length n. (2) Inside the loop body you have to use the `print()` function to print.
 
 *** =hint
 - It does not matter what name you give to your counter. You can for example use `i` as is done in the second example.
 - In this exercise you don't need to use the values of your counter.
-- Remember to use quotation marks to print characters
+- Remember to use quotation marks to print characters.
 
 
 *** =pre_exercise_code
@@ -329,13 +335,14 @@ population parameter                    | estimate
 --------------------------------------- | --------
 expected value $\mu$                    | sample mean $\bar{x}$
 population standard deviation $\sigma$  | sample standard deviation $s$
-  
 
-In statistics, estimates are often denoted with a hat. So for example $\hat{\mu} = \bar{x}$.
+<br>
+
+In statistics, estimates are often denoted with a hat. So for example $\hat{\mu} = \bar{x}$.  
 
 *** =instructions
 - Estimate the expected value of `points`. If you can't remember the name of the R function you need, use your favourite search engine or take a hint.
-- Estimate the population standard deviation of `points`
+- Estimate the population standard deviation of `points`.
 - Combine the estimates to the estimates vector (replace `NA`). Notice how `c()` can be used to give names to the values.
 
 *** =hint
@@ -396,9 +403,9 @@ round(estimates, 2)
 # submission correctness tests
 
 test_function("mean", args=c("x"))
-test_object("mu_hat", incorrect_msg = "Please create the object mu_hat. Use the correct function on the points vector")
+test_object("mu_hat", incorrect_msg = "Please create the object mu_hat. Use the correct function on the points vector.")
 
-test_output_contains("round(estimates, 2)", incorrect_msg = "Please insert the estimate objects to the estimates vector and do ont remove the row with `round()`")
+test_output_contains("round(estimates, 2)", incorrect_msg = "Please insert your hat objects to the estimates vector and do not remove the row with `round()`")
 
 # test if the students code produces an error
 test_error()
@@ -417,7 +424,7 @@ Clearly there is uncertainty involved in our point estimate. But how much uncert
 
 One way to approach this question is to try to come up with an interval around the point estimate to describe our uncertainty. It turns out that the following formula produces an interval which contains the true population mean a specified high percentage of the time ($100 \cdot (1-\alpha)$%) 
 
-$$[\text{mean} - z_{\alpha/2} \cdot \frac{s}{\sqrt{n}}, \text{mean} + z_{\alpha/2} \cdot \frac{s}{\sqrt{n}}]$$
+$$\[\text{mean} - z_{\alpha/2} \cdot \frac{s}{\sqrt{n}}, \text{mean} + z_{\alpha/2} \cdot \frac{s}{\sqrt{n}}\]$$
   
 where $s$ is the sample standard deviation, $n$ is the sample size and $z(\frac{\alpha}{2})$ is a critical value from the $N(0,1)$ distribution. The part 
 
@@ -431,7 +438,9 @@ I know what you're thinking. It's confusing: where did the normal distribution c
 *** =instructions
 - Compute the standard error of the sample mean
 - Compute the critical value z using a 99% confidence level (alpha = 0.01)
-- Round the values to 1 digit and print out the interval estimate
+- Compute lower and upper limits of the confidence interval (CI) by applying the formula above.
+- Combine the point estimate and the lower and upper CI values to the object `interval_estimate`.
+- Print the values in `interval_estimate`, rounded to 1 digit (`round()`)
 
 *** =hint
 - The formula for the standard error is s/sqrt(n)
@@ -448,7 +457,10 @@ points <- learning2014$points
 
 *** =sample_code
 ```{r}
-# points is available.
+# learning2014 is available.
+
+# Create object points
+points <- learning2014$points
 
 # Number of observations
 n <- length(points)
@@ -467,36 +479,42 @@ z <- qnorm(0.01/2, lower.tail = F)
 lower_ci <- mu_hat - NA
 upper_ci <- mu_hat + NA
 
-# Combine, round and print out the results
+# Combine the point and interval estimates to a named vector
 interval_estimate <- c("estimate" = mu_hat, "lower99%" = lower_ci, "upper99%" = upper_ci)
 
+# Round and print out the point and interval estimates
 
 
 ```
 
 *** =solution
 ```{r}
-# points is available
+# learning2014 is available.
 
-# number of observations
+# Create object points
+points <- learning2014$points
+
+# Number of observations
 n <- length(points)
 
-# estimate the expected value and standard deviation of points
+# Sample mean and standard deviation of points
 mu_hat <- mean(points)
 s <- sd(points)
 
 # Compute the standard error of the sample mean. sqrt() computes the square root.
 error <- s/sqrt(n)
 
-# Use qnorm(1 - alpha/2) to get the value of z with the specified confidence level
-z <- qnorm(1 - 0.01/2)
+# Compute the critical value z
+z <- qnorm(0.01/2, lower.tail = F) 
 
 # compute the confidence interval and print out the results
 lower_ci <- mu_hat - z*error
 upper_ci <- mu_hat + z*error
 
-# Combine, round and print out the results
+# Combine the point and interval estimates to a named vector
 interval_estimate <- c("estimate" = mu_hat, "lower_ci" = lower_ci, "upper_ci" = upper_ci)
+
+# Round and print out the point and interval estimates
 round(interval_estimate)
 
 
@@ -525,84 +543,99 @@ success_msg("You are awsome with 99% confidence!")
 
 ## The sampling distribution
 
-Remember that you can think of the sampling distribution as a kind of mind game:  If we could collect our random sample again and again and calculate a statistic for each of the samples, the resulting distribution would be the sampling distribution of that statistic.
+Remember that you can think of the sampling distribution as a kind of mind game:  If we could collect our random sample again and again and calculate a sample statistic each time, the resulting distribution of those statistics would be the sampling distribution of that statistic.
 
-In reality though, we can't produce this distribution. Or can we? 
+In reality though, we can't produce this distribution, because we only have the one sample. Or can we? Let's pretend for a moment that the data we have *is* the target population. Let's see what happens if we repeatedly 
 
-Let's pretend for a moment that the data we have actually *is* the target population. Let's see what happens if we repeatedly take samples from that data, and calculate a sample statistic each time, storing the results. This satisfies the idea of the sampling distribution, meaning that we can actually simulate the distribution! 
+1. take random samples from the population
+2. calculate the sample mean each time and
+3. store the results.
 
-This method (called [bootstrapping](https://en.wikipedia.org/wiki/Bootstrapping_(statistics))) is widely used in statistics.
+The resulting distribution of the multiple sample means satisfies the idea of the sampling distribution, meaning that we can actually simulate the distribution! This method (called [bootstrapping](https://en.wikipedia.org/wiki/Bootstrapping_(statistics))) is widely used in statistics.
 
 
 *** =instructions
-- Print out the empty means vector
+- Print out the empty `means` vector
 - Execute the for-loop. What does it do?
 - Print out the means vector again
-- Use `summary()` on means
-- Draw a histogram of the sampling disribution of the means.
-- See the help page of the hist function and make it a density histogram.
+- Compute basic summary statistics of the means
+- Draw a histogram displaying the sampling disribution of the means
+- See the help page of the hist function and make it a density histogram
 
 
 *** =hint
 - `hist()` draws a histogram and freq = F can be used to draw a density histogram
+- ?hist opens the help page of hist()
 
 
 *** =pre_exercise_code
 ```{r}
 learning2014 <-  read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/learning2014.txt", sep = "\t", header = TRUE)
-points <- learning2014$points
+# give a seed value to the random number generator of R
+set.seed(888)
 
 ```
 
 *** =sample_code
 ```{r}
-# points is available. Do not remove the line below.
-set.seed(777)
+# learning2014 is available
 
 # Create an empty vector of length N
 N <- 100
 means <- numeric(N)
-means
+
+# Print out the empty vector
+
 
 # Repeat N times: 
-  # (1) draw a random sample of 50 students
-  # (2) compute the mean of exam points and 
+  # (1) draw a random sample of n = 50 exam points
+  # (2) compute the mean of the sampled exam points and 
   # (3) store it in the means vector
 for(i in 1:N) {
-  points_sample <- sample(points, size = 50, replace = F)
+  points_sample <- sample(learning2014$points, size = 50, replace = F)
   means[i] <- mean(points_sample)
 }
 
-# Explore the sampling distribution of the mean
+# Print out the means vector
 
 
+# Compute basic summary statistics
+
+
+# Visualize the distribution of the means with a histogram
 
 
 ```
 
 *** =solution
 ```{r}
-# points is available. Do not remove the line below.
-set.seed(777)
+# learning2014 is available
 
-# Create an empty vector of length N
+# Create an empty vector of length N (size of our experiment)
 N <- 100
 means <- numeric(N)
+
+# Print out the empty vector
 means
 
 # Repeat N times: 
-  # (1) draw a random sample of 50 students
-  # (2) compute the mean of exam points and 
+  # (1) draw a random sample of n = 50 exam points
+  # (2) compute the mean of the sampled exam points and 
   # (3) store it in the means vector
 for(i in 1:N) {
-  points_sample <- sample(points, size = 50, replace = F)
+  points_sample <- sample(learning2014$points, size = 50, replace = F)
   means[i] <- mean(points_sample)
 }
 
-# Explore the sampling distribution
+# Print out the means vector
 means
+
+# Compute basic summary statistics
 summary(means)
+
+# Visualize the distribution of the means with a histogram
 hist(means, freq = F)
+
 
 ```
 
@@ -610,6 +643,7 @@ hist(means, freq = F)
 ```{r}
 # submission correctness tests
 
+test_output_contains("numeric(N)")
 test_output_contains("means")
 test_function("summary", args=c("object"))
 test_function("hist", args=c("x","freq"))
@@ -618,7 +652,7 @@ test_function("hist", args=c("x","freq"))
 test_error()
 
 # Final message the student will see upon completing the exercise
-success_msg("Good work!")
+success_msg("Very good work!")
 
 ```
 
@@ -627,11 +661,17 @@ success_msg("Good work!")
 
 ## The central limit theorem
 
-Yleistetään edellisen tehtävän huomio
+Käydään läpi mitä viime tehtävässä tapahtui ja muodostetaan yhteys normaalijakaumaan.
 
 *** =instructions
-- instruction 1
-- instruction 2
+- Take a random sample from learning2014$points and create object `points_sample`
+- Compute the mean of the sample and create object `mu_hat`
+- Compute the standard deviation of the sample and create object `s`
+- Compute the standard error and create object `error`
+- Print out the sample mean and it's standard error, rounded to 2 digits
+- Inside curve(dnorm()) adjust the parameters for the density of the normal distribution by setting `mean` = the sample mean of your random sample, `sd` = the standard error of the sample mean. 
+- Now execute the two lines simultaniously which visualize (1) the previously simulated sampling distribution, and (2) a normal approximation to that distribution based on your single sample.
+- Does the normal approximation seem useful?
 
 *** =hint
 - hint 1
@@ -641,40 +681,51 @@ Yleistetään edellisen tehtävän huomio
 *** =pre_exercise_code
 ```{r}
 learning2014 <-  read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/learning2014.txt", sep = "\t", header = TRUE)
-points <- learning2014$points
-set.seed(777)
+set.seed(888)
 
-# Create an empty vector of length N
+# Create an empty vector of length N (size of the simulation)
 N <- 100
 means <- numeric(N)
 
 # Repeat N times: 
-  # (1) draw a random sample of 50 students
-  # (2) compute the mean of exam points and 
+  # (1) draw a random sample of n = 50 exam points
+  # (2) compute the mean of the sampled exam points and 
   # (3) store it in the means vector
 for(i in 1:N) {
-  points_sample <- sample(points, size = 50, replace = F)
+  points_sample <- sample(learning2014$points, size = 50, replace = F)
   means[i] <- mean(points_sample)
 }
 
-# Explore the sampling distribution
+# Visualize the distribution of the means with a histogram
 hist(means, freq = F)
+
 ```
 
 *** =sample_code
 ```{r}
-# df is available
+# learning214, means are available
 
-N <- 100
 
-# Repeat N times: 
-  # (1) draw a random sample of 50 students
-  # (2) compute the mean of exam points and 
-  # (3) store it in the means vector
-for(i in 1:N) {
-  points_sample <- sample(points, size = 50, replace = F)
-  means[i] <- mean(points_sample)
-}
+# Draw a single sample of n = 50 exam points
+n <- 50
+points_sample <- sample(learning2014$points, size = n, replace = F)
+
+# Compute the sample mean
+mu_hat <- mean(points_sample)
+
+# Compute the sample standard deviation
+s <- NA
+
+# Compute the standard error
+error <- NA
+
+# Round and print
+c(mu_hat, error)
+
+# Histogram of the previously simulated sampling distribution of the sample mean and
+# The normal approximation of that sampling distribution, based on a single sample
+hist(means, freq = F)
+curve(dnorm(x, mean = NA, sd = NA), add = T)
 
 
 
@@ -682,7 +733,31 @@ for(i in 1:N) {
 
 *** =solution
 ```{r}
-#solution code here
+# learning214, means are available
+
+
+# Draw a single sample of n = 50 exam points
+n <- 50
+points_sample <- sample(learning2014$points, size = n, replace = F)
+
+# Compute the sample mean
+mu_hat <- mean(points_sample)
+
+# Compute the sample standard deviation
+s <- sd(points_sample)
+
+# Compute the standard error
+error <- s/ sqrt(n)
+
+# print
+c(mu_hat, error)
+
+# The previously simulated sampling distribution of the sample mean along with
+# the normal approximation of the sampling distribution, based on a single sample
+hist(means, freq = F)
+curve(dnorm(x, mean = mu_hat, sd = error), add = T)
+
+
 ```
 
 *** =sct
