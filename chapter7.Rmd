@@ -301,7 +301,7 @@ success_msg("Wonderful! Keep going!")
 
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1
+--- type:NormalExercise lang:r xp:100 skills:1 key:50d3a1a7a6
 ## Quantiles
 
 In this exercise, you will get to know the `qnorm()` function, which produces quantiles of the normal distribution. A quantile function is the inverse of the cumulative probability function.
@@ -433,7 +433,7 @@ test_error()
 success_msg("Good work!")
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1
+--- type:NormalExercise lang:r xp:100 skills:1 key:fb1ef1bc2b
 
 ## Two-way quantiles
 
