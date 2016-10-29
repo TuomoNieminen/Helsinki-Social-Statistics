@@ -129,7 +129,7 @@ The [chi-square](https://en.wikipedia.org/wiki/Chi-squared_test) test (also writ
 In R you can do the chi-squared test with the function `chisq.test()`. Start testing by looking at the example code!
 
 *** =instructions
-- Create object `grades` from the variable `points` from the learning2014 dataset with the `cut()` function. Set the break points with vector `c(0, 11, 15, 19, 23, 27, 33)`. 
+- Create object `grades` from the variable `points` from the learning2014 dataset with the `cut()` function. Set the break points with vector `c(0, 11, 15, 19, 23, 27, 33)`. Use also the argument `include.lowest = TRUE` to take zero values into count.
 - Create a table of `gender` and `grades`. Save the table as `gender_grades_tbl`.
 - Test the null hypothesis that grades are independent from gender. What could be the alternative hypothesis in this case? Let's use the 0.05 significance level.
 - Use the function `chisq.test()` to do the chi-squared test of independence. Give the table you created as an argument to the function.
@@ -168,7 +168,7 @@ chisq.test(gender_grades_tbl)
 # learning2014 is available
 
 # Create grades from 'points' 
-grades <- cut(learning2014$points, breaks = c(0, 11, 15, 19, 23, 27, 33))
+grades <- cut(learning2014$points, breaks = c(0, 11, 15, 19, 23, 27, 33), include.lowest = TRUE)
 
 # Table of gender and grades
 gender_grades_tbl<-table(learning2014$gender, grades)
@@ -337,49 +337,80 @@ test_error()
 success_msg("Good work!")
 
 ```
+
 --- type:NormalExercise lang:r xp:100 skills:1 key:925dc7c1a6
 
 ## Packages in R
 
-Under construction.
+There are a lot of functions in R. But actually, the functions in R come from a standard set of packages. Besides the basic packages, you can install and use (or develop!) other packages too. 
+
+You can install packages through CRAN. What is CRAN? The answer can be found from their website [https://cran.r-project.org/](https://cran.r-project.org/): 
+> CRAN is a network of ftp and web servers around the world that store identical, up-to-date, versions of code and documentation for R. 
+
+List of available CRAN packages can be seen [here](https://cran.r-project.org/web/packages/available_packages_by_name.html).
+
+If you have R in your own computer, you can install packages with code `install.packages(*name_of_the_package*)`. But because we are working in DataCamp, the packages are already installed for you.
 
 *** =instructions
-- instruction 1
-- instruction 2
+- One of the most famous and used packages outside the basic R is `ggplot2`. The `ggplot2` packages is a plotting system for R, and it draws pretty pictures for you with small effort. 
+- The `ggplot2` package has a website [http://ggplot2.org/](http://ggplot2.org/) where you can see documentation about the package.
+- To use the installed packages, you need to access them. This is done by calling `library(*name_of_the_package*)`.
+- Execute the access code for `ggplot2`.
+- Draw a plot of gender and points. The `fill` argument adds a legend to the plot. 
+- Create the `grades` object and draw a plot of `grades` and `attitude`. Set `grades` as a legend.
 
 *** =hint
-- hint 1
-- hint 2
+- Copy the code of the `qplot()` function. and change `gender` to `grades` and `points` to `attitude`. Remember to change the `fill` argument also.
 
 
 *** =pre_exercise_code
 ```{r}
-# pre exercise code here
+learning2014 <-  read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/learning2014.txt", sep = "\t", header = TRUE)
 ```
 
 *** =sample_code
 ```{r}
-# sample code here
+#learning2014 is available 
+
+# Access ggplot2
+library("ggplot2")
+
+# Draw a plot of gender and points
+qplot(gender, points, data=learning2014, geom="boxplot", fill=gender)
+
+# Create the grades factor
+grades <- cut(learning2014$points, breaks = c(0, 11, 15, 19, 23, 27, 33), include.lowest = TRUE)
+
+# Draw a plot of grades and attitude
+
+
 ```
 
 *** =solution
 ```{r}
-#solution code here
+#learning2014 is available 
+
+# Access ggplot2
+library("ggplot2")
+
+# Draw a plot of gender and points
+qplot(gender, points, data=learning2014, geom="boxplot", fill=gender)
+
+# Create the grades factor
+grades <- cut(learning2014$points, breaks = c(0, 11, 15, 19, 23, 27, 33), include.lowest = TRUE)
+
+# Draw a plot of grades and attitude
+qplot(grades, attitude, data=learning2014, geom="boxplot", fill=grades)
+
 ```
 
 *** =sct
 ```{r}
-# submission correctness tests
+test_object("grades", incorrect_msg = "Did you create `grades`?")
 
-# example tests:
-# test_output_contains("output")
-# test_object("object_name")
-# test_function("function_name", args=c("arg1"))
-
-# test if the students code produces an error
 test_error()
 
 # Final message the student will see upon completing the exercise
-success_msg("Good work!")
+success_msg("You have the keys do anything. Awesome!")
 
 ```
