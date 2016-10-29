@@ -115,7 +115,6 @@ In R you can do the chi-squared test with the function `chisq.test()`. Start tes
 *** =pre_exercise_code
 ```{r}
 # pre exercise code here
-options(warn = -1)
 learning2014 <-  read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/learning2014.txt", sep = "\t", header = TRUE)
 ```
 
