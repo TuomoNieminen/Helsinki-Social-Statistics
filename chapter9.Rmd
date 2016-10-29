@@ -47,8 +47,8 @@ success_msg("Good work!")
 
 The null hypothesis is usually the commonly or previously known. The alternative hypothesis on the other hand is about change or the new assumption. Some possible alternative hypothesis could be: Are students getting fewer exam points than previous years? Are people buing more groceries from store nowadays than in the '90s? Have the voting rates changed? Or the alternative hypothesis could be (with bit more mathematically written):
 
-- previous mean < new mean (one-sided)
-- previous mean > new mean (one-sided)
+- previous mean $<$ new mean (one-sided)
+- previous mean $>$ new mean (one-sided)
 - previous mean <code>&#8800;</code> new mean (two-sided)
 
 Alternative hypothesis also determine the rejection region of the test. Beside are three plots that visualize the rejection regions (with the significance level $\alpha$ = 0.05. Look at the plots and choose the correct claim below.
@@ -72,7 +72,7 @@ regions <- function(a, direction) {
   y <- dnorm(x)
   col1 <- "steelblue"
   lwe <- 2
-  plot(x, y,type = "l", main = "", xlab = "", yaxt = "n", ylab = "",lwd = lwe)
+  plot(x, y,type = "l", main = "", xlab = "", yaxt = "n", ylab = "",lwd = lwe, axes=F)
   ab<-abline(h=0, lwd=lwe)
   if (direction == 'l') {
     q1 <- qnorm(a)
