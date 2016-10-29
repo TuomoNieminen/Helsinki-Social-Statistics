@@ -641,7 +641,7 @@ good_apples_count(my_apples)
 *** =sct
 ```{r}
 test_object("my_apples", incorrect_msg ="Did you save results of `apple_count()` to `my_apple`?")
-output_contains(" good_apples_count(my_apples)", incorrect_msg ="Did you use `good_apples_count()` to `my_apples`?")
+test_output_contains(" good_apples_count(my_apples)", incorrect_msg ="Did you use `good_apples_count()` to `my_apples`?")
 
 test_error()
 success_msg("Not eating worms tonight! Nicely done!")
