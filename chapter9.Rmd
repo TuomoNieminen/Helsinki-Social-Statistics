@@ -69,33 +69,38 @@ regions <- function(a, direction) {
   par(col = "grey60")
   x <- (-50:50) / 10
   y <- dnorm(x)
-  
   col1 <- "steelblue"
   lwe <- 2
-  plot(x, y,type = "l", main = "", xlab = "", yaxt = "n", ylab = "",lwd = lwe,xaxt = "n")
+  ab<-abline(h=0, lwd=lwe)
+  plot(x, y,type = "l", main = "", xlab = "", yaxt = "n", ylab = "",lwd = lwe,axes=F)
   if (direction == 'l') {
     q1 <- qnorm(a)
     x1 <- x[x <= q1]
     polygon(c(min(x1), x1, max(x1)),c(0, dnorm(x1), 0),col = col1,border = col1,lwd = lwe)
-  }
+    ab
+    title("Plot 1", adj=0)}
   if (direction == 'r') {
     q1 <- qnorm(1 - a)
     x1 <- x[x >= q1]
     polygon(c(min(x1), x1, max(x1)),c(0, dnorm(x1), 0),col = col1,border = col1,lwd = lwe)
+    ab
+    title("Plot 2", adj=0)
   }
   if (direction == 'm') {
     q1 <- qnorm(a / 2)
     q2 <- qnorm(1 - (a / 2))
     x1 <- x[x <= q1]
     x2 <- x[x >= q2]
-    polygon(c(min(x1), x1, max(x1)),c(0, dnorm(x1), 0),col = col1,border = col1,lwd = lwe)
-    polygon(c(min(x2), x2, max(x2)),c(0, dnorm(x2), 0),col = col1,border = col1,lwd = lwe)
+    polygon(c(min(x1), x1, max(x1)),c(0, dnorm(x1), 0), col = col1, border = col1, lwd = lwe)
+    polygon(c(min(x2), x2, max(x2)),c(0, dnorm(x2), 0), col = col1, border = col1, lwd = lwe)
+    ab
+    title("Plot 3", adj=0)
   }
 }
 
-par(mfrow=c(3,1))
-regions(a=.1, direction = 'r')
+par(mfrow=c(3,1), mar=c(1,1,2,1))
 regions(a=.1, direction = 'l')
+regions(a=.1, direction = 'r')
 regions(a=.1, direction = 'm')
 ```
 
