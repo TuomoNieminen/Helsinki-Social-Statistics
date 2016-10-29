@@ -20,7 +20,9 @@ There are things or events that are known to follow certain probability distribu
 - Visualize the sample with bar plot. Notice how the bar heights in the barplot are related to the probabilities we set earlier.
 
 *** =hint
-- Did you specify the sample size correctly in the object `my_sample`? If not, the code will produce an error.
+- Save the sample you created as `my_sample`.
+- Did you specify the sample size correctly in `my_sample`? If not, the code will produce an error.
+- Remember to use `replace = TRUE`.
 - The argument `size` in the `sample()` function is used to determine the sample size.
 
 
@@ -59,8 +61,8 @@ probabilities <- c(0.2, 0.5, 0.3)
 # Draw a sample. Do it a couple of times
 sample(tomorrow, size = 1, prob = probabilities)
 
-# Draw a sample 100 times and visualize the distribution
-my_sample <- sample(tomorrow, size = 100, replace = TRUE, prob = probabilities)
+# Draw a sample 100 times
+my_sample <- sample(tomorrow, size = 100, prob = probabilities, replace = TRUE)
 
 # Visualize the distribution
 barplot(table(my_sample))
@@ -82,14 +84,14 @@ success_msg("Good work! And now you know the probability of world ending...")
 
 ## Normal distribution (1)
 
-[Normal distribution](https://en.wikipedia.org/wiki/Normal_distribution) is continious distribution and it is often used in statistics. It has two parameters (expected value and standard deviation) which determine the shape and place of the distribution. Many human attributes are can be said to be normally distributed. For example, if you take a village full of people, their heights will create a distribution that resembles a normal distribution. 
+[Normal distribution](https://en.wikipedia.org/wiki/Normal_distribution) is continuous distribution and it is often used in statistics. It has two parameters (expected value and standard deviation) which determine the shape and place of the distribution. Many human attributes can be said to be normally distributed. For example, if you take a village full of people, their height will probably create a distribution that resembles a normal distribution. 
 
 In this exercise, we will focus on the `rnorm()` function. It draws a random sample from normal distribution (with specified parameters). 
 
 *** =instructions
 - Execute the line for `normal_sample`. Note the mean and standard deviation values.
 - Draw a histogram of `normal_sample`. Do you notice the shape of the distribution?
-- Calculate the mean and standard deviation of `normal_sample`. Save the values to `normal_mean` and `normal_sd`. Print the results.
+- Calculate the mean and standard deviation of `normal_sample`.
 - Change the mean value to `35` in the `rnorm()` function and run all the codes again. What happened to the normal distribution?
 - Change the sd value to `0.1` in the `rnorm()` function and run all the codes again. What happened to the normal distribution?
 
@@ -111,10 +113,7 @@ normal_sample <- rnorm(500, mean = 5, sd = 2.5)
 # Histogram of my_sample
 hist(normal_sample, breaks = 50)
 
-# Calculate the mean and standard deviation of my_sample. Print the results.
-normal_mean <-
-normal_sd <-
-
+# Calculate the mean and standard deviation of my_sample
 
 
 
@@ -128,20 +127,17 @@ normal_sample <- rnorm(500, mean = 35, sd = 0.1)
 # Histogram of my_sample
 hist(normal_sample, breaks = 50)
 
-# Calculate the mean and standard deviation of my_sample. Print the results.
-normal_mean <- mean(normal_sample)
-normal_sd <- sd(normal_sample)
-
-normal_mean
-normal_sd
+# Calculate the mean and standard deviation of my_sample
+mean(normal_sample)
+sd(normal_sample)
 
 ```
 
 *** =sct
 ```{r}
 # submission correctness tests
-test_object("normal_mean", incorrect_msg = "Did you save the mean of `normal_sample` to `normal_mean`?")
-test_object("normal_sd", incorrect_msg = "Did you save the standard deviation of `normal_sample` to `normal_sd`?")
+test_function("mean", args=c("x"), incorrect_msg = "Did you calculate the mean of `normal_sample`?")
+test_function("sd", args=c("x"), incorrect_msg = "Did you calculate the standard deviation of `normal_sample`?")
 
 test_error()
 
@@ -164,49 +160,40 @@ In R the functions associated with normal distiribution are:
 - `rnorm()`: (random) sample from normal distribution
 
 You already used the function `rnorm()` in the previous exercise.
-The function `pnorm()` can be used to calculate probabilities from normal distributions. Let's see how it works!
+The function `pnorm()` can be used to approximate probabilities from normal distributions. Let's see how it works!
 
 *** =instructions
-- The distribution of variable deep resembles a normal distribution (look at the density histogram of deep). The density histogram is drawn with the argument `freq = FALSE` in the `hist()` function.
-- If we wanted to know what is the probability that deep learning is smaller than 3 amongst the students, we could calculate it with the `pnorm()` function.
-- If we would be interested in the probability that deep learning is greater than 3 amongst the students, we can change the `lower.tail` to `FALSE` to get the correct result.
-- Calculations can be done to get the probability that deep learning is between 3 and 4. See the sample code.
-- What is the probability that deep learning is over 4.5 ? Save the answer to object `high_learning` and print it.
+- The distribution of variable deep resembles a normal distribution (look at the density histogram of `deep`).
+- Approximate the probability that deep learning score is *smaller* than 3 amongst the students.
+- Approximate the probability that deep learning score is *greater* than 3 amongst the students. You can use the same code as above, but you need to change the `lower.tail` value to get the correct result.
+- What is the probability that deep learning is over 4.5 ? Save the answer to object high_learning and print it.
 
 *** =hint
 - Look at the help pages  with `?pnorm` or `help(pnorm)`.
-- Use the mean and standard deviation of variable `deep` as arguments for the `pnorm()` function
-- You can access a variable of a dataset with the $-sign.
-- Remember to use the `lower.tail` argument in the `pnorm()` function. It determines which "side" you are calculating.
-- You can do calculations with the `pnorm()` function. 
+- Use the mean and standard deviation of variable `deep` as arguments for the `pnorm()` function.
+- Remember to use the `lower.tail` argument in the `pnorm()` function. It determines which "side" you are calculating. The `lower.tail` argument can be either `TRUE` or `FALSE`.
 
 *** =pre_exercise_code
 ```{r}
 learning2014 <-  read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/learning2014.txt", sep = "\t", header = TRUE)
 
-hist(learning2014$deep, freq = F, col='orange')
+hist(learning2014$deep, freq = F, col='orange', ylim=c(0,.8))
+x<-seq(0, 5, length = 50)
+lines(x, dnorm(x, mean(learning2014$deep), sd(learning2014$deep)), type="l", col="orangered", lwd=2)
+
 ```
 
 *** =sample_code
 ```{r}
 # learning2014 is available
 
-# Histogram of 'deep'
-hist(learning2014$deep, freq = F, col='orange')
-
-# The probability of deep being smaller than 3. Note the lower.tail = TRUE argument.
+# Probability of deep being smaller than 3
 pnorm(3, mean = mean(learning2014$deep), sd = sd(learning2014$deep), lower.tail = TRUE)
 
-# The probability of deep being greater than 3. Note the lower.tail = FALSE argument.
-pnorm(3, mean = mean(learning2014$deep), sd = sd(learning2014$deep), lower.tail = FALSE)
+# Probability of deep being greater than 3
 
-# The probability of deep being between 3 and 4.
-prob_three <- pnorm(3, mean = mean(learning2014$deep), sd = sd(learning2014$deep), lower.tail = TRUE)
-prob_four <- pnorm(4, mean = mean(learning2014$deep), sd = sd(learning2014$deep), lower.tail = TRUE)
 
-prob_four - prob_three
-
-#  The probability of deep being over 4.5
+# Probability of deep being over 4.5
 
 
 
@@ -216,22 +203,13 @@ prob_four - prob_three
 ```{r}
 # learning2014 is available
 
-# Histogram of 'deep'
-hist(learning2014$deep, freq = F, col='orange')
-
-# The probability of deep being smaller than 3. Note the lower.tail = TRUE argument.
+# Probability of deep being smaller than 3
 pnorm(3, mean = mean(learning2014$deep), sd = sd(learning2014$deep), lower.tail = TRUE)
 
-# The probability of deep being greater than 3. Note the lower.tail = FALSE argument.
+# Probability of deep being greater than 3
 pnorm(3, mean = mean(learning2014$deep), sd = sd(learning2014$deep), lower.tail = FALSE)
 
-# The probability of deep being between 3 and 4.
-prob_three <- pnorm(3, mean = mean(learning2014$deep), sd = sd(learning2014$deep), lower.tail = TRUE)
-prob_four <- pnorm(4, mean = mean(learning2014$deep), sd = sd(learning2014$deep), lower.tail = TRUE)
-
-prob_four - prob_three
-
-#  The probability of deep being over 4.5
+# Probability of deep being over 4.5
 high_learning <- pnorm(4.5, mean = mean(learning2014$deep), sd = sd(learning2014$deep), lower.tail = FALSE)
 high_learning
 
@@ -253,7 +231,7 @@ success_msg("Good work!")
 
 ## Binomial distribution
 
-[Binomial distribution](https://en.wikipedia.org/wiki/Binomial_distribution) is a well known discrete probability distribution. The distribution has two parameters: the number of trials (often marked by *n*) and success probability in each trial (usually marked by *p*). An event, that follows binomial distribution is an event with a fixed number of independent trials, each of which can only have two possible outcomes. An example of an binomial experiment could be tossing a coin 20 times to see how many heads occur.
+[Binomial distribution](https://en.wikipedia.org/wiki/Binomial_distribution) is a well known discrete probability distribution. The distribution has two parameters: the number of trials (often marked by *n*) and success probability in each trial (usually marked by *p*). The sum of favourable outcomes in a number of (independent) yes/no trials, where each trial has identical probability of success, follows a binomial distribution. An example of an binomial experiment could be tossing a coin 20 times to see how many heads occur.
 
 Some of the basic functions associated with binomial distribution are:
 
@@ -265,16 +243,15 @@ Some of the basic functions associated with binomial distribution are:
 You can use the `help()` or `?` for any of these functions to see more about them. 
 
 *** =instructions
-- Let's say that we know a probability of buing a t-shirt from store is 0.3. There are 8 people in the store looking around. What is the probability of two of them buing a t-shirt? 
-- What is the probability of seven of them buing a t-shirt? Save the answer to object `seven_shirts_sold`.
-- Probability of buying a t-shirt is saved in the `binom_prob` object. The plot function below visualizes the binomial distribution with that probability. Try and change the probability to 0.4, 0.5, ... and draw a plot to see what happens to the distribution. Is the distribution symmetric at some point? 
-- Some extra information: the function `plot()` has arguments `lwd` which determines the line weight in the plot. The argument `col` is used to specify the color of the lines and `type` has several values to choose from which all produce a different kind of plot. See `?plot` to see the different types options.
+- Let's say that we know a probability of buing a t-shirt from store is 0.3. There are 8 people in the store looking around. The customers are not interacting with each others.
+- What is the probability of two of them buing a t-shirt?
+- What is the probability of seven of them buing a t-shirt?
+- What is the probability that *at least* two of the customers buy a t-shirt? Remember to use the `lower.tail` argument. 
+
 
 *** =hint
 - To get the probability of seven people buying a t-shirt, you just need to change the 2 to 7 in the `dbinom()` function on the line two.
-- Try different values to `binom_prob` and execute the `plot()` function after changing the value. Remember to execute the code for `binom_prob` also before drawing the plot.
-- Probabilities need to be decimal numbers between 0-1 (e.g. 0.7).
-- You don't need to do anything for the `plot()` function.
+- To get the probability of at least two people buying a t-shirt, you need to use the `pbinom()` function. Remember to use the `lower.tail` argument. 
 
 
 *** =pre_exercise_code
@@ -290,11 +267,8 @@ dbinom(2, size = 8, prob = 0.3)
 # What is the probability of 7 of them buying a t-shirt?
 
 
-# See what happens to the distribution if you change the probability
-binom_prob <- 0.3
+# What is the probability that at least 2 of the customers buy a t-shirt?
 
-# Visualization (you don't need to do anything for this code). 
-plot(dbinom(0:8, size = 8 , prob = binom_prob), type="h", lwd=2, col="steel blue")
 
 ```
 
@@ -304,20 +278,20 @@ plot(dbinom(0:8, size = 8 , prob = binom_prob), type="h", lwd=2, col="steel blue
 dbinom(2, size = 8, prob = 0.3)
 
 # What is the probability of 7 of them buing a t-shirt?
-seven_shirts_sold <- dbinom(7, size = 8, prob = 0.3)
+dbinom(7, size = 8, prob = 0.3)
 
-# See what happens to the distribution, if you change the probability
-binom_prob <- 0.9
-
-# Visualization (you don't need to do anything for this code). 
-plot(dbinom(0:8, size = 8 , prob = binom_prob), type="h", lwd=2, col="steel blue")
+# What is the probability that at least 2 of the customers buy a t-shirt?
+pbinom(2, size = 8, prob = 0.3, lower.tail=TRUE)
 
 ```
 
 *** =sct
 ```{r}
 # submission correctness tests
-test_object("seven_shirts_sold", incorrect_msg = "Did you save the probability of 7 of them buing a t-shirt into `seven_shirts_sold`?")
+
+output_contains("dbinom(7, size = 8, prob  = 0.3)", incorrect_msg = "Did you approximate the probability of 7 of the customers buying a t-shirt?")
+
+output_contains("pbinom(2, size = 8, prob = 0.3, lower.tail=TRUE)", incorrect_msg = "Did you approximate the probability of at least 2 of the customers buying a t-shirt?")
 
 # test if the students code produces an error
 test_error()
@@ -326,276 +300,6 @@ test_error()
 success_msg("Wonderful! Keep going!")
 
 ```
-
-
---- type:NormalExercise lang:r xp:100 skills:1 key:9a242bf8b4
-## Quantiles
-
-In this exercise, you will get to know the `qnorm()` function, which produces quantiles of the normal distribution. A quantile function is the inverse of the cumulative probability function.
-
-A quantile function takes a probability value as input and produces a quantile value as output. The quantile value is a point at which the probability that the random variable takes on a value less than or equal to that point, is equal to the given probability.
-
-As with all the *norm() functions, qnorm() has default values for the arguments mean = 0 and sd = 1; corresponding to the standard normal distribution.
-
-The quantile values of the standard normal variable are also called critical values. They will be very useful later on for interval estimation and hypothesis testing.
-
-*** =instructions
-- These questions relate to a standard normal variable
-- Compute the cumulative probability at point z = -1.64
-- Compute the quantile point corresponding to the probabiliity 0.05 and visualize the computation
-- Compute the cumulative probability at point z = -1.96
-- Compute the quantile point corresponding to the probabiliity 0.025 and visualize the computation
-
-
-
-*** =hint
-- Follow the example codes
-
-*** =pre_exercise_code
-```{r}
-# pre exercise code here
-# pre exercise code here
-qnorm_plot <- function(alpha, twoway = F) {
-  par(mar = c(7,4,5,4))
-  a <- alpha
-  x <- (-50:50)/10
-  y <- dnorm(x)
-  q1 <- qnorm(a); q2 <- qnorm(1-a)
-  
-  # draw the plot
-  if(twoway) alph <- "alpha/2 =" else alph <- "alpha ="
-  main <- paste("Critical values and regions of the N(0,1) distribution \n",
-                alph, a)
-  plot(x, y, type ="l", main = main, xlab = "", yaxt = "n", ylab = "", xaxt = "n")
-  axis(1, at = c(-3, -1, 0, 1, 3))
-  # mark the critical values with ticks
-  if(twoway) at <- c(q1, q2) else at <- q1
-  axis(1, at = round(at,2) , col.ticks = "red", las = 2)
-  
-  # show the critical value with the call to qnorm()
-  mtext(paste0("- z = qnorm(",a,") = ",round(q1,2)),
-        side=1, line = 4, cex = 1.5)
-  
-  # highlight critical regions, add matching percentages
-  x1 <- x[x<=q1]; x2 <- x[x>=q2]
-  if(twoway) {
-    polygon(c(min(x1),x1, max(x1), min(x2), x2, max(x2)),
-            c(0, dnorm(x1),0, 0, dnorm(x2), 0), col = "grey60")
-      text(x = c(-3.5, 3.5), y = c(0.08,0.08), labels = paste0(a*100,"%"), cex = 1.5)
-      text(x = 0, y = 0.08, labels=paste0(100*(1-alpha/2),"%"), cex = 1.5)
-  } else {
-    polygon(c(min(x1),x1, max(x1)),
-            c(0, dnorm(x1), 0), col = "grey60")
-      text(x = -3.5, y = 0.08, labels = paste0(a*100,"%"), cex = 1.5)
-      text(x = 0, y = 0.08, labels=paste0(100*(1-alpha),"%"), cex = 1.5)
-  }
-}
-
-```
-
-*** =sample_code
-```{r}
-# qnorm_plot() is available. Z denotes a standard normal random variable.
-
-# Suggest that R rounds to 3 significant digits
-options(digits = 3)
-
-# P(Z < - 1.64)
-pnorm(-1.64)
-
-# For which q: P(Z < q) = 0.05
-qnorm(0.05)
-
-# Visualize
-qnorm_plot(0.05)
-
-# P(Z < -1.96)
-
-
-# For which q: P(Z < q) = 0.025
-
-
-# Visualize
-
-
-
-```
-
-*** =solution
-```{r}
-# qnorm_plot() is available. Z denotes a standard normal random variable.
-
-# Suggest that R rounds to 3 significant digits
-options(digits = 3)
-
-# P(Z < - 1.64)
-pnorm(-1.64)
-
-# For which z: P(Z < z) = 0.05
-qnorm(0.05)
-
-# Visualize
-qnorm_plot(0.05)
-
-# P(Z < -1.96)
-pnorm(-1.96)
-
-# For which z: P(Z < z) = 0.025
-qnorm(0.025)
-
-# Visualize
-qnorm_plot(0.025)
-
-```
-
-*** =sct
-```{r}
-
-test_output_contains("pnorm(-1.96)", "Please compute the asked probability using `pnorm()`")
-test_output_contains("qnorm(0.025)", "Please compute the asked critical value using `qnorm()`")
-test_student_typed("qnorm_plot(0.025)")
-# test_function("function_name", args=c("arg1"))
-
-test_error()
-success_msg("Good work!")
-```
-
---- type:NormalExercise lang:r xp:100 skills:1 key:cced95c538
-
-## Two-way quantiles
-
-In the previous exercise you learned how to use the `qnorm()` function to compute critical values related to a given *tail probability*. 
-
-Sometimes it is usefull to define a value which leaves a desired probability to **both tails** of the distribution (left and rightmost areas). 
-
-The normal distribution is symmetrical, which means that the values $-z$ and $z$ leave the same amount of probability to the left and right tails:
-
-$$P(Z < -z) = P(Z > z)$$
-
-This also means that $P(Z < -z) + P(Z > z) = 2 \cdot P(Z < -z)$.
-
-*** =instructions
-- Execute the example codes. What is the relationship between the computations and the resulting plot?
-- Compute the probability $2 \cdot P(Z < - 2.58)$
-- Compute the critical value z corresponding to probability $\alpha$ = 0.01 divided to both "tails" of the distribution
-- Visualize the computation
-
-*** =hint
-- Follow the examples and use the same functions
-
-*** =pre_exercise_code
-```{r}
-# pre exercise code here
-qnorm_plot <- function(alpha, twoway = F) {
-  par(mar = c(7,4,5,4))
-  a <- alpha
-  x <- (-50:50)/10
-  y <- dnorm(x)
-  q1 <- qnorm(a); q2 <- qnorm(1-a)
-  
-  # draw the plot
-  if(twoway) alph <- "alpha/2 =" else alph <- "alpha ="
-  main <- paste("Critical values and regions of the N(0,1) distribution \n",
-                alph, a)
-  plot(x, y, type ="l", main = main, xlab = "", yaxt = "n", ylab = "", xaxt = "n")
-  axis(1, at = c(-3, -1, 0, 1, 3))
-  # mark the critical values with ticks
-  if(twoway) at <- c(q1, q2) else at <- q1
-  axis(1, at = round(at,2) , col.ticks = "red", las = 2)
-  
-  # show the critical value with the call to qnorm()
-  mtext(paste0("- z = qnorm(",a,") = ",round(q1,2)),
-        side=1, line = 4, cex = 1.5)
-  
-  # highlight critical regions, add matching percentages
-  x1 <- x[x<=q1]; x2 <- x[x>=q2]
-  
-  # twoway = TRUE
-  if(twoway) {
-    polygon(c(min(x1),x1, max(x1), min(x2), x2, max(x2)),
-            c(0, dnorm(x1),0, 0, dnorm(x2), 0), col = "grey60")
-      text(x = c(-3.5, 3.5), y = c(0.08,0.08), labels = paste0(a*100,"%"), cex = 1.5)
-      text(x = 0, y = 0.08, labels=paste0(100*(1-a*2),"%"), cex = 1.5)
-  }
-  # twoway = FALSE
-  else {
-    polygon(c(min(x1),x1, max(x1)),
-            c(0, dnorm(x1), 0), col = "grey60")
-      text(x = -3.5, y = 0.08, labels = paste0(a*100,"%"), cex = 1.5)
-      text(x = 0, y = 0.08, labels=paste0(100*(1-alpha),"%"), cex = 1.5)
-  }
-}
-
-options(digits = 3)
-
-```
-
-*** =sample_code
-```{r}
-# qnorm_plot() is available. Z denotes a standard normal random variable.
-
-# Suggest that R rounds to 3 significant digits
-options(digits = 3)
-
-# P(Z < - 1.96) + P(Z > 1.96)
-2*pnorm(-1.96)
-
-# For which z: P(-z < Z < z) = 0.05
-qnorm(0.05/2)
-
-# Visualize
-qnorm_plot(0.05/2, twoway = TRUE)
-
-# P(Z < - 2.58) + P(Z > 2.58)
-
-
-# For which z: P(-z < Z < z) = 0.01
-
-
-# Visualize
-
-
-
-```
-
-*** =solution
-```{r}
-# qnorm_plot() is available. Z denotes a standard normal random variable.
-
-# Suggest that R rounds to 3 significant digits
-options(digits = 3)
-
-# P(Z < - 1.96) + P(Z > 1.96)
-2*pnorm(-1.96)
-
-# For which z: P(-z < Z < z) = 0.05
-qnorm(0.05/2)
-
-# Visualize
-qnorm_plot(0.05/2, twoway = TRUE)
-
-# P(Z < - 2.58) + P(Z > 2.58)
-2*pnorm(-2.58)
-
-# For which z: P(-z < Z < z) = 0.01
-qnorm(0.01/2)
-
-# Visualize
-qnorm_plot(0.01/2, twoway = TRUE)
-
-```
-
-*** =sct
-```{r}
-
-test_output_contains("2*pnorm(-2.58)", incorrect_msg = "Please use `pnorm()` to compute the asked probability.")
-test_output_contains("qnorm(0.01/2)", incorrect_msg = "Please use `qnorm()` to produce the asked critical value.")
-
-test_error()
-success_msg("Great work! That was a tough one.")
-
-```
-
 
 --- type:NormalExercise lang:r xp:100 skills:1 key:5e0e2af080
 
@@ -608,15 +312,15 @@ Functions usually have one or more arguments, for which the user can define valu
 
 
 *** =instructions
-- Look at the definition of the `apple_count()` function and execute the function calls that are defined.
+- Look at the definition of the `apple_count()` function and execute the function call that are defined.
 - Create object `my_apples` by directly assigning the output of `apple_count()` to it. Call `apple_count()` with `new_apples = 10` and `apples_stock = 2`. Print `my_apples` to see the output of the function.
-- Apples are gone bad! Worms! Create new function `good_apples_count()` that tells how many of the apples are still edible. Give the function to arguments: `apple_amount` and `bad_apples`. Set the amount of apples to be 15 by default.
-- You find 4 rotten apples in your stock. Use your function to get the number of the good apples. Save the answer to `my_good_apples`.
+- Some of the apples are gone bad! Worms! Create a function `good_apples_count` that takes two arguments: `apples` and `bad_apples` and returns the number of apples you have left after the count is reduced due to a worm attack. Set the number of bad apples to 4 by default.
+- Use your function on `my_apples` to find out how many good apples you have left.
 
 *** =hint
 - The answer for `my_apples` is of the form: `my_apples <- apple_count(arg1 = ?, arg2 = ?)`
 - See how a new function is created by looking the code of `apple_count`. 
-- The amount of good apples is the difference of `apple_amount` and `bad_apples`.
+- The amount of good apples is `apples` - `bad_apples`.
 - You can set the default value in `function(arg1 = *insert_default_value_here*, ...) ...`
 
 *** =pre_exercise_code
@@ -640,7 +344,7 @@ my_apples <-
 good_apples_count <-
 
 # How many good apples do you have?
-my_good_apples <- 
+
   
 ```
 
@@ -654,20 +358,20 @@ apple_count(new_apples = 2)
 
 # Call apple_count() to create the object 'my_apples'. Print the results.
 my_apples <- apple_count(10, apples_stock = 2)
-
+my_apples
 
 # New function here!
-good_apples_count <- function(apple_amount = 15, bad_apples) return(apple_amount - bad_apples)
+good_apples_count <- function(apples, bad_apples = 4) return(apples - bad_apples)
 
 # How many good apples do you have?
-my_good_apples <- good_apples_count(bad_apples = 4)
+good_apples_count(my_apples)
   
 ```
 
 *** =sct
 ```{r}
 test_object("my_apples", incorrect_msg ="Did you save results of `apple_count()` to `my_apple`?")
-test_object("my_good_apples", incorrect_msg ="Did you save results of `good_apples_count()` to `my_good_apples`?")
+output_contains(" good_apples_count(my_apples)", incorrect_msg ="Did you use `good_apples_count()` to `my_apples`?")
 
 test_error()
 success_msg("Not eating worms tonight! Nicely done!")
@@ -680,14 +384,14 @@ success_msg("Not eating worms tonight! Nicely done!")
 Standardized normal distribution has 0 as expected value and 1 as standard deviation. A handy thing is that in standard normal distributions about 68% of the observations are within one deviation amount away from the expected value and within two deviations away are 95% of the observations. This can be convinient sometimes. [Standardization](https://en.wikipedia.org/wiki/Standard_score) is used when we want to transform a normal distribution to a standardized normal distribution. 
 
 The formula for standardization is
-$$z = \frac{x - \mu}{\sigma}$$
+$$z = \frac{x - mean}{sd}$$
 
 where x is the object we want to standardize, $\mu$ is mean and $\sigma$ stands for standard deviation. 
 
-To standardize multiple variables you will need to calculate means and standard deviations for all them. You could do it one variable at the time, but it takes time and the same function codes are repeated. In these kind of cases, it is useful to create one function that does the functionality we want and use it instead.
+To standardize many variables you will need to calculate the means and standard deviations for all them. You could do it with repeating the same codes for all of the variables, but it takes time and creates a lot of code. In these kind of cases, it is useful to create one function that does the functionality we want and use it instead.
 
 *** =instructions
-- Draw first a histogram of `deep` from the `learning2014`. Note the x-axis of the histogram: the numbers are deep learning scores and you can see how they are distributed in the data.
+- At first look at the histogram of `deep` from the `learning2014`. Note the x-axis of the histogram: the numbers are deep learning scores and you can see how they are distributed in the data.
 - Let's create a function that standardizes normal distributions. Save the function as `std`. See the pattern above. You can check from the previous exercise how functions are made. 
 - Standardize variable `deep` by using the function you created.
 - Draw a histogram of standardized variable `std_deep`. Note what happened to the x-axis.
@@ -703,14 +407,13 @@ To standardize multiple variables you will need to calculate means and standard 
 *** =pre_exercise_code
 ```{r}
 learning2014 <- read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/learning2014.txt", sep = "\t", header = TRUE)
+
+hist(learning2014$deep, breaks=25, col="orange")
 ```
 
 *** =sample_code
 ```{r}
 # learning2014 is available
-
-# Draw a histogram of variable 'deep'
-hist(learning2014$deep, breaks=25, col="orange")
 
 # Create function standardation. 
 std <- 
@@ -803,4 +506,3 @@ test_mc(correct = 3, feedback_msgs = c(msg1,msg2,msg3,msg4))
 success_msg("Nicely done!")
 
 ```
-
