@@ -406,7 +406,7 @@ qplot(grades, attitude, data=learning2014, geom="boxplot", fill=grades)
 
 *** =sct
 ```{r}
-test_object("grades", incorrect_msg = "Did you create `grades`?")
+test_function("qplot", args=c("x", "y", "fill"), incorrect_msg = "Did you draw a plot of `grades` and `attitude`?")
 
 test_error()
 
