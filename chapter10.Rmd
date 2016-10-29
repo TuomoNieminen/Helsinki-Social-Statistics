@@ -2,238 +2,550 @@
 title       : Regression
 description : UNDER CONSTRUCTION
 
---- type:NormalExercise lang:r xp:100 skills:1 key:0e8ad24c8e
+--- type:NormalExercise lang:r xp:50 skills:1
 
-## Exercise 1
+## What is a linear model?
 
-Under construction.
+Genrally, a [statistical model](https://en.wikipedia.org/wiki/Statistical_model) embodies a set of assumptions concerning the generation of the observed data and similar data from a larger population. A [linear model](https://en.wikipedia.org/wiki/Linear_regression) makes the following assumptions:
+
+- The mean of the response variable is a *linear combination* of the explanatory variable(s) and the parameters.
+- The erros are normally distributed.
+- The deviation in prediction errors is constant over possible values of the explanatory variable(s).
+
+Regression analysis is based on a linear model - a statistical model in which a linear relationship between the mean of the variable of interest (`y`) and some explanatory variable(s) (`x`) is assumed:
+
+`y = a + b*x + e`, 
+
+where `a` and `b` are unknown parameters to be estimated and $e$ are the errors.
 
 *** =instructions
-- instruction 1
-- instruction 2
+- Execute the example codes
+- Draw a scatterplot of `x` and `y`. If you can't remember how, use you favourite search engine or take a hint.
+- Compute the correlation of `x` and `y`
+- The *coefficient of determination* is the correlation squared. Compute it.
+- Change the parameter $b$ of the linear model to -1.5 and repeat the above computations.
+
 
 *** =hint
-- hint 1
-- hint 2
+- The `plot()` function can be used to draw a scatter plot. The first two arguments should be the vectors of x and y values. Use `?plot` if you want more information.
+- A value can be squared by either `^` or `**`.
 
 
 *** =pre_exercise_code
 ```{r}
 # pre exercise code here
+
 ```
+
 
 *** =sample_code
 ```{r}
-# sample code here
+# Here we build a toy linear model by choosing the parameters ourself
+
+# Create some toy data
+x <- c(1,3,7,3,5,8,2,3,10,9,4,5,6,1,2,4,6,6,7,6,3,3,1)
+
+# Choose the parameters and produce random errors
+a <- 7
+b <- 1.5
+e <- rnorm(length(x), sd = 2)
+
+# A linear model for y
+y <- a + b*x + e
+
+# Scatter plot of x and y
+
+
+# Correlation
+
+
+# Coefficient of determination
+
+
+
 ```
 
 *** =solution
 ```{r}
-#solution code here
+# Here we build a toy linear model by choosing the parameters ourself
+
+# Create some toy data
+x <- c(1,3,7,3,5,8,2,3,10,9,4,5,6,1,2,4,6,6,7,6,3,3,1)
+
+# Choose the parameters and produce random errors
+a <- 7
+b <- 1.5
+e <- rnorm(length(x), sd = 2)
+
+# A linear model for y
+y <- a + b*x + e
+
+# Scatterplot of x and y
+plot(x, y)
+
+# Correlation
+cor(x, y)
+
+# Coefficient of determination
+cor(x, y)**2
+
+
 ```
 
 *** =sct
 ```{r}
-# submission correctness tests
 
-# example tests:
-# test_output_contains("output")
-# test_object("object_name")
-# test_function("function_name", args=c("arg1"))
+# tests:
+test_function("plot", args = c("x","y"), not_called_msg = "Please use the basic plotting function to draw a scatter plot of x and y. ", incorrect_msg = "Did you draw a scatter plot of x and y? Remember to also change the value of b")
 
-# test if the students code produces an error
+test_output_contains("cor(x, y)", incorrect_msg = "Did you compute the correlation of x and y? Remember to also change the value of b.")
+
+test_output_contains("cor(x, y)**2", incorrect_msg = "Did you compute the coefficient of determination?")
+
+# test error
 test_error()
 
 # Final message the student will see upon completing the exercise
-success_msg("Good work!")
+success_msg("Awsome work! You are making linear progress!")
 
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1 key:0b53d4e57c
 
-## Exercise 2
+--- type:NormalExercise lang:r xp:150 skills:1
 
-Under construction.
+## Exploring the relationship of two variables
+
+It is always a good idea to start with the simplest possible explorations before more complicated statistical analysis. A scatter plot is always a good starting point when analyzing the relationship between variables. Sample correlations are another useful tool.
+
+In the ggplot2 library, scatter plots can be drawn with the general `qplot()` function. In base R `cor.test()` can be used to compute a correlation with a confidence interval.
 
 *** =instructions
-- instruction 1
-- instruction 2
+- Execute the sample codes
+- Adjust the scatter plot: Write `+ geom_smooth()` to the same line with the call to `qplot()` and execute the line.
+- Give the function `geom_smooth()` the argument `method = "lm"` and execute the line again
+- Compute the correlation of `attitude` and `points` with `cor.test()`
 
 *** =hint
-- hint 1
-- hint 2
-
+- Remember to add the `+` before the call to `geom_smooth()`
 
 *** =pre_exercise_code
 ```{r}
 # pre exercise code here
+learning2014 <- read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/learning2014.txt", sep = "\t", header = TRUE)
+
 ```
+
 
 *** =sample_code
 ```{r}
-# sample code here
+# learning2014 is available
+
+# Access ggplot2 functions
+library(ggplot2)
+
+# Exlude students who did not attend any exams (points == 0)
+learning2014 <- learning2014[learning2014$points != 0, ]
+
+# Create objects attitude and points
+attitude <- learning2014$attitude
+points <- learning2014$points
+
+# A scatter plot of attitude and points
+qplot(attitude, points)
+
+# Correlation with a confidence intervals
+
+
 ```
 
 *** =solution
 ```{r}
-#solution code here
+# learning2014 is available
+
+# Access ggplot2 functions
+library(ggplot2)
+
+# Exlude students who did not attend exams (points = 0)
+learning2014 <- learning2014[learning2014$points != 0,]
+
+# Create objects attitude and points
+attitude <- learning2014$attitude
+points <- learning2014$points
+
+# a scatter plot of attitude and points
+qplot(attitude, points) + geom_smooth(method = "lm")
+
+# correlation with confidence intervals
+cor.test(attitude, points)
+
 ```
 
 *** =sct
 ```{r}
-# submission correctness tests
 
-# example tests:
-# test_output_contains("output")
-# test_object("object_name")
-# test_function("function_name", args=c("arg1"))
+# tests
+test_function("geom_smooth", args=c("method"))
+test_function("cor.test", args=c("x","y"))
 
-# test if the students code produces an error
+# test error
 test_error()
 
+
 # Final message the student will see upon completing the exercise
-success_msg("Good work!")
+success_msg("Nice work!")
 
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1 key:f59dd3081e
+--- type:NormalExercise lang:r xp:100 skills:1
 
-## Exercise 3
+## Fitting a linear model
 
-Under construction.
+Regression analysis is based on a linear model of the form
+
+$$y = a + b*x + e$$ 
+
+where $x$ denotes the explanatory variable(s), $y$ the dependent variable and $a$ and $b$ are parameters of the model, which need to be estimated using the data. In R, the parameters of a linear model can be estimated using the `lm()` function. This is also called fitting a model.
+
+`lm()` takes as it's first argument a *formula*, which is a symbolic description of the model. For example 
+
+`my_y ~ my_x` 
+
+is a formula stating that `my_y` depends on `my_x`. The second argument of `lm()` is `data`, which defines the data frame where `my_x` and `my_y` are found. `lm()` returns an R object which contains information about the fitted model.
 
 *** =instructions
-- instruction 1
-- instruction 2
+- 
 
 *** =hint
-- hint 1
-- hint 2
+- 
 
 
 *** =pre_exercise_code
 ```{r}
-# pre exercise code here
+library(ggplot2)
+learning2014 <- read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/learning2014.txt", sep = "\t", header = TRUE)
+
+# Exlude students who did not attend exams (points = 0)
+learning2014 <- learning2014[learning2014$points != 0,]
+
+# Create objects attitude and points
+attitude <- learning2014$attitude
+points <- learning2014$points
+
+# a scatter plot of attitude and points
+qplot(attitude, points) + geom_smooth(method = "lm")
+
 ```
+
 
 *** =sample_code
 ```{r}
-# sample code here
+# learning2014 is available
+
+# Explain students statistics exam points with their attitude toward statistics using a linear model
+
+
+# Create object my_fit explaining points with attitude in the learning2014 data
+my_fit <- lm(1 ~ 1, data = NULL)
+
+# Create a summary of my_fit
+
+
+
 ```
 
 *** =solution
 ```{r}
-#solution code here
+# learning2014 is available
+
+# Explain students exam points with their attitude toward statistics with a linear model
+
+# Create object my_fit explaining points with attitude in the learning2014 data
+my_fit <- lm(points ~ attitude, data = learning2014)
+
+# Get a summary() of my_fit
+summary(my_fit)
+
+
+
 ```
 
 *** =sct
 ```{r}
-# submission correctness tests
 
-# example tests:
-# test_output_contains("output")
-# test_object("object_name")
-# test_function("function_name", args=c("arg1"))
+# tests
+test_function("lm", args=c("formula", "data"))
+test_object("my_fit")
+test_function("summary", args="object")
 
-# test if the students code produces an error
+# test error
 test_error()
 
+
 # Final message the student will see upon completing the exercise
-success_msg("Good work!")
+success_msg("Great job, now let's interpret the results!")
 
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1 key:7ec065b7c6
 
-## Exercise 4
+--- type:MultipleChoiceExercise lang:r xp:100 skills:1
 
-Under construction.
+## Intepreting a fitted model
+
+Now that we have estimated the parameters of our (simple) model, it is time to interpret the results! First use any resource to study how to interpret regression coefficients and the p-values related to them. 
+
+Type `summary(my_fit)` on the R console. Which of the following choices are correct?
 
 *** =instructions
-- instruction 1
-- instruction 2
+- When a students attitude increases by one unit, the expected increase of exam points is 11.6 units. The effect is statistically significant.
+- When a students attitude increases by one unit, the expected decrease of exam points is 3.5 units. The effect is statistically significant.
+- When a students attitude increases by one unit, the average increase of exam points is 3.5 units. The effect is statistically significant.
+- When a students attitude increases by one unit, the expected increase of exam points is 3.5 units. The effect is not statistically significant.
 
 *** =hint
-- hint 1
-- hint 2
+- The first values on the right of `(Intercept)` and `Illiteracy` are the coefficient (b) estimates.
 
 
 *** =pre_exercise_code
 ```{r}
-# pre exercise code here
+library(ggplot2)
+learning2014 <- read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/learning2014.txt", sep = "\t", header = TRUE)
+
+# Exlude students who did not attend exams (points = 0)
+learning2014 <- learning2014[learning2014$points != 0,]
+
+# Create objects attitude and points
+attitude <- learning2014$attitude
+points <- learning2014$points
+
+# a scatter plot of attitude and points
+qplot(attitude, points) + geom_smooth(method = "lm")
+
+# Create object my_fit explaining points with attitude in the learning2014 data
+my_fit <- lm(points ~ attitude, data = learning2014)
 ```
 
-*** =sample_code
-```{r}
-# sample code here
-```
-
-*** =solution
-```{r}
-#solution code here
-```
 
 *** =sct
 ```{r}
-# submission correctness tests
 
 # example tests:
-# test_output_contains("output")
-# test_object("object_name")
-# test_function("function_name", args=c("arg1"))
+msg1 = "11.6 is the estimate for the intercept (a). This tells you what points would be if attitude were zero."
+msg2 = "The coefficient estimate (b) of attitude is positive so they change to the same direction."
+msg3 = "Correct!"
+msg4 = "The linear relationship between attitude and points is statistically significant according to the computed p-value: It is very unlikely to get this data if the coefficient of attitude actually were zero (=no linear relationship)."
 
-# test if the students code produces an error
+test_mc(correct=3, feedback_msgs=c(msg1, msg2,msg3,msg4))
+
+# test error
 test_error()
 
 # Final message the student will see upon completing the exercise
-success_msg("Good work!")
+success_msg("Awsome work!")
 
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1 key:8d30339288
+--- type:NormalExercise lang:r xp:100 skills:1
 
-## Exercise 5
+## Checking the validity of model assumptions (1)
 
-Under construction.
+Let us now return to the assumptions of our model. We started by looking (literally) at the plausibility of a linear relationship, which was the first assumption. So we have two assumptions left unchecked:
+
+- The variability in prediction errors is constant over possible values of the explanatory variable(s).
+- The erros are normally distributed.
+
+The former can be checked by plotting the predictions of our model against the errors. If there is a visible pattern, that would mean a likely violation to the constant variability assumption. You can read more on <a href = "https://en.wikipedia.org/wiki/Linear_regression#Assumptions" target="_blank">wikipedia</a>.
+
+The `my_fit` object you have created is actually a *list*, which is a similar object to a data frame in R. A list's elements can be accessed with the `$` sign. `my_fit` contains - among other useful things - the errors and predictions of your model. They are named `residuals` and `fitted.values`.
+
 
 *** =instructions
-- instruction 1
-- instruction 2
+- Create object `predictions` by executing the sample code.
+- Create object `errors` by accessing residuals in `my_fit`
+- Create object `errors2` by raising the errors to the power of two. See the hint if you have trouble doing this.
+- Use `qplot()` to draw a scatter plot of predictions and the squared errors, with errors on the y axis.
+- Do you see any clear pattern?
 
 *** =hint
-- hint 1
-- hint 2
+- Use `numeric_object^2` or `numeric_object**2` to raise all elements of `numeric_object` to the power of two.
 
 
 *** =pre_exercise_code
 ```{r}
-# pre exercise code here
+library(ggplot2)
+
+learning2014 <- read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/learning2014.txt", sep = "\t", header = TRUE)
+
+# Exlude students who did not attend exams (points = 0)
+learning2014 <- learning2014[learning2014$points != 0,]
+
+# Create objects attitude and points
+attitude <- learning2014$attitude
+points <- learning2014$points
+
+# Create object my_fit explaining points with attitude in the learning2014 data
+my_fit <- lm(points ~ attitude, data = learning2014)
+
 ```
+
 
 *** =sample_code
 ```{r}
-# sample code here
+# learning2014 is available
+
+library(ggplot2)
+
+# Create object my_fit explaining students exam points with their attitude towards statistics
+my_fit <- lm(points ~ attitude, data = learning2014)
+
+# Create object predictions by accessing fitted.values in my_fit
+predictions <- my_fit$fitted.values
+
+# Create object errors by accessing residuals in my_fit
+
+
+# Raise the errors to the power of two and create object errors2
+
+
+# Draw a scatter plot of predictions and the squared errors
+
+
 ```
 
 *** =solution
 ```{r}
-#solution code here
+# learning2014 is available
+
+library(ggplot2)
+
+# Create object my_fit explaining students exam points with their attitude towards statistics
+my_fit <- lm(points ~ attitude, data = learning2014)
+
+# Create object predictions by accessing fitted.values in my_fit
+predictions <- my_fit$fitted.values
+
+# Create object errors by accessing residuals in my_fit
+errors <- my_fit$residuals
+
+# Raise the errors to the power of two
+errors2 <- errors**2
+
+# Draw a scatter plot of predictions and the squared errors
+qplot(predictions, errors2)
+
+
 ```
 
 *** =sct
 ```{r}
-# submission correctness tests
 
-# example tests:
-# test_output_contains("output")
-# test_object("object_name")
-# test_function("function_name", args=c("arg1"))
+# tests
+test_object("errors", incorrect_msg = "Please create the object `errors` by accessing the residuals in my_fit")
+test_object("errors2", incorrect_msg = "Please create the object `errors2` by squaring the errors")
 
-# test if the students code produces an error
+test_function("qplot", args=c("x","y"))
+
+# test error
 test_error()
 
+
 # Final message the student will see upon completing the exercise
-success_msg("Good work!")
+success_msg("Great work! You are really learning the linear models.")
 
 ```
 
+--- type:NormalExercise lang:r xp:100 skills:1
+
+## Checking the validity of model assumptions (2)
+
+We have one assumption left unchecked: The errors should be normally distributed. A good place to start is by drawing a histogram of the errors to see the distibution. 
+
+There is also a more powerful way to check if observations follow a theoretical distribution: <a href="https://en.wikipedia.org/wiki/Q%E2%80%93Q_plot"<a q-q plot</a>.
+
+A q-q plot plots the theoretical quantiles against the observed quantiles and if these two agree, then the points of the plot should approximately follow a straight increasing line. There will always be slight deviations from the line, ofcourse, but deviations from the normality assumption should show a clear non-linear pattern.
+
+In base R, a q-q plot can be drawn with the `qqnorm()` and `qqline()` functions. The first argument of both is `y`, a numeric vector of the values whose distribution we are interested in.
+
+*** =instructions
+- Create object `errors` by accessing the residuals in `my_fit`
+- Draw a histogram to visualize distribution of the errors. Is the distribution approximately normal?
+- Draw a q-q plot of the errors using the `qqnorm()` function and add a line to the plot by calling `qqline()`.
+- Do the points follow the line reasonably well? Is there a clear non-linear pattern?
+
+*** =hint
+- Remember that you can use `$` to access the values of a list such as `my_fit`
+
+
+*** =pre_exercise_code
+```{r}
+library(ggplot2)
+
+learning2014 <- read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/learning2014.txt", sep = "\t", header = TRUE)
+
+# Exlude students who did not attend exams (points = 0)
+learning2014 <- learning2014[learning2014$points != 0,]
+
+# Create objects attitude and points
+attitude <- learning2014$attitude
+points <- learning2014$points
+
+# Create object my_fit explaining points with attitude in the learning2014 data
+my_fit <- lm(points ~ attitude, data = learning2014)
+```
+
+
+*** =sample_code
+```{r}
+# learning2014 is available
+
+# Create object my_fit explaining students exam points with attitude towards statistics
+my_fit <- lm(points ~ attitude, data = learning2014)
+
+# create object errrors
+errors <- NULL
+
+# Draw a histogram of the errors
+
+
+# Draw a qqplot of the errors using qqnorm() and qqline()
+qqnorm(errors); qqline(errors)
+
+
+
+```
+
+*** =solution
+```{r}
+# learning2014 is available
+
+# Create object my_fit explaining students exam points with attitude towards statistics
+my_fit <- lm(points ~ attitude, data = learning2014)
+
+# Create object errors
+errors <- my_fit$residuals
+
+# Draw a histogram of the errors
+hist(errors)
+
+# Draw a qqplot of the errors using qqnorm() and qqline()
+qqnorm(errors); qqline(errors)
+
+
+
+
+```
+
+*** =sct
+```{r}
+
+# tests
+test_object("errors")
+test_function("hist", args="x")
+
+# test error
+test_error()
+
+
+# Final message the student will see upon completing the exercise
+success_msg("Awsome work! Now you know how to fit and validate linear models!")
+
+```
