@@ -104,17 +104,9 @@ regions(a=a1, direction = 'l')
 regions(a=a1, direction = 'r')
 regions(a=a1, direction = 'm')
 ```
+
 *** =sct
 ```{r}
-# submission correctness tests
-
-# example tests:
-# test_output_contains("output")
-# test_object("object_name")
-# test_function("function_name", args=c("arg1"))
-
-# test if the students code produces an error
-test_error()
 
 # Final message the student will see upon completing the exercise
 success_msg("Good work!")
