@@ -8,6 +8,7 @@ description : We all might be statistically different, but maybe we are part of 
 
 In [statistical hypothesis testing](https://en.wikipedia.org/wiki/Statistical_hypothesis_testing) we want to test if our claim or something we assume is supported by the data. So we set our [*null hypothesis*](https://en.wikipedia.org/wiki/Null_hypothesis) and our [*alternative hypothesis*](https://en.wikipedia.org/wiki/Alternative_hypothesis), and see what the numbers tell us about them.  
 
+After setting the hypotheses, we can look at the data and calculate the test statistic. What test statistic to use, depends on the test you are doing. With the test statistics, you can calculate the (famous) p-value. The p-value tells you something about the hypotheses and it can be used as a guide line. The p-value and other knowledge of the field you are testing, you can reject or not reject the null hypothesis. 
 
 *** =instructions
 - instruction 1
@@ -43,9 +44,13 @@ success_msg("Good work!")
 
 ## (Null hypothesis:) which way to go?!
 
-After setting the hypotheses, we can look at the data and calculate the test statistic. What test statistic to use, depends on the test you are doing. With the test statistics, you can calculate the (famous) p-value. The p-value tells you something about the hypotheses and it can be used as a guide line. The p-value and other knowledge of the field you are testing, you can reject or not reject the null hypothesis. 
+The null hypothesis is usually the commonly or previously known. The alternative hypothesis on the other hand is about change or the new assumption. Some possible alternative hypothesis could be: Are students getting fewer exam points than previous years? Are people buing more groceries from store nowadays than in the '90s? Have the voting rates changed? Or the alternative hypothesis could be (with bit more mathematically written):
 
-The null hypothesis is usually the commonly or previously known. The alternative hypothesis on the other hand can have direction. Are students getting fewer exam points than previous years? Are people buing more groceries from store nowadays than in the '90s? Have the voting rates changed?
+- previous mean <code>&#8804;</code> new mean (one-sided)
+- previous mean <code>&#8805;</code> new mean (one-sided)
+- previous mean <code>&#8800;</code> new mean (two-sided)
+
+Alternative hypothesis also determine the rejection region of the test. 
 
 *** =instructions
 - instruction 1
