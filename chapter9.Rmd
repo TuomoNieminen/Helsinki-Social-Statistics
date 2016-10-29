@@ -51,11 +51,16 @@ The null hypothesis is usually the commonly or previously known. The alternative
 - previous mean $>$ new mean (one-sided)
 - previous mean $\ne$ new mean (two-sided)
 
-Alternative hypothesis also determine the rejection region of the test. Beside are three plots that visualize the rejection regions (with the significance level $\alpha$ = 0.05. Look at the plots and choose the correct claim below.
+In cases above the null hypothesis would be *H0*: previous mean $=$ new mean.
+
+Alternative hypothesis also determine the rejection region of the test. Beside are three plots that visualize the rejection regions (with the significance level $\alpha$ = 0.05). Look at the plots and choose the correct claim below.
 
 *** =instructions
-- what
-- hmm
+- Plot 3 has on-sided alternative hypothesis. 
+- The alternative hypothesis "*H1*: previous mean $>$ new mean" belongs to plot 1.
+- The alternative hypothesis "*H1*: previous mean $\ne$ new mean" belongs to plot 3.
+- Plot 1 has two-sided alternative hypothesis.
+- The alternative hypothesis "*H1*: previous mean $<$ new mean" belongs to plot 2.
 
 *** =hint
 - hint 1
@@ -80,7 +85,7 @@ regions <- function(a, direction) {
     polygon(c(min(x1), x1, max(x1)),c(0, dnorm(x1), 0),col = col1,border = col1,lwd = lwe)
     ab
     title("Plot 1", adj=0)
-    text(-2.5, .1, paste(a*100, "%"), col="steelblue")
+    text(-2.5, .1, paste(a*100, "%"), col="steelblue", cex=1.5)
     }
   if (direction == 'r') {
     q1 <- qnorm(1 - a)
@@ -88,7 +93,7 @@ regions <- function(a, direction) {
     polygon(c(min(x1), x1, max(x1)),c(0, dnorm(x1), 0),col = col1,border = col1,lwd = lwe)
     ab
     title("Plot 2", adj=0)
-    text(2.5, .1, paste(a*100, "%"), col="steelblue")
+    text(2.5, .1, paste(a*100, "%"), col="steelblue", cex=1.5)
     }
   if (direction == 'm') {
     q1 <- qnorm(a / 2)
@@ -99,11 +104,11 @@ regions <- function(a, direction) {
     polygon(c(min(x2), x2, max(x2)),c(0, dnorm(x2), 0), col = col1, border = col1, lwd = lwe)
     ab
     title("Plot 3", adj=0)
-    text(c(-2.5,2.5), c(.1,.1), paste((a/2)*100, "%"), col="steelblue")
+    text(c(-2.5,2.5), c(.1,.1), paste((a/2)*100, "%"), col="steelblue", cex=1.5)
   }
 }
 
-par(mfrow=c(3,1), mar=c(1,1,2,1))
+par(mfrow=c(3,1), mar=c(1,3,2,3))
 a1<-.05
 regions(a=a1, direction = 'l')
 regions(a=a1, direction = 'r')
@@ -113,8 +118,14 @@ regions(a=a1, direction = 'm')
 *** =sct
 ```{r}
 
-# Final message the student will see upon completing the exercise
-success_msg("Good work!")
+msg1 = "The rejection region indicates that the test is two-sided."
+msg2 = "Sorry, wrong direction!"
+msg3 = "Yes, correct! You can reject values that differ too much from the previous mean."
+msg4 = "The rejection region indicates that the test is one-sided."
+msg5 = "Sorry, wrong direction!"
+
+test_mc(correct = 3, feedback_msgs = c(msg1,msg2,msg3,msg4, msg5))
+success_msg("Nicely done!")
 
 ```
 
@@ -347,17 +358,19 @@ There are a lot of functions in R. But actually, the functions in R come from a 
 You can install packages through CRAN. What is CRAN? The answer can be found from their website [https://cran.r-project.org/](https://cran.r-project.org/): 
 > CRAN is a network of ftp and web servers around the world that store identical, up-to-date, versions of code and documentation for R. 
 
-List of available CRAN packages can be seen [here](https://cran.r-project.org/web/packages/available_packages_by_name.html).
+List of available CRAN packages can be seen [here](https://cran.r-project.org/web/packages/available_packages_by_name.html). Because the packages are made by different R users, the codes may have some style differences. In those cases, one needs to rely in the documentation of the code.
 
-If you have R in your own computer, you can install packages with code `install.packages(*name_of_the_package*)`. But because we are working in DataCamp, the packages are already installed for you.
+If you have R in your own computer, you can install packages with code `install.packages(*name_of_the_package*)`. But because we are working in DataCamp, the packages are already installed for you. So we don't need to worry about installation for now.
+
+To use the installed packages, you need to access them. This is done by calling `library(*name_of_the_package*)`.
 
 *** =instructions
 - One of the most famous and used packages outside the basic R is `ggplot2`. The `ggplot2` packages is a plotting system for R, and it draws pretty pictures for you with small effort. 
-- The `ggplot2` package has a website [http://ggplot2.org/](http://ggplot2.org/) where you can see documentation about the package.
-- To use the installed packages, you need to access them. This is done by calling `library(*name_of_the_package*)`.
+- The `ggplot2` package has a website [http://ggplot2.org/](http://ggplot2.org/) where you can see documentation about the package. 
 - Execute the access code for `ggplot2`.
 - Draw a plot of gender and points. The `fill` argument adds a legend to the plot. 
-- Create the `grades` object and draw a plot of `grades` and `attitude`. Set `grades` as a legend.
+- Create the `grades` object.
+- Do a plot of `grades` and `attitude`. Set `grades` as a legend.
 
 *** =hint
 - Copy the code of the `qplot()` function. and change `gender` to `grades` and `points` to `attitude`. Remember to change the `fill` argument also.
@@ -406,7 +419,7 @@ qplot(grades, attitude, data=learning2014, geom="boxplot", fill=grades)
 
 *** =sct
 ```{r}
-test_function("qplot", args=c("x", "y", "fill"), incorrect_msg = "Did you draw a plot of `grades` and `attitude`?")
+# test_function("qplot", args=c("x", "y", "fill"), incorrect_msg = "Did you draw a plot of `grades` and `attitude`?")
 
 test_error()
 
