@@ -49,7 +49,7 @@ The null hypothesis is usually the commonly or previously known. The alternative
 
 - previous mean $<$ new mean (one-sided)
 - previous mean $>$ new mean (one-sided)
-- previous mean <code>&#8800;</code> new mean (two-sided)
+- previous mean $\ne$ new mean (two-sided)
 
 Alternative hypothesis also determine the rejection region of the test. Beside are three plots that visualize the rejection regions (with the significance level $\alpha$ = 0.05. Look at the plots and choose the correct claim below.
 
@@ -67,7 +67,7 @@ Alternative hypothesis also determine the rejection region of the test. Beside a
 learning2014 <-  read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/learning2014.txt", sep = "\t", header = TRUE)
 
 regions <- function(a, direction) {
-  par(col = "grey60", cex=1.5)
+  par(col = "grey60", cex=1.2)
   x <- (-50:50) / 10
   y <- dnorm(x)
   col1 <- "steelblue"
