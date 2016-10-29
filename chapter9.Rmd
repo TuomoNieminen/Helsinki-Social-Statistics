@@ -40,6 +40,7 @@ test_error()
 success_msg("Good work!")
 
 ```
+
 --- type:MultipleChoiceExercise lang:r xp:100 skills:1 key:8dfc56d628
 
 ## (Null hypothesis:) which way to go?!
@@ -53,8 +54,8 @@ The null hypothesis is usually the commonly or previously known. The alternative
 Alternative hypothesis also determine the rejection region of the test. 
 
 *** =instructions
-- instruction 1
-- instruction 2
+- what
+- hmm
 
 *** =hint
 - hint 1
