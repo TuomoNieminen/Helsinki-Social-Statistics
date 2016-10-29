@@ -142,9 +142,9 @@ pbinom(2, size = 8, prob = 0.3, lower.tail=TRUE)
 ```{r}
 # submission correctness tests
 
-output_contains("dbinom(7, size = 8, prob  = 0.3)", incorrect_msg = "Did you approximate the probability of 7 of the customers buying a t-shirt?")
+test_output_contains("dbinom(7, size = 8, prob  = 0.3)", incorrect_msg = "Did you approximate the probability of 7 of the customers buying a t-shirt?")
 
-output_contains("pbinom(2, size = 8, prob = 0.3, lower.tail=TRUE)", incorrect_msg = "Did you approximate the probability of at least 2 of the customers buying a t-shirt?")
+test_output_contains("pbinom(2, size = 8, prob = 0.3, lower.tail=TRUE)", incorrect_msg = "Did you approximate the probability of at least 2 of the customers buying a t-shirt?")
 
 # test if the students code produces an error
 test_error()
@@ -656,7 +656,7 @@ Standardized normal distribution has 0 as expected value and 1 as standard devia
 The formula for standardization is
 $$z = \frac{x - mean}{sd}$$
 
-where x is the object we want to standardize, $\mu$ is mean and $\sigma$ stands for standard deviation. 
+where x is the object we want to standardize.
 
 To standardize many variables you will need to calculate the means and standard deviations for all them. You could do it with repeating the same codes for all of the variables, but it takes time and creates a lot of code. In these kind of cases, it is useful to create one function that does the functionality we want and use it instead.
 
