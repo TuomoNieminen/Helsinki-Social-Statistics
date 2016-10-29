@@ -112,6 +112,7 @@ two_plots(learning2014$surf, 'salmon', "Distribution of students scores on surfa
 two_plots(learning2014$deep, 'paleturquoise3', "Distribution of students scores on deep learning", 'Deep learning score')
 two_plots(learning2014$stra, 'mediumpurple2', "Distribution of students scores on strategic learning", 'Strategic learning score')
 two_plots(learning2014$attitude, 'seagreen3', "Distribution of students scores on attitude towards statistics", 'Attitude score')
+par(def.par)
 
 # exam points
 points <- table(cut(learning2014$points, (0:11)*3, include.lowest=T))
