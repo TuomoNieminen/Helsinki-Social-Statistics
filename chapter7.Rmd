@@ -80,6 +80,80 @@ success_msg("Good work! And now you know the probability of world ending...")
 
 ```
 
+--- type:NormalExercise lang:r xp:100 skills:1 key:8194f8b921
+
+## Binomial distribution
+
+[Binomial distribution](https://en.wikipedia.org/wiki/Binomial_distribution) is a well known discrete probability distribution. The distribution has two parameters: the number of trials (often marked by *n*) and success probability in each trial (usually marked by *p*). The sum of favourable outcomes in a number of (independent) yes/no trials, where each trial has identical probability of success, follows a binomial distribution. An example of an binomial experiment could be tossing a coin 20 times to see how many heads occur.
+
+Some of the basic functions associated with binomial distribution are:
+
+- `dbinom()`: density of the binomial distribution
+- `pbinom()`: distribution function of binomial distribution
+- `qbinom()`: quantile function of binomial distribution
+- `rbinom()`: (random) sample from binomial distribution
+
+You can use the `help()` or `?` for any of these functions to see more about them. 
+
+*** =instructions
+- Let's say that we know a probability of buing a t-shirt from store is 0.3. There are 8 people in the store looking around. The customers are not interacting with each others.
+- What is the probability of two of them buing a t-shirt?
+- What is the probability of seven of them buing a t-shirt?
+- What is the probability that *at least* two of the customers buy a t-shirt? Remember to use the `lower.tail` argument. 
+
+
+*** =hint
+- To get the probability of seven people buying a t-shirt, you just need to change the 2 to 7 in the `dbinom()` function on the line two.
+- To get the probability of at least two people buying a t-shirt, you need to use the `pbinom()` function. Remember to use the `lower.tail` argument. 
+
+
+*** =pre_exercise_code
+```{r}
+# pre exercise code here
+```
+
+*** =sample_code
+```{r}
+# What is the probability of 2 of them buying a t-shirt?
+dbinom(2, size = 8, prob = 0.3)
+
+# What is the probability of 7 of them buying a t-shirt?
+
+
+# What is the probability that at least 2 of the customers buy a t-shirt?
+
+
+```
+
+*** =solution
+```{r}
+# What is the probability of 2 of them buing a t-shirt?
+dbinom(2, size = 8, prob = 0.3)
+
+# What is the probability of 7 of them buing a t-shirt?
+dbinom(7, size = 8, prob = 0.3)
+
+# What is the probability that at least 2 of the customers buy a t-shirt?
+pbinom(2, size = 8, prob = 0.3, lower.tail=TRUE)
+
+```
+
+*** =sct
+```{r}
+# submission correctness tests
+
+output_contains("dbinom(7, size = 8, prob  = 0.3)", incorrect_msg = "Did you approximate the probability of 7 of the customers buying a t-shirt?")
+
+output_contains("pbinom(2, size = 8, prob = 0.3, lower.tail=TRUE)", incorrect_msg = "Did you approximate the probability of at least 2 of the customers buying a t-shirt?")
+
+# test if the students code produces an error
+test_error()
+
+# Final message the student will see upon completing the exercise
+success_msg("Wonderful! Keep going!")
+
+```
+
 --- type:NormalExercise lang:r xp:100 skills:1 key:6780cce146
 
 ## Normal distribution (1)
@@ -225,79 +299,6 @@ test_error()
 
 # Final message the student will see upon completing the exercise
 success_msg("Good work!")
-
-```
---- type:NormalExercise lang:r xp:100 skills:1 key:8194f8b921
-
-## Binomial distribution
-
-[Binomial distribution](https://en.wikipedia.org/wiki/Binomial_distribution) is a well known discrete probability distribution. The distribution has two parameters: the number of trials (often marked by *n*) and success probability in each trial (usually marked by *p*). The sum of favourable outcomes in a number of (independent) yes/no trials, where each trial has identical probability of success, follows a binomial distribution. An example of an binomial experiment could be tossing a coin 20 times to see how many heads occur.
-
-Some of the basic functions associated with binomial distribution are:
-
-- `dbinom()`: density of the binomial distribution
-- `pbinom()`: distribution function of binomial distribution
-- `qbinom()`: quantile function of binomial distribution
-- `rbinom()`: (random) sample from binomial distribution
-
-You can use the `help()` or `?` for any of these functions to see more about them. 
-
-*** =instructions
-- Let's say that we know a probability of buing a t-shirt from store is 0.3. There are 8 people in the store looking around. The customers are not interacting with each others.
-- What is the probability of two of them buing a t-shirt?
-- What is the probability of seven of them buing a t-shirt?
-- What is the probability that *at least* two of the customers buy a t-shirt? Remember to use the `lower.tail` argument. 
-
-
-*** =hint
-- To get the probability of seven people buying a t-shirt, you just need to change the 2 to 7 in the `dbinom()` function on the line two.
-- To get the probability of at least two people buying a t-shirt, you need to use the `pbinom()` function. Remember to use the `lower.tail` argument. 
-
-
-*** =pre_exercise_code
-```{r}
-# pre exercise code here
-```
-
-*** =sample_code
-```{r}
-# What is the probability of 2 of them buying a t-shirt?
-dbinom(2, size = 8, prob = 0.3)
-
-# What is the probability of 7 of them buying a t-shirt?
-
-
-# What is the probability that at least 2 of the customers buy a t-shirt?
-
-
-```
-
-*** =solution
-```{r}
-# What is the probability of 2 of them buing a t-shirt?
-dbinom(2, size = 8, prob = 0.3)
-
-# What is the probability of 7 of them buing a t-shirt?
-dbinom(7, size = 8, prob = 0.3)
-
-# What is the probability that at least 2 of the customers buy a t-shirt?
-pbinom(2, size = 8, prob = 0.3, lower.tail=TRUE)
-
-```
-
-*** =sct
-```{r}
-# submission correctness tests
-
-output_contains("dbinom(7, size = 8, prob  = 0.3)", incorrect_msg = "Did you approximate the probability of 7 of the customers buying a t-shirt?")
-
-output_contains("pbinom(2, size = 8, prob = 0.3, lower.tail=TRUE)", incorrect_msg = "Did you approximate the probability of at least 2 of the customers buying a t-shirt?")
-
-# test if the students code produces an error
-test_error()
-
-# Final message the student will see upon completing the exercise
-success_msg("Wonderful! Keep going!")
 
 ```
 
