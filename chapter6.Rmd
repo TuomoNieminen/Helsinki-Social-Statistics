@@ -80,19 +80,18 @@ success_msg("Good work!")
 
 ## Exlore your data
 
-Some text here.
-
-Choose one:
+Let's get a bit more familiar with the `learning2014` dataset. Beside are plots about the dataset. Browse through them to see the distributions of the variables. After looking at the plots, select the correct claim from the list below. 
   
 *** =instructions
-- option 1
-- option 2  
-- option 3  
-- option 4  
+- There are many outliers in the distribution of students scores on strategic learning.
+- Over thirty students got three or less points.  
+- There are more men than women in the dataset
+- The distribution of deep learning is skewed to right (positive skewness).
+- Highest frequency in the histogram of surface learning scores is little over 25. 
 
 *** =hint
-- hint 1  
-- hint 2
+- Browse through the plots and choose the correct claim.  
+- [Skewness](https://en.wikipedia.org/wiki/Skewness)
 
 *** =pre_exercise_code
 ```{r}
@@ -124,22 +123,21 @@ barplot(points, main = "Distribution of students exam points", ylab='Frequency',
 # Age, Gender
 layout(matrix(c(1,2), nrow=1, ncol=2), c(2,1))
 boxplot(learning2014$age~learning2014$gender, main = "Box plot of students age by gender", xlab = "age", horizontal = T, col=c("orange", "steelblue"))
-barplot(table(learning2014$gender), main = "Distribution of students gender", col=c("orange", "steelblue"))
+barplot(table(learning2014$gender), main = "Distribution of students gender", col=c("orange", "steelblue"), ylab="Frequency")
 
 ```
 
 
-
 *** =sct
 ```{r}
+msg1 = "Sorry, wrong. If you look at the boxplot of strategic learning, you can see that there are no outlier marks (like the one in deep learning) and the scores are close to each other."
+msg2 = "Nope, in the distribution of students exam points you can see that only about 17 people got three or less points."
+msg3 = "No, quite the opposite: 60 men and 120 women! "
+msg4 = "This was a hard one. The distribution of deep learning is skewed to left. Try again!"
+msg5 = "So true! Proceed!"
 
-msg1 = ""
-msg2 = ""
-msg3 = ""
-msg4 = ""
-
-test_mc(correct = 4, feedback_msgs = c(msg1,msg2,msg3,msg4))
-success_msg("Great work!")
+test_mc(correct = 5, feedback_msgs = c(msg1,msg2,msg3,msg4, msg5))
+success_msg("Going through the plots like a pro. Awesome!")
 ```
 
 
