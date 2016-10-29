@@ -71,8 +71,8 @@ regions <- function(a, direction) {
   y <- dnorm(x)
   col1 <- "steelblue"
   lwe <- 2
+  plot(x, y,type = "l", main = "", xlab = "", yaxt = "n", ylab = "",lwd = lwe, axes=F)
   ab<-abline(h=0, lwd=lwe)
-  plot(x, y,type = "l", main = "", xlab = "", yaxt = "n", ylab = "",lwd = lwe,axes=F)
   if (direction == 'l') {
     q1 <- qnorm(a)
     x1 <- x[x <= q1]
@@ -99,9 +99,10 @@ regions <- function(a, direction) {
 }
 
 par(mfrow=c(3,1), mar=c(1,1,2,1))
-regions(a=.1, direction = 'l')
-regions(a=.1, direction = 'r')
-regions(a=.1, direction = 'm')
+a1<-.05
+regions(a=a1, direction = 'l')
+regions(a=a1, direction = 'r')
+regions(a=a1, direction = 'm')
 ```
 
 *** =sample_code
