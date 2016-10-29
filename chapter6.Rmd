@@ -99,42 +99,28 @@ Choose one:
 # data
 learning2014 <-  read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/learning2014.txt", sep = "\t", header = TRUE)
 
-# level counts of factorized variables for barplots
-points <- table(cut(learning2014$points, (0:11)*3, include.lowest=T))
+# combination variables
+two_plots<-function(x, color, plot_title, x_text){
+  layout(matrix(c(1,2), nrow=2, ncol=1), heights = c(2,1))
+  par(mar=c(0, 4,3,1), bty="n")
+  hist(x, main = plot_title, breaks = 25, col = color, xlim=c(0,5), xaxt="n", xlab = "")
+  par(mar=c(5,4,0,1))
+  boxplot(x, horizontal = T, ylim=c(0,5),  xlab=x_text, col=color)
+}
 
-deep <- table(cut(learning2014$deep, 1:5, include.lowest = T))
-stra <- table(cut(learning2014$stra, 1:5, include.lowest = T))
-surf <- table(cut(learning2014$surf, 1:5, include.lowest = T))
-attitude <- table(cut(learning2014$attitude, breaks = 1:5, include.lowest = T))
-
-# histograms of combination variables
-hist(learning2014$surf, main = "Distribution of students scores on surface learning",
-     breaks = 30, col = "gold")
-hist(learning2014$deep, main = "Distribution of students scores on deep learning",
-     breaks = 30, col = "deepskyblue1")
-hist(learning2014$stra, main = "Distribution of students scores on strategic learning",
-     breaks = 30, col = "chartreuse2")
-hist(learning2014$attitude, main ="Distribution of students scores on attitude towards statistics",
-     breaks = 30, col = "burlywood1")
-
-# barplots of combination variable
-barplot(surf, main = "Distribution of students scores on surface learning", 
-        col = "gold")
-barplot(deep, main = "Distribution of students scores on deep learning", 
-        col = "deepskyblue1")
-barplot(stra, main = "Distribution of students scores on strategic learning", 
-        col = "chartreuse2")
-barplot(attitude, main = "Distribution of students scores on attitude towards statistics",
-        col = "coral")
-
-# Age, Gender
-boxplot(learning2014$age, main = "Box plot of students age", xlab = "age", horizontal = T)
-barplot(table(learning2014$gender), main = "Distribution of students gender", 
-        col = "azure2")
+two_plots(learning2014$surf, 'salmon', "Distribution of students scores on surface learning", 'Surface learning score')
+two_plots(learning2014$deep, 'paleturquoise3', "Distribution of students scores on deep learning", 'Deep learning score')
+two_plots(learning2014$stra, 'mediumpurple2', "Distribution of students scores on strategic learning", 'Strategic learning score')
+two_plots(learning2014$attitude, 'seagreen3', "Distribution of students scores on attitude towards statistics", 'Attitude score')
 
 # exam points
-barplot(points, las = 2, main = "Distribution of students exam points", 
-        xlab = "", col = "burlywood1")
+points <- table(cut(learning2014$points, (0:11)*3, include.lowest=T))
+barplot(points, main = "Distribution of students exam points", ylab='Frequency', xlab = "Points", col = "slategrey", border="slategrey")
+
+# Age, Gender
+layout(matrix(c(1,2), nrow=1, ncol=2), c(2,1))
+boxplot(learning2014$age~learning2014$gender, main = "Box plot of students age by gender", xlab = "age", horizontal = T, col=c("orange", "steelblue"))
+barplot(table(learning2014$gender), main = "Distribution of students gender", col=c("orange", "steelblue"))
 
 ```
 
