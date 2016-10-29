@@ -301,6 +301,275 @@ success_msg("Wonderful! Keep going!")
 
 ```
 
+--- type:NormalExercise lang:r xp:100 skills:1
+## Quantiles
+
+In this exercise, you will get to know the `qnorm()` function, which produces quantiles of the normal distribution. A quantile function is the inverse of the cumulative probability function.
+
+A quantile function takes a probability value as input and produces a quantile value as output. The quantile value is a point at which the probability that the random variable takes on a value less than or equal to that point, is equal to the given probability.
+
+As with all the *norm() functions, qnorm() has default values for the arguments mean = 0 and sd = 1; corresponding to the standard normal distribution.
+
+The quantile values of the standard normal variable are also called critical values. They will be very useful later on for interval estimation and hypothesis testing.
+
+*** =instructions
+- These questions relate to a standard normal variable
+- Compute the cumulative probability at point z = -1.64
+- Compute the quantile point corresponding to the probabiliity 0.05 and visualize the computation
+- Compute the cumulative probability at point z = -1.96
+- Compute the quantile point corresponding to the probabiliity 0.025 and visualize the computation
+
+
+
+*** =hint
+- Follow the example codes
+
+*** =pre_exercise_code
+```{r}
+# pre exercise code here
+# pre exercise code here
+qnorm_plot <- function(alpha, twoway = F) {
+  par(mar = c(7,4,5,4))
+  a <- alpha
+  x <- (-50:50)/10
+  y <- dnorm(x)
+  q1 <- qnorm(a); q2 <- qnorm(1-a)
+  
+  # draw the plot
+  if(twoway) alph <- "alpha/2 =" else alph <- "alpha ="
+  main <- paste("Critical values and regions of the N(0,1) distribution \n",
+                alph, a)
+  plot(x, y, type ="l", main = main, xlab = "", yaxt = "n", ylab = "", xaxt = "n")
+  axis(1, at = c(-3, -1, 0, 1, 3))
+  # mark the critical values with ticks
+  if(twoway) at <- c(q1, q2) else at <- q1
+  axis(1, at = round(at,2) , col.ticks = "red", las = 2)
+  
+  # show the critical value with the call to qnorm()
+  mtext(paste0("- z = qnorm(",a,") = ",round(q1,2)),
+        side=1, line = 4, cex = 1.5)
+  
+  # highlight critical regions, add matching percentages
+  x1 <- x[x<=q1]; x2 <- x[x>=q2]
+  if(twoway) {
+    polygon(c(min(x1),x1, max(x1), min(x2), x2, max(x2)),
+            c(0, dnorm(x1),0, 0, dnorm(x2), 0), col = "grey60")
+      text(x = c(-3.5, 3.5), y = c(0.08,0.08), labels = paste0(a*100,"%"), cex = 1.5)
+      text(x = 0, y = 0.08, labels=paste0(100*(1-alpha/2),"%"), cex = 1.5)
+  } else {
+    polygon(c(min(x1),x1, max(x1)),
+            c(0, dnorm(x1), 0), col = "grey60")
+      text(x = -3.5, y = 0.08, labels = paste0(a*100,"%"), cex = 1.5)
+      text(x = 0, y = 0.08, labels=paste0(100*(1-alpha),"%"), cex = 1.5)
+  }
+}
+
+```
+
+*** =sample_code
+```{r}
+# qnorm_plot() is available. Z denotes a standard normal random variable.
+
+# Suggest that R rounds to 3 significant digits
+options(digits = 3)
+
+# P(Z < - 1.64)
+pnorm(-1.64)
+
+# For which q: P(Z < q) = 0.05
+qnorm(0.05)
+
+# Visualize
+qnorm_plot(0.05)
+
+# P(Z < -1.96)
+
+
+# For which q: P(Z < q) = 0.025
+
+
+# Visualize
+
+
+
+```
+
+*** =solution
+```{r}
+# qnorm_plot() is available. Z denotes a standard normal random variable.
+
+# Suggest that R rounds to 3 significant digits
+options(digits = 3)
+
+# P(Z < - 1.64)
+pnorm(-1.64)
+
+# For which z: P(Z < z) = 0.05
+qnorm(0.05)
+
+# Visualize
+qnorm_plot(0.05)
+
+# P(Z < -1.96)
+pnorm(-1.96)
+
+# For which z: P(Z < z) = 0.025
+qnorm(0.025)
+
+# Visualize
+qnorm_plot(0.025)
+
+```
+
+*** =sct
+```{r}
+
+test_output_contains("pnorm(-1.96)", "Please compute the asked probability using `pnorm()`")
+test_output_contains("qnorm(0.025)", "Please compute the asked critical value using `qnorm()`")
+test_student_typed("qnorm_plot(0.025)")
+# test_function("function_name", args=c("arg1"))
+
+test_error()
+success_msg("Good work!")
+```
+
+--- type:NormalExercise lang:r xp:100 skills:1
+
+## Two-way quantiles
+
+In the previous exercise you learned how to use the `qnorm()` function to compute critical values related to a given *tail probability*. 
+
+Sometimes it is usefull to define a value which leaves a desired probability to **both tails** of the distribution (left and rightmost areas). 
+
+The normal distribution is symmetrical, which means that the values $-z$ and $z$ leave the same amount of probability to the left and right tails:
+
+$$P(Z < -z) = P(Z > z)$$
+
+This also means that $P(Z < -z) P(Z > z) = 2 \cdot P(Z < -z)$.
+
+*** =instructions
+- Execute the example codes. What is the relationship between the computations and the resulting plot?
+- Compute the probability $2 \cdot P(Z < - 2.58)$
+- Compute the critical value z corresponding to probability $\alpha$ = 0.01 divided to both "tails" of the distribution
+- Visualize the computation
+
+*** =hint
+- Follow the examples and use the same functions
+
+*** =pre_exercise_code
+```{r}
+# pre exercise code here
+qnorm_plot <- function(alpha, twoway = F) {
+  par(mar = c(7,4,5,4))
+  a <- alpha
+  x <- (-50:50)/10
+  y <- dnorm(x)
+  q1 <- qnorm(a); q2 <- qnorm(1-a)
+  
+  # draw the plot
+  if(twoway) alph <- "alpha/2 =" else alph <- "alpha ="
+  main <- paste("Critical values and regions of the N(0,1) distribution \n",
+                alph, a)
+  plot(x, y, type ="l", main = main, xlab = "", yaxt = "n", ylab = "", xaxt = "n")
+  axis(1, at = c(-3, -1, 0, 1, 3))
+  # mark the critical values with ticks
+  if(twoway) at <- c(q1, q2) else at <- q1
+  axis(1, at = round(at,2) , col.ticks = "red", las = 2)
+  
+  # show the critical value with the call to qnorm()
+  mtext(paste0("- z = qnorm(",a,") = ",round(q1,2)),
+        side=1, line = 4, cex = 1.5)
+  
+  # highlight critical regions, add matching percentages
+  x1 <- x[x<=q1]; x2 <- x[x>=q2]
+  
+  # twoway = TRUE
+  if(twoway) {
+    polygon(c(min(x1),x1, max(x1), min(x2), x2, max(x2)),
+            c(0, dnorm(x1),0, 0, dnorm(x2), 0), col = "grey60")
+      text(x = c(-3.5, 3.5), y = c(0.08,0.08), labels = paste0(a*100,"%"), cex = 1.5)
+      text(x = 0, y = 0.08, labels=paste0(100*(1-a*2),"%"), cex = 1.5)
+  }
+  # twoway = FALSE
+  else {
+    polygon(c(min(x1),x1, max(x1)),
+            c(0, dnorm(x1), 0), col = "grey60")
+      text(x = -3.5, y = 0.08, labels = paste0(a*100,"%"), cex = 1.5)
+      text(x = 0, y = 0.08, labels=paste0(100*(1-alpha),"%"), cex = 1.5)
+  }
+}
+
+options(digits = 3)
+
+```
+
+*** =sample_code
+```{r}
+# qnorm_plot() is available. Z denotes a standard normal random variable.
+
+# Suggest that R rounds to 3 significant digits
+options(digits = 3)
+
+# P(Z < - 1.96) P(Z > 1.96)
+2*pnorm(-1.96)
+
+# For which z: P(-z < Z < z) = 0.05
+qnorm(0.05/2)
+
+# Visualize
+qnorm_plot(0.05/2, twoway = TRUE)
+
+# P(Z < - 2.58) P(Z > 2.58)
+
+
+# For which z: P(-z < Z < z) = 0.01
+
+
+# Visualize
+
+
+
+```
+
+*** =solution
+```{r}
+# qnorm_plot() is available. Z denotes a standard normal random variable.
+
+# Suggest that R rounds to 3 significant digits
+options(digits = 3)
+
+# P(Z < - 1.96) P(Z > 1.96)
+2*pnorm(-1.96)
+
+# For which z: P(-z < Z < z) = 0.05
+qnorm(0.05/2)
+
+# Visualize
+qnorm_plot(0.05/2, twoway = TRUE)
+
+# P(Z < - 2.58) P(Z > 2.58)
+2*pnorm(-2.58)
+
+# For which z: P(-z < Z < z) = 0.01
+qnorm(0.01/2)
+
+# Visualize
+qnorm_plot(0.01/2, twoway = TRUE)
+
+```
+
+*** =sct
+```{r}
+
+test_output_contains("2*pnorm(-2.58)", incorrect_msg = "Please use `pnorm()` to compute the asked probability.")
+test_output_contains("qnorm(0.01/2)", incorrect_msg = "Please use `qnorm()` to produce the asked critical value.")
+
+test_error()
+success_msg("Great work! That was a tough one.")
+
+```
+
+
 --- type:NormalExercise lang:r xp:100 skills:1 key:5e0e2af080
 
 ## Create your own functions
