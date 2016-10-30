@@ -16,13 +16,13 @@ Regression analysis is based on a linear model - a simple statistical model in w
 
 `y = a + b*x + e`, 
 
-where `a` and `b` are unknown parameters to be estimated and $e$ are the errors.
+where `a` and `b` are unknown parameters to be estimated (a is called the *intercept* and b the *regression coefficient*) and $e$ are the errors.
 
 *** =instructions
-- Execute the example codes
+- Create some toy data, choose the parameters, produce random errors and form the linear model between `x` and `y`
 - Draw a scatterplot of `x` and `y` using `plot()`.
 - Compute the correlation of `x` and `y`
-- The *coefficient of determination* is the correlation squared. Compute it.
+- The *coefficient of determination* (also called "R squared" - does not refer to the R program, however!) is the correlation squared. Compute it.
 - Change the parameter $b$ of the linear model to -1.5 and repeat the above computations.
 
 
@@ -40,7 +40,7 @@ where `a` and `b` are unknown parameters to be estimated and $e$ are the errors.
 
 *** =sample_code
 ```{r}
-# Here we produce data from a linear model where we choose the parameters outself
+# Here we produce data from a linear model where we choose the parameters
 
 # Create some toy data
 x <- c(1,3,7,3,5,8,2,3,10,9,4,5,6,1,2,4,6,6,7,6,3,3,1)
@@ -56,10 +56,10 @@ y <- a + b*x + e
 # Scatter plot of x and y
 
 
-# Correlation
+# Correlation (R)
 
 
-# Coefficient of determination
+# Coefficient of determination (R squared)
 
 
 
@@ -67,7 +67,7 @@ y <- a + b*x + e
 
 *** =solution
 ```{r}
-# Here we produce data from a linear model where we choose the parameters outself
+# Here we produce data from a linear model where we choose the parameters
 
 # Create some toy data
 x <- c(1,3,7,3,5,8,2,3,10,9,4,5,6,1,2,4,6,6,7,6,3,3,1)
@@ -83,10 +83,10 @@ y <- a + b*x + e
 # Scatterplot of x and y
 plot(x, y)
 
-# Correlation
+# Correlation (R)
 cor(x, y)
 
-# Coefficient of determination
+# Coefficient of determination (R squared)
 cor(x, y)**2
 
 
@@ -120,13 +120,14 @@ It is always a good idea to start with the simplest possible explorations before
 In the ggplot2 library, scatter plots can be drawn with the general `qplot()` function. In base R `cor.test()` can be used to compute a correlation with a confidence interval.
 
 *** =instructions
-- Execute the sample codes
-- Adjust the scatter plot: Write `+ geom_smooth()` to the same line with the call to `qplot()` and execute the line.
-- Give the function `geom_smooth()` the argument `method = "lm"` and execute the line again
+- Access the ggplot2 library, modify the learning2014 data and draw a scatter plot of `attitude` and `points`.
+- Adjust the scatter plot: Add code `+ geom_smooth()` after `qplot()`. Write the code to the same line and do not forget the plus sign. Execute the row.
+- Give the function `geom_smooth()` the argument `method = "lm"` and execute the line again. This adds a regression line along with a confidence interval.
 - Compute the correlation of `attitude` and `points` with `cor.test()`
+- Is a linear relationship between attitude and points plausible? (hint: the scatter plot) How would you characterize the strength of that relationship? (hint: the correlation)
 
 *** =hint
-- Remember to add the `+` before the call to `geom_smooth()`
+- Remember to add the `+` before the call to `geom_smooth()` on the same line as `qplot()`
 
 *** =pre_exercise_code
 ```{r}
@@ -213,10 +214,11 @@ where $x$ denotes the explanatory variable(s), $y$ the dependent variable and $a
 is a formula stating that `my_y` depends on `my_x`. The second argument of `lm()` is `data`, which defines the data frame where `my_x` and `my_y` are found. `lm()` returns an R object which contains information about the fitted model.
 
 *** =instructions
-- 
+- Adjust the code: replace both `1` and give the `lm()` function a formula where points is explained by attitude. Adjust the data argument to use the learning2014 data.frame
+- Use `summary()` to look at a summary of the fitted model. 
 
 *** =hint
-- 
+- To use the learning2014 data, replace `NULL` with the `learning2014` object
 
 
 *** =pre_exercise_code
@@ -246,7 +248,7 @@ qplot(attitude, points) + geom_smooth(method = "lm")
 # Create object my_fit explaining points with attitude in the learning2014 data
 my_fit <- lm(1 ~ 1, data = NULL)
 
-# Create a summary of my_fit
+# Look at a summary of my_fit
 
 
 
@@ -290,7 +292,7 @@ success_msg("Great job, now let's interpret the results!")
 
 ## Intepreting a fitted model
 
-Now that we have estimated the parameters of our (simple) model, it is time to interpret the results! First use any resource to study how to interpret regression coefficients and the p-values related to them. 
+Now that we have estimated the parameters of our (simple) model, it is time to interpret the results! First please use any resource to study how to interpret regression coefficients and the p-values related to them. 
 
 Type `summary(my_fit)` on the R console. Which of the following choices are correct?
 
@@ -301,7 +303,7 @@ Type `summary(my_fit)` on the R console. Which of the following choices are corr
 - When a students attitude increases by one unit, the expected increase of exam points is 3.5 units. The effect is not statistically significant.
 
 *** =hint
-- The first values on the right of `(Intercept)` and `Illiteracy` are the coefficient (b) estimates.
+- The first values on the right of `(Intercept)` and `attitude` are the parameter estimates.
 
 
 *** =pre_exercise_code
@@ -347,21 +349,21 @@ success_msg("Awsome work!")
 
 ## Checking the validity of model assumptions (1)
 
-Let us now return to the assumptions of our model. We started by looking (literally) at the plausibility of a linear relationship, which was the first assumption. So we have two assumptions left unchecked:
+Let us now return to the assumptions of our model. We started by looking at the plausibility of a linear relationship, which was the first assumption. We have two assumptions left unchecked:
 
-- The variability in prediction errors is constant over possible values of the explanatory variable(s).
-- The erros are normally distributed.
+1. **The variability in prediction errors is constant over possible values of the explanatory variable(s)**
+2. The erros are normally distributed
 
-The former can be checked by plotting the predictions of our model against the errors. If there is a visible pattern, that would mean a likely violation to the constant variability assumption. You can read more on <a href = "https://en.wikipedia.org/wiki/Linear_regression#Assumptions" target="_blank">wikipedia</a>.
+First let's focus on the former, which can be studied graphicaly by plotting the predictions of our model against the prediction errors (residuals). If there is a visible pattern, that would mean a likely violation to the constant variability assumption. You can read more on <a href = "https://en.wikipedia.org/wiki/Linear_regression#Assumptions" target="_blank">wikipedia</a>.
 
-The `my_fit` object you have created is actually a *list*, which is a similar object to a data frame in R. A list's elements can be accessed with the `$` sign. `my_fit` contains - among other useful things - the errors and predictions of your model. They are named `residuals` and `fitted.values`.
+The `my_fit` object you have created is actually a *list*, which is a similar object to a data frame in R. A list's elements can be accessed with the `$` sign. `my_fit` contains - among other useful things - the linear predictions and prediction errors (residuals) of your model. They are named `fitted.values` and `residuals`.
 
 
 *** =instructions
-- Create object `predictions` by executing the sample code.
-- Create object `errors` by accessing residuals in `my_fit`
-- Create object `errors2` by raising the errors to the power of two. See the hint if you have trouble doing this.
-- Use `qplot()` to draw a scatter plot of predictions and the squared errors, with errors on the y axis.
+- Access the ggplot2 library and create `my_fit`
+- Create object `predictions`
+- Create object `residuals` by accessing residuals in `my_fit`
+- Use `qplot()` to draw a scatter plot of predictions and the residuals, with residuals on the y axis.
 - Do you see any clear pattern?
 
 *** =hint
@@ -377,10 +379,6 @@ learning2014 <- read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/learning201
 # Exlude students who did not attend exams (points = 0)
 learning2014 <- learning2014[learning2014$points != 0,]
 
-# Create objects attitude and points
-attitude <- learning2014$attitude
-points <- learning2014$points
-
 # Create object my_fit explaining points with attitude in the learning2014 data
 my_fit <- lm(points ~ attitude, data = learning2014)
 
@@ -399,13 +397,10 @@ my_fit <- lm(points ~ attitude, data = learning2014)
 # Create object predictions by accessing fitted.values in my_fit
 predictions <- my_fit$fitted.values
 
-# Create object errors by accessing residuals in my_fit
+# Create object residuals by accessing residuals in my_fit
 
 
-# Raise the errors to the power of two and create object errors2
-
-
-# Draw a scatter plot of predictions and the squared errors
+# Draw a scatter plot of the predictions and residuals
 
 
 ```
@@ -422,14 +417,11 @@ my_fit <- lm(points ~ attitude, data = learning2014)
 # Create object predictions by accessing fitted.values in my_fit
 predictions <- my_fit$fitted.values
 
-# Create object errors by accessing residuals in my_fit
-errors <- my_fit$residuals
+# Create object residuals by accessing residuals in my_fit
+residuals <- my_fit$residuals
 
-# Raise the errors to the power of two
-errors2 <- errors**2
-
-# Draw a scatter plot of predictions and the squared errors
-qplot(predictions, errors2)
+# Draw a scatter plot of the predictions and residuals
+qplot(predictions, residuals)
 
 
 ```
@@ -437,10 +429,7 @@ qplot(predictions, errors2)
 *** =sct
 ```{r}
 
-# tests
-test_object("errors", incorrect_msg = "Please create the object `errors` by accessing the residuals in my_fit")
-test_object("errors2", incorrect_msg = "Please create the object `errors2` by squaring the errors")
-
+test_object("residuals", incorrect_msg = "Please create the object `residuals` by accessing the residuals in `my_fit`")
 test_function("qplot", args=c("x","y"))
 
 # test error
@@ -456,18 +445,18 @@ success_msg("Great work! You are really learning the linear models.")
 
 ## Checking the validity of model assumptions (2)
 
-We have one assumption left unchecked: The errors should be normally distributed. A good place to start is by drawing a histogram of the errors to see the distibution. 
+We have one assumption left unchecked: The predictions errors (residuals) should be normally distributed. A good place to start is by drawing a histogram of the errors to see the distibution. 
 
 There is also a more powerful way to check if observations follow a theoretical distribution: <a href="https://en.wikipedia.org/wiki/Q%E2%80%93Q_plot"<a q-q plot</a>.
 
-A q-q plot plots the theoretical quantiles against the observed quantiles and if these two agree, then the points of the plot should approximately follow a straight increasing line. There will always be slight deviations from the line, ofcourse, but deviations from the normality assumption should show a clear non-linear pattern.
+A q-q plot plots the theoretical quantiles against observed quantiles and if these two agree, then the points of the plot should approximately follow a straight increasing line. There will always be slight deviations from the line, but deviations from the normality assumption should show a clear non-linear pattern.
 
 In base R, a q-q plot can be drawn with the `qqnorm()` and `qqline()` functions. The first argument of both is `y`, a numeric vector of the values whose distribution we are interested in.
 
 *** =instructions
-- Create object `errors` by accessing the residuals in `my_fit`
-- Draw a histogram to visualize distribution of the errors. Is the distribution approximately normal?
-- Draw a q-q plot of the errors using the `qqnorm()` function and add a line to the plot by calling `qqline()`.
+- Create object `rsiduals` by accessing the residuals in `my_fit`
+- Draw a histogram to visualize the distribution of the residuals. Is the distribution approximately normal?
+- Draw a q-q plot of the errors using the `qqnorm()` function and add a line to the plot with `qqline()`
 - Do the points follow the line reasonably well? Is there a clear non-linear pattern?
 
 *** =hint
@@ -483,10 +472,6 @@ learning2014 <- read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/learning201
 # Exlude students who did not attend exams (points = 0)
 learning2014 <- learning2014[learning2014$points != 0,]
 
-# Create objects attitude and points
-attitude <- learning2014$attitude
-points <- learning2014$points
-
 # Create object my_fit explaining points with attitude in the learning2014 data
 my_fit <- lm(points ~ attitude, data = learning2014)
 ```
@@ -499,14 +484,14 @@ my_fit <- lm(points ~ attitude, data = learning2014)
 # Create object my_fit explaining students exam points with attitude towards statistics
 my_fit <- lm(points ~ attitude, data = learning2014)
 
-# create object errrors
-errors <- NULL
+# create object residuals
+residuals <- NULL
 
-# Draw a histogram of the errors
+# Draw a histogram of the residuals
 
 
-# Draw a qqplot of the errors using qqnorm() and qqline()
-qqnorm(errors); qqline(errors)
+# Draw a qqplot of the residuals using qqnorm() and qqline()
+qqnorm(residuals); qqline(residuals)
 
 
 
@@ -519,14 +504,14 @@ qqnorm(errors); qqline(errors)
 # Create object my_fit explaining students exam points with attitude towards statistics
 my_fit <- lm(points ~ attitude, data = learning2014)
 
-# Create object errors
-errors <- my_fit$residuals
+# Create object residuals
+residuals <- my_fit$residuals
 
-# Draw a histogram of the errors
-hist(errors)
+# Draw a histogram of the residuals
+hist(residuals)
 
-# Draw a qqplot of the errors using qqnorm() and qqline()
-qqnorm(errors); qqline(errors)
+# Draw a qqplot of the residuals using qqnorm() and qqline()
+qqnorm(residuals); qqline(residuals)
 
 
 
@@ -537,7 +522,7 @@ qqnorm(errors); qqline(errors)
 ```{r}
 
 # tests
-test_object("errors")
+test_object("residuals")
 test_function("hist", args="x")
 
 # test error
