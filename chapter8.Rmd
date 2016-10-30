@@ -424,7 +424,7 @@ Clearly there is uncertainty involved in our point estimate. But how much uncert
 
 One way to approach this question is to try to come up with an interval around the point estimate to describe our uncertainty. It turns out that the following formula produces an interval which contains the true population mean a specified high percentage of the time ($100 \cdot (1-\alpha)$%) 
 
-$$\[\text{mean} - z_{\alpha/2} \cdot \frac{s}{\sqrt{n}}, \text{mean} + z_{\alpha/2} \cdot \frac{s}{\sqrt{n}}\]$$
+$$\text{mean} \pm z_{\alpha / 2} \cdot \frac{s}{\sqrt{n}}$$
   
 where $s$ is the sample standard deviation, $n$ is the sample size and $z(\frac{\alpha}{2})$ is a critical value from the $N(0,1)$ distribution. The part 
 
@@ -432,13 +432,14 @@ $$\frac{s}{\sqrt{n}}$$
 
 is called the *standard error* of the estimate. 
 
-I know what you're thinking. It's confusing: where did the normal distribution come from, what's with all that $z_{\alpha/2}$ stuff and a critical whatnow? The answers lie in the **sampling distribution** which we will soon get to.
+I know what you're thinking. It's confusing: where did the normal distribution come from, what's with all that $z_{\alpha/2}$ stuff? The answers lie in the **sampling distribution** which we will soon get to.
 
 
 *** =instructions
-- Compute the standard error of the sample mean
+- Create objects `points`, `n`, `mu_hat` and `s`
+- Adjust the object `error`: Compute the standard error of `mu_hat` (the sample mean). `sqrt()` computes the square root.
 - Compute the critical value z using a 99% confidence level (alpha = 0.01)
-- Compute lower and upper limits of the confidence interval (CI) by applying the formula above.
+- Compute the lower and upper limits of the confidence interval (CI) by applying the formula given above
 - Combine the point estimate and the lower and upper CI values to the object `interval_estimate`.
 - Print the values in `interval_estimate`, rounded to 1 digit (`round()`)
 
@@ -450,8 +451,6 @@ I know what you're thinking. It's confusing: where did the normal distribution c
 *** =pre_exercise_code
 ```{r}
 learning2014 <-  read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/learning2014.txt", sep = "\t", header = TRUE)
-
-points <- learning2014$points
 
 ```
 
@@ -465,12 +464,14 @@ points <- learning2014$points
 # Number of observations
 n <- length(points)
 
-# Sample mean and standard deviation of points
+# Sample mean estimates the expected value (mu) 
 mu_hat <- mean(points)
+
+# Sample standard deviation
 s <- sd(points)
 
-# Compute the standard error of the sample mean. sqrt() computes the square root.
-error <- 
+# Compute the standard error of mu_hat
+error <- NA
 
 # Compute the critical value z
 z <- qnorm(0.01/2, lower.tail = F) 
@@ -497,11 +498,13 @@ points <- learning2014$points
 # Number of observations
 n <- length(points)
 
-# Sample mean and standard deviation of points
+# Sample mean estimates the expected value (mu) 
 mu_hat <- mean(points)
+
+# Sample standard deviation
 s <- sd(points)
 
-# Compute the standard error of the sample mean. sqrt() computes the square root.
+# Compute the standard error of mu_hat
 error <- s/sqrt(n)
 
 # Compute the critical value z
@@ -512,7 +515,7 @@ lower_ci <- mu_hat - z*error
 upper_ci <- mu_hat + z*error
 
 # Combine the point and interval estimates to a named vector
-interval_estimate <- c("estimate" = mu_hat, "lower_ci" = lower_ci, "upper_ci" = upper_ci)
+interval_estimate <- c("estimate" = mu_hat, "lower99%" = lower_ci, "upper99%" = upper_ci)
 
 # Round and print out the point and interval estimates
 round(interval_estimate)
@@ -557,15 +560,16 @@ The resulting distribution of the multiple sample means satisfies the idea of th
 *** =instructions
 - Print out the empty `means` vector
 - Execute the for-loop. What does it do?
-- Print out the means vector again
-- Compute basic summary statistics of the means
+- Print out the `means` vector again
+- Compute basic summary statistics of `means` using the appropriate function
 - Draw a histogram displaying the sampling disribution of the means
-- See the help page of the hist function and make it a density histogram
+- See the help page of the `hist()` function and make it a density histogram
 
 
 *** =hint
-- `hist()` draws a histogram and freq = F can be used to draw a density histogram
-- ?hist opens the help page of hist()
+- `summary()` computes basic summary statistics
+- `hist()` draws a histogram and the argument `freq = F` can be used to draw a density histogram
+- ?hist opens the help page of `hist()`
 
 
 *** =pre_exercise_code
@@ -661,21 +665,23 @@ success_msg("Very good work!")
 
 ## The central limit theorem
 
-Käydään läpi mitä viime tehtävässä tapahtui ja muodostetaan yhteys normaalijakaumaan.
+Let's now get back to the $z$ in the formula for the confidence interval:
+
+$$\text{mean} \pm z_{\alpha / 2} \cdot \frac{s}{\sqrt{n}}$$
+
+$z$ is a quantile point from the $N(0,1)$ distribution. The confidence interval is actually based on a normal approximation of the sampling distribution. In this exercise we'll explore if that approximation seems to work.
 
 *** =instructions
-- Take a random sample from learning2014$points and create object `points_sample`
-- Compute the mean of the sample and create object `mu_hat`
-- Compute the standard deviation of the sample and create object `s`
-- Compute the standard error and create object `error`
-- Print out the sample mean and it's standard error, rounded to 2 digits
-- Inside curve(dnorm()) adjust the parameters for the density of the normal distribution by setting `mean` = the sample mean of your random sample, `sd` = the standard error of the sample mean. 
-- Now execute the two lines simultaniously which visualize (1) the previously simulated sampling distribution, and (2) a normal approximation to that distribution based on your single sample.
+- Take a random sample of 50 students exam points and create object `points_sample`
+- Create objects `mu_hat`, `s` and `error`
+- Print out `mu_hat` and it's standard error, rounded to 2 digits
+- Inside `curve(dnorm())`, set `mean` = the estimate for the population mean based on the random sample of 50, `sd` = the standard error of the estimate. 
+- Execute the line with `hist()`  and `curve()` which visualize (1) the previously simulated sampling distribution of the means, and (2) a normal approximation to that distribution based on your single sample. (Techically it's actually two lines of code, because `;` is code for line change)
 - Does the normal approximation seem useful?
 
 *** =hint
-- hint 1
-- hint 2
+- `mu_hat` is the estimate for the population mean
+- `error` is the standard error of the estimate
 
 
 *** =pre_exercise_code
@@ -703,7 +709,7 @@ hist(means, freq = F)
 
 *** =sample_code
 ```{r}
-# learning214, means are available
+# learning214 and means are available
 
 
 # Draw a single sample of n = 50 exam points
@@ -722,10 +728,9 @@ error <- NA
 # Round and print
 c(mu_hat, error)
 
-# Histogram of the previously simulated sampling distribution of the sample mean and
-# The normal approximation of that sampling distribution, based on a single sample
-hist(means, freq = F)
-curve(dnorm(x, mean = NA, sd = NA), add = T)
+# (1) Histogram of the previously simulated sample means and
+# (2) The normal approximation of that distribution, based on a single sample
+hist(means, freq = F); curve(dnorm(x, mean = NA, sd = NA), add = T)
 
 
 
@@ -733,7 +738,7 @@ curve(dnorm(x, mean = NA, sd = NA), add = T)
 
 *** =solution
 ```{r}
-# learning214, means are available
+# learning214 and means are available
 
 
 # Draw a single sample of n = 50 exam points
@@ -752,10 +757,9 @@ error <- s/ sqrt(n)
 # print
 c(mu_hat, error)
 
-# The previously simulated sampling distribution of the sample mean along with
-# the normal approximation of the sampling distribution, based on a single sample
-hist(means, freq = F)
-curve(dnorm(x, mean = mu_hat, sd = error), add = T)
+# (1) Histogram of the previously simulated sample means and
+# (2) The normal approximation of that distribution, based on a single sample
+hist(means, freq = F); curve(dnorm(x, mean = mu_hat, sd = error), add = T)
 
 
 ```
@@ -764,15 +768,15 @@ curve(dnorm(x, mean = mu_hat, sd = error), add = T)
 ```{r}
 # submission correctness tests
 
-# example tests:
-# test_output_contains("output")
-# test_object("object_name")
-# test_function("function_name", args=c("arg1"))
+test_object("s")
+test_object("error")
+
+test_function("dnorm", args = c("mean","sd"))
 
 # test if the students code produces an error
 test_error()
 
 # Final message the student will see upon completing the exercise
-success_msg("Good work!")
+success_msg("Very well done!! You are making really good progress!")
 
 ```
