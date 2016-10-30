@@ -6,7 +6,7 @@ description : We all might be statistically different, but maybe we are part of 
 
 ## Statistical hypothesis testing
 
-In [statistical hypothesis testing](https://en.wikipedia.org/wiki/Statistical_hypothesis_testing) we want to test if our claim or something we assume is supported by the data. To do a statistical test, you need to follow these steps:
+In [statistical hypothesis testing](https://en.wikipedia.org/wiki/Statistical_hypothesis_testing) we want to test if an assumption is supported by the data. To do a statistical test, you need to follow these steps:
 
 - Set the [null hypothesis](https://en.wikipedia.org/wiki/Null_hypothesis) and the [alternative hypothesis](https://en.wikipedia.org/wiki/Alternative_hypothesis).
 - Decide the level of [significance](https://en.wikipedia.org/wiki/Statistical_significance) (usually marked as $\alpha$)
@@ -15,9 +15,14 @@ In [statistical hypothesis testing](https://en.wikipedia.org/wiki/Statistical_hy
 - Interpret the results of the test
 
 
+Which of the following statements is true?
+
 *** =instructions
-- instruction 1
-- instruction 2
+- A statistical hypothesis test is the most important step in empirical research
+- The results of hypothesis tests such as p-values are uninformative and summaries such as interval estimates should usually be reported instead
+- A statistically significant result means that the result also has practical significance
+- Even if an experiment is poorly designed, a statistically significant result means the results can be published
+
 
 *** =hint
 - hint 1
@@ -28,6 +33,7 @@ In [statistical hypothesis testing](https://en.wikipedia.org/wiki/Statistical_hy
 ```{r}
 
 ```
+
 
 *** =sct
 ```{r}
@@ -50,13 +56,15 @@ success_msg("Good work!")
 
 ## Test statistics
 
-jokin tehtävä testisuureista + määritelmä
-
-After setting the hypotheses, we can use the data we have and calculate the test statistic. What test statistic to use, depends on the test you are doing.
+After setting the hypotheses, we can use the data we have and calculate a test statistic. What test statistic to use, depends on the test you are doing.
 
 *** =instructions
-- instruction 1
-- instruction 2
+- Create object `stra`
+- Set the null hypothesis that the expected value of strategic learning is 3 and create object `mu0`
+- Compute the point estimate of the expected value and the standard error
+- Compute the test statistic $z$. If `mu0` is the actual expected value, then $z$ ~ N(0, 1)
+- Visualize the distribution
+- According to the picture, what is the probability that the test statistic $Z$ would take on a value even further away from it's expected value than the current value $z$? Save this probability to the object `p`.
 
 *** =hint
 - hint 1
@@ -65,16 +73,78 @@ After setting the hypotheses, we can use the data we have and calculate the test
 
 *** =pre_exercise_code
 ```{r}
+learning2014 <- read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/learning2014.txt", sep = "\t", header = TRUE)
+
+zplot <- function(critical) {
+  z <- c(-critical, critical)
+  par(mar = c(7,4,5,4))
+  x <- (-40:40)/10
+  y <- dnorm(x)
+  main = paste("The N(0, 1) distribution \n z = ",critical)
+  plot(x, y, type = "l", xaxt = "n", ylab = "n", main = main)
+  axis(1, at = c(-3,  0,  3))
+  axis(1, at = round(z, 2) , col.ticks = "red", las = 2)
+  
+  # highlight critical regions, add matching percentages
+  x1 <- x[x<=min(z)]; x2 <- x[x>=max(z)]
+  a <- round(pnorm(min(z)),2)
+  
+polygon(c(min(x1),x1, max(x1), min(x2), x2, max(x2)),
+            c(0, dnorm(x1),0, 0, dnorm(x2), 0), col = "grey60")
+      text(x = c(-3.5, 3.5), y = c(0.08,0.08), labels = paste0(a*100,"%"), cex = 1.5)
+      text(x = 0, y = 0.08, labels=paste0(100*(1-a*2),"%"), cex = 1.5)
+}
+
 
 ```
 
+
 *** =sample_code
 ```{r}
+stra <- learning2014$stra
+
+# H0: mu = 3
+mu0 <- 3
+
+# Point estimate of mu
+mu_hat <- mean(stra)
+
+# Standard error of mu
+error <- sd(stra) / sqrt(length(stra))
+
+# The test statistic
+z <- (mu_hat - mu0) / error
+
+# Visualize the N(0, 1) distribution and the value of z 
+zplot(round(z, 2))
+
+# P(|Z| > z)
+p <- 
 
 ```
 
 *** =solution
 ```{r}
+stra <- learning2014$stra
+
+# H0: mu = 3
+mu0 <- 3
+
+# Point estimate of mu
+mu_hat <- mean(stra)
+
+# Standard error of mu
+error <- sd(stra) / sqrt(length(stra))
+
+# The test statistic
+z <- (mu_hat - mu0) / error
+
+# Visualize the N(0, 1) distribution and the value of z 
+zplot(round(z, 2))
+
+# P(|Z| > z)
+p <- 0.14
+
 
 ```
 
@@ -82,16 +152,13 @@ After setting the hypotheses, we can use the data we have and calculate the test
 ```{r}
 # submission correctness tests
 
-# example tests:
-# test_output_contains("output")
-# test_object("object_name")
-# test_function("function_name", args=c("arg1"))
 
-# test if the students code produces an error
+test_object("p")
+
 test_error()
 
 # Final message the student will see upon completing the exercise
-success_msg("Good work!")
+success_msg("Great work!")
 
 ```
 
@@ -101,7 +168,10 @@ success_msg("Good work!")
 
 jokin tehtävä p-arvoista + määritelmä
 
-Okay, now you have the test statistics. So next you can calculate the (famous) p-value. The p-value tells you something about the hypotheses and it can be used as a guide line. The p-value and other knowledge of the field you are testing, you can reject or not reject the null hypothesis. 
+Okay, now you have the test statistic, which is a statistical summary of the data. Next you can calculate the (infamous) p-value. 
+
+p-value is the probability that, using a given statistical model, a statistical summary of the data would be the same as or more extreme than the actual observed results.
+
 
 *** =instructions
 - instruction 1
