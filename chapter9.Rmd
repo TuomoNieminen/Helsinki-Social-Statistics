@@ -60,16 +60,15 @@ After setting the hypotheses, we can use the data we have and calculate a test s
 
 *** =instructions
 - Create object `stra`
-- Set the null hypothesis that the expected value of strategic learning is 3 and create object `mu0`
+- Set a null hypothesis that the expected value of strategic learning is 3 and create object `mu0`
 - Compute the point estimate of the expected value and the standard error
 - Compute the test statistic $z$. If `mu0` is the actual expected value, then $z$ ~ N(0, 1)
 - Visualize the distribution
 - According to the picture, what is the probability that the test statistic $Z$ would take on a value even further away from it's expected value than the current value $z$? Save this probability to the object `p`.
 
 *** =hint
-- hint 1
-- hint 2
-
+- How much probability is at the "tails"" of the distribution?
+- Remember that probability is measured between 0 and 1
 
 *** =pre_exercise_code
 ```{r}
