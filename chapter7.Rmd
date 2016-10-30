@@ -307,14 +307,14 @@ success_msg("Good work!")
 
 In this exercise, you will get to know the `qnorm()` function, which produces quantiles of the normal distribution. A quantile function is the inverse of the cumulative probability function.
 
-A quantile function takes a probability value as input and produces a quantile value as output. The quantile value is a point at which the probability that the random variable takes on a value less than or equal to that point, is equal to the given probability.
+A quantile function takes a probability value as input and produces a value as output. The produces value is a point at which the probability that the random variable takes on a value less than or equal to that point, is equal to the given probability.
 
-As with all the *norm() functions, qnorm() has default values for the arguments mean = 0 and sd = 1; corresponding to the standard normal distribution.
+As with all the *norm() functions, qnorm() has default arguments mean = 0 and sd = 1; corresponding to the standard normal distribution.
 
 The quantile values of the standard normal variable are also called critical values. They will be very useful later on for interval estimation and hypothesis testing.
 
 *** =instructions
-- These questions relate to a standard normal variable
+- These questions relate to the standard normal distribution
 - Compute the cumulative probability at point z = -1.64
 - Compute the quantile point corresponding to the probabiliity 0.05 and visualize the computation
 - Compute the cumulative probability at point z = -1.96
@@ -446,16 +446,18 @@ The normal distribution is symmetrical, which means that the values $-z$ and $z$
 
 $$P(Z < -z) = P(Z > z)$$
 
-This also means that $P(Z < -z) P(Z > z) = 2 \cdot P(Z < -z)$.
+This also means that $P(Z < -z) + P(Z > z) = 2 \cdot P(Z < -z)$.
 
 *** =instructions
-- Execute the example codes. What is the relationship between the computations and the resulting plot?
-- Compute the probability $2 \cdot P(Z < - 2.58)$
-- Compute the critical value z corresponding to probability $\alpha$ = 0.01 divided to both "tails" of the distribution
+- Compute the probability $P(Z < - 1.96) + P(Z > 1.96)$.
+- Compute the quantile (critical) value $z$ corresponding to a probability $\alpha = 0.05$ divided to both "tails" of the distribution
+- Visualize the computation
+- Compute the probability $P(Z < - 2.58) + P(Z > 2.58)$
+- Compute the quantile (critical) value z corresponding to probability $\alpha$ = 0.01 divided to both "tails" of the distribution
 - Visualize the computation
 
 *** =hint
-- Follow the examples and use the same functions
+- Follow the examples and use the same functions `pnorm()`, `qnorm()` and `qnorm_plot()`
 
 *** =pre_exercise_code
 ```{r}
@@ -511,7 +513,7 @@ options(digits = 3)
 # Suggest that R rounds to 3 significant digits
 options(digits = 3)
 
-# P(Z < - 1.96) P(Z > 1.96)
+# P(Z < - 1.96) + P(Z > 1.96)
 2*pnorm(-1.96)
 
 # For which z: P(-z < Z < z) = 0.05
@@ -520,7 +522,7 @@ qnorm(0.05/2)
 # Visualize
 qnorm_plot(0.05/2, twoway = TRUE)
 
-# P(Z < - 2.58) P(Z > 2.58)
+# P(Z < - 2.58) + P(Z > 2.58)
 
 
 # For which z: P(-z < Z < z) = 0.01
@@ -539,7 +541,7 @@ qnorm_plot(0.05/2, twoway = TRUE)
 # Suggest that R rounds to 3 significant digits
 options(digits = 3)
 
-# P(Z < - 1.96) P(Z > 1.96)
+# P(Z < - 1.96) + P(Z > 1.96)
 2*pnorm(-1.96)
 
 # For which z: P(-z < Z < z) = 0.05
@@ -548,7 +550,7 @@ qnorm(0.05/2)
 # Visualize
 qnorm_plot(0.05/2, twoway = TRUE)
 
-# P(Z < - 2.58) P(Z > 2.58)
+# P(Z < - 2.58) + P(Z > 2.58)
 2*pnorm(-2.58)
 
 # For which z: P(-z < Z < z) = 0.01
