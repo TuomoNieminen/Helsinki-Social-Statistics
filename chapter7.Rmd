@@ -88,18 +88,18 @@ success_msg("Good work! And now you know the probability of world ending...")
 
 Some of the basic functions associated with binomial distribution are:
 
-- `dbinom()`: density of the binomial distribution
-- `pbinom()`: distribution function of binomial distribution
+- `dbinom()`: point probabilities of binomial distribution
+- `pbinom()`: cumulative probabilities of binomial distribution
 - `qbinom()`: quantile function of binomial distribution
 - `rbinom()`: (random) sample from binomial distribution
 
 You can use the `help()` or `?` for any of these functions to see more about them. 
 
 *** =instructions
-- Let's say that we know a probability of buing a t-shirt from store is 0.3. There are 8 people in the store looking around. The customers are not interacting with each others.
+- Let's say that we know a probability of buing a t-shirt from store is 0.3. There are 8 people in the store looking around. The customers are not interacting with each other.
 - What is the probability of two of them buing a t-shirt?
 - What is the probability of seven of them buing a t-shirt?
-- What is the probability that *at least* two of the customers buy a t-shirt? Remember to use the `lower.tail` argument. 
+- What is the probability that *at least* two of the customers buy a t-shirt? Note that when you are using the cumulative probability function, you need to specify which "side" of the distribution you are calculating. You get the left side of the distribution with the `lower.tail = TRUE` argument. 
 
 
 *** =hint
@@ -228,8 +228,8 @@ It is good to know the formulas behind every calculations when you are dealing w
 
 In R the functions associated with normal distiribution are:
 
-- `dnorm()`: density of the normal distribution
-- `pnorm()`: distribution function of normal distribution
+- `dnorm()`: point probabilities of normal distribution
+- `pnorm()`: cumulative probabilities of normal distribution
 - `qnorm()`: quantile function of normal distribution
 - `rnorm()`: (random) sample from normal distribution
 
@@ -238,6 +238,7 @@ The function `pnorm()` can be used to approximate probabilities from normal dist
 
 *** =instructions
 - The distribution of variable deep resembles a normal distribution (look at the density histogram of `deep`).
+- Create object `deep`.
 - Approximate the probability that deep learning score is *smaller* than 3 amongst the students.
 - Approximate the probability that deep learning score is *greater* than 3 amongst the students. You can use the same code as above, but you need to change the `lower.tail` value to get the correct result.
 - What is the probability that deep learning is over 4.5 ? Save the answer to object high_learning and print it.
@@ -261,8 +262,11 @@ lines(x, dnorm(x, mean(learning2014$deep), sd(learning2014$deep)), type="l", col
 ```{r}
 # learning2014 is available
 
+# Create object deep
+deep <- learning2014$deep
+
 # Probability of deep being smaller than 3
-pnorm(3, mean = mean(learning2014$deep), sd = sd(learning2014$deep), lower.tail = TRUE)
+pnorm(3, mean = mean(deep), sd = sd(deep), lower.tail = TRUE)
 
 # Probability of deep being greater than 3
 
@@ -277,14 +281,17 @@ pnorm(3, mean = mean(learning2014$deep), sd = sd(learning2014$deep), lower.tail 
 ```{r}
 # learning2014 is available
 
+# Create object deep
+deep <- learning2014$deep
+
 # Probability of deep being smaller than 3
-pnorm(3, mean = mean(learning2014$deep), sd = sd(learning2014$deep), lower.tail = TRUE)
+pnorm(3, mean = mean(deep), sd = sd(deep), lower.tail = TRUE)
 
 # Probability of deep being greater than 3
-pnorm(3, mean = mean(learning2014$deep), sd = sd(learning2014$deep), lower.tail = FALSE)
+pnorm(3, mean = mean(deep), sd = sd(deep), lower.tail = FALSE)
 
 # Probability of deep being over 4.5
-high_learning <- pnorm(4.5, mean = mean(learning2014$deep), sd = sd(learning2014$deep), lower.tail = FALSE)
+high_learning <- pnorm(4.5, mean = mean(deep), sd = sd(deep), lower.tail = FALSE)
 high_learning
 
 ```
