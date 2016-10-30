@@ -14,7 +14,7 @@ The answers were later combined into the following combination variables:
 - *surf*: mean score of questions related to surface learning
 - *attitude*: mean score of questions related to attitude toward statistics  
 
-The *learning2014* dataset includes these variables along with the students age and gender. The data also includes the students points in a statistics exam. Zero points means that the student did not attend an exam.
+The *learning2014* dataset includes these variables along with the students age and gender. The data also includes the students points in a statistics exam. Zero points means that the student did not attend an exam. At the end of the course we will take a close look at how a positive attitude predicts students exam performance.
 
 *** =instructions
 - Look at the structure of learning2014
@@ -28,6 +28,19 @@ The *learning2014* dataset includes these variables along with the students age 
 *** =pre_exercise_code
 ```{r}
 learning2014 <-  read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/learning2014.txt", sep = "\t", header = TRUE)
+
+# Access ggplot2 functions
+library(ggplot2)
+
+# Exlude students who did not attend any exams (points == 0)
+learning2014 <- learning2014[learning2014$points != 0, ]
+
+# Create objects attitude and points
+attitude <- learning2014$attitude
+points <- learning2014$points
+
+# A scatter plot of attitude and points
+qplot(attitude, points)
 
 ```
 
