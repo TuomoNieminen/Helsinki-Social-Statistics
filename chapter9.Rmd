@@ -46,7 +46,7 @@ success_msg("Good work!")
 
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1 
+--- type:NormalExercise lang:r xp:100 skills:1  key:ce010c22a3
 
 ## Test statistics
 
@@ -95,7 +95,7 @@ success_msg("Good work!")
 
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1 
+--- type:NormalExercise lang:r xp:100 skills:1  key:c5ba44e024
 
 ## Peculiar p-values
 
