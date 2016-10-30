@@ -16,7 +16,7 @@ There are things or events that are known to follow certain probability distribu
 - Create variable `tomorrow` with events `cat attacks baby`, `world ends` and `I eat pasta`.
 - Set probabilities to the events of variable `tomorrow`.
 - Draw a [*sample*](https://en.wikipedia.org/wiki/Sample_(statistics)) from tomorrow when the sample size is 1. Are you suprised with the outcome?
-- Draw another sample, this time with sample size = `100`. Add the argument `replace = TRUE` to the `sample()` function. What do you think it the `replace` argument does? Save the sample to `my_sample`. 
+- Draw another sample, this time with sample size = `1000`. Add the argument `replace = TRUE` to the `sample()` function. What do you think it the `replace` argument does? Save the sample to `my_sample`. 
 - Visualize the sample with bar plot. Notice how the bar heights in the barplot are related to the probabilities we set earlier.
 
 *** =hint
@@ -42,7 +42,7 @@ probabilities <- c(0.2, 0.5, 0.3)
 # Draw a sample. Do it a couple of times
 sample(tomorrow, size = 1, prob = probabilities)
 
-# Draw a sample 100 times
+# Draw a sample 1000 times
 
 
 # Visualize the distribution
@@ -61,8 +61,8 @@ probabilities <- c(0.2, 0.5, 0.3)
 # Draw a sample. Do it a couple of times
 sample(tomorrow, size = 1, prob = probabilities)
 
-# Draw a sample 100 times
-my_sample <- sample(tomorrow, size = 100, prob = probabilities, replace = TRUE)
+# Draw a sample 1000 times
+my_sample <- sample(tomorrow, size = 1000, prob = probabilities, replace = TRUE)
 
 # Visualize the distribution
 barplot(table(my_sample))
