@@ -490,8 +490,8 @@ t.test(women$stra, men$stra)
 # submission correctness tests
 
 # example tests:
-# test_output_contains("summary(women$stra)", "Did you use `summary()` on the womens stategic learning scores?")
 test_output_contains("summary(men$stra)", "Did you use `summary()` on the mens stategic learning scores?")
+test_output_contains("summary(women$stra)", "Did you use `summary()` on the womens stategic learning scores?")
 test_output_contains("t.test(women$stra, men$stra)", "Did you do the t-test of stategic learning for men and women?")
 
 # test if the students code produces an error
