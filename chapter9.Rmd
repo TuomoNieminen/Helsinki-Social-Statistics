@@ -71,8 +71,9 @@ Notice how the denominator has the standard error of $\bar{x}$.
 - Create object `stra`
 - Set a null hypothesis that the expected value of strategic learning is 3 and create object `mu0`
 - Compute the sample mean and the standard error
-- Compute the test statistic $z$. If `mu0` is the actual expected value, then $z$ ~ N(0, 1)
-- Visualize the distribution. According to the picture, what is the probability that the test statistic $Z$ would take on a value even further away from it's expected value than the current value $z$? Save this probability to the object `p`.
+- Compute the test statistic $z$. If `mu0` is the actual expected value, the random variable $Z$ corrspoinding the value $z$ follows the standard normal distribution: $Z \dis N(0,1)$
+- Print out the value of the test statistic
+- Visualize the distribution. According to the picture and assuming that $Z \dis N(0,1)$, what is the probability that the test statistic $Z$ would take on a value even further away from it's expected value than the current value $z$? Save this probability to the object `p`.
 
 *** =hint
 - How much probability in total is at the "tails"" of the distribution?
@@ -185,7 +186,7 @@ success_msg("Great work!")
 
 ## Peculiar p-values
 
-As you just saw, it is possible to calculate probabilities related to the test statistic. The **p-value** is defined as the probability of obtaining a result equal to or "more extreme" than what was actually observed, when the null hypothesis is true.
+As you just saw, it is possible to calculate probabilities related to the test statistic if we assume that the null hypothesis is true. The **p-value** is defined as the probability of obtaining a result equal to or "more extreme" than what was actually observed, when the null hypothesis is true.
 
 What exactly is considered "more extreme" depends on the alternative hypothesis. For example, if the two hypothesis concerning the parameter $\mu$ are
 
