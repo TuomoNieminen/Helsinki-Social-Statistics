@@ -513,7 +513,7 @@ The [chi-square](https://en.wikipedia.org/wiki/Chi-squared_test) test (also writ
 In R you can do the chi-squared test with the function `chisq.test()`. Start testing by looking at the example code!
 
 *** =instructions
-- Create object `grades` from the variable `points` from the learning2014 dataset with the `cut()` function. Set the break points with vector `c(0, 11, 15, 19, 23, 27, 33)`. Use also the argument `include.lowest = TRUE` to take zero values into count.
+- Create object `grades` from the variable `points` from the learning2014 dataset with the `cut()` function. Set the break points with vector `c(0, 15, 19, 23, 27, 33)`. Use also the argument `include.lowest = TRUE` to take zero values into count.
 - Create a table of `gender` and `grades` and save it as `gender_grades_tbl`. Print the table.
 - Test the null hypothesis that grades are independent from gender. What could be the alternative hypothesis in this case? Let's use the 0.05 significance level.
 - Use the function `chisq.test()` to do the chi-squared test of independence. Give the table you created as an argument to the function.
@@ -553,7 +553,7 @@ chisq.test(gender_grades_tbl)
 # learning2014 is available
 
 # Create grades from 'points' 
-grades <- cut(learning2014$points, breaks = c(0, 11, 15, 19, 23, 27, 33), include.lowest = TRUE)
+grades <- cut(learning2014$points, breaks = c(0, 15, 19, 23, 27, 33), include.lowest = TRUE)
 
 # Table of gender and grades
 gender_grades_tbl<-table(learning2014$gender, grades)
