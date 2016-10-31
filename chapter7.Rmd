@@ -84,22 +84,22 @@ success_msg("Good work! And now you know the probability of world ending...")
 
 ## Binomial distribution
 
-[Binomial distribution](https://en.wikipedia.org/wiki/Binomial_distribution) is a well known discrete probability distribution. The distribution has two parameters: the number of trials (often marked by *n*) and success probability in each trial (usually marked by *p*). The sum of favourable outcomes in a number of (independent) yes/no trials, where each trial has identical probability of success, follows a binomial distribution. An example of an binomial experiment could be tossing a coin 20 times to see how many heads occur.
+[Binomial distribution](https://en.wikipedia.org/wiki/Binomial_distribution) is a well known discrete probability distribution. The sum of favourable outcomes in a number of (independent) yes/no trials, where each trial has identical probability of success, follows a binomial distribution. The distribution hence has two parameters: the number of trials (*n*) and success probability in each trial (*p*). 
 
-Some of the basic functions associated with binomial distribution are:
+An example of an binomial experiment could be tossing a coin 20 times to see how many heads occur. Some of the basic functions associated with binomial distribution are:
 
-- `dbinom()`: point probabilities of binomial distribution
-- `pbinom()`: cumulative probabilities of binomial distribution
+- `dbinom()`: point probabilities of binomial distribution, $P(X = x)$
+- `pbinom()`: cumulative probabilities of binomial distribution, $P(X \leq x)$
 - `qbinom()`: quantile function of binomial distribution
 - `rbinom()`: (random) sample from binomial distribution
 
 You can use the `help()` or `?` for any of these functions to see more about them. 
 
 *** =instructions
-- Let's say that we know a probability of buing a t-shirt from store is 0.3. There are 8 people in the store looking around. The customers are not interacting with each other.
+- Let's say that we know a probability of a customer buing a t-shirt from the store is 0.3. There are 8 people in the store looking around. The customers are not interacting with each other.
 - What is the probability of two of them buing a t-shirt?
 - What is the probability of seven of them buing a t-shirt?
-- What is the probability that *at least* two of the customers buy a t-shirt? Note that when you are using the cumulative probability function, you need to specify which "side" of the distribution you are calculating. You get the left side of the distribution with the `lower.tail = TRUE` argument. 
+- What is the probability that *at least* two of the customers buy a t-shirt? See the help page of `pbinom()` and the usage of the lower.tail argument.
 
 
 *** =hint
@@ -114,27 +114,27 @@ You can use the `help()` or `?` for any of these functions to see more about the
 
 *** =sample_code
 ```{r}
-# What is the probability of 2 of them buying a t-shirt?
+# What is the probability of 2 of them buying a t-shirt? P(X = 2)
 dbinom(2, size = 8, prob = 0.3)
 
-# What is the probability of 7 of them buying a t-shirt?
+# What is the probability of 7 of them buying a t-shirt? P(X = 7)
 
 
-# What is the probability that at least 2 of the customers buy a t-shirt?
+# What is the probability that at least 2 of the customers buy a t-shirt? P(X => 2)
 
 
 ```
 
 *** =solution
 ```{r}
-# What is the probability of 2 of them buing a t-shirt?
+# What is the probability of 2 of them buing a t-shirt? P(X = 2)
 dbinom(2, size = 8, prob = 0.3)
 
-# What is the probability of 7 of them buing a t-shirt?
+# What is the probability of 7 of them buing a t-shirt? P(X = 7)
 dbinom(7, size = 8, prob = 0.3)
 
-# What is the probability that at least 2 of the customers buy a t-shirt?
-pbinom(2, size = 8, prob = 0.3, lower.tail=TRUE)
+# What is the probability that at least 2 of the customers buy a t-shirt? P(X => 2)
+pbinom(1, size = 8, prob = 0.3, lower.tail = FALSE)
 
 ```
 
@@ -142,9 +142,9 @@ pbinom(2, size = 8, prob = 0.3, lower.tail=TRUE)
 ```{r}
 # submission correctness tests
 
-test_output_contains("dbinom(7, size = 8, prob  = 0.3)", incorrect_msg = "Did you approximate the probability of 7 of the customers buying a t-shirt?")
+test_output_contains("dbinom(7, size = 8, prob  = 0.3)", incorrect_msg = "Did you calculate the probability of 7 of the customers buying a t-shirt?")
 
-test_output_contains("pbinom(2, size = 8, prob = 0.3, lower.tail=TRUE)", incorrect_msg = "Did you approximate the probability of at least 2 of the customers buying a t-shirt?")
+test_output_contains("pbinom(1, size = 8, prob = 0.3, lower.tail=FALSE)", incorrect_msg = "Did you calculate the probability of at least 2 of the customers buying a t-shirt?")
 
 # test if the students code produces an error
 test_error()
@@ -228,20 +228,20 @@ It is good to know the formulas behind every calculations when you are dealing w
 
 In R the functions associated with normal distiribution are:
 
-- `dnorm()`: point probabilities of normal distribution
+- `dnorm()`: density function of normal distribution
 - `pnorm()`: cumulative probabilities of normal distribution
 - `qnorm()`: quantile function of normal distribution
 - `rnorm()`: (random) sample from normal distribution
 
 You already used the function `rnorm()` in the previous exercise.
-The function `pnorm()` can be used to approximate probabilities from normal distributions. Let's see how it works!
+The function `pnorm()` can be used to compute probabilities from normal distributions. Let's see how it works!
 
 *** =instructions
 - The distribution of variable deep resembles a normal distribution (look at the density histogram of `deep`).
 - Create object `deep`.
-- Approximate the probability that deep learning score is *smaller* than 3 amongst the students.
-- Approximate the probability that deep learning score is *greater* than 3 amongst the students. You can use the same code as above, but you need to change the `lower.tail` value to get the correct result.
-- What is the probability that deep learning is over 4.5 ? Save the answer to object high_learning and print it.
+- Use the normal distribution and ppproximate the probability that deep learning score is *smaller* than 3 amongst the students.
+- Use the normal distribution and approximate the probability that deep learning score is *greater* than 3 amongst the students. You can use the same code as above, but you need to change the `lower.tail` value to get the correct result.
+- What is the probability that deep learning is greater than 4.5?
 
 *** =hint
 - Look at the help pages  with `?pnorm` or `help(pnorm)`.
@@ -265,13 +265,13 @@ lines(x, dnorm(x, mean(learning2014$deep), sd(learning2014$deep)), type="l", col
 # Create object deep
 deep <- learning2014$deep
 
-# Probability of deep being smaller than 3
+# Approximate probability of deep being smaller than 3
 pnorm(3, mean = mean(deep), sd = sd(deep), lower.tail = TRUE)
 
-# Probability of deep being greater than 3
+# Approximate probability of deep being greater than 3
 
 
-# Probability of deep being over 4.5
+# Approximate probability of deep being greater than 4.5
 
 
 
@@ -284,22 +284,23 @@ pnorm(3, mean = mean(deep), sd = sd(deep), lower.tail = TRUE)
 # Create object deep
 deep <- learning2014$deep
 
-# Probability of deep being smaller than 3
+# Approximate probability of deep being smaller than 3
 pnorm(3, mean = mean(deep), sd = sd(deep), lower.tail = TRUE)
 
-# Probability of deep being greater than 3
+# Approximate probability of deep being greater than 3
 pnorm(3, mean = mean(deep), sd = sd(deep), lower.tail = FALSE)
 
-# Probability of deep being over 4.5
-high_learning <- pnorm(4.5, mean = mean(deep), sd = sd(deep), lower.tail = FALSE)
-high_learning
+# Approximate probability of deep being greatet than 4.5
+pnorm(4.5, mean = mean(deep), sd = sd(deep), lower.tail = FALSE)
 
 ```
 
 *** =sct
 ```{r}
 # submission correctness tests
-test_object("high_learning", incorrect_msg = "Did you calculate the probability of deep being over 4.5 and save it to `high_learning`?")
+
+test_output_contains("pnorm(3, mean = mean(deep), sd = sd(deep), lower.tail = FALSE)")
+test_output_contains("pnorm(4.5, mean = mean(deep), sd = sd(deep), lower.tail = FALSE)")
 
 # test if the students code produces an error
 test_error()
@@ -314,18 +315,17 @@ success_msg("Good work!")
 
 In this exercise, you will get to know the `qnorm()` function, which produces quantiles of the normal distribution. A quantile function is the inverse of the cumulative probability function.
 
-A quantile function takes a probability value as input and produces a value as output. The produces value is a point at which the probability that the random variable takes on a value less than or equal to that point, is equal to the given probability.
+A quantile function takes a probability value as input and produces a value as output. The produced value is a point at which the probability that the random variable takes on a value less than or equal to that point, is equal to the given probability.
 
 As with all the *norm() functions, qnorm() has default arguments mean = 0 and sd = 1; corresponding to the standard normal distribution.
 
-The quantile values of the standard normal variable are also called critical values. They will be very useful later on for interval estimation and hypothesis testing.
+The quantile values of the standard normal variable are also called critical values. They will be very useful later on for interval estimation and hypothesis testing. The questions below relate to the standard normal distribution.
 
 *** =instructions
-- These questions relate to the standard normal distribution
 - Compute the cumulative probability at point z = -1.64
-- Compute the quantile point corresponding to the probabiliity 0.05 and visualize the computation
+- Compute the quantile point corresponding to the probability 0.05. Visualize the quantile point.
 - Compute the cumulative probability at point z = -1.96
-- Compute the quantile point corresponding to the probabiliity 0.025 and visualize the computation
+- Compute the quantile point corresponding to the probabiliity 0.025. Visualize the quantile point.
 
 
 
@@ -334,7 +334,6 @@ The quantile values of the standard normal variable are also called critical val
 
 *** =pre_exercise_code
 ```{r}
-# pre exercise code here
 # pre exercise code here
 qnorm_plot <- function(alpha, twoway = F) {
   par(mar = c(7,4,5,4))
@@ -384,7 +383,7 @@ options(digits = 3)
 # P(Z < - 1.64)
 pnorm(-1.64)
 
-# For which q: P(Z < q) = 0.05
+# For which z: P(Z < z) = 0.05
 qnorm(0.05)
 
 # Visualize
@@ -393,7 +392,7 @@ qnorm_plot(0.05)
 # P(Z < -1.96)
 
 
-# For which q: P(Z < q) = 0.025
+# For which z: P(Z < z) = 0.025
 
 
 # Visualize
@@ -453,13 +452,13 @@ The normal distribution is symmetrical, which means that the values $-z$ and $z$
 
 $$P(Z < -z) = P(Z > z)$$
 
-This also means that $P(Z < -z) + P(Z > z) = 2 \cdot P(Z < -z)$.
+This also means that $P(|Z| > z) = P(Z < -z) + P(Z > z) = 2 \cdot P(Z < -z)$.
 
 *** =instructions
-- Compute the probability $P(Z < - 1.96) + P(Z > 1.96)$.
+- Compute the probability $P(|Z| > 1.96) = P(Z < - 1.96) + P(Z > 1.96)$.
 - Compute the quantile (critical) value $z$ corresponding to a probability $\alpha = 0.05$ divided to both "tails" of the distribution
 - Visualize the computation
-- Compute the probability $P(Z < - 2.58) + P(Z > 2.58)$
+- Compute the probability $P(|Z| > 2.58) = P(Z < - 2.58) + P(Z > 2.58)$
 - Compute the quantile (critical) value z corresponding to probability $\alpha$ = 0.01 divided to both "tails" of the distribution
 - Visualize the computation
 
@@ -520,16 +519,16 @@ options(digits = 3)
 # Suggest that R rounds to 3 significant digits
 options(digits = 3)
 
-# P(Z < - 1.96) + P(Z > 1.96)
+# P(|Z| > 1.96)
 2*pnorm(-1.96)
 
-# For which z: P(-z < Z < z) = 0.05
+# For which z: P(|Z| > z) = 0.05
 qnorm(0.05/2)
 
 # Visualize
 qnorm_plot(0.05/2, twoway = TRUE)
 
-# P(Z < - 2.58) + P(Z > 2.58)
+# P(|Z| > 2.58)
 
 
 # For which z: P(-z < Z < z) = 0.01
@@ -548,19 +547,19 @@ qnorm_plot(0.05/2, twoway = TRUE)
 # Suggest that R rounds to 3 significant digits
 options(digits = 3)
 
-# P(Z < - 1.96) + P(Z > 1.96)
+# P(|Z| > 1.96)
 2*pnorm(-1.96)
 
-# For which z: P(-z < Z < z) = 0.05
+# For which z: P(|Z| > z) = 0.05
 qnorm(0.05/2)
 
 # Visualize
 qnorm_plot(0.05/2, twoway = TRUE)
 
-# P(Z < - 2.58) + P(Z > 2.58)
+# P(|Z| > 2.58)
 2*pnorm(-2.58)
 
-# For which z: P(-z < Z < z) = 0.01
+# For which z: P(|Z| > z) = 0.01
 qnorm(0.01/2)
 
 # Visualize
