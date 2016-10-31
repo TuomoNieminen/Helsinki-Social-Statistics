@@ -477,7 +477,7 @@ predict(my_fit, newdata = new_data)
 ```{r}
 
 test_object("new_data")
-test_function("predict.lm", args=c("object", "newdata"))
+test_function("predict", args=c("object", "newdata"))
 
 # test error
 test_error()
