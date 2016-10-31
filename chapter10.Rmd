@@ -477,6 +477,7 @@ predict(my_fit, newdata = new_data)
 ```{r}
 
 test_object("new_data")
+test_output_contains("new_data", incorrect_msg = "Please print out the new data.frame")
 test_function("predict", args=c("object", "newdata"))
 
 # test error
