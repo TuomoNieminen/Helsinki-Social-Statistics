@@ -171,7 +171,7 @@ p <- 0.14
 
 test_object("x_bar")
 test_object("error")
-test_output_contains("z", incorrect_mgs = "Please print out the value of the test statistic")
+test_output_contains("z", incorrect_msg = "Please print out the value of the test statistic")
 test_object("p", incorrect_msg ="Please create object p with the correct probability value")
 
 test_error()
