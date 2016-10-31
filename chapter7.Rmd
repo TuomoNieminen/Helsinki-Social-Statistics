@@ -575,107 +575,30 @@ success_msg("Great work! That was a tough one.")
 ```
 
 
---- type:NormalExercise lang:r xp:100 skills:1 key:5e0e2af080
-
-## Create your own functions
-
-There are countless of ready-made functions for you in R. At this point of the course, we have used many functions, for example like `plot()`, `mean()` and `rnorm()`. But it is possible to create your own functions too. Now we will look at the definition of a simple function and learn how to use it (*call* it).
-
-A little recap of functions:
-Functions usually have one or more arguments, for which the user can define values when calling the function. Multiple arguments are separated with a comma. The arguments have names, which can (and often should) be used when specifying their values.
-
-
-*** =instructions
-- Look at the definition of the `apple_count()` function and execute the function call that are defined.
-- Create object `my_apples` by directly assigning the output of `apple_count()` to it. Call `apple_count()` with `new_apples = 10` and `apples_stock = 2`. Print `my_apples` to see the output of the function.
-- Some of the apples are gone bad! Worms! Create a function `good_apples_count` that takes two arguments: `apples` and `bad_apples` and returns the number of apples you have left after the count is reduced due to a worm attack. Set the number of bad apples to 4 by default.
-- Use your function on `my_apples` to find out how many good apples you have left.
-
-*** =hint
-- The answer for `my_apples` is of the form: `my_apples <- apple_count(arg1 = ?, arg2 = ?)`
-- See how a new function is created by looking the code of `apple_count`. 
-- The amount of good apples is `apples` - `bad_apples`.
-- You can set the default value in `function(arg1 = *insert_default_value_here*, ...) ...`
-
-*** =pre_exercise_code
-```{r}
-apple_count <- function(new_apples, apples_stock = 5) return(new_apples + apples_stock)
-```
-
-*** =sample_code
-```{r}
-# Create a simple function with two arguments, of which 'apples_stock' has a default value (5)
-apple_count <- function(new_apples, apples_stock = 5) return(new_apples + apples_stock)
-
-# Call the apple_count() function. Can you guess the result?
-apple_count(new_apples = 2)
-
-# Call apple_count() to create the object 'my_apples'. Print the results.
-my_apples <- 
-
-
-# New function here!
-good_apples_count <-
-
-# How many good apples do you have?
-
-  
-```
-
-*** =solution
-```{r}
-# Create a simple function with two arguments, of which 'apples_stock' has a default value (5)
-apple_count <- function(new_apples, apples_stock = 5) return(new_apples + apples_stock)
-
-# Call the apple_count() function. Can you guess the result?
-apple_count(new_apples = 2)
-
-# Call apple_count() to create the object 'my_apples'. Print the results.
-my_apples <- apple_count(10, apples_stock = 2)
-my_apples
-
-# New function here!
-good_apples_count <- function(apples, bad_apples = 4) return(apples - bad_apples)
-
-# How many good apples do you have?
-good_apples_count(my_apples)
-  
-```
-
-*** =sct
-```{r}
-test_object("my_apples", incorrect_msg ="Did you save results of `apple_count()` to `my_apple`?")
-test_output_contains(" good_apples_count(my_apples)", incorrect_msg ="Did you use `good_apples_count()` to `my_apples`?")
-
-test_error()
-success_msg("Not eating worms tonight! Nicely done!")
-```
 
 --- type:NormalExercise lang:r xp:100 skills:1 key:8ca0f12d3d
 
 ## Standardization
 
-Standardized normal distribution has 0 as expected value and 1 as standard deviation. A handy thing is that in standard normal distributions about 68% of the observations are within one deviation amount away from the expected value and within two deviations away are 95% of the observations. This can be convinient sometimes. [Standardization](https://en.wikipedia.org/wiki/Standard_score) is used when we want to transform a normal distribution to a standardized normal distribution. 
+A standardized distribution has 0 as expected value and 1 as standard deviation. A handy thing to know is that in normal distributions about 68% of the observations are within one standard deviation away from the expected value and 95% within two. This can be convinient sometimes.
 
-The formula for standardization is
+[Standardization](https://en.wikipedia.org/wiki/Standard_score) also makes it easier to compare different distributions. Any variable can be standardized. The formula for standardization is
+
 $$z = \frac{x - mean}{sd}$$
 
 where x is the object we want to standardize.
 
-To standardize many variables you will need to calculate the means and standard deviations for all them. You could do it with repeating the same codes for all of the variables, but it takes time and creates a lot of code. In these kind of cases, it is useful to create one function that does the functionality we want and use it instead.
 
 *** =instructions
-- At first look at the histogram of `deep` from the `learning2014`. Note the x-axis of the histogram: the numbers are deep learning scores and you can see how they are distributed in the data.
-- Let's create a function that standardizes normal distributions. Save the function as `std`. See the pattern above. You can check from the previous exercise how functions are made. 
-- Standardize variable `deep` by using the function you created.
-- Draw a histogram of standardized variable `std_deep`. Note what happened to the x-axis.
+- Look at the histogram of `deep` from the `learning2014`. Note the x-axis of the histogram: the numbers are deep learning scores and you can see how they are distributed in the data.
+- Standardize the variable `deep` by using the formulate given above and create object `std_deep`
+- Compute the mean and standard deviation of `std_deep`
+- Draw a histogram of  `std_deep`. Note what happened to the x-axis.
 
 
 *** =hint
 - Remember to use `$`-mark when accessing variables from dataset.
 - See `?hist()` if you don't remember how to draw histograms.
-- The code `*name_if_the_function* <- function(...) return (...)` is used when creating a function.
-- The function creation code needs to be in one line to work correctly.
 
 
 *** =pre_exercise_code
@@ -689,12 +612,15 @@ hist(learning2014$deep, breaks=25, col="orange")
 ```{r}
 # learning2014 is available
 
-# Create function standardation. 
-std <- 
+deep <- learning2014$deep
 
-# Standardize variable 'deep' by using the function you created
-std_deep <-
-
+# Standardize variable 'deep'
+std_deep <- (deep - mean(deep)) /sd(deep)
+  
+# Compute the mean and stardard deviation of std_deep
+mean(std_deep)  
+sd(std_deep)
+  
 # Draw a histogram of standardized variable 'deep'
 hist(std_deep, breaks=25, col="orange")
 
@@ -704,16 +630,16 @@ hist(std_deep, breaks=25, col="orange")
 ```{r}
 # learning2014 is available
 
-# Draw a histogram of variable 'deep'
-hist(learning2014$deep, breaks=25, col="orange")
+deep <- learning2014$deep
 
-# Create function standardation
-std <- function(x) return( (x-mean(x)) / sd(x) )
-
-# Standardize variable 'deep' by using the function you created
-std_deep <- std(learning2014$deep)
-
-# Draw a plot of standardized variable 'deep'
+# Standardize variable 'deep'
+std_deep <- (deep - mean(deep)) /sd(deep)
+  
+# Compute the mean and stardard deviation of std_deep
+mean(std_deep)  
+sd(std_deep)
+  
+# Draw a histogram of standardized variable 'deep'
 hist(std_deep, breaks=25, col="orange")
 
 ```
@@ -721,7 +647,10 @@ hist(std_deep, breaks=25, col="orange")
 *** =sct
 ```{r}
 # submission correctness tests
-test_object("std_deep", incorrect_msg ="Did you save the results of std() function to `std_deep`?")
+test_object("std_deep", incorrect_msg ="Did you standardize the deep variable and create object `std_deep`?")
+test_output_contains("mean(std_deep)", incorrect_msg = "Did you compute the mean of `std_deep`?")
+test_output_contains("sd(std_deep)", incorrect_msg = "Did you compute the standard deviation of `std_deep`?")
+
 
 # test if the students code produces an error
 test_error()
