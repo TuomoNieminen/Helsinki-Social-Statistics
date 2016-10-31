@@ -301,7 +301,7 @@ success_msg("Excellent work!")
 
 ```
 
---- type:MultipleChoiceExercise lang:r xp:100 skills:1 
+--- type:MultipleChoiceExercise lang:r xp:100 skills:1  key:a4b47ea868
 
 ## Alternative hypothesis: which way to go?!
 
