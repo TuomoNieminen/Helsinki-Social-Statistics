@@ -493,9 +493,11 @@ t.test(women$stra, men$stra)
 # example tests:
 #test_output_contains("summary(men$stra)")
 test_output_contains("summary(women$stra)")
+
 test_student_typed("summary(men$stra)")
 #test_student_typed("summary(women$stra)")
-test_student_typed("t.test(women$stra, men$stra)")
+
+#test_student_typed("t.test(women$stra, men$stra)")
 
 # test if the students code produces an error
 test_error()
