@@ -41,7 +41,7 @@ Which of the following statements is true?
 # submission correctness tests
 
 msg1 <- "This is a common misinterpretation. A p-value is a statement about data in relation to a specified hypothetical explanation, and is not a statement about the explanation itself."
-msg2 <- "This is a common misinterpretation. Any effect, no matter how tiny, can produce a significant p-value if the sample size or measurement precision is high enough, and large effects may produce unsignificant p-values if the sample size is small or measurements are imprecise."
+msg2 <- "This is a common misinterpretation. Any effect, no matter how tiny, can produce a significant p-value if the sample size or measurement precision is high enough. Also large effects may produce unsignificant p-values if the sample size is small or measurements are imprecise."
 msg3 <- "A significant p-value has absolutely no value if the experiment it poorly designed and/or reported. Whenever a researcher chooses what to present based on statistical results, valid interpretation of those results is severely compromised if the reader is not informed of the choice and its basis."
 msg4 <- "Correct! A p-value provides one approach to summarizing the incompatibility between a particular set of data and a proposed model or hypothesis relating that data."
 
@@ -62,22 +62,23 @@ A $z$ test statistic is computed by standardizing a normal random variable (here
 
 $$z = \frac{\bar{x} - \mu_0}{s / \sqrt{n}}$$
 
-where $\mu_0$ is the hypothesized expected value of $\bar{x}$. A $z$ test has limited practical use but it demonstrates the idea of a test statistic well enough. The widely used *t-test* is very similar.
+where $\mu_0$ is the hypothesized expected value of $\bar{x}$, $s$ is the sample standard deviation and $n$ is the sample size. A $z$ test has limited practical use but it demonstrates the idea of a test statistic well enough. The widely used *t-test* is very similar.
 
 Notice how the denominator has the standard error of $\bar{x}$. 
 
 
 *** =instructions
-- Create object `stra`
+- Create objects `stra` and `n`
 - Set a null hypothesis that the expected value of strategic learning is 3 and create object `mu0`
 - Compute the sample mean and the standard error
-- Compute the test statistic $z$. If `mu0` is the actual expected value, the random variable $Z$ corrspoinding the value $z$ follows the standard normal distribution: $Z \dis N(0,1)$
+- Compute the test statistic $z$. If `mu0` is the actual expected value, the random variable $Z$ corrspoinding the value $z$ follows the standard normal distribution: $Z \sim N(0,1)$
 - Print out the value of the test statistic
-- Visualize the distribution. According to the picture and assuming that $Z \dis N(0,1)$, what is the probability that the test statistic $Z$ would take on a value even further away from it's expected value than the current value $z$? Save this probability to the object `p`.
+- Visualize the distribution. According to the picture and assuming that $Z \sim N(0,1)$, what is the probability that the test statistic $Z$ would take on a value even further away from it's expected value than the current value $z$? Save this probability to the object `p`.
 
 *** =hint
-- How much probability in total is at the "tails"" of the distribution?
+- Look at the visualization. How much probability in total is at the "tails"" of the distribution?
 - Remember that probability is measured between 0 and 1
+- |Z| is the absolute value of Z, meaning that $P(|Z| > z) = P(Z < -z) + P(Z > z)$
 
 *** =pre_exercise_code
 ```{r}
@@ -110,6 +111,9 @@ polygon(c(min(x1),x1, max(x1), min(x2), x2, max(x2)),
 
 *** =sample_code
 ```{r}
+# learning2014 is available
+
+# Strategic learning scores and number of observations
 stra <- learning2014$stra
 n <- length(stra)
 
@@ -138,6 +142,9 @@ p <-
 
 *** =solution
 ```{r}
+# learning2014 is available
+
+# Strategic learning scores and number of observations
 stra <- learning2014$stra
 n <- length(stra)
 
@@ -196,12 +203,15 @@ What exactly is considered "more extreme" depends on the alternative hypothesis.
 Then cases where the estimate of $\mu$ is higher than 3 are never critical to the null hypothesis no matter how far away from 3 they are.
 
 *** =instructions
-- Compute the mean of `stra`
+- Create objects `stra` and `n`
+- Compute the mean of strategic learning
 - Set the alternative hypothesis $H_0: \mu = 3$ and compute the z test statistic
+- Print out the value of the test statistic
 - Set the alternative hypothesis $H_1: \mu > 3$. Based on the plot, create object `p1` storing the p-value $P(Z > z)$. 
 - Set the alternative hypothesis $H_1: \mu \neq 3$. Based on the plot, create object `p2` storing the p-value $P(|Z| > z)$. 
 
 *** =hint
+- Interpret the `p1` and `p2` from the plot.
 - Rememeber that probability is a measure between 0 and 1
 - |Z| is the absolute value of Z, meaning that $P(|Z| > z) = P(Z < -z) + P(Z > z)$
 
@@ -217,7 +227,7 @@ zplot <- function(critical) {
   x <- (-40:40)/10
   y <- dnorm(x)
   main = paste("The N(0, 1) distribution \n z = ",critical)
-  plot(x, y, type = "l", xaxt = "n", ylab = "n", main = main)
+  plot(x, y, type = "l", xaxt = "n", ylab = "", main = main, xlab="z")
   axis(1, at = c(-3,  0,  3))
   axis(1, at = round(z, 2) , col.ticks = "red", las = 2)
   
@@ -244,6 +254,9 @@ zplot(z)
 
 *** =sample_code
 ```{r}
+# learning2014 is available
+
+# Strategic learning scores and number of observations
 stra <- learning2014$stra
 n <- length(stra)
 
@@ -254,6 +267,7 @@ mean(stra)
 
 # Test statistic
 z <- (mean(stra) - 3) / (sd(stra) / sqrt(n))
+
 
 # Set H1: mu > 3
 # -> p-value = P(Z > z)
@@ -268,6 +282,9 @@ p2 <-
 
 *** =solution
 ```{r}
+# learning2014 is available
+
+# Strategic learning scores and number of observations
 stra <- learning2014$stra
 n <- length(stra)
 
@@ -278,6 +295,7 @@ mean(stra)
 
 # Test statistic
 z <- (mean(stra) - 3) / (sd(stra) / sqrt(n))
+z
 
 # Set H1: mu > 3
 # -> p-value = P(Z > z)
@@ -472,7 +490,7 @@ t.test(women$stra, men$stra)
 # submission correctness tests
 
 # example tests:
-test_output_contains("summary(women$stra)", "Did you use `summary()` on the womens stategic learning scores?")
+# test_output_contains("summary(women$stra)", "Did you use `summary()` on the womens stategic learning scores?")
 test_output_contains("summary(men$stra)", "Did you use `summary()` on the mens stategic learning scores?")
 test_output_contains("t.test(women$stra, men$stra)", "Did you do the t-test of stategic learning for men and women?")
 
@@ -596,7 +614,7 @@ learning2014 <-  read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/learning20
 
 *** =sample_code
 ```{r}
-#learning2014 is available 
+# learning2014 is available 
 
 # Access ggplot2
 library("ggplot2")
