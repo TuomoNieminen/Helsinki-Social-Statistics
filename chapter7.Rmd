@@ -494,11 +494,11 @@ Sometimes it is usefull to define a value which leaves a desired probability to 
 The normal distribution is symmetrical, which means that the values $-z$ and $z$ leave the same amount of probability to the left and right tails. This also means that $P(|Z| > z) = P(Z < -z) + P(Z > z) = 2 \cdot P(Z < -z)$.
 
 *** =instructions
-- Compute the probability $P(|Z| > 1.96) = P(Z < - 1.96) + P(Z > 1.96)$.
-- Compute the quantile (critical) value $z$ corresponding to a probability $\alpha = 0.05$ divided to both "tails" of the distribution
+- Compute the probability $P(|Z| > 1.96) = P(Z < - 1.96) + P(Z > 1.96)$, rounded to 2 digits
+- Compute the quantile (critical) value $z$ corresponding to a probability $\alpha = 0.05$ divided to both "tails" of the distribution, rounded to 2 digits
 - Visualize the computation
-- Compute the probability $P(|Z| > 2.58) = P(Z < - 2.58) + P(Z > 2.58)$
-- Compute the quantile (critical) value z corresponding to probability $\alpha$ = 0.01 divided to both "tails" of the distribution
+- Compute the probability $P(|Z| > 2.58) = P(Z < - 2.58) + P(Z > 2.58)$, rounded to 2 digits
+- Compute the quantile (critical) value z corresponding to probability $\alpha$ = 0.01 divided to both "tails" of the distribution, rounded to 2 digits
 - Visualize the computation
 
 *** =hint
@@ -547,22 +547,17 @@ qnorm_plot <- function(alpha, twoway = F) {
   }
 }
 
-options(digits = 3)
-
 ```
 
 *** =sample_code
 ```{r}
 # qnorm_plot() is available. Z denotes a standard normal random variable.
 
-# Suggest that R rounds to 3 significant digits
-options(digits = 3)
-
 # P(|Z| > 1.96)
-2*pnorm(-1.96)
+round(2*pnorm(-1.96), digits = 2)
 
 # For which z: P(|Z| > z) = 0.05
-qnorm(0.05/2)
+round(qnorm(0.05/2), digits = 2)
 
 # Visualize
 qnorm_plot(0.05/2, twoway = TRUE)
@@ -570,7 +565,7 @@ qnorm_plot(0.05/2, twoway = TRUE)
 # P(|Z| > 2.58)
 
 
-# For which z: P(-z < Z < z) = 0.01
+# For which z: P(|Z| > z) = 0.01
 
 
 # Visualize
@@ -583,23 +578,20 @@ qnorm_plot(0.05/2, twoway = TRUE)
 ```{r}
 # qnorm_plot() is available. Z denotes a standard normal random variable.
 
-# Suggest that R rounds to 3 significant digits
-options(digits = 3)
-
 # P(|Z| > 1.96)
-2*pnorm(-1.96)
+round(2*pnorm(-1.96), digits = 2)
 
 # For which z: P(|Z| > z) = 0.05
-qnorm(0.05/2)
+round(qnorm(0.05/2), digits = 2)
 
 # Visualize
 qnorm_plot(0.05/2, twoway = TRUE)
 
 # P(|Z| > 2.58)
-2*pnorm(-2.58)
+round(2*pnorm(-2.58), digits = 2)
 
 # For which z: P(|Z| > z) = 0.01
-qnorm(0.01/2)
+round(qnorm(0.01/2), digits = 2)
 
 # Visualize
 qnorm_plot(0.01/2, twoway = TRUE)
@@ -609,8 +601,8 @@ qnorm_plot(0.01/2, twoway = TRUE)
 *** =sct
 ```{r}
 
-test_output_contains("2*pnorm(-2.58)", incorrect_msg = "Please use `pnorm()` to compute the asked probability.")
-test_output_contains("qnorm(0.01/2)", incorrect_msg = "Please use `qnorm()` to produce the asked critical value.")
+test_output_contains("round(2*pnorm(-2.58), digits = 2)", incorrect_msg = "Please use `pnorm()` to compute the asked probability.")
+test_output_contains("round(qnorm(0.01/2), digits = 2)", incorrect_msg = "Please use `qnorm()` to produce the asked critical value.")
 
 test_error()
 success_msg("Great work! That was a tough one.")
