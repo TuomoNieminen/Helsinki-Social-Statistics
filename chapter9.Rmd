@@ -495,7 +495,7 @@ t.test(women$stra, men$stra)
 test_output_contains("summary(women$stra)")
 test_student_typed("summary(men$stra)")
 #test_student_typed("summary(women$stra)")
-test_student_typed("t.test(women$stra, men$stra)", "Did you do the t-test of stategic learning for men and women?")
+test_student_typed("t.test(women$stra, men$stra)")
 
 # test if the students code produces an error
 test_error()
