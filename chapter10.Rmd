@@ -2,7 +2,7 @@
 title       : Regression
 description : UNDER CONSTRUCTION
 
---- type:NormalExercise lang:r xp:150 skills:1 
+--- type:NormalExercise lang:r xp:150 skills:1  key:e2d130649d
 
 ## Exploring the relationship of two variables
 
@@ -89,7 +89,7 @@ success_msg("Nice work!")
 
 ```
 
---- type:NormalExercise lang:r xp:50 skills:1
+--- type:NormalExercise lang:r xp:50 skills:1 key:930badee16
 
 ## What is a linear model?
 
@@ -198,7 +198,7 @@ success_msg("Awsome work! You are making linear progress!")
 ```
 
 
---- type:NormalExercise lang:r xp:100 skills:1
+--- type:NormalExercise lang:r xp:100 skills:1 key:261ae48c3e
 
 ## Fitting a linear model
 
@@ -289,7 +289,7 @@ success_msg("Great job, now let's interpret the results!")
 ```
 
 
---- type:MultipleChoiceExercise lang:r xp:100 skills:1
+--- type:MultipleChoiceExercise lang:r xp:100 skills:1 key:802e37215d
 
 ## Intepreting a fitted model
 
@@ -346,7 +346,7 @@ success_msg("Awsome work!")
 
 ```
 
---- type:MultipleChoiceExercise lang:r xp:100 skills:1
+--- type:MultipleChoiceExercise lang:r xp:100 skills:1 key:dc8d2d08dd
 
 ## Checking the validity of model assumptions
 
@@ -400,7 +400,7 @@ success_msg("Great work! You are really learning the linear models.")
 
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1
+--- type:NormalExercise lang:r xp:100 skills:1 key:d44ed46dc6
 
 ## Making predictions with the model
 
