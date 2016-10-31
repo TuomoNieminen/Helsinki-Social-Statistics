@@ -6,7 +6,7 @@ description : We all might be statistically different, but maybe we are part of 
 
 ## Statistical hypothesis testing
 
-In [statistical hypothesis testing](https://en.wikipedia.org/wiki/Statistical_hypothesis_testing) we want to test if an assumption is supported by the data. To do a statistical test, you need to follow these steps:
+In [statistical hypothesis testing](https://en.wikipedia.org/wiki/Statistical_hypothesis_testing) we want to test if a model or an assumption is supported by the data. To do a statistical test, you need to follow these steps:
 
 - Set the [null hypothesis](https://en.wikipedia.org/wiki/Null_hypothesis) and the [alternative hypothesis](https://en.wikipedia.org/wiki/Alternative_hypothesis).
 - Decide the level of [significance](https://en.wikipedia.org/wiki/Statistical_significance) (usually marked as $\alpha$)
@@ -18,15 +18,16 @@ In [statistical hypothesis testing](https://en.wikipedia.org/wiki/Statistical_hy
 Which of the following statements is true?
 
 *** =instructions
-- A statistical hypothesis test is the most important step in empirical research
-- The results of hypothesis tests such as p-values are uninformative and summaries such as interval estimates should usually be reported instead
+- A p-value measures the probability that the studied hypothesis is true
 - A statistically significant result means that the result also has practical significance
 - Even if an experiment is poorly designed, a statistically significant result means the results can be published
+- P-values can indicate how incompatible the data are with a specified statistical model
 
 
 *** =hint
-- hint 1
-- hint 2
+- I you're uncertain, just try a plausible option and submit the answer: you will get feedback on your answer
+
+
 
 
 *** =pre_exercise_code
@@ -39,13 +40,12 @@ Which of the following statements is true?
 ```{r}
 # submission correctness tests
 
-# example tests:
-# test_output_contains("output")
-# test_object("object_name")
-# test_function("function_name", args=c("arg1"))
+msg1 <- "This is a common misinterpretation. A p-value is a statement about data in relation to a specified hypothetical explanation, and is not a statement about the explanation itself."
+msg2 <- "This is a common misinterpretation. Any effect, no matter how tiny, can produce a significant p-value if the sample size or measurement precision is high enough, and large effects may produce unsignificant p-values if the sample size is small or measurements are imprecise."
+msg3 <- "A significant p-value has absolutely no value if the experiment it poorly designed and/or reported. Whenever a researcher chooses what to present based on statistical results, valid interpretation of those results is severely compromised if the reader is not informed of the choice and its basis."
+msg4 <- "Correct! A p-value provides one approach to summarizing the incompatibility between a particular set of data and a proposed model or hypothesis relating that data."
 
-# test if the students code produces an error
-test_error()
+test_mc(correct = 4, feedback_msgs = c(msg1, msg2, msg3, msg4))
 
 # Final message the student will see upon completing the exercise
 success_msg("Good work!")
@@ -56,13 +56,13 @@ success_msg("Good work!")
 
 ## Test statistics
 
-After setting the hypotheses, we can use the data we have and calculate a test statistic which is a statistical summary of the data. What test statistic to use, depends on the research question and the available data. 
+After setting the hypotheses, we can use the data we have and calculate a test statistic, which is a statistical summary of the data. What kind of test statistic to use, depends on the situation. 
 
-A $z$ test is a test statistic based simply on the standardization of a normal random variable (here $\bar{x}$). 
+A $z$ test statistic is computed by standardizing a normal random variable (here $\bar{x}$). 
 
 $$z = \frac{\bar{x} - \mu_0}{s / \sqrt{n}}$$
 
-where $\mu_0$ is the hypothesized expected value of $\bar{x}$. A $z$ test has limited practical use but it demonstrates the idea of a test statistic well enough. The widely used t-test is very similar.
+where $\mu_0$ is the hypothesized expected value of $\bar{x}$. A $z$ test has limited practical use but it demonstrates the idea of a test statistic well enough. The widely used *t-test* is very similar.
 
 Notice how the denominator has the standard error of $\bar{x}$. 
 
@@ -75,7 +75,7 @@ Notice how the denominator has the standard error of $\bar{x}$.
 - Visualize the distribution. According to the picture, what is the probability that the test statistic $Z$ would take on a value even further away from it's expected value than the current value $z$? Save this probability to the object `p`.
 
 *** =hint
-- How much probability is at the "tails"" of the distribution?
+- How much probability in total is at the "tails"" of the distribution?
 - Remember that probability is measured between 0 and 1
 
 *** =pre_exercise_code
@@ -83,6 +83,7 @@ Notice how the denominator has the standard error of $\bar{x}$.
 learning2014 <- read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/learning2014.txt", sep = "\t", header = TRUE)
 
 zplot <- function(critical) {
+  critical <- round(critical, 2)
   z <- c(-critical, critical)
   par(mar = c(7,4,5,4))
   x <- (-40:40)/10
@@ -123,8 +124,11 @@ error <-
 # The test statistic
 z <- (x_bar - mu0) / error
 
+# Print out the value of the test statistic
+
+
 # Visualize the N(0, 1) distribution and the value of z 
-zplot(round(z, 2))
+zplot(z)
 
 # P(|Z| > z)
 p <- 
@@ -148,8 +152,11 @@ error <- sd(stra) / sqrt(n)
 # The test statistic
 z <- (x_bar - mu0) / error
 
+# Print out the value of the test statistic
+z
+
 # Visualize the N(0, 1) distribution and the value of z 
-zplot(round(z, 2))
+zplot(z)
 
 # P(|Z| > z)
 p <- 0.14
@@ -164,7 +171,8 @@ p <- 0.14
 
 test_object("x_bar")
 test_object("error")
-test_object("p")
+test_output_contains("z", incorrect_mgs = "Please print out the value of the test statistic")
+test_object("p", incorrect_msg ="Please create object p with the correct probability value")
 
 test_error()
 
@@ -177,61 +185,135 @@ success_msg("Great work!")
 
 ## Peculiar p-values
 
-jokin tehtävä p-arvoista + määritelmä
+As you just saw, it is possible to calculate probabilities related to the test statistic. The **p-value** is defined as the probability of obtaining a result equal to or "more extreme" than what was actually observed, when the null hypothesis is true.
 
-As you just saw, it is possible to calculate probabilities related to the test statistic. A **p-value** is the probability that, using a given statistical model, a statistical summary of the data would be the same as or more extreme than the actual observed results.
+What exactly is considered "more extreme" depends on the alternative hypothesis. For example, if the two hypothesis concerning the parameter $\mu$ are
 
+- $H_0 : \mu = 3$
+- $H_1 : \mu < 3$
+
+Then cases where the estimate of $\mu$ is higher than 3 are never critical to the null hypothesis no matter how far away from 3 they are.
 
 *** =instructions
-- instruction 1
-- instruction 2
+- Compute the mean of `stra`
+- Set the alternative hypothesis $H_0: \mu = 3$ and compute the z test statistic
+- Set the alternative hypothesis $H_1: \mu > 3$. Based on the plot, create object `p1` storing the p-value $P(Z > z)$. 
+- Set the alternative hypothesis $H_1: \mu \neq 3$. Based on the plot, create object `p2` storing the p-value $P(|Z| > z)$. 
 
 *** =hint
-- hint 1
-- hint 2
+- Rememeber that probability is a measure between 0 and 1
+- |Z| is the absolute value of Z, meaning that $P(|Z| > z) = P(Z < -z) + P(Z > z)$
 
 
 *** =pre_exercise_code
 ```{r}
+learning2014 <- read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/learning2014.txt", sep = "\t", header = TRUE)
+
+zplot <- function(critical) {
+  critical <- round(critical, 2)
+  z <- c(-critical, critical)
+  par(mar = c(7,4,5,4))
+  x <- (-40:40)/10
+  y <- dnorm(x)
+  main = paste("The N(0, 1) distribution \n z = ",critical)
+  plot(x, y, type = "l", xaxt = "n", ylab = "n", main = main)
+  axis(1, at = c(-3,  0,  3))
+  axis(1, at = round(z, 2) , col.ticks = "red", las = 2)
+  
+  # highlight critical regions, add matching percentages
+  x1 <- x[x<=min(z)]; x2 <- x[x>=max(z)]
+  a <- round(pnorm(min(z)),2)
+  
+polygon(c(min(x1),x1, max(x1), min(x2), x2, max(x2)),
+            c(0, dnorm(x1),0, 0, dnorm(x2), 0), col = "grey60")
+      text(x = c(-3.5, 3.5), y = c(0.08,0.08), labels = paste0(a*100,"%"), cex = 1.5)
+      text(x = 0, y = 0.08, labels=paste0(100*(1-a*2),"%"), cex = 1.5)
+}
+
+stra <- learning2014$stra
+n <- length(stra)
+
+# Set H0: mu = 3
+z <- (mean(stra) - 3) / (sd(stra) / sqrt(n))
+# Visualize the N(0, 1) distribution and the value of z 
+zplot(z)
+
 
 ```
 
 *** =sample_code
 ```{r}
+stra <- learning2014$stra
+n <- length(stra)
+
+# Set H0: mu = 3
+
+# Sample mean
+mean(stra)
+
+# Test statistic
+z <- (mean(stra) - 3) / (sd(stra) / sqrt(n))
+
+# Set H1: mu > 3
+# -> p-value = P(Z > z)
+p1 <- 
+  
+# Set H1: mu != 3
+# -> p-value = P(|Z| > z)
+p2 <- 
+  
 
 ```
 
 *** =solution
 ```{r}
+stra <- learning2014$stra
+n <- length(stra)
+
+# Set H0: mu = 3
+
+# Sample mean
+mean(stra)
+
+# Test statistic
+z <- (mean(stra) - 3) / (sd(stra) / sqrt(n))
+
+# Set H1: mu > 3
+# -> p-value = P(Z > z)
+p1 <- 0.07
+  
+# Set H1: mu != 3
+# -> p-value = P(|Z| > z)
+p2 <- 0.14
+
 
 ```
 
 *** =sct
 ```{r}
 # submission correctness tests
-
-# example tests:
-# test_output_contains("output")
-# test_object("object_name")
-# test_function("function_name", args=c("arg1"))
+test_object("p1")
+test_object("p2")
 
 # test if the students code produces an error
 test_error()
-
-# Final message the student will see upon completing the exercise
-success_msg("Good work!")
+success_msg("Excellent work!")
 
 ```
 
---- type:MultipleChoiceExercise lang:r xp:100 skills:1 key:8dfc56d628
+--- type:MultipleChoiceExercise lang:r xp:100 skills:1 
 
-## (Null hypothesis:) which way to go?!
+## Alternative hypothesis: which way to go?!
 
-The null hypothesis is usually the commonly or previously known. The alternative hypothesis on the other hand is about change or the new assumption. Some possible alternative hypothesis could be: Are students getting fewer exam points than previous years? Are people buing more groceries from store nowadays than in the '90s? Have the voting rates changed? Or the alternative hypothesis could be (with bit more mathematically written):
+The null hypothesis usually corresponds to the commonly or previously assumed state. The goal of hypothesis testing is usually to show that data does not support the null hypothesis.  
 
-- previous mean $<$ new mean (one-sided)
-- previous mean $>$ new mean (one-sided)
-- previous mean $\ne$ new mean (two-sided)
+The alternative hypothesis on the other hand is about change or the new assumption. Some possible alternative hypothesis could be: Are students getting fewer exam points than previous years? Are people buing more groceries from store nowadays than in the '90s? Have the voting rates changed? 
+
+The alternative hypothesis can be one-sided or two-sided:
+
+- **one-sided**: previous mean $<$ new mean
+- **one-sided**: previous mean $>$ new mean
+- **two-sided**: previous mean $\ne$ new mean
 
 In cases above the null hypothesis would be *H0*: previous mean $=$ new mean.
 
@@ -295,6 +377,7 @@ a1<-.05
 regions(a=a1, direction = 'l')
 regions(a=a1, direction = 'r')
 regions(a=a1, direction = 'm')
+
 ```
 
 *** =sct
@@ -317,7 +400,7 @@ success_msg("Nicely done!")
 
 T-test is very common statistical test. It can be used for example to test if the means of two groups differ from each other statistically. You can also test if the mean of some variable is statistically different from predetermined value. 
 
-The t-test in done in R with the `t.test()` function. The same function does one or two sided tests or a paired t-test. You can check the help page (use `?t.test`) of the function to see the arguments and options. By default, the alternative hypothesis is "two.sided".
+The t-test is done in R with the `t.test()` function. The same function does one or two sided tests or a paired t-test. You can check the help page (use `?t.test`) of the function to see the arguments and options. By default, the alternative hypothesis is "two.sided".
 
 *** =instructions
 - Create subsets of the `learning2014` dataset: separate the dataset by gender. Save new subsets to `women` and `men` objects. Variable `gender` is a factor with two levels: 'N' and 'M'.
