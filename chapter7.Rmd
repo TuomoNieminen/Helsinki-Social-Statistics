@@ -322,10 +322,10 @@ As with all the *norm() functions, qnorm() has default arguments mean = 0 and sd
 The quantile values of the standard normal variable are also called critical values. They will be very useful later on for interval estimation and hypothesis testing. The questions below relate to the standard normal distribution.
 
 *** =instructions
-- Compute the cumulative probability at point z = -1.64
-- Compute the quantile point corresponding to the probability 0.05. Visualize the quantile point.
-- Compute the cumulative probability at point z = -1.96
-- Compute the quantile point corresponding to the probabiliity 0.025. Visualize the quantile point.
+- Compute the cumulative probability at point z = -1.64, rounded to 2 digits
+- Compute the quantile point corresponding to the probability 0.05, rounded to 2 digits. Visualize the quantile point.
+- Compute the cumulative probability at point z = -1.96, rounded to 3 digits.
+- Compute the quantile point corresponding to the probabiliity 0.025, rounded to 2 digits. Visualize the quantile point.
 
 
 
@@ -377,14 +377,11 @@ qnorm_plot <- function(alpha, twoway = F) {
 ```{r}
 # qnorm_plot() is available. Z denotes a standard normal random variable.
 
-# Suggest that R rounds to 3 significant digits
-options(digits = 3)
-
 # P(Z < - 1.64)
-pnorm(-1.64)
+round(pnorm(-1.64), digits = 2)
 
 # For which z: P(Z < z) = 0.05
-qnorm(0.05)
+round(qnorm(0.05), digits = 2)
 
 # Visualize
 qnorm_plot(0.05)
@@ -405,23 +402,20 @@ qnorm_plot(0.05)
 ```{r}
 # qnorm_plot() is available. Z denotes a standard normal random variable.
 
-# Suggest that R rounds to 3 significant digits
-options(digits = 3)
-
 # P(Z < - 1.64)
-pnorm(-1.64)
+round(pnorm(-1.64), digits = 2)
 
 # For which z: P(Z < z) = 0.05
-qnorm(0.05)
+round(qnorm(0.05), digits = 2)
 
 # Visualize
 qnorm_plot(0.05)
 
 # P(Z < -1.96)
-pnorm(-1.96)
+round(pnorm(-1.96), digits = 3)
 
 # For which z: P(Z < z) = 0.025
-qnorm(0.025)
+round(qnorm(0.025), digits = 2)
 
 # Visualize
 qnorm_plot(0.025)
@@ -431,10 +425,8 @@ qnorm_plot(0.025)
 *** =sct
 ```{r}
 
-test_output_contains("pnorm(-1.96)", "Please compute the asked probability using `pnorm()`")
-test_output_contains("qnorm(0.025)", "Please compute the asked critical value using `qnorm()`")
-test_student_typed("qnorm_plot(0.025)")
-# test_function("function_name", args=c("arg1"))
+test_output_contains("round(pnorm(-1.96), digits = 3)", incorrect_msg = "Please compute the asked probability using `pnorm()` and remember rounding!")
+test_output_contains("round(qnorm(0.025), digits = 2)", incorrect_msg = "Please compute the asked critical value using `qnorm()`and remember rounding!")
 
 test_error()
 success_msg("Good work!")
