@@ -346,7 +346,7 @@ success_msg("Awsome work!")
 
 ```
 
---- type:MultipleCoiceExercise lang:r xp:100 skills:1 
+--- type:MultipleChoiceExercise lang:r xp:100 skills:1 
 
 ## Checking the validity of model assumptions
 
