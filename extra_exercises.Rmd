@@ -1,3 +1,81 @@
+--- type:NormalExercise lang:r xp:100 skills:1 
+
+## Create your own functions
+
+There are countless of ready-made functions for you in R. At this point of the course, we have used many functions, for example like `plot()`, `mean()` and `rnorm()`. But it is possible to create your own functions too. Now we will look at the definition of a simple function and learn how to use it (*call* it).
+
+A little recap of functions:
+Functions usually have one or more arguments, for which the user can define values when calling the function. Multiple arguments are separated with a comma. The arguments have names, which can (and often should) be used when specifying their values.
+
+
+*** =instructions
+- Look at the definition of the `apple_count()` function and execute the function call that are defined.
+- Create object `my_apples` by directly assigning the output of `apple_count()` to it. Call `apple_count()` with `new_apples = 10` and `apples_stock = 2`. Print `my_apples` to see the output of the function.
+- Some of the apples are gone bad! Worms! Create a function `good_apples_count` that takes two arguments: `apples` and `bad_apples` and returns the number of apples you have left after the count is reduced due to a worm attack. Set the number of bad apples to 4 by default.
+- Use your function on `my_apples` to find out how many good apples you have left.
+
+*** =hint
+- The answer for `my_apples` is of the form: `my_apples <- apple_count(arg1 = ?, arg2 = ?)`
+- See how a new function is created by looking the code of `apple_count`. 
+- The amount of good apples is `apples` - `bad_apples`.
+- You can set the default value in `function(arg1 = *insert_default_value_here*, ...) ...`
+
+*** =pre_exercise_code
+```{r}
+apple_count <- function(new_apples, apples_stock = 5) return(new_apples + apples_stock)
+```
+
+*** =sample_code
+```{r}
+# Create a simple function with two arguments, of which 'apples_stock' has a default value (5)
+apple_count <- function(new_apples, apples_stock = 5) return(new_apples + apples_stock)
+
+# Call the apple_count() function. Can you guess the result?
+apple_count(new_apples = 2)
+
+# Call apple_count() to create the object 'my_apples'. Print the results.
+my_apples <- 
+
+
+# New function here!
+good_apples_count <-
+
+# How many good apples do you have?
+
+  
+```
+
+*** =solution
+```{r}
+# Create a simple function with two arguments, of which 'apples_stock' has a default value (5)
+apple_count <- function(new_apples, apples_stock = 5) return(new_apples + apples_stock)
+
+# Call the apple_count() function. Can you guess the result?
+apple_count(new_apples = 2)
+
+# Call apple_count() to create the object 'my_apples'. Print the results.
+my_apples <- apple_count(10, apples_stock = 2)
+my_apples
+
+# New function here!
+good_apples_count <- function(apples, bad_apples = 4) return(apples - bad_apples)
+
+# How many good apples do you have?
+good_apples_count(my_apples)
+  
+```
+
+*** =sct
+```{r}
+test_object("my_apples", incorrect_msg ="Did you save results of `apple_count()` to `my_apple`?")
+test_output_contains(" good_apples_count(my_apples)", incorrect_msg ="Did you use `good_apples_count()` to `my_apples`?")
+
+test_error()
+success_msg("Not eating worms tonight! Nicely done!")
+```
+
+
+
 --- type:NormalExercise lang:r xp:100 skills:1 key:b830d50ea8
 
 ## Looping (2)
