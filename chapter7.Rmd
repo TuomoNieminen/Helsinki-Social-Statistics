@@ -310,6 +310,57 @@ success_msg("Good work!")
 
 ```
 
+--- type:MultipleChoiceExercise lang:r xp:100 skills:1 key:6c27606d58
+
+## Uniform distribution
+
+The uniform distribution can be a [discrete uniform distribution](https://en.wikipedia.org/wiki/Discrete_uniform_distribution) or a   
+[continious uniform distribution](https://en.wikipedia.org/wiki/Uniform_distribution_(continuous)). The uniform distribution is a distribution that has constant probability for each outcome. 
+
+An example of event that follows a (discrete) uniform distribution is dice throwing (assuming the dice is not weighted). There are six possible values and the probability to every outcome is 1/6.
+
+At the right you can see four plots. Can you guess which ones are the density plots of continious and discrete uniform distributions?
+
+*** =instructions
+- Plot A is discrete uniform distribution and plot B is the density of continious uniform distribution.
+- There is no discrete uniform distribution, but plot C is the continious uniform distribution. 
+- Plot D is discrete uniform distribution and plot A is continious uniform distribution.
+- Plot D is discrete uniform distribution and plot C is continious uniform distribution.
+
+*** =hint
+- In uniform distribution, all the values of x get the same probability.
+- Plot B is actually not a density, but a plot of cumulative distribution function.
+- There are "gaps"" in the density if the distribution is discrete.
+
+
+*** =pre_exercise_code
+```{r}
+# pre exercise code here
+x <- seq(-5, 20, length = 50)
+y<-'density'
+color<-"orange"
+par(lwd=2, mfrow=c(2,2), cex.lab=1.5, cex.main=1.2)
+plot(x, dunif(x, 0, 15), type='s', ylim=c(0,.15), col=color, ylab=y, main='Plot A')
+plot(x, punif(x, 0, 15), type='l', col=color, ylab=y, main='Plot B')
+plot(x, dnorm(x, 5, 2), type='l',col=color, ylab=y, main='Plot C')
+plot(x, dunif(x, 0, 15), type='h', ylim=c(0,.15), col=color, ylab=y, main='Plot D')
+```
+
+*** =sct
+```{r}
+msg1 = "Plot A is not discrete, sorry. Plot B is continious, but it's a cumulative distribution function of uniform distribution."
+msg2 = "The discrete one does exist, sorry. Also, plot C is normal distribution."
+msg3 = "You are totally right! Proceed to the next exercise."
+msg4 = "Sorry, plot C is normal distribution. But you got plot D right!"
+
+test_mc(correct = 3, feedback_msgs = c(msg1,msg2,msg3,msg4))
+
+# Final message the student will see upon completing the exercise
+success_msg("Nicely done!")
+
+```
+
+
 --- type:NormalExercise lang:r xp:100 skills:1 key:50d3a1a7a6
 ## Quantiles
 
@@ -649,55 +700,5 @@ test_error()
 
 # Final message the student will see upon completing the exercise
 success_msg("This was not an easy one. Well done!")
-
-```
---- type:MultipleChoiceExercise lang:r xp:100 skills:1 key:6c27606d58
-
-## Uniform distribution
-
-The uniform distribution can be [discrete uniform distribution](https://en.wikipedia.org/wiki/Discrete_uniform_distribution) or
-
-[continious uniform distribution](https://en.wikipedia.org/wiki/Uniform_distribution_(continuous)). The uniform distribution is a distribution, that has constant probability. 
-
-An example of event that follows (discrete) uniform distribution is dice throwing (assuming the dice is not weighted). In dice there are six possible values and the probability to every value is 1/6.
-
-At the right you can see four plots. Can you guess which ones are the density plots of continious and discrete uniform distributions?
-
-*** =instructions
-- Plot A is discrete uniform distribution and plot B is the density of continious uniform distribution.
-- There is no discrete uniform distribution, but plot C is the continious uniform distribution. 
-- Plot D is discrete uniform distribution and plot A is continious uniform distribution.
-- Plot D is discrete uniform distribution and plot C is continious uniform distribution.
-
-*** =hint
-- In uniform distribution, all the values of x get the same probability.
-- Plot B is actually not a density, but a plot of cumulative distribution function.
-- There are "gaps"" in the density if the distribution is discrete.
-
-
-*** =pre_exercise_code
-```{r}
-# pre exercise code here
-x <- seq(-5, 20, length = 50)
-y<-'density'
-color<-"orange"
-par(lwd=2, mfrow=c(2,2), cex.lab=1.5, cex.main=1.2)
-plot(x, dunif(x, 0, 15), type='s', ylim=c(0,.15), col=color, ylab=y, main='Plot A')
-plot(x, punif(x, 0, 15), type='l', col=color, ylab=y, main='Plot B')
-plot(x, dnorm(x, 5, 2), type='l',col=color, ylab=y, main='Plot C')
-plot(x, dunif(x, 0, 15), type='h', ylim=c(0,.15), col=color, ylab=y, main='Plot D')
-```
-
-*** =sct
-```{r}
-msg1 = "Plot A is not discrete, sorry. Plot B is continious, but it's a cumulative distribution function of uniform distribution."
-msg2 = "The discrete one does exist, sorry. Also, plot C is normal distribution."
-msg3 = "You are totally right! Proceed to the next exercise."
-msg4 = "Sorry, plot C is normal distribution. But you got plot D right!"
-
-test_mc(correct = 3, feedback_msgs = c(msg1,msg2,msg3,msg4))
-
-# Final message the student will see upon completing the exercise
-success_msg("Nicely done!")
 
 ```
