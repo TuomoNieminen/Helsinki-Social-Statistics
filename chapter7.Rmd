@@ -448,11 +448,7 @@ In the previous exercise you learned how to use the `qnorm()` function to comput
 
 Sometimes it is usefull to define a value which leaves a desired probability to **both tails** of the distribution (left and rightmost areas). 
 
-The normal distribution is symmetrical, which means that the values $-z$ and $z$ leave the same amount of probability to the left and right tails:
-
-$$P(Z < -z) = P(Z > z)$$
-
-This also means that $P(|Z| > z) = P(Z < -z) + P(Z > z) = 2 \cdot P(Z < -z)$.
+The normal distribution is symmetrical, which means that the values $-z$ and $z$ leave the same amount of probability to the left and right tails. This also means that $P(|Z| > z) = P(Z < -z) + P(Z > z) = 2 \cdot P(Z < -z)$.
 
 *** =instructions
 - Compute the probability $P(|Z| > 1.96) = P(Z < - 1.96) + P(Z > 1.96)$.
