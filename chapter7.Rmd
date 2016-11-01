@@ -621,7 +621,7 @@ A standardized distribution has 0 as expected value and 1 as standard deviation.
 
 $$Z = \frac{X - mean}{sd}$$
 
-where $X$ is the object we want to standardize. If $X$ is a normally distributed random variable, the standardization produces a standard normal random variable: $Z \dis N(0, 1)$
+where $X$ is the object we want to standardize. If $X$ is a normally distributed random variable, the standardization produces a standard normal random variable: $Z \sim N(0, 1)$
 
 
 *** =instructions
