@@ -639,8 +639,8 @@ where $X$ is the object we want to standardize and $mean$ and $sd$ are the mean 
 *** =pre_exercise_code
 ```{r}
 learning2014 <- read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/learning2014.txt", sep = "\t", header = TRUE)
-
-hist(learning2014$deep, breaks=25, col="orange")
+deep <- learning2014$deep
+hist(deep, breaks=25, col="orange")
 ```
 
 *** =sample_code
