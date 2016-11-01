@@ -1,6 +1,6 @@
 ---
 title       : Regression
-description : UNDER CONSTRUCTION
+description : Now, pick roles for the variables and start modeling. I predict you are good!
 
 --- type:NormalExercise lang:r xp:150 skills:1  key:e2d130649d
 
@@ -291,11 +291,11 @@ success_msg("Great job, now let's interpret the results!")
 
 --- type:MultipleChoiceExercise lang:r xp:100 skills:1 key:802e37215d
 
-## Intepreting a fitted model
+## Interpreting a fitted model
 
-Now that we have estimated the parameters of our (simple) model, it is time to interpret the results! First please use any resource to study how to interpret regression coefficients and the p-values related to them. 
+Now that we have estimated the parameters of our (simple) model, it is time to interpret the results! The focus is mainly on the regression coefficients and their p-values. Find the instructions of interpreting these (from a suitable web resource, for example).
 
-Type `summary(my_fit)` on the R console. Which of the following choices are correct?
+Type `summary(my_fit)` on the R console. Which of the following choices is correct?
 
 *** =instructions
 - When a students attitude increases by one unit, the expected increase of exam points is 11.6 units. The effect is statistically significant.
@@ -353,11 +353,11 @@ success_msg("Awsome work!")
 Let us now return to the <a href = "https://en.wikipedia.org/wiki/Linear_regression#Assumptions" target="_blank">assumptions</a> of our model. We started by looking at the plausibility of a linear relationship, which was the first assumption. We have two assumptions left unchecked:
 
 1. **The variability in prediction errors is constant over possible values of the explanatory variable(s)**
-2. **The erros are normally distributed**
+2. **The errors are normally distributed**
 
 The former can be studied graphically by plotting the predictions (fitted values) of our model against the prediction errors (residuals). If there is a visible pattern, that would mean a likely violation to the constant variability assumption.  
 
-The latter assumption can also be studied graphically. A <a href="https://en.wikipedia.org/wiki/Q%E2%80%93Q_plot"<a q-q plot</a> is a powerful way to check if observations follow a theoretical distribution. If this is the case, then the points in the plot should approximately follow a straight increasing line. Deviations from the normality assumption should show a clear non-linear pattern.
+Also the latter assumption can be studied graphically. A <a href="https://en.wikipedia.org/wiki/Q%E2%80%93Q_plot">q-q plot</a> is a powerful way to check if observations follow a theoretical distribution. If this is the case, then the points in the plot should approximately follow a straight increasing line. Deviations from the normality assumption should show a clear non-linear pattern.
 
 When a linear model object such as `my_fit` is given to the `plot()` function as the first argument, `plot()` draws multiple diagnostic plots related to the model. Type `plot(my_fit)` on the R console and choose the correct answer.
 
@@ -402,7 +402,7 @@ success_msg("Great work! You are really learning the linear models.")
 
 --- type:NormalExercise lang:r xp:100 skills:1 key:d44ed46dc6
 
-## Making predictions with the model
+## Making predictions based on the model
 
 Okey, so we have a linear model which seems to fit our standards. What can we do with it? 
 

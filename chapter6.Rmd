@@ -1,6 +1,6 @@
 ---
-  title       : Conditions and subsets
-description : UNDER CONSTRUCTION
+  title       : Subsets and conditions
+description : Let's begin to seek the best conditions for coping with uncertainty
 
 --- type:NormalExercise lang:r xp:100 skills:1 key:da73cb2b07
 ## Welcome to part 2!
@@ -91,7 +91,7 @@ success_msg("Good work!")
 
 --- type:MultipleChoiceExercise lang:r xp:50 skills:1 key:d64c2a9918
 
-## Exlore your data
+## Explore your data
 
 Let's get a bit more familiar with the `learning2014` dataset. Beside are plots about the dataset. Browse through them to see the distributions of the variables. After looking at the plots, select the correct claim from the list below. 
   
@@ -123,20 +123,20 @@ two_plots<-function(x, color, plot_title, x_text){
   boxplot(x, horizontal = T, ylim=c(0,5),  xlab=x_text, col=color)
 }
 
-two_plots(learning2014$surf, 'salmon', "Distribution of students scores on surface learning", 'Surface learning score')
-two_plots(learning2014$deep, 'paleturquoise3', "Distribution of students scores on deep learning", 'Deep learning score')
-two_plots(learning2014$stra, 'mediumpurple2', "Distribution of students scores on strategic learning", 'Strategic learning score')
-two_plots(learning2014$attitude, 'seagreen3', "Distribution of students scores on attitude towards statistics", 'Attitude score')
+two_plots(learning2014$surf, 'salmon', "Distribution of students' scores on surface learning", 'Surface learning score')
+two_plots(learning2014$deep, 'paleturquoise3', "Distribution of students' scores on deep learning", 'Deep learning score')
+two_plots(learning2014$stra, 'mediumpurple2', "Distribution of students' scores on strategic learning", 'Strategic learning score')
+two_plots(learning2014$attitude, 'seagreen3', "Distribution of students' scores on attitude towards statistics", 'Attitude score')
 par(def.par)
 
 # exam points
 points <- table(cut(learning2014$points, (0:11)*3, include.lowest=T))
-barplot(points, main = "Distribution of students exam points", ylab='Frequency', xlab = "Points", col = "slategrey", border="slategrey")
+barplot(points, main = "Distribution of students' exam points", ylab='Frequency', xlab = "Points", col = "slategrey", border="slategrey")
 
 # Age, Gender
 layout(matrix(c(1,2), nrow=1, ncol=2), c(2,1))
-boxplot(learning2014$age~learning2014$gender, main = "Box plot of students age by gender", xlab = "age", horizontal = T, col=c("orange", "steelblue"))
-barplot(table(learning2014$gender), main = "Distribution of students gender", col=c("orange", "steelblue"), ylab="Frequency")
+boxplot(learning2014$age~learning2014$gender, main = "Box plot of students' age by gender", xlab = "age", horizontal = T, col=c("orange", "steelblue"))
+barplot(table(learning2014$gender), main = "Distribution of students' gender", col=c("orange", "steelblue"), ylab="Frequency")
 
 ```
 

@@ -326,7 +326,7 @@ success_msg("Excellent work!")
 
 The null hypothesis usually corresponds to the commonly or previously assumed state. The goal of hypothesis testing is usually to show that data does not support the null hypothesis.  
 
-The alternative hypothesis on the other hand is about change or the new assumption. Some possible alternative hypothesis could be: Are students getting fewer exam points than previous years? Are people buing more groceries from store nowadays than in the '90s? Have the voting rates changed? 
+The alternative hypothesis on the other hand is about change or the new assumption. Some possible alternative hypotheses could be: Are students getting fewer exam points than previous years? Are people buying more groceries from store nowadays than in the '90s? Have the voting rates changed? 
 
 The alternative hypothesis can be one-sided or two-sided:
 
@@ -339,15 +339,14 @@ In cases above the null hypothesis would be *H0*: previous mean $=$ new mean.
 Alternative hypothesis also determine the rejection region of the test. Beside are three plots that visualize the rejection regions (with the significance level $\alpha$ = 0.05). Look at the plots and choose the correct claim below.
 
 *** =instructions
-- Plot 3 has on-sided alternative hypothesis. 
-- The alternative hypothesis "*H1*: previous mean $>$ new mean" belongs to plot 1.
-- The alternative hypothesis "*H1*: previous mean $\ne$ new mean" belongs to plot 3.
-- Plot 1 has two-sided alternative hypothesis.
-- The alternative hypothesis "*H1*: previous mean $<$ new mean" belongs to plot 2.
+- Plot 3 is related to a on-sided alternative hypothesis. 
+- The alternative hypothesis "*H1*: previous mean $>$ new mean" is related to plot 1.
+- The alternative hypothesis "*H1*: previous mean $\ne$ new mean" is related to plot 3.
+- Plot 1 is related to a two-sided alternative hypothesis.
+- The alternative hypothesis "*H1*: previous mean $<$ new mean" is related to plot 2.
 
 *** =hint
-- hint 1
-- hint 2
+- If you're really uncertain, take a guess and read the feedback!
 
 
 *** =pre_exercise_code

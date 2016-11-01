@@ -1,14 +1,14 @@
 ---
 title       : Probability distributions
-description : UNDER CONSTRUCTION
+description : Most things in this world are more or less random, and not evenly distributed
 
 --- type:NormalExercise lang:r xp:100 skills:1 key:ef878aeeea
 
-## Random variables and their probability distributions
+## Random variables and probability distributions
 
-In this chapter you will learn about [random variables](https://en.wikipedia.org/wiki/Random_variable) and [probability distributions](https://en.wikipedia.org/wiki/Probability_distribution). 
+In this chapter you will learn about [random variables](https://en.wikipedia.org/wiki/Random_variable) and their [probability distributions](https://en.wikipedia.org/wiki/Probability_distribution). 
 
-Random variables can have a set of different values. Every value has a probability of occurance. The probabilities of the values form a probability distribution for the random variable. Random variables and probability distributions can be discrete or continous.
+Random variables can have a set of different values. Every value has a probability of occurance. The probabilities of the values form a probability distribution for the random variable. Random variables and probability distributions can be discrete or continuous.
 
 There are things or events that are known to follow certain probability distributions (like the heights of people usually are normally distributed), but there are also many phenomenas that have their unique distributions. In R you can create a sample from distribution with the function `sample()`. See the example code to get the general idea. 
 
@@ -315,17 +315,17 @@ success_msg("Good work!")
 ## Uniform distribution
 
 The uniform distribution can be a [discrete uniform distribution](https://en.wikipedia.org/wiki/Discrete_uniform_distribution) or a   
-[continious uniform distribution](https://en.wikipedia.org/wiki/Uniform_distribution_(continuous)). The uniform distribution is a distribution that has constant probability for each outcome. 
+[continuous uniform distribution](https://en.wikipedia.org/wiki/Uniform_distribution_(continuous)). The uniform distribution is a distribution that has constant probability for each outcome. 
 
 An example of event that follows a (discrete) uniform distribution is dice throwing (assuming the dice is not weighted). There are six possible values and the probability to every outcome is 1/6.
 
-At the right you can see four plots. Can you guess which ones are the density plots of continious and discrete uniform distributions?
+At the right you can see four plots. Can you guess which ones are the density plots of continuous and discrete uniform distributions?
 
 *** =instructions
-- Plot A is discrete uniform distribution and plot B is the density of continious uniform distribution.
-- There is no discrete uniform distribution, but plot C is the continious uniform distribution. 
-- Plot D is discrete uniform distribution and plot A is continious uniform distribution.
-- Plot D is discrete uniform distribution and plot C is continious uniform distribution.
+- Plot A is discrete uniform distribution and plot B is the density of continuous uniform distribution.
+- There is no discrete uniform distribution, but plot C is the continuous uniform distribution. 
+- Plot D is discrete uniform distribution and plot A is continuous uniform distribution.
+- Plot D is discrete uniform distribution and plot C is continuous uniform distribution.
 
 *** =hint
 - In uniform distribution, all the values of x get the same probability.
@@ -348,7 +348,7 @@ plot(x, dunif(x, 0, 15), type='h', ylim=c(0,.15), col=color, ylab=y, main='Plot 
 
 *** =sct
 ```{r}
-msg1 = "Plot A is not discrete, sorry. Plot B is continious, but it's a cumulative distribution function of uniform distribution."
+msg1 = "Plot A is not discrete, sorry. Plot B is continuous, but it's a cumulative distribution function of uniform distribution."
 msg2 = "The discrete one does exist, sorry. Also, plot C is normal distribution."
 msg3 = "You are totally right! Proceed to the next exercise."
 msg4 = "Sorry, plot C is normal distribution. But you got plot D right!"

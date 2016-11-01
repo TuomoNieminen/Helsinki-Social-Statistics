@@ -1,6 +1,6 @@
 ---
   title       : Estimation
-description : UNDER CONSTRUCTION
+description : Get your brackets ready for diving in the world of statistical inference!
 
 --- type:NormalExercise lang:r xp:100 skills:1 key:44d1f23e51
 ## Exploring estimation with R
@@ -669,14 +669,14 @@ Let's now get back to the $z$ in the formula for the confidence interval:
 
 $$\text{mean} \pm z_{\alpha / 2} \cdot \frac{s}{\sqrt{n}}$$
 
-$z$ is a quantile point from the $N(0,1)$ distribution. The confidence interval is actually based on a normal approximation of the sampling distribution. In this exercise we'll explore if that approximation seems to work.
+$z$ is a quantile point from the $N(0,1)$ distribution. The confidence interval you computed earlier is actually based on a normal approximation of the sampling distribution. In this exercise we'll explore if that approximation seems to work.
 
 *** =instructions
 - Take a random sample of 50 students exam points and create object `points_sample`
 - Create objects `mu_hat`, `s` and `error`
 - Print out `mu_hat` and it's standard error, rounded to 2 digits
-- Inside `curve(dnorm())`, set `mean` = the estimate for the population mean based on the random sample of 50, `sd` = the standard error of the estimate. 
-- Execute the line with `hist()`  and `curve()` which visualize (1) the previously simulated sampling distribution of the means, and (2) a normal approximation to that distribution based on your single sample. (Techically it's actually two lines of code, because `;` is code for line change)
+- Inside `curve(dnorm())`, set `mean` = the estimate for the exam points population mean based on the random sample of 50, and `sd` = the standard error of the estimate. 
+- Execute the line with `hist()`  and `curve()` which visualize (1) the previously simulated sampling distribution of the means, and (2) a normal approximation to that distribution based on your single sample drawn here. (Techically it's actually two lines of code, because `;` is code for line change)
 - Does the normal approximation seem useful?
 
 *** =hint
