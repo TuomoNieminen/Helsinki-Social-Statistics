@@ -40,7 +40,7 @@ attitude <- learning2014$attitude
 points <- learning2014$points
 
 # A scatter plot of attitude and points
-qplot(attitude, points)
+qplot(attitude, points) + geom_smooth(method = "lm")
 
 ```
 
