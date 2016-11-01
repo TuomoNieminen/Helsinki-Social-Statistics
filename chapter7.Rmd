@@ -444,7 +444,7 @@ qnorm_plot(0.05)
 
 
 # Visualize
-
+qnorm_plot(0.025)
 
 
 ```
@@ -569,7 +569,7 @@ qnorm_plot(0.05/2, twoway = TRUE)
 
 
 # Visualize
-
+qnorm_plot(0.01/2, twoway = TRUE)
 
 
 ```
