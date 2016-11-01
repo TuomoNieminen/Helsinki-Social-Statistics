@@ -1,6 +1,6 @@
 ---
 title       : Probability distributions
-description : Most things in this world are more or less random, and not evenly distributed
+description : Most things in this world are more or less random, and not evenly distributed.
 
 --- type:NormalExercise lang:r xp:100 skills:1 key:ef878aeeea
 
