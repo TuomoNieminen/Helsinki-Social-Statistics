@@ -551,10 +551,11 @@ But we won't directly need to apply that definition here.
 For the questions below assume that we randomly pick a single student from the learning2014 data. 
 
 *** =instructions
-- What is the probability that the student has scored over 4 on attitude, on the condition that the student is female?
-- What is the probability that the student is male, on the condition that the student has scored over 4 on attitude?
-- What is the probability that the student is female, on the condition that the student has scored over 4 on attitude?
-- Save the probabilities to the objects p2, p3, p4 (instead of `NA`, not available)
+- Print a table of attitude and gender by calling `addmargins()`
+- What is the probability that the student has scored over 4 on attitude, on the condition that the student is male? Save the probability to `p1`
+- What is the probability that the student has scored over 4 on attitude, on the condition that the student is female? Save the probability to `p2`.
+- What is the probability that the student is male, on the condition that the student has scored over 4 on attitude? Save the probability to `p3`.
+- What is the probability that the student is female, on the condition that the student has scored over 4 on attitude? Save the probability to `p4`.
 - Combine all the probabilities to a vector with `c()` and print it out, rounded to 2 digits
 
 *** =hint
