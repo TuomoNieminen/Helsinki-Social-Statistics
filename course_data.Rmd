@@ -1,0 +1,65 @@
+```{r}
+
+# Data for part 1
+# ---------------
+
+# load data from web
+students2014 <- read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS-data.txt", sep="\t", header=TRUE)
+# keep a couple background variables
+students2014 <- students2014[,c("sukup","toita","ika","pituus","kenka","kone")]
+# recode kone variables missing values as factor levels
+students2014$kone <- addNA(students2014$kone)
+# keep only rows without missing values
+students2014 <- students2014[complete.cases(students2014),]
+# integers to numeric
+students2014$ika <- as.numeric(students2014$ika)
+students2014$pituus <- as.numeric(students2014$pituus)
+students2014$kenka <- as.numeric(students2014$kenka)
+
+# Metafile
+# ----------
+
+# open metadata in a browser window
+open_meta <- function() browseURL("http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS-meta.txt")
+
+```
+
+```{r}
+
+
+
+# Data for part 2
+# ---------------
+
+# create data for part 2
+
+# read data
+df <- read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS2-data.txt", sep="\t", header=TRUE)
+
+# variables to keep
+learning2014 <- df[,c("Age", "Gender", "Attitude","Points", "Deep_adj", "Surf_adj", "Stra_adj")]
+# scale Attitude to 1 - 5
+learning2014$Attitude <- learning2014$Attitude / 10
+# new colnames
+colnames(learning2014) <- c("age", "gender","attitude", "points", "deep", "surf", "stra")
+# suffle the data (first six students were really old!)
+learning2014 <- learning2014[sample(nrow(learning2014)),]
+rownames(learning2014) <- NULL
+# round
+learning2014 <- round(learning2014, 1)
+# recode gender to factor
+learning2014$gender <- factor(learning2014$gender, levels = c(1,2), labels = c("M","N"))
+# peek at first 6 rows
+head(learning2014)
+
+write.table(file = "learning2014.txt", learning2014, sep = "\t")
+
+learning2014 <-  read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/learning2014.txt", sep = "\t", header = TRUE)
+
+open_meta2 <- function() browseURL("http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS2-meta.txt")
+
+# Kimmon analyyseja
+browseURL("http://www.helsinki.fi/~kvehkala/JYTmooc/Abstract-Vehkalahti.pdf")
+browseURL("http://www.helsinki.fi/~kvehkala/JYTmooc/Kimmo_Vehkalahti_ISI60.pdf")
+
+```
