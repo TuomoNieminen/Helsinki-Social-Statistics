@@ -615,13 +615,13 @@ success_msg("Great work! That was a tough one.")
 
 ## Standardization
 
-A standardized distribution has 0 as expected value and 1 as standard deviation. A handy thing to know is that in normal distributions about 68% of the observations are within one standard deviation away from the expected value and 95% within two. This can be convinient sometimes.
+A standardized distribution has 0 as expected value and 1 as standard deviation. A handy thing to know is that in normal distributions about 68% of the observations are within one standard deviation away from the expected value and 95% within two. This can be convenient sometimes.
 
 [Standardization](https://en.wikipedia.org/wiki/Standard_score) also makes it easier to compare different distributions. Any variable can be standardized. The formula for standardization is
 
-$$z = \frac{x - mean}{sd}$$
+$$Z = \frac{X - mean}{sd}$$
 
-where x is the object we want to standardize.
+where $X$ is the object we want to standardize. If $X$ is a normally distributed random variable, the standardization produces a standard normal random variable: $Z \dis N(0, 1)$
 
 
 *** =instructions
@@ -650,11 +650,11 @@ hist(learning2014$deep, breaks=25, col="orange")
 deep <- learning2014$deep
 
 # Standardize variable 'deep'
-std_deep <- (deep - mean(deep)) /sd(deep)
+std_deep <- 
   
 # Compute the mean and stardard deviation of std_deep
-mean(std_deep)  
-sd(std_deep)
+
+
   
 # Draw a histogram of standardized variable 'deep'
 hist(std_deep, breaks=25, col="orange")
