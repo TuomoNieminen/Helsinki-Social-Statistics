@@ -352,12 +352,12 @@ success_msg("Awsome work!")
 
 Let us now return to the <a href = "https://en.wikipedia.org/wiki/Linear_regression#Assumptions" target="_blank">assumptions</a> of our model. We started by looking at the plausibility of a linear relationship, which was the first assumption. We have two assumptions left unchecked:
 
-1. **The variability in prediction errors is constant over possible values of the explanatory variable(s)**
-2. **The errors are normally distributed**
+1. **The variability in (prediction) errors is constant over possible values of the explanatory variable(s)**
+2. **The (prediction) errors are normally distributed**
 
 The former can be studied graphically by plotting the predictions (fitted values) of our model against the prediction errors (residuals). If there is a visible pattern, that would mean a likely violation to the constant variability assumption.  
 
-Also the latter assumption can be studied graphically. A <a href="https://en.wikipedia.org/wiki/Q%E2%80%93Q_plot">q-q plot</a> is a powerful way to check if observations follow a theoretical distribution. If this is the case, then the points in the plot should approximately follow a straight increasing line. Deviations from the normality assumption should show a clear non-linear pattern.
+Also the latter assumption can be studied graphically. A <a href="https://en.wikipedia.org/wiki/Q%E2%80%93Q_plot">q-q plot</a> is a powerful way to check if observations follow a theoretical distribution. If this is the case, then the quantile points in the q-q plot should approximately follow a straight increasing line. Deviations from the normality assumption should show a clear non-linear pattern.
 
 When a linear model object such as `my_fit` is given to the `plot()` function as the first argument, `plot()` draws multiple diagnostic plots related to the model. Type `plot(my_fit)` on the R console and choose the correct answer.
 
