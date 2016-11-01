@@ -1,5 +1,5 @@
 ---
-  title       : Subsets and conditions
+title       : Subsets and conditions
 description : Let's begin to seek the best conditions for coping with uncertainty
 
 --- type:NormalExercise lang:r xp:100 skills:1 key:da73cb2b07
