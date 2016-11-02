@@ -6,7 +6,7 @@ description : Most things in this world are more or less random, and not evenly 
 
 ## Random variables and probability distributions
 
-Welcome to chapter 7: Probability distributions. In this chapter you will learn about [random variables](https://en.wikipedia.org/wiki/Random_variable) and their [probability distributions](https://en.wikipedia.org/wiki/Probability_distribution). 
+Welcome to chapter 7: **Probability distributions**. In this chapter you will learn about [random variables](https://en.wikipedia.org/wiki/Random_variable) and their [probability distributions](https://en.wikipedia.org/wiki/Probability_distribution). 
 
 Random variables can have a set of different values. Every value has a probability of occurance. The probabilities of the values form a probability distribution for the random variable. Random variables and probability distributions can be discrete or continuous.
 
