@@ -229,8 +229,8 @@ It is good to know the formulas behind every calculations when you are dealing w
 
 In R the functions associated with normal distiribution are:
 
-- `dnorm()`: density function of normal distribution, $P(X = x)$
-- `pnorm()`: cumulative probabilities of normal distribution, $P(X \leq x)$
+- `dnorm()`: density function of normal distribution
+- `pnorm()`: cumulative probabilities of normal distribution
 - `qnorm()`: quantile function of normal distribution
 - `rnorm()`: (random) sample from normal distribution
 
