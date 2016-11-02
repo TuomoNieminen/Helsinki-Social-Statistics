@@ -5,7 +5,7 @@ description : Get your brackets ready for diving in the world of statistical inf
 --- type:NormalExercise lang:r xp:100 skills:1 key:44d1f23e51
 ## Exploring estimation with R
 
-In this chapter we will focus on point and interval estimation. Interval estimation is based on the important concept of the *sampling distribution*, which is a somewhat theoretical concept and therefore takes a while to get used to.
+Welcome to chapter 8: Estimation. In this chapter we will focus on point and interval estimation. Interval estimation is based on the important concept of the *sampling distribution*, which is a somewhat theoretical concept and therefore takes a while to get used to.
 
 The sampling distribution is a kind of mind game: If we could collect our random sample again and again and again and calculate the mean for each of the samples, the resulting distribution of these sample means would be the sampling distribution (of the sample mean).
 
