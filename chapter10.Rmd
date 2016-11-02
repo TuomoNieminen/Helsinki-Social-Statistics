@@ -6,7 +6,7 @@ description : Now, pick roles for the variables and start modeling. I predict yo
 
 ## Packages in R
 
-Welcome to chapter 10: Regression. We'll start with an important R feature - packages. 
+Welcome to chapter 10: **Regression**. We'll start with an important R feature - packages. 
 
 There are a lot of functions in R. But actually, the functions in R come from a standard set of *packages*. A package is simply a collection of R functions. Besides the basic packages, you can install and use (or develop!) other packages too. 
 
