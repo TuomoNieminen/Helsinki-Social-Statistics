@@ -434,7 +434,7 @@ One way to approach this question is to try to come up with an interval around t
 
 $$\text{mean} \pm z_{\alpha / 2} \cdot \frac{s}{\sqrt{n}}$$
   
-where $s$ is the sample standard deviation, $n$ is the sample size and $z_{\alpha / 2})$ is a critical (quantile) value from the $N(0,1)$ distribution. The part 
+where $s$ is the sample standard deviation, $n$ is the sample size and $z_{\alpha / 2}$ is a critical (quantile) value from the $N(0,1)$ distribution. The part 
 
 $$\frac{s}{\sqrt{n}}$$
 
