@@ -274,7 +274,7 @@ Inside the curly braces is the *body* of the loop, which can contain regular com
 *** =sample_code
 ```{r}
 # Loop through and print the characters a, b, c, d
-for(letter in c("a","b","c")) {
+for(letter in c("a","b","c","d")) {
   print(letter)
 }
 
@@ -294,7 +294,7 @@ for(i in 1:5) {
 *** =solution
 ```{r}
 # loop through characters a,b,c,d
-for(letter in c("a","b","c")) {
+for(letter in c("a","b","c","d")) {
   print(letter)
 }
 
