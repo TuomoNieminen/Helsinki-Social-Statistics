@@ -320,13 +320,15 @@ The uniform distribution can be a [discrete uniform distribution](https://en.wik
 
 An example of event that follows a (discrete) uniform distribution is dice throwing (assuming the dice is not weighted). There are six possible values and the probability to every outcome is 1/6.
 
-At the right you can see four plots. Can you guess which ones are the density plots of continuous and discrete uniform distributions?
+At the right you can see four plots. Can you guess which ones are the density plots of continuous and discrete uniform distributions?  
+
 
 *** =instructions
-- Plot A is discrete uniform distribution and plot B is the density of continuous uniform distribution.
-- There is no discrete uniform distribution, but plot C is the continuous uniform distribution. 
-- Plot D is discrete uniform distribution and plot A is continuous uniform distribution.
-- Plot D is discrete uniform distribution and plot C is continuous uniform distribution.
+- Plot A is discrete uniform distribution and plot B is the density of continuous uniform distribution.  
+- There is no discrete uniform distribution, but plot C is the continuous uniform distribution.  
+- Plot D is discrete uniform distribution and plot A is continuous uniform distribution.  
+- Plot D is discrete uniform distribution and plot C is continuous uniform distribution.  
+
 
 *** =hint
 - In uniform distribution, all the values of x get the same probability.
