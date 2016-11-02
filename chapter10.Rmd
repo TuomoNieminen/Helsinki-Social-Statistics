@@ -15,9 +15,9 @@ You can install packages through CRAN. What is CRAN? The answer can be found fro
 
 List of available CRAN packages can be seen [here](https://cran.r-project.org/web/packages/available_packages_by_name.html). Because the packages are made by different R users, the codes may have some style differences. In those cases, one needs to rely in the documentation of the code.
 
-If you have R in your own computer, you can install packages with code `install.packages(*name_of_the_package*)`. But because we are working in DataCamp, the packages are already installed for you. So we don't need to worry about installation for now.
+If you have R in your own computer, you can install packages with code `install.packages("name_of_the_package")`. But because we are working in DataCamp, the packages are already installed for you. So we don't need to worry about installation for now.
 
-To use the installed packages, you need to access them. This is done by calling `library(*name_of_the_package*)`.
+To use the installed packages, you need to access them. This is done by calling `library(name_of_the_package)`.
 
 *** =instructions
 - One of the most famous and used packages outside the basic R is `ggplot2`. The `ggplot2` packages is a plotting system for R, and it draws pretty pictures for you with small effort. 
@@ -41,7 +41,7 @@ learning2014 <-  read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/learning20
 # learning2014 is available 
 
 # Access ggplot2
-library("ggplot2")
+library(ggplot2)
 
 # Draw a plot of gender and points
 qplot(gender, points, data=learning2014, geom="boxplot", fill=gender)
@@ -59,7 +59,7 @@ grades <- cut(learning2014$points, breaks = c(0, 11, 15, 19, 23, 27, 33), includ
 #learning2014 is available 
 
 # Access ggplot2
-library("ggplot2")
+library(ggplot2)
 
 # Draw a plot of gender and points
 qplot(gender, points, data=learning2014, geom="boxplot", fill=gender)
