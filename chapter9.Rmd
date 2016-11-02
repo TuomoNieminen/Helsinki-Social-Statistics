@@ -15,13 +15,14 @@ Welcome to chapter 9: **Hypothesis testing**. In [statistical hypothesis testing
 - Interpret the results of the test
 
 
-Which of the following statements is true?
+Which of the following statements is true?  
+
 
 *** =instructions
-- A p-value measures the probability that the studied hypothesis is true
-- A statistically significant result means that the result also has practical significance
-- Even if an experiment is poorly designed, a statistically significant result means the results can be published
-- P-values can indicate how incompatible the data are with a specified statistical model
+- A p-value measures the probability that the studied hypothesis is true  
+- A statistically significant result means that the result also has practical significance  
+- Even if an experiment is poorly designed, a statistically significant result means the results can be published  
+- P-values can indicate how incompatible the data are with a specified statistical model  
 
 
 *** =hint
