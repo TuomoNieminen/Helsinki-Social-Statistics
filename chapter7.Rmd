@@ -184,10 +184,10 @@ In this exercise, we will focus on the `rnorm()` function. It draws a random sam
 # Create a sample from normal distribution. In this case, the first argument (500) means the sample size.
 normal_sample <- rnorm(500, mean = 5, sd = 2.5)
 
-# Histogram of my_sample
+# Histogram of normal_sample
 hist(normal_sample, breaks = 50)
 
-# Calculate the mean and standard deviation of my_sample
+# Calculate the mean and standard deviation of normal_sample
 
 
 
@@ -198,10 +198,10 @@ hist(normal_sample, breaks = 50)
 # Create a sample from normal distribution. In this case, the first argument (500) means the sample size.
 normal_sample <- rnorm(500, mean = 35, sd = 0.1)
 
-# Histogram of my_sample
+# Histogram of normal_sample
 hist(normal_sample, breaks = 50)
 
-# Calculate the mean and standard deviation of my_sample
+# Calculate the mean and standard deviation of normal_sample
 mean(normal_sample)
 sd(normal_sample)
 
