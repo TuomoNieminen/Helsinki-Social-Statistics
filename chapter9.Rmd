@@ -6,7 +6,7 @@ description : We all might be statistically different, but maybe we are part of 
 
 ## Statistical hypothesis testing
 
-Welcome to chapter 9: Hypothesis testing. In [statistical hypothesis testing](https://en.wikipedia.org/wiki/Statistical_hypothesis_testing) we want to test if a model or an assumption is supported by the data. To do a statistical test, you need to follow these steps:
+Welcome to chapter 9: **Hypothesis testing**. In [statistical hypothesis testing](https://en.wikipedia.org/wiki/Statistical_hypothesis_testing) we want to test if a model or an assumption is supported by the data. To do a statistical test, you need to follow these steps:
 
 - Set the [null hypothesis](https://en.wikipedia.org/wiki/Null_hypothesis) and the [alternative hypothesis](https://en.wikipedia.org/wiki/Alternative_hypothesis).
 - Decide the level of [significance](https://en.wikipedia.org/wiki/Statistical_significance) (usually marked as $\alpha$)
