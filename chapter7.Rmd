@@ -99,12 +99,13 @@ You can use the `help()` or `?` for any of these functions to see more about the
 - Let's say that we know a probability of a customer buing a t-shirt from the store is 0.3. There are 8 people in the store looking around. The customers are not interacting with each other.
 - What is the probability of two of them buing a t-shirt?
 - What is the probability of seven of them buing a t-shirt?
-- What is the probability that *at least* two of the customers buy a t-shirt? See the help page of `pbinom()` and the usage of the lower.tail argument.
+- What is the probability that *at least* two of the customers buy a t-shirt? Note that you will need to use the `lower.tail` argument. The argument takes logical values: if it's `TRUE` (default), the probabilities are $P(X \le x)$, otherwise, $P(X > x)$.
 
 
 *** =hint
 - To get the probability of seven people buying a t-shirt, you just need to change the 2 to 7 in the `dbinom()` function on the line two.
 - To get the probability of at least two people buying a t-shirt, you need to use the `pbinom()` function. Remember to use the `lower.tail` argument. 
+- Note that $P(X => 2)$ <=> $P(X > 1)$
 
 
 *** =pre_exercise_code
