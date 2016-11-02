@@ -182,7 +182,7 @@ Genrally, a [statistical model](https://en.wikipedia.org/wiki/Statistical_model)
 
 Regression analysis is based on a linear model - a simple statistical model in which a linear relationship between the mean of the variable of interest (`y`) and some explanatory variable(s) (`x`) is assumed:
 
-`y = a + b*x + errors`, 
+$$y = a + b \cdot x + errors$$ 
 
 where `a` and `b` are unknown parameters to be estimated (a is called the *intercept* and b the *regression coefficient*).
 
@@ -285,7 +285,7 @@ success_msg("Awsome work! You are making linear progress!")
 
 Regression analysis is based on a linear model of the form
 
-$$y = a + b*x + errors$$ 
+$$y = a + b \cdot x + errors$$ 
 
 where $x$ denotes the explanatory variable(s), $y$ the dependent variable and $a$ and $b$ are parameters of the model, which need to be estimated using the data. In R, the parameters of a linear model can be estimated using the `lm()` function. This is also called fitting a model.
 
