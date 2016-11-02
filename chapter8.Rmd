@@ -62,15 +62,15 @@ success_msg("Good work!")
 
 Vectors in R store multiple values of the same data type. The values in vectors have indices: the first value in a vector has a index `1`, the second value `2` and so on. 
 
-You can set or get a single value from a vector by using indices and brackets `[ ]`. Using an index number inside the bracets gives access to a single value from the vector. Using a vector of indices gives access to multiple values (another vector). 
+You can set or get a single value from a vector by using indices and brackets `[ ]`. Using an index number inside the brackets gives access to a single value from the vector. Using a vector of indices gives access to multiple values (another vector). 
 
 It is also possible to rearrange the values in a vector by using indices. Look at the example code to see how indices work. 
 
 *** =instructions
-- Create the name vector.
+- Create the `names` vector.
 - See how the indices work by executing the example lines.
-- Use brackets and indices on `names` to create a new vector `girls` with values "Liisa" and "Anna" (in that order). DO NOT use `girls <- c("Liisa", "Anna")`.
-- Use brackets and indices on `names` to create a new vector `boys` with values "Pekka" and "Heikki" (in that order). DO NOT use `boys <- c("Pekka", "Heikki")`
+- Use brackets and indices on `names` to create a new vector `girls` with values "Liisa" and "Anna" (in that order).
+- Use brackets and indices on `names` to create a new vector `boys` with values "Pekka" and "Heikki" (in that order).
 
 *** =hint
 - Note that space between the vector object and bracets produces an error.
@@ -151,7 +151,10 @@ c(1,2,3,4,5)
 
 
 *** =instructions
-- Study and execute the example codes
+- Create an integer vector with values from 1 to 5.
+- Create an integer vector with even values from 2 to 10.
+- Create object `attitude` and give the values in it names matching the indices.
+- Access index values 1-5 of `attitude`
 - Use `:` to create an integer vector with the values 1, 2, ..., 10
 - Access every second value of the `attitude` vector, starting from the 2. value until the 20th value. These values correspond to the even numbered indeces of the vector: 2, 4, .. , 20
 
@@ -237,7 +240,7 @@ success_msg("Great work!")
 
 In programming, often there is the need to repeat an action multiple times. In statistical programming you might for example have a theory you wish to explore by simulation.
 
-The **for-loop** is perhaps the most common loop. The structure of a for-loop is:
+The **for-loop** is perhaps the most common loop in programming. The structure of a for-loop is:
 
 ```
 for (counter in vector) {
@@ -252,7 +255,8 @@ Inside the curly braces is the *body* of the loop, which can contain regular com
 
 
 *** =instructions
-- Execute the example codes. Remember that here in DataCamp, executing a command over multiple lines is done by selecting all the lines with a mouse first and then hitting `Ctrl+Enter` normally. Alternatively you could also click submit to execute the whole script.R
+- Loop though the character values using the examle code. Remember that here in DataCamp, executing a command over multiple lines is done by selecting all the lines with a mouse first and then hitting `Ctrl+Enter` normally. Alternatively you could also click submit to execute the whole script.R
+- Loop through integer values using the example code. 
 - In an honor of the legendary electronic duo *Daft Punk* and their 2001 album *Discovery*, construct a for-loop that prints out "One more time!" 27 times.
 - Hints: (1) Remember that `1:n` creates an integer vector of length n. (2) Inside the loop body you have to use the `print()` function to print.
 
@@ -327,7 +331,9 @@ success_msg("Excellent work! Repetition is the key to success :)")
 
 ## Point estimation
 
-Let us now get back to statistical analysis and estimation. When given a sample of data from a population, the goal of statistical analysis is to use that sample to draw conclusions about the population. In a simple case we are interested in a single variable (such as students points in an exam) and want to estimate the *expected value* of that variable. The expected value is the average value in the target population - the population mean. 
+Let us now get back to statistical analysis and estimation. When given a sample of data from a population, the goal of statistical analysis is to use that sample to draw conclusions about the population.  
+
+In a simple case we are interested in a single variable (such as students points in an exam) and want to estimate the *expected value* of that variable. The expected value is the average value in the target population - the population mean. 
 
 We can't directly calculate the population average because we only have a sample, so we have to **estimate** it. Obtaining a point estimate of a population parameter is rather easy: just use the corresponding sample statistic.
 
@@ -336,14 +342,16 @@ population parameter                    | estimate
 expected value $\mu$                    | sample mean $\bar{x}$
 population standard deviation $\sigma$  | sample standard deviation $s$
 
-<br>
+<hr>
 
 In statistics, estimates are often denoted with a hat. So for example $\hat{\mu} = \bar{x}$.  
 
 *** =instructions
+- Create object `points`
 - Estimate the expected value of `points`. If you can't remember the name of the R function you need, use your favourite search engine or take a hint.
 - Estimate the population standard deviation of `points`.
-- Combine the estimates to the estimates vector (replace `NA`). Notice how `c()` can be used to give names to the values.
+- Combine the estimates to the `estimates` vector (replace `NA`). Notice how `c()` can be used to give names to the values.
+- Print out the `estimates` vector, with the values rounded to 2 digits.
 
 *** =hint
 - The table above shows the relationships between the sample statistics and the population parameters.
@@ -372,7 +380,7 @@ sigma_hat <- sd(points)
 
 # Combine the estimates to a named vector and print out the rounded values
 estimates <- c("mu_hat" = NA, "sigma_hat" = NA)
-round(estimates, 2)
+round(estimates, digits = 2)
 
 
 
@@ -393,7 +401,7 @@ sigma_hat <- sd(points)
 
 # Print out the estimated values
 estimates <- c("mu_hat" = mu_hat, "sigma_hat" = sigma_hat)
-round(estimates, 2)
+round(estimates, digits = 2)
 
 
 ```
@@ -422,26 +430,26 @@ success_msg("Very nice! You get full points for point estimation.")
 
 Clearly there is uncertainty involved in our point estimate. But how much uncertainty? This is where we need statistical theory. 
 
-One way to approach this question is to try to come up with an interval around the point estimate to describe our uncertainty. It turns out that the following formula produces an interval which contains the true population mean a specified high percentage of the time ($100 \cdot (1-\alpha)$%) 
+One way to approach this question is to try to come up with an interval around the point estimate to describe our uncertainty. It turns out that the following formula produces an interval which contains the true population mean $100 \cdot (1-\alpha)$% of the time:
 
 $$\text{mean} \pm z_{\alpha / 2} \cdot \frac{s}{\sqrt{n}}$$
   
-where $s$ is the sample standard deviation, $n$ is the sample size and $z(\frac{\alpha}{2})$ is a critical value from the $N(0,1)$ distribution. The part 
+where $s$ is the sample standard deviation, $n$ is the sample size and $z_{\alpha / 2})$ is a critical (quantile) value from the $N(0,1)$ distribution. The part 
 
 $$\frac{s}{\sqrt{n}}$$
 
 is called the *standard error* of the estimate. 
 
-I know what you're thinking. It's confusing: where did the normal distribution come from, what's with all that $z_{\alpha/2}$ stuff? The answers lie in the **sampling distribution** which we will soon get to.
+I know what you're thinking. It's confusing: where did the normal distribution come from and what's with all that $z_{\alpha/2}$ stuff? The answers lie in the **sampling distribution** which we will soon get to.
 
 
 *** =instructions
 - Create objects `points`, `n`, `mu_hat` and `s`
-- Adjust the object `error`: Compute the standard error of `mu_hat` (the sample mean). `sqrt()` computes the square root.
-- Compute the critical value z using a 99% confidence level (alpha = 0.01)
+- Adjust the code: Compute the standard error of `mu_hat` (the sample mean) and save t to object `error`. `sqrt()` computes the square root.
+- Compute the critical value z using a 99% confidence level (alpha = 0.01) and create object `z`
 - Compute the lower and upper limits of the confidence interval (CI) by applying the formula given above
 - Combine the point estimate and the lower and upper CI values to the object `interval_estimate`.
-- Print the values in `interval_estimate`, rounded to 1 digit (`round()`)
+- Print the values in `interval_estimate`, rounded to 1 digit (hint: `round()`)
 
 *** =hint
 - The formula for the standard error is s/sqrt(n)
@@ -518,7 +526,7 @@ upper_ci <- mu_hat + z*error
 interval_estimate <- c("estimate" = mu_hat, "lower99%" = lower_ci, "upper99%" = upper_ci)
 
 # Round and print out the point and interval estimates
-round(interval_estimate)
+round(interval_estimate, digits = 1)
 
 
 ```
@@ -529,7 +537,7 @@ round(interval_estimate)
 test_object("error")
 test_object("lower_ci")
 test_object("upper_ci")
-test_output_contains("round(interval_estimate)")
+test_output_contains("round(interval_estimate, digits = 1)")
 
 # test if the students code produces an error
 test_error()
@@ -558,7 +566,7 @@ The resulting distribution of the multiple sample means satisfies the idea of th
 
 
 *** =instructions
-- Print out the empty `means` vector
+- Create `N` and `means` and print out the empty `means` vector
 - Execute the for-loop. What does it do?
 - Print out the `means` vector again
 - Compute basic summary statistics of `means` using the appropriate function
@@ -672,7 +680,7 @@ $$\text{mean} \pm z_{\alpha / 2} \cdot \frac{s}{\sqrt{n}}$$
 $z$ is a quantile point from the $N(0,1)$ distribution. The confidence interval you computed earlier is actually based on a normal approximation of the sampling distribution. In this exercise we'll explore if that approximation seems to work.
 
 *** =instructions
-- Take a random sample of 50 students exam points and create object `points_sample`
+- create object `n` and take a random sample of 50 students' exam points to create object `points_sample`
 - Create objects `mu_hat`, `s` and `error`
 - Print out `mu_hat` and it's standard error, rounded to 2 digits
 - Inside `curve(dnorm())`, set `mean` = the estimate for the exam points population mean based on the random sample of 50, and `sd` = the standard error of the estimate. 
