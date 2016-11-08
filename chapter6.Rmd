@@ -356,9 +356,9 @@ It is also possible to use parenthesis to control the evaluation of the operator
 
 *** =instructions
 - Create and print out four subsets of the learning2014 data matching the following conditions: 
-- (gender is male) AND (deep learning is greater than 4.5)
+- (gender is male, "M") AND (deep learning is greater than 4.5)
 - (age is 25 OR age is 26) AND (attitude is greater than 3.5)
-- (gender is female) AND (strategic learning is greater than 4.5)
+- (gender is female, "N") AND (strategic learning is greater than 4.5)
 - (deep learning is more than 4) AND (points is zero OR points is greater than 30)
 
 *** =hint
