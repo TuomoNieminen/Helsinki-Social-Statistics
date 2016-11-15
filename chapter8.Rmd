@@ -344,7 +344,7 @@ population standard deviation $\sigma$  | sample standard deviation $s$
 
 <hr>
 
-In statistics, estimates are often denoted with a hat. So for example $\hat{\mu} = \bar{x}$.  
+In statistics, estimates are often denoted with a hat. So, for example, we also use the notation $\hat{\mu} = \bar{x}$, and refer to "mu_hat", respectively.  
 
 *** =instructions
 - Create object `points`
@@ -428,17 +428,17 @@ success_msg("Very nice! You get full points for point estimation.")
 
 ## Interval estimation
 
-Clearly there is uncertainty involved in our point estimate. But how much uncertainty? This is where we need statistical theory. 
+Clearly there is uncertainty involved in a single sample mean (our point estimate). But how much uncertainty? This is where we need statistical theory. 
 
 One way to approach this question is to try to come up with an interval around the point estimate to describe our uncertainty. It turns out that the following formula produces an interval which contains the true population mean $100 \cdot (1-\alpha)$% of the time:
 
-$$\text{mean} \pm z_{\alpha / 2} \cdot \frac{s}{\sqrt{n}}$$
+$$\bar{x} \pm z_{\alpha / 2} \cdot \frac{s}{\sqrt{n}}$$
   
 where $s$ is the sample standard deviation, $n$ is the sample size and $z_{\alpha / 2}$ is a critical (quantile) value from the $N(0,1)$ distribution. The part 
 
 $$\frac{s}{\sqrt{n}}$$
 
-is called the *standard error* of the estimate. 
+is called the *standard error* of the sample mean $\bar{x}$.
 
 I know what you're thinking. It's confusing: where did the normal distribution come from and what's with all that $z_{\alpha/2}$ stuff? The answers lie in the **sampling distribution** which we will soon get to.
 
@@ -554,7 +554,7 @@ success_msg("You are awsome with 99% confidence!")
 
 ## The sampling distribution
 
-Remember that you can think of the sampling distribution as a kind of mind game:  If we could collect our random sample again and again and calculate a sample statistic each time, the resulting distribution of those statistics would be the sampling distribution of that statistic.
+Remember that you can think of the sampling distribution as a kind of mind game:  If we could collect our random sample again and again and calculate a sample mean each time, the result would be the sampling distribution of the mean.  
 
 In reality though, we can't produce this distribution, because we only have the one sample. Or can we? Let's pretend for a moment that the data we have *is* the target population. Let's see what happens if we repeatedly 
 
@@ -673,23 +673,28 @@ success_msg("Very good work!")
 
 ## The central limit theorem
 
-Let's now get back to the $z$ in the formula for the confidence interval:
+Let's now get back to the confidence interval for the population mean:
 
-$$\text{mean} \pm z_{\alpha / 2} \cdot \frac{s}{\sqrt{n}}$$
+$$\bar{x} \pm z_{\alpha / 2} \cdot \frac{s}{\sqrt{n}}$$
 
-$z$ is a quantile point from the $N(0,1)$ distribution. The confidence interval you computed earlier is actually based on a normal approximation of the sampling distribution. In this exercise we'll explore if that approximation seems to work.
+where $z$ is a quantile point from the $N(0,1)$ distribution. What is the relationship between the normal distribution and the (sampling) distribution of the sample mean?  
+
+A mean is a scaled sum, so according to the [central limit theorem](https://en.wikipedia.org/wiki/Central_limit_theorem) (CLT), its distribution is approximately normal.  
+
+The confidence interval above is based on a normal approximation (for the sampling distribution of the sample mean) and it is a good approximation in theory, according to the CLT. In this exercise we'll explore if that approximation seems to work in practise.
 
 *** =instructions
-- create object `n` and take a random sample of 50 students' exam points to create object `points_sample`
+- create object `n` and take a random sample of 50 students' exam points and create object `points_sample`
 - Create objects `mu_hat`, `s` and `error`
 - Print out `mu_hat` and it's standard error, rounded to 2 digits
-- Inside `curve(dnorm())`, set `mean` = the estimate for the exam points population mean based on the random sample of 50, and `sd` = the standard error of the estimate. 
-- Execute the line with `hist()`  and `curve()` which visualize (1) the previously simulated sampling distribution of the means, and (2) a normal approximation to that distribution based on your single sample drawn here. (Techically it's actually two lines of code, because `;` is code for line change)
+- Inside `dnorm()`, set the argument `mean` = the estimate of the population mean of the exam points, based on the random sample of size 50  
+- Inside `dnorm()` set the argument `sd` = the standard error (the estimate of the standard deviation) of the mean, based on the random sample of size 50  
+- Execute the line with `hist()`  and `curve()`, which visualize (1) the previously simulated sampling distribution of the means, and (2) a normal approximation to that distribution based on the random sample of size 50. (Techically it's two lines of code: `;` is code for line change)
 - Does the normal approximation seem useful?
 
 *** =hint
-- `mu_hat` is the estimate for the population mean
-- `error` is the standard error of the estimate
+- `mu_hat` is the sample mean (the estimate of the population mean)
+- `error` is the standard error of the sample mean
 
 
 *** =pre_exercise_code
@@ -730,7 +735,7 @@ mu_hat <- mean(points_sample)
 # Compute the sample standard deviation
 s <- NA
 
-# Compute the standard error
+# Compute the standard error of the mean
 error <- NA
 
 # Round and print
@@ -759,7 +764,7 @@ mu_hat <- mean(points_sample)
 # Compute the sample standard deviation
 s <- sd(points_sample)
 
-# Compute the standard error
+# Compute the standard error of the mean
 error <- s/ sqrt(n)
 
 # print
