@@ -684,7 +684,7 @@ A mean is a scaled sum, so according to the [central limit theorem](https://en.w
 The confidence interval above is based on a normal approximation (for the sampling distribution of the sample mean) and it is a good approximation in theory, according to the CLT. In this exercise we'll explore if that approximation seems to work in practise.
 
 *** =instructions
-- create object `n` and take a random sample of 50 students' exam points and create object `points_sample`
+- Create object `n` and take a random sample of 50 students' exam points and create object `points_sample`
 - Create objects `mu_hat`, `s` and `error`
 - Print out `mu_hat` and it's standard error, rounded to 2 digits
 - Inside `dnorm()`, set the argument `mean` = the estimate of the population mean of the exam points, based on the random sample of size 50  
