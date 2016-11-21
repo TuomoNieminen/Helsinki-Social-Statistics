@@ -249,13 +249,14 @@ for (counter in vector) {
 }
 ```
 
-The for-loop iterates trough the values of a vector by changing the value of the counter one at a time. The counter first takes on the first value, then the second and so on. 
+The for-loop iterates trough the values of a vector by changing the value of the counter one at a time. The counter first takes on the first value of the vector, then the second and so on. 
 
-Inside the curly braces is the *body* of the loop, which can contain regular commands such as function calls. The current value of the counter can be used there. The commands are repeated until the counter has taken all the values of the vector.
+Inside the curly braces is the *body* of the loop, which can contain regular commands such as function calls. The current value of the counter can be used there. All the commands inside the body are repeated until the counter has taken all the values of the vector.
 
 
 *** =instructions
-- Loop though the character values using the examle code. Remember that here in DataCamp, executing a command over multiple lines is done by selecting all the lines with a mouse first and then hitting `Ctrl+Enter` normally. Alternatively you could also click submit to execute the whole script.R
+- **Please note!** Here in DataCamp, executing a command over multiple lines is done by selecting (painting) the lines with a mouse first and then hitting `Ctrl+Enter` normally. Alternatively you could also click submit to execute the whole script.R
+- Loop though the character values using the examle code.  
 - Loop through integer values using the example code. 
 - In an honor of the legendary electronic duo *Daft Punk* and their 2001 album *Discovery*, construct a for-loop that prints out "One more time!" 27 times.
 - Hints: (1) Remember that `1:n` creates an integer vector of length n. (2) Inside the loop body you have to use the `print()` function to print.
@@ -263,7 +264,7 @@ Inside the curly braces is the *body* of the loop, which can contain regular com
 *** =hint
 - It does not matter what name you give to your counter. You can for example use `i` as is done in the second example.
 - In this exercise you don't need to use the values of your counter.
-- Remember to use quotation marks to print characters.
+- Remember to use quotation marks to create and print characters.
 
 
 *** =pre_exercise_code

@@ -580,6 +580,7 @@ test_error()
 success_msg("Good work!")
 
 ```
+
 --- type:NormalExercise lang:r xp:100 skills:1  key:1c1f8953e9
 
 ## Create your own functions
@@ -592,7 +593,8 @@ Functions usually have one or more arguments, for which the user can define valu
 
 *** =instructions
 - Look at the definition of the `apple_count()` function and execute the function call that is defined.
-- Create object `my_apples` by directly assigning the output of `apple_count()` to it. Call `apple_count()` with `new_apples = 10` and `apples_stock = 2`. Print `my_apples` to see the output of the function.
+- Create object `my_apples` by directly assigning the output of `apple_count()` to it. Call `apple_count()` with `new_apples = 10` and `apples_stock = 2`.  
+- Print `my_apples` to see the output of the function.
 - Some of the apples are gone bad! Worms! Create a function `good_apples_count` that takes two arguments: `apples` and `bad_apples` and returns the number of apples you have left after the count is **reduced** by an amout set by `bad_apples` (due to a worm attack). Set the number of bad apples to 4 by default.
 - Call your ` good_apples_count()` function on `my_apples` to find out how many good apples you have left.
 
@@ -600,7 +602,8 @@ Functions usually have one or more arguments, for which the user can define valu
 - The answer for `my_apples` is of the form: `my_apples <- apple_count(arg1 = ?, arg2 = ?)`
 - See how a new function is created by looking the code of `apple_count`. 
 - The amount of good apples is `apples` - `bad_apples`.
-- You can set the default value in `function(arg1 = *insert_default_value_here*, ...) ...`
+- You can set the default value: `function(arg1, arg2 = *insert_default_value_here*) ...`
+
 
 *** =pre_exercise_code
 ```{r}

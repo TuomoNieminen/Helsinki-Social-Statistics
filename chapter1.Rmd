@@ -14,9 +14,9 @@ Researchers and experts often use programming to visualize and explore data and 
 Follow the instructions below to complete the exercise.
 
 *** =instructions
-- Take a peek at the code written on the right in script.R. When you opened this exercise, the code gave R the instructions to (1) load a dataset and (2) produce the graphic next to it.
-- Could you tell which lines of code relates to (1) or (2)? Hint: A hashtag marks a line as a comment line.
-- When you're done pondering, simply click 'Submit Answer' and move on to the first exercise!
+- Take a peek at the code written on the right in script.R. When executed, the code gives your computer the instructions to (1) load a dataset and (2) produce the graphic next to it.
+- Could you tell which lines of code relates to (1) or (2)? A hashtag marks a line as a comment line.
+- When you're done pondering, click 'Submit Answer' to execute the code and move on to the next exercise!
 
 ***= hint
 - Simply press 'Submit Answer' when you're ready to move forward.
@@ -25,10 +25,8 @@ Follow the instructions below to complete the exercise.
 *** =pre_exercise_code
 ```{r}
 data_url <- "http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS-data.txt"
-
 students2014 <- read.table(data_url, sep="\t", header=TRUE)
 
-with(students2014, plot(x = kenka, y = pituus, col = sukup, pch = 20, main = "Scatter plot of student shoesize and height \n(color indicates sex)"))
 ```
 
 *** =sample_code
@@ -142,7 +140,7 @@ Let's continue with something simple. R can do amazing things like scrape websit
 - Subtraction: `-`
 - Multiplication: `*`
 - Division: `/`
-- Exponentiation: `^`
+- Exponentiation: `^` (or `**`)   
 
 The `^` operator raises the number to its left to the power of the number to its right: for example `3^2` is 9. With this knowledge, follow the instructions below to complete the exercise.
 
@@ -386,9 +384,10 @@ Functions usually have more than one possible argument. Some of them can have de
 
 *** =instructions
 - Execute the example codes where the function `head()` is used to explore the first couple observations in the `students2014` dataset.
-- Create object `first_ten_students` by calling `head()` with `n = 10`.
+- Using the assign operator `<-`, create object `first_ten_students` by calling `head()` with `n = 10`.
 
 *** =hint
+- Directly assign the output of `head()` to `first_ten_students` to create the object
 - Remember to separate the arguments with a comma
 - The answer is of the form: `first_ten_students <- head(arguments_here)`
 
