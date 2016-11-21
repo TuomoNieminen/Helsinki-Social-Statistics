@@ -89,8 +89,6 @@ success_msg("Good work!")
 --- type:NormalExercise lang:r xp:100 skills:1 key:e4360dcfec
 ## Data types (1)
 
-**Please note that problems related to this exercise have been fixed on 15.9.2016**
-
 In this section you learn about the data types in R. You will also get familiar with vectors and their usage. What does data types and vectors have to do with each other? A lot, you'll see! 
 
 There are different data types in R. The most commonly used are:
