@@ -14,7 +14,7 @@ Researchers and experts often use programming to visualize and explore data and 
 Follow the instructions below to complete the exercise.
 
 *** =instructions
-- Take a peek at the code written on the right in script.R. When executed, the code gives your computer the instructions to (1) load a dataset and (2) produce the graphic next to it.
+- Take a peek at the code written on the right in script.R. When executed, the code gives your computer the instructions to (1) load a dataset and (2) produce a graphic.
 - Could you tell which lines of code relates to (1) or (2)? A hashtag marks a line as a comment line.
 - When you're done pondering, click 'Submit Answer' to execute the code and move on to the next exercise!
 
