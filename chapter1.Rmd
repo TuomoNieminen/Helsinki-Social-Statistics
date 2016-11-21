@@ -291,7 +291,7 @@ success_msg(paste0("Great job ", my_name, ". ", my_message, "!"))
 --- type:NormalExercise lang:r xp:100 skills:1 key:b81cdce659
 ## Functions
 
-In R you operate on objects using *functions*. A function is a special kind of object that can be *called* by typing it's name and giving it the necessary *arguments* inside parenthesis. When a function is called, it will perform an action.
+In R you operate on objects using *functions*. A function is a special kind of object that uses other objects as inputs, performs operations, and usually outputs a result. The inputs of a function are called *arguments*. A Function is *called* by typing it's name and giving it the necessary arguments inside parenthesis. When a function is called, it will perform an action.
 
 R has many functions ready for you to use. Functions are how you're actually going to do all the magic.
 
