@@ -3,60 +3,116 @@
 <a href=https://www.datacamp.com//teach/repositories/65844921/go target="_blank"><img src="https://s3.amazonaws.com/assets.datacamp.com/img/github/content-engineering-repos/course_button.png" width="150"></a>
 <a href=https://www.datacamp.com//teach/repositories target="_blank"><img src="https://s3.amazonaws.com/assets.datacamp.com/img/github/content-engineering-repos/dashboard_button.png" width="150"></a>
 
-# List of functions
+# Course curriculum  
 
-## chapter 1
-- $
-- read.table()
-- with() (does not play well with DC, only used to write a readable example)
-- plot()
-- mean()
-- head()
+This is a Data Science module for the Social Statistics MOOC at the University of Helsinki, Finland. The course is lectured and superwised by prof. Kimmo vehkalahti. The data science module is created by Tuomo Nieminen and Emma Kämäräinen.
 
+## Chapter 1: R and Statistics  
+Basics of R, the amazing statistical programming language. Do not be afraid of the art of programming!
 
-## chapter 2
-- $
-- head()
-- str()
-- cut()
-- c()
+- What is R?
+- Basic tools
+- Arithemtics
+- Objects
+- Functions
+- Good arguments
+- students2014
 
-## chapter 3
-- $
-- barplot()
-- hist()
-- boxplot()
-- summary()
-- table()
+## Chapter 2: Data types and variable types  
+Quick overview to R data and variable types. What are the objects? You are the subject.
 
-## chapter 4
-- $
-- plot()
-- cor()
-- sd()
-- kmeans()
-- head()
-- as.numeric()
-- jitter()
+- Data frames
+- Data types (1)
+- Data types (2)
+- Vectors
+- Data types and measurement scales
 
-## chapter 5
-- $
-- rowSums()
-- table()
-- prop.table()
-- addmargins()
-- barplot()
-- plot()
+## Chapter 3: Looking at the data  
+Data are everywhere and everything. That's why Statistics is also called Data Science. R offers great tools for looking at the data, behind the numbers.
 
-## chapter 6
+- Getting intimate with the data
+- Summary() statistics
+- Bar plots of qualitative variables
+- Bar plots of continuous variables
+- Histograms
+- Box plots
 
-## chapter 7
+## Chapter 4: Exploring variations and dependence  
+Variation and dependence are at the heart of Statistics. In fact, without variation the discipline would cease to exist. Correlation is not causation, but why?
 
-## chapter 8
+- Be aware of varying variables
+- Help()!
+- Standard deviation
+- Clustering
+- Guess the correlation
 
-## chapter 9
+## Chapter 5: Working across the data  
+Cross-tabulations let you explore dependencies hidden deep within discrete variables.
 
-## chapter 10
+- Combining variables
+- Tables
+- Metadata of students2014
+- Cross tabulations
+- Let's (bar)plot that table
+- And then little more plotting
+
+## Chapter 6 Subsets and conditions  
+Let's begin to seek the best conditions for coping with uncertainty.
+
+- Welcome to part 2!
+- Explore youre data
+- Selecting a subset
+- Logical comparison
+- Logical operators
+- Classical probability
+- COnditional probability
+
+## Chapter 7: Probability distributions  
+Most things in this world are more or less random, and not evenly distributed.
+
+- Random variables and probability distributions
+- Binomial distribution
+- Normal distribution (1)
+- Normal distribution (2)
+- Uniform distribution
+- Quantiles
+- Two-way quantiles
+- Standardization
+
+## Chapter 8: Estimation  
+Get your brackets ready for diving in
+the world of statistical inference!  
+
+- Exploring estimation with R
+- Indices and brackets
+- Easy vectors
+- Looping
+- Point estimation
+- Interval estimation
+- The sampling distributions
+- The central limit theorem
+
+## Hypothesis testing  
+We all might be statistically different, but maybe we are part of the 68%.  
+
+- Statistical hypothesis testing
+- Test statistics
+- Pecualiar p-values
+- Alternative hypothesis: which way to go?!
+- Meet the tests (1)
+- Meet the tests (2)
+- Create your own functions
+
+## Chapter 10: Regression  
+Now, pick roles for the variables and start modeling. I predict you are good!
+
+- Packages in R
+- Exploring the relationship of two variables
+- What is a linear model?
+- Fitting a linear model
+- Interpreting a fitted model
+- Checking the validity of model assumptions
+- Making predictions based on the model 
 
 # DataCamp course creation
 
