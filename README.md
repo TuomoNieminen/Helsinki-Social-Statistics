@@ -56,7 +56,7 @@ Cross-tabulations let you explore dependencies hidden deep within discrete varia
 - Let's (bar)plot that table
 - And then little more plotting
 
-## Chapter 6 Subsets and conditions  
+## Chapter 6: Subsets and conditions  
 Let's begin to seek the best conditions for coping with uncertainty.
 
 - Welcome to part 2!
@@ -80,8 +80,7 @@ Most things in this world are more or less random, and not evenly distributed.
 - Standardization
 
 ## Chapter 8: Estimation  
-Get your brackets ready for diving in
-the world of statistical inference!  
+Get your brackets ready for diving in the world of statistical inference!  
 
 - Exploring estimation with R
 - Indices and brackets
@@ -92,7 +91,7 @@ the world of statistical inference!
 - The sampling distributions
 - The central limit theorem
 
-## Hypothesis testing  
+## Chapter 9: Hypothesis testing  
 We all might be statistically different, but maybe we are part of the 68%.  
 
 - Statistical hypothesis testing
