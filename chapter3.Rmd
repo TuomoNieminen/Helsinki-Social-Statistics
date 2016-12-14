@@ -263,7 +263,7 @@ A solution is to first categorize the variable.
 *** =instructions
 - Use `table()` to look at the distribution of students age.
 - Use `cut()` to create a factor object where age is cut into intervals. Use the vector `c(0, 16, 20, 24, 30, 100)` as break points.
-- Use `table()` on the age categories to create object `age_counts` and print it.
+- Use `table()` on the age intervals to create object `age_counts` and print it.
 - Visualize the contents of the table with a bar plot.
 
 

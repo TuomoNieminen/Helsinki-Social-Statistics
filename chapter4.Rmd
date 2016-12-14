@@ -86,14 +86,15 @@ The help page of a function called *func* can be opened by two methods: `help(fu
 
 *** =instructions
 - Open the help page of `plot` by writing `?plot` directly to the console and pressing enter.
-- Draw a scatter plot of student shoesize versus height. Compute the correlation using `cor()`.
-- Use the information on the help page and make the following adjustments to the plot:
-- Add this main title: "Scatter plot of student shoesize versus height".
-- Add this subtitle: "Correlation: 0.XX". Replace 0.XX with the actual correlation, rounded to two decimal places.
+- Draw a scatter plot of student shoesize versus height.
+- Compute the correlation of student shoesize and height using `cor()`.
+- Use the information on the help page of `plot()` and make the following adjustments to the plot:
+- Add this (exact) main title: "Scatter plot of student shoesize versus height".
+- Add this subtitle: "Correlation: 0.xx". Replace 0.xx with the actual correlation, rounded to two decimal places.
 
 *** =hint
 - Please note that the tests are sensitive to capital letters and missing spaces etc.
-- See the previous exersize for tips on drawing a scatterplot and computing correlation.
+- See the previous exersize for tips on drawing a scatterplot and computing the correlation.
 
 *** =pre_exercise_code
 ```{r}
