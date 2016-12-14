@@ -179,7 +179,7 @@ In base R graphics, the function `barplot()` can be used to draw a bar plot. The
 
 *** =instructions
 - Use `summary()` and `table()` on `kone` in the data frame `students2014`. Many of the values of `kone` are `<NA>`, not available. Why do you think this could be?
-- Adjust the code `os_counts <- NULL`: Use `table()` and instead of `NULL` (a special, empty data type), assign the counts of the different operating systems to the object `os_counts`.
+- Adjust the code on line 8. Instead of `NULL` (a special, empty data type), assign the counts of the different operating systems to the object `os_counts`. Use the `table()` function.
 - Use the function `barplot()` to draw a bar plot. Use the counts of the different operating systems as the first argument.
 
 *** =hint
@@ -355,6 +355,8 @@ In R, basic histograms can be drawn with the `hist()` function. The first argume
 
 The plotting functions in R also have many additional arguments which allow for more control over the plot. One simple argument is `col`, which can be the number(s) or the name(s) of the desired color(s). Some possible color names can be found <a target="_blank" href="http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf">here</a>.
 
+Multiple arguments are always separeted with a comma `,`.
+
 *** =instructions
 - Adjust the sample code and draw the histogram again by setting the argument `breaks = 20`.
 - Use the `col` argument to give the histogram a nice color of your choice. Use quotations marks to define the color name.
@@ -363,6 +365,7 @@ The plotting functions in R also have many additional arguments which allow for 
 
 
 *** =hint
+- All the extra arguments in this exercise go inside the parenthesis in `hist()`.
 - Remember to seperate the arguments of a function with a comma.
 - Use quotation marks for the color names and the main and xlab titles.
 

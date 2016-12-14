@@ -149,8 +149,8 @@ str(my_logical)
 *** =sct
 ```{r}
 test_object("my_character", eval=FALSE, incorrect_msg = "Did you assign your initials to `my_character`?")
-test_object("my_numeric", incorrect_msg="Did you assign the correct value to `my_numeric`?")
-test_object("my_logical", incorrect_msg="Did you change the value of `my_logical`?")
+test_object("my_numeric", incorrect_msg = "Did you assign the correct value to `my_numeric`?")
+test_object("my_logical", incorrect_msg = "Did you change the value of `my_logical`?")
 
 test_output_contains("str(my_character)", incorrect_msg = "Did you use `str()` on `my_character`?")  
 test_output_contains("str(my_numeric)", incorrect_msg = "Did you use `str()` on `my_numeric`?")  
@@ -331,11 +331,11 @@ success_msg("Great work!")
 --- type:MultipleChoiceExercise lang:r xp:50 skills:1 key:3c0486635f
 ## Data types and measurement scales
 
-Data types and measurement scales are somewhat related. When asking simple "Yes / No " -questions boolean values are useful but you would not use them for measuring heights. Here is a table for the data types and measuring scales:
+Data types and measurement scales are somewhat related. When asking simple "Yes / No " -questions logical values are useful but you would not use them for measuring heights. Here is a table for the data types and measuring scales:
 
-| Scale          | Numeric | Character | Boolean | Factor |
+| Scale          | Numeric | Character | Logical | Factor |
 |----------------|---------|-----------|---------|--------|
-| Categorical  |    x    |     x     |    x    |    x   |
+| Categorical    |    x    |     x     |    x    |    x   |
 | Ordinal        |    x    |     x     |         |    x   |
 | Measurement    |    x    |           |         |        |
 
@@ -346,16 +346,16 @@ Choose one.
 
 *** =instructions
 - Variable `kone` is from ordinal scale.  
-- Variable `ika` and `pituus` are character values.  
-- You can use boolean data type for variables `ika` and `pituus`.  
+- Variables `ika` and `pituus` are character values.  
+- You could use the logical data type for variables `ika` and `pituus`.  
 - Variable `kone` is from categorical scale.  
-- It is meaningful to use factors for measurement scale.  
+- It is meaningful to use factors for variables from measurement scale.
 
 
 *** =hint
 - There is no natural order in categorical scale. 
 - If you can put the values in a meaningful order, then it's ordinal scale. 
-- Using factors probably loses its purpose when you have a lot of different values.
+- Using factors probably loses its purpose if the variable can have a lot of different values.
 - Character values have quotations marks. `chr` is short for character. 
 
 *** =pre_exercise_code
@@ -388,7 +388,7 @@ msg5 = "Well technically you CAN do that, but you'll have as many factors as the
 test_mc(correct = 4, feedback_msgs = c(msg1,msg2,msg3,msg4,msg5))
 
 # Final message the student will see upon completing the exercise
-success_msg("Nicely done!")
+success_msg("Good work!")
 
 ```
 
