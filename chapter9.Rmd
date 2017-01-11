@@ -262,21 +262,19 @@ zplot(z)
 stra <- learning2014$stra
 n <- length(stra)
 
-# Set H0: mu = 3
-
-# Sample mean
+# Sample mean of strategic learning
 mean(stra)
 
-# Test statistic
+# Set H0: mu = 3 | -> test statistic:
 z <- (mean(stra) - 3) / (sd(stra) / sqrt(n))
 
+# Print out the test statistic
 
-# Set H1: mu > 3
-# -> p-value = P(Z > z)
+
+# Set H1: mu > 3  | -> p-value = P(Z > z)
 p1 <- 
   
-# Set H1: mu != 3
-# -> p-value = P(|Z| > z)
+# Set H1: mu != 3 | -> p-value = P(|Z| > z)
 p2 <- 
   
 
@@ -290,21 +288,19 @@ p2 <-
 stra <- learning2014$stra
 n <- length(stra)
 
-# Set H0: mu = 3
-
-# Sample mean
+# Sample mean of strategic learning
 mean(stra)
 
-# Test statistic
+# Set H0: mu = 3 | -> test statistic:
 z <- (mean(stra) - 3) / (sd(stra) / sqrt(n))
+
+# Print out the test statistic
 z
 
-# Set H1: mu > 3
-# -> p-value = P(Z > z)
+# Set H1: mu > 3  | -> p-value = P(Z > z)
 p1 <- 0.07
   
-# Set H1: mu != 3
-# -> p-value = P(|Z| > z)
+# Set H1: mu != 3 | -> p-value = P(|Z| > z)
 p2 <- 0.14
 
 
@@ -313,8 +309,9 @@ p2 <- 0.14
 *** =sct
 ```{r}
 # submission correctness tests
-test_object("p1")
-test_object("p2")
+test_output_contains("z", incorrect_msg = "Please print out the value of the test statistic")
+test_object("p1", incorrect_msg = "Please create object p1 based on the plot")
+test_object("p2", incorrect_msg = "Please create object p2 based on the plot")
 
 # test if the students code produces an error
 test_error()
