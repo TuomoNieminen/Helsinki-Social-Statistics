@@ -56,7 +56,8 @@ write.table(file = "learning2014.txt", learning2014, sep = "\t")
 
 learning2014 <-  read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/learning2014.txt", sep = "\t", header = TRUE)
 
-open_meta2 <- function() browseURL("http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS2-meta.txt")
+open_meta2 <- function() 
+  browseURL("http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS2-meta.txt")
 
 # Kimmon analyyseja
 browseURL("http://www.helsinki.fi/~kvehkala/JYTmooc/Abstract-Vehkalahti.pdf")
