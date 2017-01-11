@@ -209,8 +209,8 @@ Then cases where the estimate of $\mu$ is higher than 3 are never critical to th
 - Compute the mean of strategic learning
 - Set the null hypothesis $H_0: \mu = 3$ and compute the z test statistic
 - Print out the value of the test statistic
-- Set the alternative hypothesis $H_1: \mu > 3$. Based on the plot, create object `p1` storing the p-value $P(Z > z)$. 
-- Set the alternative hypothesis $H_1: \mu \neq 3$. Based on the plot, create object `p2` storing the p-value $P(|Z| > z)$. 
+- Set the alternative hypothesis $H_1: \mu > 3$. Based on the plot, create object `p1` storing the p-value $P(Z > z)$. Use two decimals precision.
+- Set the alternative hypothesis $H_1: \mu \neq 3$. Based on the plot, create object `p2` storing the p-value $P(|Z| > z)$. Use two decimals precision.
 
 *** =hint
 - Interpret the `p1` and `p2` from the plot.
