@@ -10,14 +10,14 @@ Welcome to chapter 10: **Regression**. We'll start with an important R feature -
 
 There are a lot of functions in R. But actually, the functions in R come from a standard set of *packages*. A package is simply a collection of R functions. Besides the basic packages, you can install and use (or develop!) other packages too. 
 
-You can install packages through CRAN. What is CRAN? The answer can be found from their website [https://cran.r-project.org/](https://cran.r-project.org/): 
+You can install packages through CRAN (The Comprehensive R Archive Network). From the CRAN website [https://cran.r-project.org/](https://cran.r-project.org/): 
 > CRAN is a network of ftp and web servers around the world that store identical, up-to-date, versions of code and documentation for R. 
 
-List of available CRAN packages can be seen [here](https://cran.r-project.org/web/packages/available_packages_by_name.html). Because the packages are made by different R users, the codes may have some style differences. In those cases, one needs to rely in the documentation of the code.
+List of available CRAN packages can be seen [here](https://cran.r-project.org/web/packages/available_packages_by_name.html). There are thousands of them, made by R users around the world. In order to get a package accepted to CRAN, the package must be well documented: every function must have a help page.
 
-If you have R in your own computer, you can install packages with code `install.packages("name_of_the_package")`. But because we are working in DataCamp, the packages are already installed for you. So we don't need to worry about installation for now.
+If you have R in your own computer, you can install packages by calling   `install.packages("name_of_the_package")`. Here in DataCamp, most useful packages are already installed for you.  
 
-To use the installed packages, you need to access them. This is done by calling `library(name_of_the_package)`.
+To use installed packages, you need to access them. This is done by calling `library(name_of_the_package)`.
 
 *** =instructions
 - One of the most famous and used packages outside the basic R is `ggplot2`. The `ggplot2` packages is a plotting system for R, and it draws pretty pictures for you with small effort. 

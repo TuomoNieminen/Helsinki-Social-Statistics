@@ -350,7 +350,7 @@ a <code>&#124;</code> b | a OR b
   
 Logical operators work like logical conditions: they compare the elements of vectors one at a time and can produce logical vectors.
 
-So, for example `F & T` evaluates to `FALSE` and `F | T` evaluates to `TRUE`. Therefore `c(F, T) & c(T, T)` produces a logical vector `FALSE TRUE`.
+So, for example `F & T` evaluates to `FALSE` and `F | T` evaluates to `TRUE`. Also, `c(F, T) & c(T, T)` produces a logical vector `FALSE TRUE`.
 
 It is also possible to use parenthesis to control the evaluation of the operators. See how this works from the example codes.
 
