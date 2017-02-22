@@ -3,11 +3,11 @@
 <a href=https://www.datacamp.com//teach/repositories/65844921/go target="_blank"><img src="https://s3.amazonaws.com/assets.datacamp.com/img/github/content-engineering-repos/course_button.png" width="150"></a>
 <a href=https://www.datacamp.com//teach/repositories target="_blank"><img src="https://s3.amazonaws.com/assets.datacamp.com/img/github/content-engineering-repos/dashboard_button.png" width="150"></a>
 
-Wellcome to the Helsinki Social Statistics DataCamp course repository. Changes made to this GitHub repository are automatically reflected in the linked DataCamp course. 
+Wellcome to the Helsinki Social Statistics DataCamp course repository. Changes made to this GitHub repository are automatically reflected in the linked DataCamp course. Click on the link above to go to the course page.
 
 # About  
 
-This is a Data Science module for the Social Statistics MOOC at the University of Helsinki, Finland. The course is lectured and superwised by prof. Kimmo vehkalahti. This DataCamp course works as the data science module  for the University course. This module is created by Tuomo Nieminen and Emma Kämäräinen.
+This DataCamp course works as the data science module for the Social Statistics MOOC at the University of Helsinki, Finland. The course is lectured and superwised by adj.prof. Kimmo vehkalahti. The module is created by Tuomo Nieminen and Emma Kämäräinen.
 
 # Course curriculum 
 
