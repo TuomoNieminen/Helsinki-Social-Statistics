@@ -3,7 +3,7 @@ instructors      :
   - kimmo.vehkalahti@helsinki.fi
   - tuomo.a.nieminen@gmail.com
   - emma.kamarainen@outlook.com
-description      : This DataCamp course has been developed by Tuomo Nieminen and Emma Kämäräinen, under the supervision of adj. prof. Kimmo Vehkalahti. This course works as the Data Science module for the Social Statistics MOOC at the University of Helsinki, Finland.
+description      : This DataCamp course has been developed by <b>Tuomo Nieminen</b> and <b>Emma Kämäräinen</b>, under the supervision of adj. prof. <b>Kimmo Vehkalahti</b>. This course works as the Data Science module for the Social Statistics MOOC at the University of Helsinki, Finland.
 university       : University of Helsinki
 difficulty_level : 2
 time_needed      : 12 hours
