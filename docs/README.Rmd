@@ -1,0 +1,119 @@
+---
+title: "DataCamp tapausesittely: Johdatus yhteiskuntatilastotieteeseen"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+# Johdanto
+
+DataCamp (DC) on web-alusta, jonne on mahdollista rakentaa interaktiivisia R ja Python kursseja. Datacamp on myös yritys, joka tarjoaa omia ilmaisia ja maksullisia R ja Python kursseja. DC kurssit koostuvat web-selaimessa ratkaistavista pienistä ohjelmointitehtävistä, joiden ratkaisujen oikeellisuus arvioidaan automaattisesti ja käyttälle annetaan palautetta ja vinkkejä ratkaisuyrityksistä. 
+
+Tämän dokumentin tarkoitus on kuvata Helsingin yliopiston Johdatus yhteiskuntatilastotieteeseen (JYT) -kurssilla käytetyn DC kurssin rakenne ja toiminnallisuus. Dokumentin ei ole tarkoitus korvata DC:n omaa selkeää dokumentaatio kurssien rakentamiseen, joka löytyy osoitteesta www.datacamp.com/teach/documentation .
+
+
+# Johdatus yhteiskuntatilastotieteeseen (JYT), osa 1
+
+Lyhyt yleinen kuvaus JYT kurssista. 
+
+# DataCamp - oppimisalusta (DC)
+
+DataCamp (DC) on web-alusta, jonne on mahdollista rakentaa interaktiivisia R ja Python kursseja. DataCamp löytyy osoitteesta www.datacamp.com. 
+
+## Datacamp kurssi
+
+DC kurssit koostuvat web-selaimessa ratkaistavista pienistä ohjelmointitehtävistä, joiden ratkaisujen oikeellisuus arvioidaan automaattisesti. Lisäksi käyttäjälle annetaan palautetta ja vinkkejä ratkaisuyrityksistä. JYT-kurssia varten on olemassa oma DC kurssi, nimeltään Helsinki Social Statistics (HSS). Se sijaitsee osoitteessa www.datacamp.com/courses/helsinki-social-statistics. Kurssi on avoin kaikille, joilla on DC tunnukset. 
+
+![helsinki-social-statistics.png]
+
+DC-kurssit koostuvat kappaleista (chapter), jotka koostuvat harjoituksista.
+
+![chapter1.png]
+
+Harjoituksia voi olla kolmenlaisia: (1) koodaus, (2) monivalinta, (3) video. Melkein kaikki HSS-kurssin harjoitukset ovat koodausharjoituksia. Koodausharjoitus koostuu neljästä osasta: (1) kuvaus/taustatieto (ylävasen), (2) ohjeet (alavasen), (3) editori (yläoikea), (4) console (alaoikea). Koodausharjoituksien editori ja console vastaavat normaalin R editorin, kuten RStudion, editoria ja konsolia. Editorissa on yleensä valmiina koodiesimerkkejä ja harjoituksessa koodia tulee lisätä/täydentää.
+
+![ch1ex2.png]
+
+## Datacamp-kurssin lähdekoodi
+
+DC kurssit ovat aina suorassa yhteydessä GitHub -repositioon, joka sisältää kaiken kurssin luomiseen tarvittavan koodin. Uuden DC kurssin voi luoda helposti osoitteessa datacamp.com/teach. GitHub puolella DC kurssi koostuu myös kappaleista (chapter), jotka ovat RMarkdown -tiedostoja. HSS-kurssi elää osoitteessa github.com/TuomoNieminen/Helsinki-Social-Statistics. 
+
+![hss-github.png]
+
+GitHubin puolella jokaisella DC-kurssilla on lisäksi vähintään course.yml tiedosto, joka sisältää kurssisivun kurssikuvauksen ja tiedot kurssin opettajista kurssista. Ainoastaan tietyn nimiset tiedostot DC-kurssiin liittyvässä GitHub repositiossa vaikuttavat kurssin rakentumiseen, joten repositio voi myös sisältää tiedostoja, jotka eivät vaikuta kurssin datacamp ilmentymään.
+
+![hss-yml.png]
+
+## Datacamp-kurssin päivittäminen
+
+Muutokset DC-kurssin lähdekoodiin GitHubissa vaikuttavat heti itse kurssiin datacam.com:ssa. Jokainen muutos triggeroi automaattisen kurssin rakentumisen datacampin puolella. Kurssin rakentamiseen liittyvää tietoa voi ja kannattaa seurata tähän tarkoitetulla sivulla datacampissa. Nämä tiedot löytyvät esim seuraamalla GitHub:n Teach Dashboard -linkkiä tai navigoimalla omien kurssien tiedoilla datacamp.com/teach kautta.
+
+![hss-dashlink]
+
+## DataCamp-kurssin kehittäminen
+
+Jokainen DC-kurssin GitHub repositorioon liittyvä branch luo oman versionsa kurssista. Kuitenkin vain main branchiin liittyvä kurssi on julkinen. Kurssia voi siis helposti kehittää vaikkapa development nimisen branchin kautta, kuten on toimittu HSS tapauksessa. Linkki kehityksen alla olevaan kurssiversioon löytyy myös datacamp/teach alta. 
+
+
+Esimerkiksi HSS-kurssilla on development-versio osoitteessa www.datacamp.com/courses/1935, jonka kautta muutoksia kurssin kehitysversioon voi kokeilla käytännössä. Kun tarvittavat uudistukset on toteutettu, voi development branchin mergata yhteen main branchin kanssa, jolloin uusi versio kurssista tulee julkisesti saatavaksi opiskelijoille. 
+
+## DataCamp-harjoitusten kirjoittaminen
+
+DC-harjoitukset ovat lyhyitä ja keskittyvät yhteen asiaan kerrallaan. Tavoitteena on, että opiskelija selviää yhdestä harjoituksesta 5-10 minuutissa. Erityisesti HHS kurssilla harjoitukset pyrkivät innostamaan opiskelijoita tilastollisen ohjelmoinnin pariin, joten turhauttavan hankalia harjoituksia pyritään välttämään.   
+
+DC-harjoitusten syntaksi on kuvattu alla. Jokaiseen harjoitukseen liittyy myös testejä, jotka kuvataan seuraavaksi. Harjoituksia kirjoittaessa on hyödyllistä miettiä sitä, miten harjoituksen testit toimivat. Useimpien koodausharjoitusten kohdalla kolmen yksinkertaisen testausfunktion avulla voi jo rakentaa riittävän monipuolisia harjoituksia.
+
+### Harjoitusten syntaksi
+
+Kuten todettu, DC-kurssin lähdekoodi koostuu kappaleista (esim chapter1.Rmd). Kappaleet koostuvat harjoituksista, jotka määrittelee DC:n oma, RMarkdown-tyylinen syntaksi. Alla on esimerkki koodausharjoituksen syntaksista, joka koostuu (1) metatiedoista, (2) otsikosta, (3) yleisestä infosta, (4) ohjeista, (5) vinkeistä, (6) ennen harjoitusta suoritettavasta R-koodista, (7) esimerkkikoodista, (8) ratkaisukoodista, (9) testeistä.
+
+<pre>
+--- type:NormalExercise lang:r xp:100 skills:1  
+## Otsikko  
+
+Yleinen info   
+
+*** =instructions  
+- ohjeet  
+
+*** =hint  
+- vinkit  
+
+*** =pre_exercise_code  
+```{r}  
+```  
+
+*** =sample_code  
+```{r}  
+# esimerkkikoodi. Tämä on DC puolella 'editor', jonka opiskelijat näkevät.  
+```  
+
+*** =solution  
+```{r}
+# ratkaisu
+```
+
+*** =sct
+```{r}
+# testit
+```
+</pre>
+
+HSS-kurssin GitHub:sta löytyy valmis template uusille koodausharjoituksille.
+
+### Harjoitusten testifunktiot
+
+Olennainen osa DC-harjoitusta ovat submission correctnes testit (sct), joiden avulla testataan opiskelijoiden ratkaisuyrityksiä. Testien tulee "mennä läpi", jotta harjoitus läpäistään. Testien tulisi testata harjoituksen jokaista vaihetta ja antaa informatiivisia viestejä silloin kun opiskelijan ratkaisu ei vastaa haluttua. 
+
+Testien avulla opiskelijan koodin tuottamia objekteja/funktiokutsuja voidaan verrata ratkaisukoodin vastaaviin. Testit kirjoitetaan testwhat R-paketin funktioiden avulla. Testeihin kannattaa tutustua esimerkiski datacampin dokumentaation, HSS-kurssin koodin ja testwhat-paketin dokumentaation avulla: https://github.com/datacamp/testwhat
+
+Tyypillisiä testejä ovat:
+
+- test_output_contains("output"): Testaa tuottaako opiskelijan koodi määritellyn tulosteen. Haluttu tulosta annetaan merkkijonona hipsujen sisällä, kuten siis tässä <output>.  
+- test_object("object_name"): Testaa onko opiskelijan koodi tuottanut <object_name> nimisen objectin ja onko se testaushetkellä identtinen vastaavan ratkaisukoodin objektin kanssa.  
+- test_function("function_name", args=c("arg1")): Testaa kutsuuko opiskelijan koodi funktiota nimeltä <function_name> ja onko sille annettu argumentti nimeltä <arg1> sama kuin ratkaisukoodissa.  
+
+Näillä kolmella testillä selviää melkein kaikista ohjelmointiharjoituksiin liittyvistä testausongelmista. Jokaisella funktilla on lisäksi argumentti incorrect_msg johon erityisesti ei-triviaaleissa tehtävissä voi ja kannattaa määritellä viesti joka näytetään silloin kun testi ei mene läpi. Funktioilla on myös muita argumentteja joilla voi viestiä tarkemminkin. kts esim ?testwhat::test_function. Funktiot antavat myös default-viestejä silloin jos nämä argumentit jättää määrittelemättä.
+
+## DataCamp ryhmät
+
