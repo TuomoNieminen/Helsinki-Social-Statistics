@@ -42,11 +42,11 @@ JYT-kurssia varten on olemassa oma DC-kurssi, nimelt‰‰n Helsinki Social Statisti
 
 DC-kurssit koostuvat kappaleista (chapter), jotka koostuvat harjoituksista. Harjoituksia voi olla kolmenlaisia: (1) koodaus, (2) monivalinta, (3) video. Melkein kaikki HSS-kurssin harjoitukset ovat koodausharjoituksia. 
 
-![DC-kurssi koostuu kappaleista (chapter), jotka koostuvat lyhyist‰ harjoituksista. Harjoitusten tekemisest‰ saa suorituspisteit‰ (xp)](pics/chapter1.png)
+![DC-kurssi koostuu kappaleista (chapter), jotka koostuvat lyhyist‰ harjoituksista. Harjoitusten onnistuneista suorituksista saa suorituspisteit‰ (xp)](pics/chapter1.png)
 
 Koodausharjoitus koostuu nelj‰st‰ osasta: (1) kuvaus/taustatieto, (2) ohjeet, (3) editori, (4) console. Koodausharjoituksien editori ja console vastaavat normaalin R editorin, kuten RStudion, editoria ja konsolia. Editorissa on yleens‰ valmiina koodiesimerkkej‰ ja harjoituksessa koodia tulee lis‰t‰/t‰ydent‰‰.
 
-![Esimerkki DC-kurssin harjoituksesta: Helsinki social statisitcs -kurssin toinen harjoitus. harjoitus koostuu nelj‰st‰ osasta: (1) kuvaus/taustatieto (yl‰vasen), (2) ohjeet (alavasen), (3) editori (yl‰oikea), (4) console (alaoikea)](pics/ch1ex2.png)
+![Esimerkki DC-kurssin harjoituksesta: Helsinki social statisitcs -kurssin toinen harjoitus. Harjoitus koostuu nelj‰st‰ osasta: (1) kuvaus/taustatieto (yl‰vasen), (2) ohjeet (alavasen), (3) editori (yl‰oikea), (4) console (alaoikea)](pics/ch1ex2.png)
 
 ## HSS-kurssin l‰hdekoodi
 
