@@ -62,6 +62,12 @@ Uuden DC-kurssin (GitHub repositorio ja siihen liittyvä kurssin verkkosivu) voi 
 
 Muutokset DC-kurssin lähdekoodiin GitHubissa vaikuttavat heti itse kurssisivuun datacam.com:ssa. Jokainen muutos triggeroi automaattisen kurssin rakentumisen DC:n puolella. Rakentumista ja kurssin eri versiota voi seurata hallintapaneelin avulla.
 
+### Muokkausoikeudet
+
+Päästäksesi muokkaamaan HHS-kurssia tulee sinulle olla mahdollisuus muokata HSS GitHub repositoryn sisältöä esimerkiksi collaborator -statuksen kautta. Lisäksi DC-tiliisi liittyvän sähköpostiosoitteen tulee olla listattuna course.yml -tiedostossa.
+
+*todo* Nämä tulee kokeilla ja päivittää tarpeen mukaan.
+
 ### Hallintapaneeli
 
 Kurssin rakentamiseen liittyvää metatietoa voi ja kannattaa seurata tähän tarkoitetulla sivulla datacampissa, jota kutsutaan hallintapaneeliksi. Rakennuksessa voi esimerkiksi esiintyä ongelmia, mikäli kurssikoodissa on virheitä. Hallintapaneelin kautta kurssin rakentamisen voi myös aloittaa manuaalisesti, mikä automaattisessa rakentamisessa on ongelmia. Hallintapaneeli löytyy esimerkiksi klikkaamalla Teach Dashboard -linkkiä kurssin GitHubin README-osiosta tai datacamp.com/teach kautta.
