@@ -3,6 +3,7 @@ instructors      :
   - kimmo.vehkalahti@helsinki.fi
   - tuomo.a.nieminen@gmail.com
   - emma.kamarainen@outlook.com
+  - petteri.mantymaa@helsinki.fi
 description      : This is a Data Science module for the Social Statistics MOOC at the University of Helsinki, Finland.
 university       : University of Helsinki
 difficulty_level : 2
