@@ -1,7 +1,8 @@
 ---
 title: "DataCamp-kurssin rakentaminen: Johdatus yhteiskuntatilastotieteeseen"
-author: Tuomo Nieminen
-date: "`r Sys.Date()`"
+author: Tuomo Nieminen, Joni Oksanen
+date: '`r format(Sys.Date(), "%d.%m.%Y")`'
+lang: fi-FI
 output:
   pdf_document:
     toc: true
@@ -11,30 +12,35 @@ output:
 
 # Johdanto
 
-DataCamp (DC) on web-alusta, jonne on mahdollista rakentaa interaktiivisia R (ja Python) kursseja. DC-kurssit koostuvat web-selaimessa ratkaistavista pienist‰ ohjelmointiteht‰vist‰, joiden ratkaisujen oikeellisuus arvioidaan automaattisesti ja k‰ytt‰lle annetaan palautetta ja vinkkej‰ ratkaisuyrityksist‰. Datacamp on myˆs yritys, joka tarjoaa omia ilmaisia ja maksullisia R ja Python kursseja.
+DataCamp (DC) on web-alusta, jonne on mahdollista rakentaa interaktiivisia R (ja Python) kursseja. DC-kurssit koostuvat web-selaimessa ratkaistavista pienist√§ ohjelmointiteht√§vist√§, joiden ratkaisujen oikeellisuus arvioidaan automaattisesti ja k√§ytt√§lle annetaan palautetta ja vinkkej√§ ratkaisuyrityksist√§. Datacamp on my√∂s yritys, joka tarjoaa omia ilmaisia ja maksullisia R ja Python kursseja.
 
-T‰m‰n dokumentin tarkoitus on kuvata Helsingin yliopiston Johdatus yhteiskuntatilastotieteeseen (JYT) -kurssilla k‰ytetyn DC-kurssin Helsinki social statistics (HSS) rakenne, l‰hdekoodi ja toiminnallisuus. Dokumentin ei ole tarkoitus korvata DC:n omaa dokumentaatiota kurssien rakentamiseen, joka lˆytyy osoitteesta www.datacamp.com/teach/documentation.
+T√§m√§n dokumentin tarkoitus on kuvata Helsingin yliopiston Johdatus yhteiskuntatilastotieteeseen (JYT) -kurssilla k√§ytetyn DC-kurssin Helsinki social statistics (HSS) rakenne, l√§hdekoodi ja toiminnallisuus. Dokumentin ei ole tarkoitus korvata DC:n omaa dokumentaatiota kurssien rakentamiseen, joka l√∂ytyy osoitteesta www.datacamp.com/teach/documentation.
 
-*todo* Tarkoituksena kuvata myˆs DataCamp ryhm‰t ja moodle-integraatio?
+DC-kurssin rakentaminen edellytt√§√§ Git-versiohallinnan ja GitHubin tuntemista. T√§ss√§ dokumentissa oletetaan, ett√§ n√§iden perusteet ovat lukijalle tuttuja.
 
-DC-kurssin rakentaminen edellytt‰‰ Git-versiohallinnan ja GitHubin tuntemista. T‰ss‰ dokumentissa oletetaan, ett‰ n‰iden perusteet ovat lukijalle tuttuja.
-
+\pagebreak
 
 ## Johdatus yhteiskuntatilastotieteeseen (JYT)
 
-*todo* Lyhyt kuvaus JYT-kurssista. 
+Johdatus yhteiskuntatilastotieteeseen on sovelluspainotteinen tilastotieteen johdantokurssi. Asioita l√§hestyt√§√§n yhteiskuntatieteiden n√§k√∂kulmasta, mutta kurssi sopii muidenkin aineiden opiskelijoille.
+
+Kurssi on jaettu kahteen erikseen suoritettavaan 5 op laajuiseen osaan, mutta muodostaa kokonaisuuden, joka k√§sitt√§√§ yhteiskuntatieteellisen tilastollisen tutkimuksen perusteet. Osan 1 p√§√§teema on tilastollinen lukutaito ja osa 2 painottuu tilastolliseen p√§√§ttelyyn. Kurssilla on vakiintunut asema Helsingin yliopiston valtiotieteellisen tiedekunnan yhteisen√§, opintojen alkuvaiheen menetelm√§kurssina. 
+
+Vuonna 2015 kurssista tehtiin Suomen ensimm√§inen tilastotieteen MOOC-kurssi. Sille voi osallistua kuka tahansa tilastotieteest√§ kiinnostunut ja sit√§ ty√∂ss√§√§n, opinnoissaan tai vapaa-ajallaan tarvitseva. Syksyisin kurssi suoritetaan tekem√§ll√§ vuorovaikutteisia, automaattisesti tarkastuvia ja palautetta antavia teht√§vi√§. Tarjolla on my√∂s oppimista tukevaa l√§hiopetusta ja neuvontaa isoissa ty√∂pajoissa, joita vet√§√§ tiimi opiskelijaohjaajia opettajan johdolla. Kev√§isin ja kes√§isin kurssin voi suorittaa Avoimen yliopiston verkkotenteill√§. Sille voi my√∂s osallistua ilman suoritustavoitteita milloin tahansa.
+
 
 
 ## DataCamp oppimisalusta (DC)
 
-DataCamp (DC) on web-alusta, jonne on mahdollista rakentaa interaktiivisia R ja Python kursseja. DataCamp lˆytyy osoitteesta www.datacamp.com. Valmiit DC-kurssit koostuvat web-selaimessa ratkaistavista pienist‰ ohjelmointiteht‰vist‰, joiden ratkaisujen oikeellisuus arvioidaan automaattisesti. Lis‰ksi k‰ytt‰j‰lle annetaan palautetta ja vinkkej‰ ratkaisuyrityksist‰.
+DataCamp (DC) on web-alusta, jonne on mahdollista rakentaa interaktiivisia R ja Python kursseja. DataCamp l√∂ytyy osoitteesta www.datacamp.com. Valmiit DC-kurssit koostuvat web-selaimessa ratkaistavista pienist√§ ohjelmointiteht√§vist√§, joiden ratkaisujen oikeellisuus arvioidaan automaattisesti. Lis√§ksi k√§ytt√§j√§lle annetaan palautetta ja vinkkej√§ ratkaisuyrityksist√§.
 
-*todo* lis‰‰ kuvausta DC:st‰ esim yhteistyˆ yliopistojen ja Helsingin yliopiston kanssa.
+Kaikille avoimia DC-kursseja voi perustaa kuka tahansa. Sen voi liitt√§√§ osaksi yliopistokurssia, kunhan kyseiselle yliopistokurssille voi osallistua ilmaiseksi
+
 
 
 # Helsinki social statistics Datacamp-kurssi (HSS)
 
-JYT-kurssia varten on olemassa oma DC-kurssi, nimelt‰‰n Helsinki Social Statistics (HSS). Se sijaitsee osoitteessa www.datacamp.com/courses/helsinki-social-statistics. Kurssi on avoin kaikille, joilla on DC-tunnukset. 
+JYT-kurssia varten on olemassa oma DC-kurssi, nimelt√§√§n Helsinki Social Statistics (HSS). Se sijaitsee osoitteessa www.datacamp.com/courses/helsinki-social-statistics. Kurssi on avoin kaikille, joilla on DC-tunnukset. 
 
 ![Helsinki social statistics DC-kurssin etusivu](pics/helsinki-social-statistics.png)
 
@@ -42,54 +48,57 @@ JYT-kurssia varten on olemassa oma DC-kurssi, nimelt‰‰n Helsinki Social Statisti
 
 DC-kurssit koostuvat kappaleista (chapter), jotka koostuvat harjoituksista. Harjoituksia voi olla kolmenlaisia: (1) koodaus, (2) monivalinta, (3) video. Melkein kaikki HSS-kurssin harjoitukset ovat koodausharjoituksia. 
 
-![DC-kurssi koostuu kappaleista (chapter), jotka koostuvat lyhyist‰ harjoituksista. Harjoitusten onnistuneista suorituksista saa suorituspisteit‰ (xp)](pics/chapter1.png)
+![DC-kurssi koostuu kappaleista (chapter), jotka koostuvat lyhyist√§ harjoituksista. Harjoitusten onnistuneista suorituksista saa suorituspisteit√§ (xp)](pics/chapter1.png)
 
-Koodausharjoitus koostuu nelj‰st‰ osasta: (1) kuvaus/taustatieto, (2) ohjeet, (3) editori, (4) console. Koodausharjoituksien editori ja console vastaavat normaalin R editorin, kuten RStudion, editoria ja konsolia. Editorissa on yleens‰ valmiina koodiesimerkkej‰ ja harjoituksessa koodia tulee lis‰t‰/t‰ydent‰‰.
+Koodausharjoitus koostuu nelj√§st√§ osasta: (1) kuvaus/taustatieto, (2) ohjeet, (3) editori, (4) console. Koodausharjoituksien editori ja console vastaavat normaalin R editorin, kuten RStudion, editoria ja konsolia. Editorissa on yleens√§ valmiina koodiesimerkkej√§ ja harjoituksessa koodia tulee lis√§t√§/t√§ydent√§√§.
 
-![Esimerkki DC-kurssin harjoituksesta: Helsinki social statisitcs -kurssin toinen harjoitus. Harjoitus koostuu nelj‰st‰ osasta: (1) kuvaus/taustatieto (yl‰vasen), (2) ohjeet (alavasen), (3) editori (yl‰oikea), (4) console (alaoikea)](pics/ch1ex2.png)
+![Esimerkki DC-kurssin harjoituksesta: Helsinki social statistics -kurssin toinen harjoitus. Harjoitus koostuu nelj√§st√§ osasta: (1) kuvaus/taustatieto (yl√§vasen), (2) ohjeet (alavasen), (3) editori (yl√§oikea), (4) console (alaoikea)](pics/ch1ex2.png)
 
-## HSS-kurssin l‰hdekoodi
+## HSS-kurssin l√§hdekoodi
 
-DC-kurssit ovat aina suorassa yhteydess‰ GitHub-repositoryyn, joka sis‰lt‰‰ kurssin verkkosivun rakentamiseen tarvittavan koodin. GitHubin puolella DC-kurssi koostuu kappaleista (chapter), jotka ovat RMarkdown-tiedostoja. Jokaisella DC-kurssilla on lis‰ksi v‰hint‰‰n course.yml tiedosto, joka sis‰lt‰‰ kurssisivulla n‰kyv‰n kurssikuvauksen ja tiedot kurssin opettajista. Ainoastaan tietyn nimiset tiedostot vaikuttavat kurssin rakentumiseen: repository voi sis‰lt‰‰ myˆs tiedostoja, jotka eiv‰t vaikuta kurssin DataCamp-ilmentym‰‰n. 
+DC-kurssit ovat aina suorassa yhteydess√§ GitHub-repositoryyn, joka sis√§lt√§√§ kurssin verkkosivun rakentamiseen tarvittavan koodin. GitHubin puolella DC-kurssi koostuu kappaleista (chapter), jotka ovat RMarkdown-tiedostoja. Jokaisella DC-kurssilla on lis√§ksi v√§hint√§√§n course.yml tiedosto, joka sis√§lt√§√§ kurssisivulla n√§kyv√§n kurssikuvauksen ja tiedot kurssin opettajista. Ainoastaan tietyn nimiset tiedostot vaikuttavat kurssin rakentumiseen: repository voi sis√§lt√§√§ my√∂s tiedostoja, jotka eiv√§t vaikuta kurssin DataCamp-ilmentym√§√§n. 
 
-Uuden DC-kurssin (GitHub repositorio ja siihen liittyv‰ kurssin verkkosivu) voi luoda helposti muutamalla klikkauksella osoitteessa datacamp.com/teach. HSS-kurssi el‰‰ osoitteessa github.com/TuomoNieminen/Helsinki-Social-Statistics. 
+Uuden DC-kurssin (GitHub repositorio ja siihen liittyv√§ kurssin verkkosivu) voi luoda helposti muutamalla klikkauksella osoitteessa datacamp.com/teach. HSS-kurssi el√§√§ osoitteessa github.com/TuomoNieminen/Helsinki-Social-Statistics. 
 
-![DC-kurssien l‰hdekoodi on GitHubissa. L‰hdekoodi koostuu RMarkdown (.Rmd) muotoisista kappaleista, course.yml tiedostosta ja mahdollisesti muista tiedostoista.](pics/hss-github.png)
+![DC-kurssien l√§hdekoodi on GitHubissa. L√§hdekoodi koostuu RMarkdown (.Rmd) muotoisista kappaleista, course.yml tiedostosta ja mahdollisesti muista tiedostoista.](pics/hss-github.png)
 
-![Helsinki social statistics -kurssin course.yml tiedoston sis‰ltˆ](pics/hss-yml.png)
+![Helsinki social statistics -kurssin course.yml tiedoston sis√§lt√∂](pics/hss-yml.png)
 
 ## HSS-kurssin muokkaaminen
 
-Muutokset DC-kurssin l‰hdekoodiin GitHubissa vaikuttavat heti itse kurssisivuun datacam.com:ssa. Jokainen muutos triggeroi automaattisen kurssin rakentumisen DC:n puolella. Rakentumista ja kurssin eri versiota voi seurata hallintapaneelin avulla.
+Muutokset DC-kurssin l√§hdekoodiin GitHubissa vaikuttavat heti itse kurssisivuun datacamp.com:ssa. Jokainen muutos triggeroi automaattisen kurssin rakentumisen DC:n puolella. Rakentumista ja kurssin eri versioita voi seurata hallintapaneelin avulla.
 
 ### Muokkausoikeudet
 
-P‰‰st‰ksesi muokkaamaan HHS-kurssia tulee sinulle olla mahdollisuus muokata HSS GitHub repositoryn sis‰ltˆ‰ esimerkiksi collaborator -statuksen kautta. Lis‰ksi DC-tiliisi liittyv‰n s‰hkˆpostiosoitteen tulee olla listattuna course.yml -tiedostossa.
+---
+# N√§m√§ tulee kokeilla ja p√§ivitt√§√§ tarpeen mukaan.
+---
 
-*todo* N‰m‰ tulee kokeilla ja p‰ivitt‰‰ tarpeen mukaan.
+P√§√§st√§ksesi muokkaamaan HSS-kurssia tulee sinulla olla mahdollisuus muokata HSS GitHub repositoryn sis√§lt√∂√§ esimerkiksi collaborator -statuksen kautta. Lis√§ksi DC-tiliisi liittyv√§n s√§hk√∂postiosoitteen tulee olla listattuna course.yml -tiedostossa.
+
 
 ### Hallintapaneeli
 
-Kurssin rakentamiseen liittyv‰‰ metatietoa voi ja kannattaa seurata t‰h‰n tarkoitetulla sivulla datacampissa, jota kutsutaan hallintapaneeliksi. Rakennuksessa voi esimerkiksi esiinty‰ ongelmia, mik‰li kurssikoodissa on virheit‰. Hallintapaneelin kautta kurssin rakentamisen voi myˆs aloittaa manuaalisesti, mik‰ automaattisessa rakentamisessa on ongelmia. Hallintapaneeli lˆytyy esimerkiksi klikkaamalla Teach Dashboard -linkki‰ kurssin GitHubin README-osiosta tai datacamp.com/teach kautta.
+Kurssin rakentamiseen liittyv√§√§ metatietoa voi ja kannattaa seurata t√§h√§n tarkoitetulla sivulla datacampissa, jota kutsutaan hallintapaneeliksi. Rakennuksessa voi esimerkiksi esiinty√§ ongelmia, mik√§li kurssikoodissa on virheit√§. Hallintapaneelin kautta kurssin rakentamisen voi my√∂s aloittaa manuaalisesti, mik√§ automaattisessa rakentamisessa on ongelmia. Hallintapaneeli l√∂ytyy esimerkiksi klikkaamalla Teach Dashboard -linkki√§ kurssin GitHubin README-osiosta tai datacamp.com/teach kautta.
 
-![Jokaiseen DC-kurssiin liittyy hallintapaneeli datacamp.com/teach alla. Hallintapaneelista lˆytyv‰t kurssin eri versiot sek‰ logitiedot kurssin rakennusyrityksist‰. Hallintapaneelin kautta voi myˆs manuaalisesti k‰ynnist‰‰ kurssin rakennuksen.](pics/hss-build.png)
+![Jokaiseen DC-kurssiin liittyy hallintapaneeli datacamp.com/teach alla. Hallintapaneelista l√∂ytyv√§t kurssin eri versiot sek√§ logitiedot kurssin rakennusyrityksist√§. Hallintapaneelin kautta voi my√∂s manuaalisesti k√§ynnist√§√§ kurssin rakennuksen.](pics/hss-build.png)
 
 
 ### HSS-kurssin kehitysversio
 
-HSS-kurssin GitHub repositoryn main branchin sis‰ltˆ m‰‰rittelee DataCampissa olevan julkistetun HSS-kurssin sis‰llˆn osoitteessa www.datacamp.com/courses/helsinki-social-statistics. Jokainen repositoryyn luotu uusi Git branch triggeroi uuden erillisen version HSS-kurssista DataCamp:iin. Kurssia voi siis helposti kehitt‰‰ vaikkapa development nimisen branchin kautta, kuten on toimittu HSS-kurssin tapauksessa.
+HSS-kurssin GitHub repositoryn main branchin sis√§lt√∂ m√§√§rittelee DataCampissa olevan julkistetun HSS-kurssin sis√§ll√∂n osoitteessa www.datacamp.com/courses/helsinki-social-statistics. Jokainen repositoryyn luotu uusi Git branch triggeroi uuden erillisen version HSS-kurssista DataCamp:iin. Kurssia voi siis helposti kehitt√§√§ vaikkapa development nimisen branchin kautta, kuten on toimittu HSS-kurssin tapauksessa.
 
-Linkki kaikkiin kurssin versiohin lˆytyy kurssin hallintapaneelista. HSS-kurssin development-versio on osoitteessa www.datacamp.com/courses/1935. T‰m‰n linkin kautta muutoksia kurssin kehitysversioon voi kokeilla k‰yt‰nnˆss‰. Kun tarvittavat uudistukset on onnistuneesti toteutettu, voi development branchin mergata yhteen main haaran kanssa, jolloin uusi versio kurssista tulee julkisesti saatavaksi opiskelijoille. 
+Linkki kaikkiin kurssin versioihin l√∂ytyy kurssin hallintapaneelista. HSS-kurssin development-versio on osoitteessa www.datacamp.com/courses/1935. T√§m√§n linkin kautta muutoksia kurssin kehitysversioon voi kokeilla k√§yt√§nn√∂ss√§. Kun tarvittavat uudistukset on onnistuneesti toteutettu, voi development branchin mergata yhteen main haaran kanssa, jolloin uusi versio kurssista tulee julkisesti saatavaksi opiskelijoille. 
 
 # DataCamp-harjoitukset
 
-DC-harjoitukset ovat lyhyit‰ ja keskittyv‰t yhteen asiaan kerrallaan. Tavoitteena on, ett‰ opiskelija selvi‰‰ yhdest‰ harjoituksesta 5-10 minuutissa. Erityisesti HHS-kurssilla harjoitukset pyrkiv‰t innostamaan opiskelijoita tilastollisen ohjelmoinnin pariin, joten turhauttavan hankalia harjoituksia pyrit‰‰n v‰ltt‰m‰‰n.   
+DC-harjoitukset ovat lyhyit√§ ja keskittyv√§t yhteen asiaan kerrallaan. Tavoitteena on, ett√§ opiskelija selvi√§√§ yhdest√§ harjoituksesta 5-10 minuutissa. Erityisesti HSS-kurssilla harjoitukset pyrkiv√§t innostamaan opiskelijoita tilastollisen ohjelmoinnin pariin, joten turhauttavan hankalia harjoituksia pyrit√§√§n v√§ltt√§m√§√§n.   
 
-DC-harjoitusten syntaksi on kuvattu alla. Jokaiseen harjoitukseen liittyy testej‰, jotka kuvataan erikseen.
+DC-harjoitusten syntaksi on kuvattu alla. Jokaiseen harjoitukseen liittyy testej√§, jotka kuvataan erikseen.
 
 ## DC-harjoitusten syntaksi
 
-Kuten todettu, DC-kurssin l‰hdekoodi koostuu kappaleista (esim chapter1.Rmd). Kappaleet koostuvat harjoituksista, jotka m‰‰rittelee DC:n oma, RMarkdown-tyylinen syntaksi. Alla on esimerkki koodausharjoituksen syntaksista, joka koostuu (1) metatiedoista, (2) otsikosta, (3) yleisest‰ infosta, (4) ohjeista, (5) vinkeist‰, (6) ennen harjoitusta suoritettavasta R-koodista, (7) esimerkkikoodista, (8) ratkaisukoodista, (9) testeist‰.
+Kuten todettu, DC-kurssin l√§hdekoodi koostuu kappaleista (esim chapter1.Rmd). Kappaleet koostuvat harjoituksista, jotka m√§√§rittelee DC:n oma, RMarkdown-tyylinen syntaksi. Alla on esimerkki koodausharjoituksen syntaksista, joka koostuu (1) metatiedoista, (2) otsikosta, (3) yleisest√§ infosta, (4) ohjeista, (5) vinkeist√§, (6) ennen harjoitusta suoritettavasta R-koodista, (7) esimerkkikoodista, (8) ratkaisukoodista, (9) testeist√§.
 
 
 ```
@@ -107,12 +116,12 @@ Yleinen info
 
 *** =pre_exercise_code  
 ```{r}
-# teht‰v‰n alustus
+# teht√§v√§n alustus
 ```  
 
 *** =sample_code  
 ```{r}  
-# esimerkkikoodi ('editor' ikkunan sis‰ltˆ)
+# esimerkkikoodi ('editor' ikkunan sis√§lt√∂)
 ```  
 
 *** =solution  
@@ -127,22 +136,30 @@ Yleinen info
 
 ```
 
-HSS-kurssin GitHub:sta lˆytyy valmis template uusille koodausharjoituksille.
+HSS-kurssin GitHub:sta l√∂ytyy valmis template uusille koodausharjoituksille.
 
 ## DC-harjoitusten testifunktiot
 
-Olennainen osa DC-harjoitusta ovat submission correctnes testit (sct), joiden avulla testataan opiskelijoiden ratkaisuyrityksi‰. Testien tulee "menn‰ l‰pi", jotta harjoitus l‰p‰ist‰‰n. Testien tulisi testata harjoituksen jokaista vaihetta ja antaa informatiivisia viestej‰ silloin kun opiskelijan ratkaisu ei vastaa haluttua. 
+Olennainen osa DC-harjoitusta ovat submission correctness testit (sct), joiden avulla testataan opiskelijoiden ratkaisuyrityksi√§. Testien tulee "menn√§ l√§pi", jotta harjoitus l√§p√§ist√§√§n. Testien tulisi testata harjoituksen jokaista vaihetta ja antaa informatiivisia viestej√§ silloin kun opiskelijan ratkaisu ei vastaa haluttua. 
 
-Testien avulla opiskelijan koodin tuottamia objekteja/funktiokutsuja voidaan verrata ratkaisukoodin vastaaviin. Testit kirjoitetaan testwhat R-paketin funktioiden avulla. Testeihin kannattaa tutustua esimerkiski datacampin dokumentaation, HSS-kurssin koodin ja testwhat-paketin dokumentaation avulla: https://github.com/datacamp/testwhat
+Testien avulla opiskelijan koodin tuottamia objekteja/funktiokutsuja voidaan verrata ratkaisukoodin vastaaviin. Testit kirjoitetaan testwhat R-paketin funktioiden avulla. Testeihin kannattaa tutustua esimerkiksi datacampin dokumentaation, HSS-kurssin koodin ja testwhat-paketin dokumentaation avulla: https://github.com/datacamp/testwhat
 
-Harjoituksia kirjoittaessa on hyˆdyllist‰ mietti‰ miten harjoituksen testaaminen toimii. Useimpien koodausharjoitusten kohdalla kolmen yksinkertaisen testausfunktion avulla voi jo rakentaa riitt‰v‰n monipuolisia harjoituksia. Kolme kenties hyˆdyllisint‰ testi‰ ovat:
+Harjoituksia kirjoittaessa on hy√∂dyllist√§ mietti√§ miten harjoituksen testaaminen toimii. Useimpien koodausharjoitusten kohdalla kolmen yksinkertaisen testausfunktion avulla voi jo rakentaa riitt√§v√§n monipuolisia harjoituksia. Kolme kenties hy√∂dyllisint√§ testi√§ ovat:
 
-- test_output_contains("output"): Testaa tuottaako opiskelijan koodi m‰‰ritellyn tulosteen. Haluttu tulosta annetaan merkkijonona hipsujen sis‰ll‰, kuten siis t‰ss‰ *output*.
-- test_object("object_name"): Testaa onko opiskelijan koodi tuottanut <object_name> nimisen objectin ja onko se testaushetkell‰ identtinen vastaavan ratkaisukoodin objektin kanssa.
-- test_function("function_name", args=c("arg1")): Testaa kutsuuko opiskelijan koodi funktiota nimelt‰ *function_name* ja onko sille annettu argumentti nimelt‰ *arg1* sama kuin ratkaisukoodissa.
+- test_output_contains("output"): Testaa tuottaako opiskelijan koodi m√§√§ritellyn tulosteen. Haluttu tulosta annetaan merkkijonona hipsujen sis√§ll√§, kuten siis t√§ss√§ *output*.
+- test_object("object_name"): Testaa onko opiskelijan koodi tuottanut <object_name> nimisen objectin ja onko se testaushetkell√§ identtinen vastaavan ratkaisukoodin objektin kanssa.
+- test_function("function_name", args=c("arg1")): Testaa kutsuuko opiskelijan koodi funktiota nimelt√§ *function_name* ja onko sille annettu argumentti nimelt√§ *arg1* sama kuin ratkaisukoodissa.
 
-Jokaisella testausfunktiolla on argumentti incorrect_msg, johon erityisesti hankalimmissa teht‰viss‰ voi ja kannattaa m‰‰ritell‰ viesti, joka n‰ytet‰‰n silloin kun testi ei mene l‰pi. Testifunktioilla on myˆs muita mahdollisia argumentteja, kts esim ?testwhat::test_function. Testifunktiot antavat opiskelijalle default-viestej‰ silloinkin kun argumentit j‰tt‰‰ m‰‰rittelem‰tt‰.
+Jokaisella testausfunktiolla on argumentti incorrect_msg, johon erityisesti hankalimmissa teht√§viss√§ voi ja kannattaa m√§√§ritell√§ viesti, joka n√§ytet√§√§n silloin kun testi ei mene l√§pi. Testifunktioilla on my√∂s muita mahdollisia argumentteja, kts esim ?testwhat::test_function. Testifunktiot antavat opiskelijalle default-viestej√§ silloinkin kun argumentit j√§tt√§√§ m√§√§rittelem√§tt√§.
 
-# DataCamp ryhm‰t
+# DataCamp ryhm√§t
+
+Kurssia varten perustetaan DC:n palvelimelle ryhm√§, johon suoritustiedot kertyv√§t. Ryhm√§n avulla voidaan asettaa kurssille teht√§vi√§ sek√§ryhm√§n j√§senien edistymist√§ voi seurata omalla hallintapaneelilla. 
+
+Lis√§√§ DataCampin omilla sivuilla: https://www.datacamp.com/groups/education
+
+
 
 # DataCamp ja Moodle
+
+DC-kurssi integroidaan LTI-kytkenn√§n (Learning Tools Interoperability) avulla Helsingin yliopiston MOOC-palvelimen (Moodlerooms) kurssialustaan, jolloin DC:lle kirjaudutaan automaattisesti samoilla tunnuksilla kuin MOOCille, ja DC-kurssin suoritustiedot saadaan MOOCin arviointikirjaan.
