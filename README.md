@@ -1,7 +1,7 @@
 
 # Helsinki Social Statistics
-<a href=https://www.datacamp.com//teach/repositories/65844921/go target="_blank"><img src="https://s3.amazonaws.com/assets.datacamp.com/img/github/content-engineering-repos/course_button.png" width="150"></a>
-<a href=https://www.datacamp.com//teach/repositories target="_blank"><img src="https://s3.amazonaws.com/assets.datacamp.com/img/github/content-engineering-repos/dashboard_button.png" width="150"></a>
+<a href=https://www.datacamp.com/teach/repositories/65844921/go target="_blank"><img src="https://s3.amazonaws.com/assets.datacamp.com/img/github/content-engineering-repos/course_button.png" width="150"></a>
+<a href=https://www.datacamp.com/teach/repositories target="_blank"><img src="https://s3.amazonaws.com/assets.datacamp.com/img/github/content-engineering-repos/dashboard_button.png" width="150"></a>
 
 Wellcome to the Helsinki Social Statistics DataCamp course repository. Changes made to this GitHub repository are automatically reflected in the linked DataCamp course. Click on the link above to go to the course page.
 
