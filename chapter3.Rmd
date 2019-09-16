@@ -1,26 +1,31 @@
 ---
-title       : Looking at the data
-description : Data are everywhere and everything. That's why Statistics is also called Data Science. R offers great tools for looking at the data, behind the numbers.
-
---- type:NormalExercise lang:r xp:100 skills:1 key:9c7624db08
+title: 'Looking at the data'
+description: 'Data are everywhere and everything. That''s why Statistics is also called Data Science. R offers great tools for looking at the data, behind the numbers.'
+---
 
 ## Getting intimate with the data
+
+```yaml
+type: NormalExercise
+key: 9c7624db08
+lang: r
+xp: 100
+skills: 1
+```
 
 In this section, you will learn how to get familiar with your data by visualizing and summarizing it.
 
 These are always the first things to do after the data is collected and preprocessed (cleaned). These kinds of simple explorations are an important step and they create valuable insight into the data.
 
-
-*** =instructions
+`@instructions`
 - Take a look at the examples - you will learn more about all of them in the next exercises.
 -  You can browse the different plots by clicking on "Next/Previous plot".
 - Click 'Submit Answer' to move to the first exercise.
 
-*** = hint
+`@hint`
 - Simply click 'Submit Answer' to move to the next exercise.
 
-
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{r}
   # load data from web
 students2014 <- read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS-data.txt", sep="\t", header=TRUE)
@@ -47,7 +52,7 @@ boxplot(students2014$ika, main = "Boxplot of student ages", xlab = "age", horizo
 
 ```
 
-*** =sample_code
+`@sample_code`
 ```{r}
 # students2014 is available
 
@@ -63,7 +68,7 @@ boxplot(students2014$ika, main = "Boxplot of student ages", xlab = "age", horizo
 
 ```
 
-*** =solution
+`@solution`
 ```{r}
 # students2014 is available
 
@@ -78,30 +83,39 @@ boxplot(students2014$ika, main = "Boxplot of student ages", xlab = "age", horizo
 
 ```
 
-*** =sct
+`@sct`
 ```{r}
 test_error()
 success_msg("Ready? Let's go for it!")
 
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1, 3  key:0e42548148
+---
+
 ## Summary() statistics
+
+```yaml
+type: NormalExercise
+key: 0e42548148
+lang: r
+xp: 100
+skills: 1,3
+```
 
 Some functions in R are very generic. They can take different objects as their first argument and they seem to magically do exactly what you'd hope they do in all situations.
 
-One such example is the `summary()` function. Depending on the type of data object it receives as it's first argument, `summary()` will produce different convenient results. 
+One such example is the `summary()` function. Depending on the type of data object it receives as it's first argument, `summary()` will produce different convenient results.
 
-*** =instructions
+`@instructions`
 - Execute the code that creates a summary of `sukup`. What does it show you?
 - Execute the code that creates a summary of `ika`. What does it show you?
 - Create a summary of `pituus` in `students2014`.
 - Create a summary of the object `students2014`.
 
-*** =hint
+`@hint`
 - Use the `$` -sign to access `pituus` in `students2014`.
 
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{r}
 # load data from web
 students2014 <- read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS-data.txt", sep="\t", header=TRUE)
@@ -117,8 +131,7 @@ students2014$pituus <- as.numeric(students2014$pituus)
 students2014$kenka <- as.numeric(students2014$kenka)
 ```
 
-
-*** =sample_code
+`@sample_code`
 ```{r}
 # students2014 is available
 
@@ -137,7 +150,7 @@ summary(students2014$ika)
 
 ```
 
-*** =solution
+`@solution`
 ```{r}
 
 # Create a summary of a factor object
@@ -156,7 +169,7 @@ summary(students2014)
 
 ```
 
-*** =sct
+`@sct`
 ```{r}
 test_output_contains("summary(students2014$pituus)", incorrect_msg = "Please call summary() on the numeric object students2014$pituus.")
 test_output_contains("summary(students2014)", incorrect_msg="Please call summary() on the data.frame object `students2014`")
@@ -165,10 +178,17 @@ test_error()
 success_msg("Well done!")
 ```
 
-
---- type:NormalExercise lang:r xp:100 skills:1 key:457280046c
+---
 
 ## Bar plots of qualitative variables
+
+```yaml
+type: NormalExercise
+key: 457280046c
+lang: r
+xp: 100
+skills: 1
+```
 
 Bar plots are useful for visualizing qualitative, discrete variables. A bar plot represents the counts of the unique values of a variable.
 
@@ -176,18 +196,16 @@ In this exercise you will draw a barplot of `kone`. For each student the value o
 
 In base R graphics, the function `barplot()` can be used to draw a bar plot. The first argument (called `height`) should contain the counts you wish to visualize. The counts can be computed with `summary()` or more generally with `table()`.
 
-
-*** =instructions
+`@instructions`
 - Use `summary()` and `table()` on `kone` in the data frame `students2014`. Many of the values of `kone` are `<NA>`, not available. Why do you think this could be?
 - Adjust the code on line 8. Instead of `NULL` (a special, empty data type), assign the counts of the different operating systems to the object `os_counts`. Use the `table()` function.
 - Use the function `barplot()` to draw a bar plot. Use the counts of the different operating systems as the first argument.
 
-*** =hint
+`@hint`
 - Replace `NULL` with the example code where `table()` is used on `kone`.
-- Give the object `os_counts` as the first argument to `barplot()`. 
+- Give the object `os_counts` as the first argument to `barplot()`.
 
-
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{r}
   # load data from web
 students2014 <- read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS-data.txt", sep="\t", header=TRUE)
@@ -203,8 +221,7 @@ students2014$pituus <- as.numeric(students2014$pituus)
 students2014$kenka <- as.numeric(students2014$kenka)
 ```
 
-
-*** =sample_code
+`@sample_code`
 ```{r}
 # students2014 is available
 
@@ -221,7 +238,7 @@ os_counts <- NULL
   
 ```
 
-*** =solution
+`@solution`
 ```{r}
 # students2014 is available
 
@@ -239,7 +256,7 @@ barplot(os_counts)
 
 ```
 
-*** =sct
+`@sct`
 ```{r}
 test_object("os_counts", incorrect_msg = "Please use `table()` to create the object `os_counts`.")
 
@@ -249,9 +266,17 @@ test_error()
 success_msg("Excellent work!")
 ```
 
---- type:NormalExercise lang:r xp:150 skills:1 key:82217456fa
+---
 
 ## Bar plots of continuous variables
+
+```yaml
+type: NormalExercise
+key: 82217456fa
+lang: r
+xp: 100
+skills: 1
+```
 
 When a variable is continuous by nature, it means that it can take on so many different values that all of it's observed values are likely to be unique. How to draw a bar plot in this case?
 
@@ -259,21 +284,17 @@ Age can be interpret as a continuous variable even though age is often measured 
 
 A solution is to first categorize the variable.
 
-
-*** =instructions
+`@instructions`
 - Use `table()` to look at the distribution of students age.
 - Use `cut()` to create a factor object where age is cut into intervals. Use the vector `c(0, 16, 20, 24, 30, 100)` as break points.
 - Use `table()` on the age intervals to create object `age_counts` and print it.
 - Visualize the contents of the table with a bar plot.
 
-
-*** =hint
+`@hint`
 - Use the argument `breaks = c(0, 16, 20, 24, 30, 100)` inside `cut()` to create the factor object `age_cut`.
 - Make sure to close the parenthesis on `cut()`.
 
-
-
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{r}
   # load data from web
 students2014 <- read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS-data.txt", sep="\t", header=TRUE)
@@ -289,8 +310,7 @@ students2014$pituus <- as.numeric(students2014$pituus)
 students2014$kenka <- as.numeric(students2014$kenka)
 ```
 
-
-*** =sample_code
+`@sample_code`
 ```{r}
 # students2014 is available
 
@@ -310,7 +330,7 @@ age_counts <- NULL
 
 ```
 
-*** =solution
+`@solution`
 ```{r}
 # students2014 is available
 
@@ -330,7 +350,7 @@ barplot(age_counts)
 
 ```
 
-*** =sct
+`@sct`
 ```{r}
 
 test_object("age_cut", incorrect_msg = "Please use `breaks = c(0, 16, 20, 24, 30, 100)` to create the object age_cut.")
@@ -345,9 +365,17 @@ test_error()
 success_msg("Nicely done. That was awsome!")
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1 key:86cee4bd71
+---
 
 ## Histograms
+
+```yaml
+type: NormalExercise
+key: 86cee4bd71
+lang: r
+xp: 100
+skills: 1
+```
 
 Splitting a continuous variable into intervals of equal width and then drawing a bar plot is so common that the procedure has it's own name: the histogram. 
 
@@ -357,20 +385,18 @@ The plotting functions in R also have many additional arguments which allow for 
 
 Multiple arguments are always separeted with a comma `,`.
 
-*** =instructions
+`@instructions`
 - Adjust the sample code and draw the histogram again by setting the argument `breaks = 20`.
 - Use the `col` argument to give the histogram a nice color of your choice. Use quotations marks to define the color name.
 - Set the argument `xlab = "height"`.
 - Set the argument `main = "My histogram"`
 
-
-*** =hint
+`@hint`
 - All the extra arguments in this exercise go inside the parenthesis in `hist()`.
 - Remember to seperate the arguments of a function with a comma.
 - Use quotation marks for the color names and the main and xlab titles.
 
-
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{r}
 # load data from web
 students2014 <- read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS-data.txt", sep="\t", header=TRUE)
@@ -390,7 +416,7 @@ hist(students2014$pituus)
 
 ```
 
-*** =sample_code
+`@sample_code`
 ```{r}
 # students2014 is available
 
@@ -401,7 +427,7 @@ hist(students2014$pituus)
 
 ```
 
-*** =solution
+`@solution`
 ```{r}
 # students2014 is available
 
@@ -411,7 +437,7 @@ hist(students2014$pituus, breaks = 20, col = "blue", xlab = "height", main = "My
 
 ```
 
-*** =sct
+`@sct`
 ```{r}
 # submission correctness tests
 
@@ -422,11 +448,17 @@ success_msg("Very good, young padawan, but you still have much to learn.")
 
 ```
 
-
-
---- type:NormalExercise lang:r xp:100 skills:1 key:c3d62c54f5
+---
 
 ## Box plots
+
+```yaml
+type: NormalExercise
+key: c3d62c54f5
+lang: r
+xp: 100
+skills: 1
+```
 
 One very good way to visualize the summary statistics of a numerical variable is by drawing box plots. A box plot visualizes the 25th, 50th and 75th percentiles (the box), the typical range (the whiskers) and the outliers (the dots) of a variable. 
 
@@ -436,19 +468,19 @@ The whiskers extending from the box can be computed by several techniques. The d
 
 Values outside the whiskers can be considered as outliers, unusually distant observations. For more information on IQR, see <a target="_blank" href ="https://en.wikipedia.org/wiki/Interquartile_range"> wikipedia</a>
 
-*** =instructions
+`@instructions`
 - Create a summary of `students2014$ika`.
 - Use `boxplot()` on `students2014$ika`.
 - Adjust the plot: set the argument `horizontal = TRUE`.
 - Adjust the plot: set the argument `xlab = "age"`.
 - Give your plot the main title "Box plot of student ages" with the argument `main`.
 
-*** =hint
+`@hint`
 - Give `students2014$ika` as the first argument of `boxplot()`.
 - Remember to separate function arguments with a comma.
 - Use quotation marks when adding text.
 
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{r}
 # load data from web
 students2014 <- read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS-data.txt", sep="\t", header=TRUE)
@@ -464,8 +496,7 @@ students2014$pituus <- as.numeric(students2014$pituus)
 students2014$kenka <- as.numeric(students2014$kenka)
 ```
 
-
-*** =sample_code
+`@sample_code`
 ```{r}
 # students2014 is available
 
@@ -479,7 +510,7 @@ summary(students2014$ika)
 
 ```
 
-*** =solution
+`@solution`
 ```{r}
 # students2014 is available
 
@@ -493,7 +524,7 @@ boxplot(students2014$ika, horizontal = T, xlab = "age", main = "Box plot of stud
 
 ```
 
-*** =sct
+`@sct`
 ```{r}
 
 test_function("boxplot", args=c("x","horizontal","xlab","main"))
@@ -502,4 +533,3 @@ test_error()
 success_msg("That was nice work!")
 
 ```
-

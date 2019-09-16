@@ -1,9 +1,17 @@
 ---
-title       : Subsets and conditions
-description : Let's begin to seek the best conditions for coping with uncertainty.
+title: 'Subsets and conditions'
+description: 'Let''s begin to seek the best conditions for coping with uncertainty.'
+---
 
---- type:NormalExercise lang:r xp:100 skills:1 key:da73cb2b07
 ## Welcome to part 2!
+
+```yaml
+type: NormalExercise
+key: da73cb2b07
+lang: r
+xp: 100
+skills: 1
+```
 
 Welcome to chapter 6: **Subsets and conditions**. In the following chapters (6-10) we will be using a dataset collected from students in the Faculty of Social Sciences in the University of Helsinki. The students filled out [this questionaire](https://elomake.helsinki.fi/lomakkeet/54219/lomake.html), which produced the dataset described [here](http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS2-meta.txt).
 
@@ -16,16 +24,16 @@ The answers were later combined into the following combination variables:
 
 The *learning2014* dataset includes these variables along with the students age and gender. The data also includes the students points in a statistics exam. Zero points means that the student did not attend an exam. At the end of the course we will take a close look at how a positive attitude predicts students exam performance.
 
-*** =instructions
+`@instructions`
 - Look at the structure of learning2014
 - Look at the first six observations of learning2014
 - Compute a summary of all the variables in learning2014 (with a single function call)
 
-*** =hint
+`@hint`
 - Use `head()` to look at the first six observations
 - Use `summary()` on learning2014 to compute the summaries of the variables
 
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{r}
 learning2014 <-  read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/learning2014.txt", sep = "\t", header = TRUE)
 
@@ -44,7 +52,7 @@ qplot(attitude, points) + geom_smooth(method = "lm")
 
 ```
 
-*** =sample_code
+`@sample_code`
 ```{r}
 # learning2014 is available
 
@@ -61,7 +69,7 @@ str(learning2014)
 
 ```
 
-*** =solution
+`@solution`
 ```{r}
 # learning2014 is available
 
@@ -77,7 +85,7 @@ summary(learning2014)
 
 ```
 
-*** =sct
+`@sct`
 ```{r}
 
 # test_object("object_name")
@@ -89,24 +97,32 @@ test_error()
 success_msg("Good work!")
 ```
 
---- type:MultipleChoiceExercise lang:r xp:50 skills:1 key:d64c2a9918
+---
 
 ## Explore your data
 
-Let's get a bit more familiar with the `learning2014` dataset. Beside are plots about the dataset. Browse through them to see the distributions of the variables. After looking at the plots, select the correct claim from the list below. 
-  
-*** =instructions
+```yaml
+type: MultipleChoiceExercise
+key: d64c2a9918
+lang: r
+xp: 50
+skills: 1
+```
+
+Let's get a bit more familiar with the `learning2014` dataset. Beside are plots about the dataset. Browse through them to see the distributions of the variables. After looking at the plots, select the correct claim from the list below.
+
+`@possible_answers`
 - There are many outliers in the distribution of students scores on strategic learning.
 - Over thirty students got three or less points.  
 - There are more men than women in the dataset
 - The distribution of deep learning is skewed to right (positive skewness).
-- Highest frequency in the histogram of surface learning scores is little over 25. 
+- Highest frequency in the histogram of surface learning scores is little over 25.
 
-*** =hint
+`@hint`
 - Browse through the plots and choose the correct claim.  
 - [Skewness](https://en.wikipedia.org/wiki/Skewness)
 
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{r}
 # data
 learning2014 <-  read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/learning2014.txt", sep = "\t", header = TRUE)
@@ -140,8 +156,7 @@ barplot(table(learning2014$gender), main = "Distribution of students' gender", c
 
 ```
 
-
-*** =sct
+`@sct`
 ```{r}
 msg1 = "Sorry, wrong. If you look at the boxplot of strategic learning, you can see that there are no outlier marks (like the one in deep learning) and the scores are close to each other."
 msg2 = "Nope, in the distribution of students exam points you can see that only about 17 people got three or less points."
@@ -153,10 +168,17 @@ test_mc(correct = 5, feedback_msgs = c(msg1,msg2,msg3,msg4, msg5))
 success_msg("Going through the plots like a pro. Awesome!")
 ```
 
-
---- type:NormalExercise lang:r xp:100 skills:1 key:c12d1b7017
+---
 
 ## Selecting a subset()
+
+```yaml
+type: NormalExercise
+key: c12d1b7017
+lang: r
+xp: 100
+skills: 1
+```
 
 You have already learned how to look at your data with visualizations and summaries. This is great, but often there is a need to zoom in on a **subset** of the data matching some *condition*.
 
@@ -164,19 +186,18 @@ There are multiple ways to select a subset in R. Perhaps the most convenient met
 
 When used on a data.frame, `subset()` returns the rows of the data.frame which match the logical conditions. You will soon learn more about logical conditions.
 
-*** =instructions
+`@instructions`
 - Look at the first six observations of `learning2014`
 - Create object `stra_learners` by executing the example codes
 - Look at the first 6 rows of the strategic learners subdata
 - Create your own subset by selecting the students with attitude less than 3
 
-*** =hint
+`@hint`
 - Use the functions `head()` and `subset()` as in the example codes.
 - The strategic learning variable is named `stra`. The attitude variable is named `attitude`.
 - Use the operator `<` similarily to it's counterpart `>` in the example.
 
-
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{r}
 learning2014 <- read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/learning2014.txt", sep = "\t", header = TRUE)
 
@@ -185,7 +206,7 @@ head(learning2014)
 
 ```
 
-*** =sample_code
+`@sample_code`
 ```{r}
 # learning2014 is available
 
@@ -204,7 +225,7 @@ attitude_low <-
 
 ```
 
-*** =solution
+`@solution`
 ```{r}
 # learning2014 is available
 
@@ -223,7 +244,7 @@ attitude_low <- subset(learning2014, attitude < 3)
 
 ```
 
-*** =sct
+`@sct`
 ```{r}
 # submission correctness tests
 
@@ -239,9 +260,17 @@ success_msg("Excellent work!")
 
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1 key:73f94cfacf
+---
 
 ## Logical comparison
+
+```yaml
+type: NormalExercise
+key: 73f94cfacf
+lang: r
+xp: 100
+skills: 1
+```
 
 What you just saw inside the `subset()` function was  **logical comparison**. Logical comparison creates logical vectors, which can be used to select subsets of data. Logical conditions have other uses as well and are generally important in programming tasks.  
 
@@ -258,23 +287,22 @@ operator  | description
 
 Follow the instructions below to complete the exercise. Take your time, this might not be a quick exercise.
 
-*** =instructions
+`@instructions`
 - Execute and study the example codes
 - Add to the row with `c("a","b","c")`: select a suitable logical comparison operator and a suitable comparison value to produce a result vector `FALSE, FALSE, TRUE`
 - Add to the row with `c(1,3,2)`: select a suitable logical comparison operator and a suitable comparison value to produce a result vector `TRUE, FALSE, TRUE`
 - Bonus: can you think of other ways of achieving the same results?
 
-*** =hint
+`@hint`
 - The third example should point you in the right direction
 - If you're uncertain, just choose a comparison value and try out a bunch of different operators to figure out what might work.
 
-
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{r}
 # no pec
 ```
 
-*** =sample_code
+`@sample_code`
 ```{r}
 # In the comments below: T = TRUE, F = FALSE
 # (R also understands these abbreviations)
@@ -297,7 +325,7 @@ c(1, 3, 2)
 
 ```
 
-*** =solution
+`@solution`
 ```{r}
 # In the comments below: T = TRUE, F = FALSE
 # (R also understands these abbreviations)
@@ -319,7 +347,7 @@ c(1,3,2) < 3
 
 ```
 
-*** =sct
+`@sct`
 ```{r}
 # submission correctness tests
 
@@ -336,9 +364,17 @@ success_msg("Well done! Remember Spock's words: Logic is the beginning of wisdom
 
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1 key:d7b5a24d40
+---
 
 ## Logical operators
+
+```yaml
+type: NormalExercise
+key: d7b5a24d40
+lang: r
+xp: 100
+skills: 1
+```
 
 Logical conditions can be combined with the following logical operators:
   
@@ -354,25 +390,24 @@ So, for example `F & T` evaluates to `FALSE` and `F | T` evaluates to `TRUE`. Al
 
 It is also possible to use parenthesis to control the evaluation of the operators. See how this works from the example codes.
 
-*** =instructions
+`@instructions`
 - Create and print out four subsets of the learning2014 data matching the following conditions: 
 - (gender is male, "M") AND (deep learning is greater than 4.5)
 - (age is 25 OR age is 26) AND (attitude is greater than 3.5)
 - (gender is female, "N") AND (strategic learning is greater than 4.5)
 - (deep learning is more than 4) AND (points is zero OR points is greater than 30)
 
-*** =hint
+`@hint`
 - The instructions show the correct use of parenthesis when using the logical operators and conditions
 - Note that the logical equals is `==`, not `=`.
 
-
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{r}
 learning2014 <- read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/learning2014.txt", sep = "\t", header = TRUE)
 
 ```
 
-*** =sample_code
+`@sample_code`
 ```{r}
 # learning2014 is available
 
@@ -391,7 +426,7 @@ subset(learning2014, (age == 25 | age == 26) & (attitude > 3.5))
 
 ```
 
-*** =solution
+`@solution`
 ```{r}
 # learning2014 is available
 
@@ -410,7 +445,7 @@ subset(learning2014, deep > 4 & (points == 0 | points > 30))
 
 ```
 
-*** =sct
+`@sct`
 ```{r}
 # submission correctness tests
 
@@ -425,9 +460,17 @@ success_msg("Excellent! You are the operator indeed.")
 
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1 key:71e768aa4c
+---
 
 ## Classical probability
+
+```yaml
+type: NormalExercise
+key: 71e768aa4c
+lang: r
+xp: 100
+skills: 1
+```
 
 Probability is the measure of the likelihood that an event will occur. It is quantified as a number between 0 and 1. Probability is an **essential** tool for statistics since the discipline is primarily interested in measuring uncertainty.
 
@@ -435,9 +478,9 @@ The classical definition of probability is the proportion of favourable cases ov
   
   $$P(A) = \frac{f}{N}$$
   
-For the questions below assume that we randomly pick a single student from the learning2014 data. 
+For the questions below assume that we randomly pick a single student from the learning2014 data.
 
-*** =instructions
+`@instructions`
 - Execute the sample codes that create a cross table of gender and attitude categories
 - What is the probability that the student is female?
 - What is the probability that the student has scored more than 3 on attitude?
@@ -445,13 +488,12 @@ For the questions below assume that we randomly pick a single student from the l
 - Save the probabilities to the objects p2, p3, p4 (instead of `NA`, not available)
 - Combine all the probabilities to a vector with `c()` and print it out, rounded to 2 digits
 
-*** =hint
+`@hint`
 - Use the table created and count the number of favourable cases (f) and the number of all possible cases (N)
 - The asked probabilities are then f / N
 - Use a comma to combine multiple values with `c()`.
 
-
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{r}
 learning2014 <-  read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/learning2014.txt", sep = "\t", header = TRUE)
 
@@ -462,7 +504,7 @@ print(addmargins(gndr_att))
 
 ```
 
-*** =sample_code
+`@sample_code`
 ```{r}
 # learning2014 is available
 
@@ -489,7 +531,7 @@ round(c(p1), digits = 2)
 
 ```
 
-*** =solution
+`@solution`
 ```{r}
 # learning2014 is available
 
@@ -516,7 +558,7 @@ round(c(p1, p2, p3, p4), digits = 2)
 
 ```
 
-*** =sct
+`@sct`
 ```{r}
 # submission correctness tests
 
@@ -536,9 +578,17 @@ success_msg("Great! You are probably a genius!")
 
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1 key:562f9818e0
+---
 
 ## Conditional probability
+
+```yaml
+type: NormalExercise
+key: 562f9818e0
+lang: r
+xp: 100
+skills: 1
+```
 
 As you saw before, conditioning is closely related to selecting a subset. The condition(s) defines the subset of the possible cases. This is also a good way to think about conditional probability: The condition defines the subset of possible outcomes.
 
@@ -548,9 +598,9 @@ $$P(A | B) = \frac{P(A \text{ and } B)}{P(B)}$$
   
 But we won't directly need to apply that definition here. 
 
-For the questions below assume that we randomly pick a single student from the learning2014 data. 
+For the questions below assume that we randomly pick a single student from the learning2014 data.
 
-*** =instructions
+`@instructions`
 - Print a table of attitude and gender by calling `addmargins()`
 - What is the probability that the student has scored over 4 on attitude, on the condition that the student is male? Save the probability to `p1`
 - What is the probability that the student has scored over 4 on attitude, on the condition that the student is female? Save the probability to `p2`.
@@ -558,11 +608,10 @@ For the questions below assume that we randomly pick a single student from the l
 - What is the probability that the student is female, on the condition that the student has scored over 4 on attitude? Save the probability to `p4`.
 - Combine all the probabilities to a vector with `c()` and print it out, rounded to 2 digits
 
-*** =hint
+`@hint`
 - Remember that classical probability is the frequency of favourable outcomes over all possible outcomes Now, the condition determines the subset for the possible outcomes
 
-
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{r}
 learning2014 <-  read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/learning2014.txt", sep = "\t", header = TRUE)
 # transform attitude into a factor and cross table with gender
@@ -571,7 +620,7 @@ gndr_att <- table(learning2014$gender, attitude)
 
 ```
 
-*** =sample_code
+`@sample_code`
 ```{r}
 # Print me!
 addmargins(gndr_att)
@@ -593,7 +642,7 @@ round(c(p1), digits = 2)
 
 ```
 
-*** =solution
+`@solution`
 ```{r}
 # Print me!
 addmargins(gndr_att)
@@ -615,7 +664,7 @@ round(c(p1, p2, p3, p4), digits = 2)
 
 ```
 
-*** =sct
+`@sct`
 ```{r}
 # submission correctness tests
 

@@ -1,9 +1,17 @@
 ---
-title       : R and statistics
-description : Basics of R, the amazing statistical programming language. Do not be afraid of the art of programming!
+title: 'R and statistics'
+description: 'Basics of R, the amazing statistical programming language. Do not be afraid of the art of programming!'
+---
 
---- type:NormalExercise lang:r xp:50 skills:1 key:168121d0f0
 ## What is R?
+
+```yaml
+type: NormalExercise
+key: 168121d0f0
+lang: r
+xp: 100
+skills: 1
+```
 
 R is a programming language designed for statistical analysis. R is completely open source and all analysis done with R are reproduciple and easy to share. R is flexible, powerful and includes implementations of the latest research. 
 
@@ -13,23 +21,22 @@ Researchers and experts often use programming to visualize and explore data and 
 
 Follow the instructions below to complete the exercise.
 
-*** =instructions
+`@instructions`
 - Take a peek at the code written on the right in script.R. When executed, the code gives your computer the instructions to (1) load a dataset and (2) produce a graphic.
 - Could you tell which lines of code relates to (1) or (2)? A hashtag marks a line as a comment line.
 - When you're done pondering, click 'Submit Answer' to execute the code and move on to the next exercise! (You do not need to make any changes to the code in this exercise)
 
-***= hint
+`@hint`
 - Simply press 'Submit Answer' when you're ready to move forward.
 
-
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{r}
 data_url <- "http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS-data.txt"
 students2014 <- read.table(data_url, sep="\t", header=TRUE)
 
 ```
 
-*** =sample_code
+`@sample_code`
 ```{r}
 # This is an example of the power of R
 
@@ -45,7 +52,7 @@ with(students2014, plot(x = kenka, y = pituus, col = sukup, pch = 20, main = "Sc
 
 ```
 
-*** =solution
+`@solution`
 ```{r}
 # This is an example of the power of R
 
@@ -60,13 +67,22 @@ with(students2014, plot(x = kenka, y = pituus, col = sukup, pch = 20, main = "Sc
 
 ```
 
-*** =sct
+`@sct`
 ```{r}
 success_msg("Great! Move on to the first exercise.")
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1 key:35ad6c43ec
+---
+
 ## Basic tools
+
+```yaml
+type: NormalExercise
+key: 35ad6c43ec
+lang: r
+xp: 100
+skills: 1
+```
 
 On your right you see the R editor area - the script - and below that the R console. The editor area is just a simple text editor where you write code - just like text.
 
@@ -75,24 +91,22 @@ You can first write code to the editor area and then tell R that you want to exe
 It is also possible to write code directly to the console and use `Enter` to execute, but working with the script area is preferred.
 
 Try it!
-  
-*** =instructions
+
+`@instructions`
 - Type "Hello world!" in the editor area. Use quotation marks.
 - Press `Ctrl + Enter` to execute your "Hello world!" - code
 - Make sure to use a capital "H" and an exclamation mark.
 - Click 'Submit Answer' when done.
 
-*** =hint
+`@hint`
 - Remember to use quotation marks and write the sentence exactly as instructed.
 
-
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{r}
 # no pec
 ```
 
-
-*** =sample_code
+`@sample_code`
 ```{r}
 # This is the R editor!
 
@@ -107,7 +121,7 @@ Try it!
 # Below is the R console, where you will see output
 ```
 
-*** =solution
+`@solution`
 ```{r}
 # This is the R editor!
 
@@ -122,7 +136,7 @@ Try it!
 # Below is the R console, where you will see output
 ```
 
-*** =sct
+`@sct`
 ```{r}
 test_student_typed("Hello world!", not_typed_msg="Please type 'Hello world!' in the editor.")
 
@@ -130,9 +144,17 @@ test_error()
 success_msg("Great work! You have now executed your first line of code :)")
 ```
 
+---
 
---- type:NormalExercise lang:r xp:100 skills:1 key:b0a54af3ff
 ## Arithmetics
+
+```yaml
+type: NormalExercise
+key: b0a54af3ff
+lang: r
+xp: 100
+skills: 1
+```
 
 Let's continue with something simple. R can do amazing things like scrape websites and draw beautiful graphics but it can also do basic calculations. Consider the following arithmetic operators:
 
@@ -144,21 +166,20 @@ Let's continue with something simple. R can do amazing things like scrape websit
 
 The `^` operator raises the number to its left to the power of the number to its right: for example `3^2` is 9. With this knowledge, follow the instructions below to complete the exercise.
 
-*** =instructions
+`@instructions`
 - Study and execute the examples in the R script. (Use `Ctrl + Enter` or `Cmd + Enter`)
 - Type `2^5` in the editor and calculate 2 to the power 5.
 - When done, click 'Submit Answer'.
 
-*** =hint
+`@hint`
 - If you have trouble accessing the `^` -sign, you can also use double star `**`.
 
-
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{r}
 # no pec
 ```
 
-*** =sample_code
+`@sample_code`
 ```{r}
 # An addition
 5 + 5 
@@ -178,7 +199,7 @@ The `^` operator raises the number to its left to the power of the number to its
 
 ```
 
-*** =solution
+`@solution`
 ```{r}
 # An addition
 5 + 5
@@ -197,38 +218,45 @@ The `^` operator raises the number to its left to the power of the number to its
 
 ```
 
-*** =sct
+`@sct`
 ```{r}
 test_output_contains("2^5", incorrect_msg = "The exponentiation example is not correct. Please write `2 ^ 5` on a new line.")
 
 success_msg("Great work! Head over to the next exercise.")
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1 key:856fab934f
+---
+
 ## Objects
+
+```yaml
+type: NormalExercise
+key: 856fab934f
+lang: r
+xp: 100
+skills: 1
+```
 
 Here's where things start to get interesting. In R you can create and operate on things called *objects*. 
 An object is something that can store information such as numerical values and names. Once an object is created, it will be stored in memory and the information it contains will be available to you later.
 
 Objects are created using the assign operator: `<-` (< and -). The value of an object can be printed by typing it's name.
 
-
-*** =instructions
+`@instructions`
 - Execute the lines that create and operate on `my_character_object` and `my_numeric_object`.
 - Assign your name or nickname to `my_name`. Use quotation marks.
 - Assign a positive message to yourself to `my_message`. Use quotation marks.
 - Click 'Submit Answer'.
 
-*** =hint
+`@hint`
 - Remember that `Ctrl + Enter` executes a single row.
 
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{r}
 # no pec
 ```
 
-
-*** =sample_code
+`@sample_code`
 ```{r}
 
 # Create an object
@@ -253,7 +281,7 @@ my_message <-
 
 ```
 
-*** =solution
+`@solution`
 ```{r}
 
 # Create an object
@@ -278,7 +306,7 @@ my_message <- "You are awsome!"
 
 ```
 
-*** =sct
+`@sct`
 ```{r}
 test_object("my_name", eval = F, incorrect_msg = "Did you assign your name to `my_name`?")
 test_object("my_message", eval = F, incorrect_msg = "Did you assign a message to `my_message`?")
@@ -287,26 +315,33 @@ test_error(incorrect_msg = "Did you use quotation marks to assign your name and 
 success_msg(paste0("Great job ", my_name, ". ", my_message, "!"))
 ```
 
+---
 
---- type:NormalExercise lang:r xp:100 skills:1 key:b81cdce659
 ## Functions
+
+```yaml
+type: NormalExercise
+key: b81cdce659
+lang: r
+xp: 100
+skills: 1
+```
 
 In R you operate on objects using *functions*. A function is a special kind of object that uses other objects as inputs, performs operations, and usually outputs a result. The inputs of a function are called *arguments*. 
 
 A Function is *called* by typing it's name and giving it the necessary arguments inside parenthesis. When a function is called, it will perform an action.
 
-R has many functions ready for you to use. Functions are how you're actually going to do all the magic. Here we will do a little bit of magic using data that will become more familiar to you later on.  
+R has many functions ready for you to use. Functions are how you're actually going to do all the magic. Here we will do a little bit of magic using data that will become more familiar to you later on.
 
-*** =instructions
+`@instructions`
 - Study and execute the examples in the R script. Don't worry about the `$` -sign for now, we will get to that later.
 - Follow the examples and compute the mean age of students.
 - When done, click 'Submit Answer'.
 
-*** =hint
+`@hint`
 - Use the function `mean()` and the object `student_age` like in the example on line 7 of script.R.
 
-
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{r}
 students2014 <- read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS-data.txt", sep="\t", header=TRUE)
 
@@ -326,7 +361,7 @@ students2014$kenka <- as.numeric(students2014$kenka)
 
 ```
 
-*** =sample_code
+`@sample_code`
 ```{r}
 # students2014 data is available
 
@@ -346,7 +381,7 @@ student_age <- students2014$ika
 
 ```
 
-*** =solution
+`@solution`
 ```{r}
 # students2014 data is available
 
@@ -366,7 +401,7 @@ mean(student_age)
 
 ```
 
-*** =sct
+`@sct`
 ```{r}
 test_output_contains("mean(student_age)", incorrect_msg = "Please use the `mean()` function to compute the mean of student_age.")
 
@@ -374,25 +409,32 @@ test_error()
 success_msg("Excellent! You are making great progress.")
 ```
 
+---
 
---- type:NormalExercise lang:r xp:100 skills:1 key:88d1d679eb
 ## Good arguments
+
+```yaml
+type: NormalExercise
+key: 88d1d679eb
+lang: r
+xp: 100
+skills: 1
+```
 
 During this course you will operate on many of R's ready-made functions. As we already saw, functions take objects as their arguments and then perform actions using the objects. Using a function is called *calling* it.
 
 Functions usually have more than one possible argument. Some of them can have default values and others need to be specified. The arguments have names, which can (and often should) be used when specifying their values. The recommended style is to specify all but the first argument by name, when calling a function.
 
-*** =instructions
+`@instructions`
 - Execute the example codes where the function `head()` is used to explore the first couple observations in the `students2014` dataset.
 - Using the assign operator `<-`, create object `first_ten_students` by calling `head()` with `n = 10`.
 
-*** =hint
+`@hint`
 - Directly assign the output of `head()` to `first_ten_students` to create the object
 - Remember to separate the arguments with a comma
 - The answer is of the form: `first_ten_students <- head(arguments_here)`
 
-
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{r}
 # load data from web
 students2014 <- read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS-data.txt", sep="\t", header=TRUE)
@@ -409,8 +451,7 @@ students2014$kenka <- as.numeric(students2014$kenka)
 
 ```
 
-
-*** =sample_code
+`@sample_code`
 ```{r}
 # students2014 is available
 
@@ -431,7 +472,7 @@ first_ten_students <-
 
 ```
 
-*** =solution
+`@solution`
 ```{r}
 # students2014 is available
 
@@ -451,7 +492,7 @@ first_ten_students <- head(students2014, n = 10)
 
 ```
 
-*** =sct
+`@sct`
 ```{r}
 test_error(incorrect_msg = "Your code seems to produce an error. Did you create the object `first_ten_students` as instructed?")
 
@@ -460,9 +501,17 @@ test_object("first_ten_students")
 success_msg("Great job!")
 ```
 
---- type:MultipleChoiceExercise lang:r xp:100 skills:1 key:8d2100f40a
+---
 
 ## students2014
+
+```yaml
+type: MultipleChoiceExercise
+key: 8d2100f40a
+lang: r
+xp: 50
+skills: 1
+```
 
 We will be doing data science using a dataset that was collected in 2014 from the students of the Faculty of Social Sciences in the University of Helsinki. 
 
@@ -470,23 +519,22 @@ The students filled out [this short questionnaire](http://www.helsinki.fi/~kvehk
 
 How many numbered sections does the questionnaire have?
 
-*** =instructions
+`@possible_answers`
 - two
 - four
 - seven
 - ten
 - fourteen
 
-*** =hint
+`@hint`
 - if the link does not work, the url is:  http://www.helsinki.fi/~kvehkala/JYTmooc/ASSIST-2014-FI-0-20140903.pdf
 
-
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{r}
 # pre exercise code here
 ```
 
-*** =sct
+`@sct`
 ```{r}
 # submission correctness tests
 msg1 <- msg3 <- msg4 <- msg5 <- "Sorry, not quite."

@@ -1,24 +1,31 @@
 ---
-title       : Exploring variation and dependence
-description : Variation and dependence are at the heart of Statistics. In fact, without variation the discipline would cease to exist. Correlation is not causation, but why?
+title: 'Exploring variation and dependence'
+description: 'Variation and dependence are at the heart of Statistics. In fact, without variation the discipline would cease to exist. Correlation is not causation, but why?'
+---
 
---- type:NormalExercise lang:r xp:50 skills:1 key:ea11f25c3e
 ## Be aware of varying variables
+
+```yaml
+type: NormalExercise
+key: ea11f25c3e
+lang: r
+xp: 100
+skills: 1
+```
 
 In the previous chapter you learned how to explore the variables in your data by creating summaries and plots out of data objects in R. You already know quite a bit about how to exlore variability.
 
 In this chapter we'll expand on these tools and we'll also look at how to explore the *relationships* between pairs of variables with scatter plots and correlation. We'll also learn about standard deviation, perhaps the most important measure of variability in statistics.
 
-*** =instructions
+`@instructions`
 - Draw a scatter plot of students shoesizes and heights with `plot()`. Does a linear relationship between the variables look plausible?
 - Compute the correlation between shoesizes and heights. What is your interpretation?
 - Click Submit Answer to move to the next exercise.
 
-*** =hint
+`@hint`
 - Simply execute the example codes and click Submit Answer.
 
-
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{r}
 # load data from web
 students2014 <- read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS-data.txt", sep="\t", header=TRUE)
@@ -35,7 +42,7 @@ students2014$kenka <- as.numeric(students2014$kenka)
 
 ```
 
-*** =sample_code
+`@sample_code`
 ```{r}
 # students 2014 is available
 
@@ -52,7 +59,7 @@ cor(shoesize, height)
 
 ```
 
-*** =solution
+`@solution`
 ```{r}
 # students 2014 is available
 
@@ -68,7 +75,7 @@ cor(shoesize, height)
 
 ```
 
-*** =sct
+`@sct`
 ```{r}
 
 test_error()
@@ -76,15 +83,23 @@ success_msg("Good job!")
 
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1 key:ab9cf651a8
+---
+
 ## Help() !
+
+```yaml
+type: NormalExercise
+key: ab9cf651a8
+lang: r
+xp: 100
+skills: 1
+```
 
 There are many functions in R. It is often hard to remember all the argument names and details of the functions. Luckily, every single function has a help page. Using the help pages is part of using R.
 
 The help page of a function called *func* can be opened by two methods: `help(func)` or `?func`. The help page is a pop-up window, which you might have to specifically allow to pop up.
 
-
-*** =instructions
+`@instructions`
 - Open the help page of `plot` by writing `?plot` directly to the console and pressing enter.
 - Draw a scatter plot of student shoesize versus height.
 - Compute the correlation of student shoesize and height using `cor()`.
@@ -92,11 +107,11 @@ The help page of a function called *func* can be opened by two methods: `help(fu
 - Add this (exact) main title: "Scatter plot of student shoesize versus height".
 - Add this subtitle: "Correlation: 0.xx". Replace 0.xx with the actual correlation, rounded to two decimal places.
 
-*** =hint
+`@hint`
 - Please note that the tests are sensitive to capital letters and missing spaces etc.
 - See the previous exersize for tips on drawing a scatterplot and computing the correlation.
 
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{r}
 # load data from web
 students2014 <- read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS-data.txt", sep="\t", header=TRUE)
@@ -113,7 +128,7 @@ students2014$kenka <- as.numeric(students2014$kenka)
 
 ```
 
-*** =sample_code
+`@sample_code`
 ```{r}
 # Create objects shoesize and height
 shoesize <- students2014$kenka
@@ -127,7 +142,7 @@ height <- students2014$pituus
 
 ```
 
-*** =solution
+`@solution`
 ```{r}
 # Create objects shoesize and height
 shoesize <- students2014$kenka
@@ -142,7 +157,7 @@ cor(shoesize, height)
 
 ```
 
-*** =sct
+`@sct`
 ```{r}
 
 test_function("plot",args = c("x","y","main","sub"))
@@ -151,9 +166,17 @@ test_error()
 success_msg("Very good work!")
 ```
 
+---
 
---- type:NormalExercise lang:r xp:100 skills:1 key:0083627e50
 ## Standard deviation
+
+```yaml
+type: NormalExercise
+key: 0083627e50
+lang: r
+xp: 100
+skills: 1
+```
 
 *Standard deviation* is perhaps the most important measure of variability in statistics. It is defined as the average distance of a set of data points from their mean. So, the closer the values of a variable are to their mean on average, the smaller the standard deviation.
 
@@ -163,20 +186,17 @@ $sd = \sqrt[2]{\frac{ \Sigma (x - mean)^2}{n - 1} }$
 
 which might look a bit complicated but really is just the average distance from the mean. In R, standard deviation can be computed using the function `sd()`.
 
-
-*** =instructions
+`@instructions`
 - (1) Use `simulate()` to visualize a random sample of data from a population where the average distance from the mean is 1 (`sd = 1`). Compute the sample standard deviation with `sd()`.
 - (2) Create object `x2` similarily by setting `sd = 2`. What changed? Compute the sample standard deviation.
 - (3) Create object `x3` by setting `sd = 10`. What changed? Compute the sample standard deviation.
 - (4) Create object `x4` by setting `sd = 0`. What happened now? Compute the sample standard deviation.
 
-
-*** =hint
+`@hint`
 - Create the objects `x2`, `x3` and `x4` similarily to `x1` by calling `simulate()` and modifying the `sd` argument.
 - Compute the standard deviations of the new object on different lines, similarily to the example.
 
-
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{r}
 
 simulate <- function(sd = NULL, n = 100, mean = 0) {
@@ -202,7 +222,7 @@ simulate <- function(sd = NULL, n = 100, mean = 0) {
 
 ```
 
-*** =sample_code
+`@sample_code`
 ```{r}
 # simulate() is available to draw samples from an artificial population
 
@@ -220,7 +240,7 @@ sd(x1)  # (1)
 
 ```
 
-*** =solution
+`@solution`
 ```{r}
 # simulate() is available to draw samples from an artificial population
 
@@ -238,7 +258,7 @@ sd(x4)  # (4)
 
 ```
 
-*** =sct
+`@sct`
 ```{r}
 
 test_object("x1")
@@ -256,28 +276,33 @@ success_msg("Awsome work!")
 
 ```
 
+---
 
---- type:NormalExercise lang:r xp:100 skills:1 key:989f75fe50
 ## Clustering
+
+```yaml
+type: NormalExercise
+key: 989f75fe50
+lang: r
+xp: 100
+skills: 1
+```
 
 [Clustering](https://en.wikipedia.org/wiki/Cluster_analysis) is the task of grouping a set of objects in such a way that objects in the same group (called a cluster) are more similar to each other than to those in other groups. [K-means](https://en.wikibooks.org/wiki/Data_Mining_Algorithms_In_R/Clustering/K-Means#Algorithm) is a popular algorithm that performs clustering. With k-means, data points that share the same closest *centroid* are concidered similar. k centroids form k clusters around them.  
 
 The centroids are found in such a way that the combined distance from each data point to it's centroid is the smallest possible. In a simple case this is identical to saying that the standard deviations inside the clusters is the smallest possible.
 
-
-*** =instructions
+`@instructions`
 - Modify the call to `kmeans()` to group the student heights to two group by using two centroids (centers).
 - Print out `km$centers`. Can you find any interpretations?
 - Create a new colum `height_cluster` in `students2014` that stores the new clusters of the students. Look at the first 6 rows of `students2014` with `head()`.
 - Draw the plot of the student heights, where the students are separated and colored by sex. Adjust the `col` argument of `plot()` and instead color the points by the height_clusters.
 
-
-*** =hint
+`@hint`
 - Define the number of clusters using the `centers` argument of `kmeans()`.
 - Replace `$sukup` with `$height_cluster` for the `col` argument of `plot()`.
 
-
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{r}
 # load data from web
 students2014 <- read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS-data.txt", sep="\t", header=TRUE)
@@ -294,7 +319,7 @@ students2014$kenka <- as.numeric(students2014$kenka)
 
 ```
 
-*** =sample_code
+`@sample_code`
 ```{r}
 # students2014 is available
 height <- students2014$pituus
@@ -317,7 +342,7 @@ plot(sex, height, col = students2014$sukup)
 
 ```
 
-*** =solution
+`@solution`
 ```{r}
 # students2014 is available
 height <- students2014$pituus
@@ -340,7 +365,7 @@ plot(sex, height, col = students2014$height_cluster)
 
 ```
 
-*** =sct
+`@sct`
 ```{r}
 
 test_function("kmeans",args=c("x","centers"))
@@ -353,26 +378,32 @@ success_msg("Very nice work!")
 
 ```
 
-
---- type:NormalExercise lang:r xp:100 skills:1 key:1d52143e10
+---
 
 ## Guess the correlation
+
+```yaml
+type: NormalExercise
+key: 1d52143e10
+lang: r
+xp: 100
+skills: 1
+```
 
 Correlation measures the strength of the *linear* relationship between two variables. The easiest way to check if the relationship between two variables might be  interpret as linear is to visualize the relationship with a scatter plot. 
 
 It is then possible to make a reasonable guess of the strength of the linear relationship. In order for you to practise this skill, we have build a game you can play.
 
-*** =instructions
+`@instructions`
 - Use `simulate()` to draw a scatter plot using simulated data. The variables can have linear and nonlinear relationships. 
 - Try to guess what the correlation might be and save your guess to `guess`.
 - Use `show_correlation()` to check how close you got.
 - You can experiment as many times as you wish and the simulation will be different each time. Feel free to change `n`, the number of simulated values.
 
-*** =hint
+`@hint`
 - When you are done experimenting, simply click 'Submit Answer' to move forward.
 
-
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{r}
 # simulate and plot correlated data
 simulate <- function(n = 100) {
@@ -419,7 +450,7 @@ show_correlation <- function(df, guess) {
 
 ```
 
-*** =sample_code
+`@sample_code`
 ```{r}
 # Functions simulate() and show_correlation() are available
 
@@ -434,7 +465,7 @@ show_correlation(data, guess)
 
 ```
 
-*** =solution
+`@solution`
 ```{r}
 # Functions simulate() and show_correlation() are available
 
@@ -449,7 +480,7 @@ show_correlation(data, guess)
 
 ```
 
-*** =sct
+`@sct`
 ```{r}
 
 test_error()

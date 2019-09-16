@@ -1,37 +1,43 @@
 ---
-title       : Probability distributions
-description : Most things in this world are more or less random, and not evenly distributed.
-
---- type:NormalExercise lang:r xp:100 skills:1 key:ef878aeeea
+title: 'Probability distributions'
+description: 'Most things in this world are more or less random, and not evenly distributed.'
+---
 
 ## Random variables and probability distributions
+
+```yaml
+type: NormalExercise
+key: ef878aeeea
+lang: r
+xp: 100
+skills: 1
+```
 
 Welcome to chapter 7: **Probability distributions**. In this chapter you will learn about [random variables](https://en.wikipedia.org/wiki/Random_variable) and their [probability distributions](https://en.wikipedia.org/wiki/Probability_distribution). 
 
 Random variables can have a set of different values. Every value has a probability of occurance. The probabilities of the values form a probability distribution for the random variable. Random variables and probability distributions can be discrete or continuous.
 
-There are things or events that are known to follow certain probability distributions (like the heights of people usually are normally distributed), but there are also many phenomenas that have their unique distributions. In R you can create a sample from distribution with the function `sample()`. See the example code to get the general idea. 
+There are things or events that are known to follow certain probability distributions (like the heights of people usually are normally distributed), but there are also many phenomenas that have their unique distributions. In R you can create a sample from distribution with the function `sample()`. See the example code to get the general idea.
 
-*** =instructions
+`@instructions`
 - Create variable `tomorrow` with events `cat attacks baby`, `world ends` and `I eat pasta`.
 - Set probabilities to the events of variable `tomorrow`.
 - Draw a [*sample*](https://en.wikipedia.org/wiki/Sample_(statistics)) from tomorrow when the sample size is 1. Are you suprised with the outcome?
 - Draw another sample, this time with sample size = `1000`. Add the argument `replace = TRUE` to the `sample()` function. What do you think it the `replace` argument does? Save the sample to `my_sample`. In this exercise, do not change or insert additional code **before** creating `my_sample`.
 - Visualize the sample with bar plot. Notice how the bar heights in the barplot are related to the probabilities we set earlier.
 
-*** =hint
+`@hint`
 - Save the sample you created as `my_sample`.
 - Did you specify the sample size correctly in `my_sample`? If not, the code will produce an error.
 - Remember to use `replace = TRUE`.
 - The argument `size` in the `sample()` function is used to determine the sample size.
 
-
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{r}
 
 ```
 
-*** =sample_code
+`@sample_code`
 ```{r}
 # Create variable 'tomorrow' 
 tomorrow <- c("cat attacks baby","I eat pasta", "world ends")
@@ -50,7 +56,7 @@ barplot(table(my_sample))
 
 ```
 
-*** =solution
+`@solution`
 ```{r}
 # Create variable 'tomorrow' 
 tomorrow <- c("cat attacks baby","I eat pasta", "world ends")
@@ -69,7 +75,7 @@ barplot(table(my_sample))
 
 ```
 
-*** =sct
+`@sct`
 ```{r}
 # submission correctness tests
 test_object("my_sample", incorrect_msg = "Did you save the sample to `my_sample`?")
@@ -80,9 +86,17 @@ success_msg("Good work! And now you know the probability of world ending...")
 
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1 key:8194f8b921
+---
 
 ## Binomial distribution
+
+```yaml
+type: NormalExercise
+key: 8194f8b921
+lang: r
+xp: 100
+skills: 1
+```
 
 [Binomial distribution](https://en.wikipedia.org/wiki/Binomial_distribution) is a well known discrete probability distribution. The sum of favourable outcomes in a number of (independent) yes/no trials, where each trial has identical probability of success, follows a binomial distribution. The distribution hence has two parameters: the number of trials (*n*) and success probability in each trial (*p*). 
 
@@ -93,27 +107,25 @@ An example of an binomial experiment could be tossing a coin 20 times to see how
 - `qbinom()`: quantile function of binomial distribution
 - `rbinom()`: (random) sample from binomial distribution
 
-You can use the `help()` or `?` for any of these functions to see more about them. 
+You can use the `help()` or `?` for any of these functions to see more about them.
 
-*** =instructions
+`@instructions`
 - Let's say that we know a probability of a customer buing a t-shirt from the store is 0.3. There are 8 people in the store looking around. The customers are not interacting with each other.
 - What is the probability of two of them buing a t-shirt?
 - What is the probability of seven of them buing a t-shirt?
 - What is the probability that *at least* two of the customers buy a t-shirt? Note that you will need to use the `lower.tail` argument. The argument takes logical values: if it's `TRUE` (default), the probabilities are $P(X \le x)$, otherwise, $P(X > x)$.
 
-
-*** =hint
+`@hint`
 - To get the probability of seven people buying a t-shirt, you just need to change the 2 to 7 in the `dbinom()` function on the line two.
 - To get the probability of at least two people buying a t-shirt, you need to use the `pbinom()` function. Remember to use the `lower.tail` argument. 
 - Note that $P(X => 2)$ <=> $P(X > 1)$
 
-
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{r}
 # pre exercise code here
 ```
 
-*** =sample_code
+`@sample_code`
 ```{r}
 # What is the probability of 2 of them buying a t-shirt? P(X = 2)
 dbinom(2, size = 8, prob = 0.3)
@@ -126,7 +138,7 @@ dbinom(2, size = 8, prob = 0.3)
 
 ```
 
-*** =solution
+`@solution`
 ```{r}
 # What is the probability of 2 of them buing a t-shirt? P(X = 2)
 dbinom(2, size = 8, prob = 0.3)
@@ -139,7 +151,7 @@ pbinom(1, size = 8, prob = 0.3, lower.tail = FALSE)
 
 ```
 
-*** =sct
+`@sct`
 ```{r}
 # submission correctness tests
 
@@ -155,32 +167,40 @@ success_msg("Wonderful! Keep going!")
 
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1 key:6780cce146
+---
 
 ## Normal distribution (1)
 
+```yaml
+type: NormalExercise
+key: 6780cce146
+lang: r
+xp: 100
+skills: 1
+```
+
 [Normal distribution](https://en.wikipedia.org/wiki/Normal_distribution) is continuous distribution and it is often used in statistics. It has two parameters (expected value and standard deviation) which determine the shape and place of the distribution. Many human attributes can be said to be normally distributed. For example, if you take a village full of people, their height will probably create a distribution that resembles a normal distribution. 
 
-In this exercise, we will focus on the `rnorm()` function. It draws a random sample from normal distribution (with specified parameters). 
+In this exercise, we will focus on the `rnorm()` function. It draws a random sample from normal distribution (with specified parameters).
 
-*** =instructions
+`@instructions`
 - Execute the line for `normal_sample`. Note the mean and standard deviation values.
 - Draw a histogram of `normal_sample`. Do you notice the shape of the distribution?
 - Calculate the mean and standard deviation of `normal_sample`.
 - Change the mean value to `35` in the `rnorm()` function and run all the codes again. What happened to the normal distribution?
 - Change the sd value to `0.1` in the `rnorm()` function and run all the codes again. What happened to the normal distribution?
 
-*** =hint
+`@hint`
 - The `hist()` function has a mandatory argument `breaks` that needs to be specified.
 - You can calculate mean with the function `mean()`.
 - You can calculate standard deviation with the function `sd()`.
 
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{r}
 # pre exercise code here
 ```
 
-*** =sample_code
+`@sample_code`
 ```{r}
 # Create a sample from normal distribution. In this case, the first argument (500) means the sample size.
 normal_sample <- rnorm(500, mean = 5, sd = 2.5)
@@ -194,7 +214,7 @@ hist(normal_sample, breaks = 50)
 
 ```
 
-*** =solution
+`@solution`
 ```{r}
 # Create a sample from normal distribution. In this case, the first argument (500) means the sample size.
 normal_sample <- rnorm(500, mean = 35, sd = 0.1)
@@ -208,7 +228,7 @@ sd(normal_sample)
 
 ```
 
-*** =sct
+`@sct`
 ```{r}
 # submission correctness tests
 test_function("mean", args=c("x"), incorrect_msg = "Did you calculate the mean of `normal_sample`?")
@@ -221,9 +241,17 @@ success_msg("Good work!")
 
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1 key:271171917b
+---
 
 ## Normal distribution (2)
+
+```yaml
+type: NormalExercise
+key: 271171917b
+lang: r
+xp: 100
+skills: 1
+```
 
 It is good to know the formulas behind every calculations when you are dealing with probabilities. But in reality you rarely do the calculations by hand. And why would you, when you have R to calculate them for you!
 
@@ -237,19 +265,19 @@ In R the functions associated with normal distiribution are:
 You already used the function `rnorm()` in the previous exercise.
 The function `pnorm()` can be used to compute probabilities from normal distributions. Let's see how it works!
 
-*** =instructions
+`@instructions`
 - The distribution of variable deep resembles a normal distribution (look at the density histogram of `deep`).
 - Create object `deep`.
 - Use the normal distribution and ppproximate the probability that deep learning score is *smaller* than 3 amongst the students.
 - Use the normal distribution and approximate the probability that deep learning score is *greater* than 3 amongst the students. You can use the same code as above, but you need to change the `lower.tail` value to get the correct result.
 - What is the probability that deep learning is greater than 4.5?
 
-*** =hint
+`@hint`
 - Look at the help pages  with `?pnorm` or `help(pnorm)`.
 - Use the mean and standard deviation of variable `deep` as arguments for the `pnorm()` function.
 - Remember to use the `lower.tail` argument in the `pnorm()` function. It determines which "side" you are calculating. The `lower.tail` argument can be either `TRUE` or `FALSE`.
 
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{r}
 learning2014 <-  read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/learning2014.txt", sep = "\t", header = TRUE)
 
@@ -259,7 +287,7 @@ lines(x, dnorm(x, mean(learning2014$deep), sd(learning2014$deep)), type="l", col
 
 ```
 
-*** =sample_code
+`@sample_code`
 ```{r}
 # learning2014 is available
 
@@ -278,7 +306,7 @@ pnorm(3, mean = mean(deep), sd = sd(deep), lower.tail = TRUE)
 
 ```
 
-*** =solution
+`@solution`
 ```{r}
 # learning2014 is available
 
@@ -296,7 +324,7 @@ pnorm(4.5, mean = mean(deep), sd = sd(deep), lower.tail = FALSE)
 
 ```
 
-*** =sct
+`@sct`
 ```{r}
 # submission correctness tests
 
@@ -311,32 +339,37 @@ success_msg("Good work!")
 
 ```
 
---- type:MultipleChoiceExercise lang:r xp:100 skills:1 key:6c27606d58
+---
 
 ## Uniform distribution
+
+```yaml
+type: MultipleChoiceExercise
+key: 6c27606d58
+lang: r
+xp: 50
+skills: 1
+```
 
 The uniform distribution can be a [discrete uniform distribution](https://en.wikipedia.org/wiki/Discrete_uniform_distribution) or a   
 [continuous uniform distribution](https://en.wikipedia.org/wiki/Uniform_distribution_(continuous)). The uniform distribution is a distribution that has constant probability for each outcome. 
 
 An example of event that follows a (discrete) uniform distribution is dice throwing (assuming the dice is not weighted). There are six possible values and the probability to every outcome is 1/6.
 
-At the right you can see four plots. Can you guess which ones are the density plots of continuous and discrete uniform distributions?  
+At the right you can see four plots. Can you guess which ones are the density plots of continuous and discrete uniform distributions?
 
-
-*** =instructions
+`@possible_answers`
 - Plot A is discrete uniform distribution and plot B is the density of continuous uniform distribution.  
 - There is no discrete uniform distribution, but plot C is the continuous uniform distribution.  
 - Plot D is discrete uniform distribution and plot A is continuous uniform distribution.  
-- Plot D is discrete uniform distribution and plot C is continuous uniform distribution.  
+- Plot D is discrete uniform distribution and plot C is continuous uniform distribution.
 
-
-*** =hint
+`@hint`
 - In uniform distribution, all the values of x get the same probability.
 - Plot B is actually not a density, but a plot of cumulative distribution function.
 - There are "gaps"" in the density if the distribution is discrete.
 
-
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{r}
 # pre exercise code here
 x <- seq(-5, 20, length = 50)
@@ -349,7 +382,7 @@ plot(x, dnorm(x, 5, 2), type='l',col=color, ylab=y, main='Plot C')
 plot(x, dunif(x, 0, 15), type='h', ylim=c(0,.15), col=color, ylab=y, main='Plot D')
 ```
 
-*** =sct
+`@sct`
 ```{r}
 msg1 = "Plot A is not discrete, sorry. Plot B is continuous, but it's a cumulative distribution function of uniform distribution."
 msg2 = "The discrete one does exist, sorry. Also, plot C is normal distribution."
@@ -363,9 +396,17 @@ success_msg("Nicely done!")
 
 ```
 
+---
 
---- type:NormalExercise lang:r xp:100 skills:1 key:50d3a1a7a6
 ## Quantiles
+
+```yaml
+type: NormalExercise
+key: 50d3a1a7a6
+lang: r
+xp: 100
+skills: 1
+```
 
 In this exercise, you will get to know the `qnorm()` function, which produces quantiles of the normal distribution. A quantile function is the inverse of the cumulative probability function.
 
@@ -375,18 +416,16 @@ As with all the *norm() functions, qnorm() has default arguments mean = 0 and sd
 
 The quantile values of the standard normal variable are also called critical values. They will be very useful later on for interval estimation and hypothesis testing. The questions below relate to the standard normal distribution.
 
-*** =instructions
+`@instructions`
 - Compute the cumulative probability at point z = -1.64, rounded to 2 digits
 - Compute the quantile point corresponding to the probability 0.05, rounded to 2 digits. Visualize the quantile point.
 - Compute the cumulative probability at point z = -1.96, rounded to 3 digits.
 - Compute the quantile point corresponding to the probabiliity 0.025, rounded to 2 digits. Visualize the quantile point.
 
-
-
-*** =hint
+`@hint`
 - Follow the example codes
 
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{r}
 # pre exercise code here
 qnorm_plot <- function(alpha, twoway = F) {
@@ -427,7 +466,7 @@ qnorm_plot <- function(alpha, twoway = F) {
 
 ```
 
-*** =sample_code
+`@sample_code`
 ```{r}
 # qnorm_plot() is available. Z denotes a standard normal random variable.
 
@@ -452,7 +491,7 @@ qnorm_plot(0.025)
 
 ```
 
-*** =solution
+`@solution`
 ```{r}
 # qnorm_plot() is available. Z denotes a standard normal random variable.
 
@@ -476,7 +515,7 @@ qnorm_plot(0.025)
 
 ```
 
-*** =sct
+`@sct`
 ```{r}
 
 test_output_contains("round(pnorm(-1.96), digits = 3)", incorrect_msg = "Please compute the asked probability using `pnorm()` and remember rounding!")
@@ -486,9 +525,17 @@ test_error()
 success_msg("Good work!")
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1 key:fb1ef1bc2b
+---
 
 ## Two-way quantiles
+
+```yaml
+type: NormalExercise
+key: fb1ef1bc2b
+lang: r
+xp: 100
+skills: 1
+```
 
 In the previous exercise you learned how to use the `qnorm()` function to compute critical values related to a given *tail probability*. 
 
@@ -496,7 +543,7 @@ Sometimes it is usefull to define a value which leaves a desired probability to 
 
 The normal distribution is symmetrical, which means that the values $-z$ and $z$ leave the same amount of probability to the left and right tails. This also means that $P(|Z| > z) = P(Z < -z) + P(Z > z) = 2 \cdot P(Z < -z)$.
 
-*** =instructions
+`@instructions`
 - Compute the probability $P(|Z| > 1.96) = P(Z < - 1.96) + P(Z > 1.96)$, rounded to 2 digits
 - Compute the quantile (critical) value $z$ corresponding to a probability $\alpha = 0.05$ divided to both "tails" of the distribution, rounded to 2 digits
 - Visualize the computation
@@ -504,10 +551,10 @@ The normal distribution is symmetrical, which means that the values $-z$ and $z$
 - Compute the quantile (critical) value z corresponding to probability $\alpha$ = 0.01 divided to both "tails" of the distribution, rounded to 2 digits
 - Visualize the computation
 
-*** =hint
+`@hint`
 - Follow the examples and use the same functions `pnorm()`, `qnorm()` and `qnorm_plot()`
 
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{r}
 # pre exercise code here
 qnorm_plot <- function(alpha, twoway = F) {
@@ -552,7 +599,7 @@ qnorm_plot <- function(alpha, twoway = F) {
 
 ```
 
-*** =sample_code
+`@sample_code`
 ```{r}
 # qnorm_plot() is available. Z denotes a standard normal random variable.
 
@@ -577,7 +624,7 @@ qnorm_plot(0.01/2, twoway = TRUE)
 
 ```
 
-*** =solution
+`@solution`
 ```{r}
 # qnorm_plot() is available. Z denotes a standard normal random variable.
 
@@ -601,7 +648,7 @@ qnorm_plot(0.01/2, twoway = TRUE)
 
 ```
 
-*** =sct
+`@sct`
 ```{r}
 
 test_output_contains("round(2*pnorm(-2.58), digits = 2)", incorrect_msg = "Please use `pnorm()` to compute the asked probability.")
@@ -612,11 +659,17 @@ success_msg("Great work! That was a tough one.")
 
 ```
 
-
-
---- type:NormalExercise lang:r xp:100 skills:1 key:8ca0f12d3d
+---
 
 ## Standardization
+
+```yaml
+type: NormalExercise
+key: 8ca0f12d3d
+lang: r
+xp: 100
+skills: 1
+```
 
 A standardized distribution has 0 as expected value and 1 as standard deviation. A handy thing to know is that in normal distributions about 68% of the observations are within one standard deviation away from the expected value and 95% within two. This can be convenient sometimes.
 
@@ -626,27 +679,24 @@ $$Z = \frac{X - mean}{sd}$$
 
 where $X$ is the object we want to standardize and $mean$ and $sd$ are the mean and standard deviation of $X$. If $X$ is a normally distributed random variable, the standardization produces a standard normal random variable: $Z \sim N(0, 1)$
 
-
-*** =instructions
+`@instructions`
 - Look at the histogram of `deep` from the `learning2014`. Note the x-axis of the histogram: the numbers are deep learning scores and you can see how they are distributed in the data.
 - Standardize the variable `deep` by using the formulate given above and create object `std_deep`
 - Compute the mean and standard deviation of `std_deep`
 - Draw a histogram of  `std_deep`. Note what happened to the x-axis.
 
-
-*** =hint
+`@hint`
 - Remember to use `$`-mark when accessing variables from dataset.
 - See `?hist()` if you don't remember how to draw histograms.
 
-
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{r}
 learning2014 <- read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/learning2014.txt", sep = "\t", header = TRUE)
 deep <- learning2014$deep
 hist(deep, breaks=25, col="orange")
 ```
 
-*** =sample_code
+`@sample_code`
 ```{r}
 # learning2014 is available
 
@@ -664,7 +714,7 @@ hist(std_deep, breaks=25, col="orange")
 
 ```
 
-*** =solution
+`@solution`
 ```{r}
 # learning2014 is available
 
@@ -682,7 +732,7 @@ hist(std_deep, breaks=25, col="orange")
 
 ```
 
-*** =sct
+`@sct`
 ```{r}
 # submission correctness tests
 test_object("std_deep", incorrect_msg ="Did you standardize the deep variable and create object `std_deep`?")

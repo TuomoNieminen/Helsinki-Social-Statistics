@@ -1,26 +1,34 @@
 ---
-title       : Data types and variable types
-description : Quick overview to R data and variable types. What are the objects? You are the subject.
+title: 'Data types and variable types'
+description: 'Quick overview to R data and variable types. What are the objects? You are the subject.'
+---
 
---- type:NormalExercise lang:r xp:100 skills:1 key:8718babe2e
 ## Data frames
+
+```yaml
+type: NormalExercise
+key: 8718babe2e
+lang: r
+xp: 100
+skills: 1
+```
 
 In R, the basic idea is to use *functions* to operate on objects. The most common object to operate on is the `data frame` object, which stores data in tabular form.  
 
 The columns in data frames are vectors. Data frames can contain multiple vectors with different data types. In this chapter you will learn more about vectors and data types.
 
-Here you will get to apply some functions that are helpful for inspecting data: `head()` and `str()`. You will also learn how to access the columns of a data frame using the $-sign.  
+Here you will get to apply some functions that are helpful for inspecting data: `head()` and `str()`. You will also learn how to access the columns of a data frame using the $-sign.
 
-*** =instructions
+`@instructions`
 - Execute the function `head()` and see the results
 - Inspect the data types in the `students2014` data with the function `str()`
 - Use the $-sign to access the students shoe size (`kenka`) in `students2014` data
 - Note that `students2014$ika` prints out all the ages of the students in `students2014`
 
-*** =hint
+`@hint`
 - The data is stored in object `students2014`
 
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{r}
 students2014 <- read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS-data.txt", sep="\t", header=TRUE)
 
@@ -39,7 +47,7 @@ students2014$pituus <- as.numeric(students2014$pituus)
 students2014$kenka <- as.numeric(students2014$kenka)
 ```
 
-*** =sample_code
+`@sample_code`
 ```{r}
 # students2014 is available
 
@@ -57,7 +65,7 @@ students2014$ika
 
 ```
 
-*** =solution
+`@solution`
 ```{r}
 # students2014 is available
 
@@ -74,7 +82,7 @@ students2014$ika
 students2014$kenka
 ```
 
-*** =sct
+`@sct`
 ```{r}
 test_output_contains("students2014$kenka", incorrect_msg = "Did you use the $-sign to access the shoe size variable?")
 
@@ -86,8 +94,17 @@ success_msg("Good work!")
 
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1 key:e4360dcfec
+---
+
 ## Data types (1)
+
+```yaml
+type: NormalExercise
+key: e4360dcfec
+lang: r
+xp: 100
+skills: 1
+```
 
 In this section you learn about the data types in R. You will also get familiar with vectors and their usage. What does data types and vectors have to do with each other? A lot, you'll see! 
 
@@ -101,24 +118,25 @@ When creating character values, one needs to use quotation marks (both `' '` and
 
 You can use the function `str()` (str is short for structure) to find out what data type the object is.
 
-*** =instructions
+`@instructions`
 - Create character object `my_character` by assigning your initials in it.
 - Assign the number 10.5 to `my_numeric`. Note that the decimal separator in R is dot instead of comma. 
 - Create the object `my_logical` by executing the line. Note that with boolean values, no quotation marks are needed.
 - Change the value of `my_logical` to `TRUE`
 - Inspect the data types of the objects with `str()`.
 
-*** =hint
+`@hint`
 - When creating a character object, remember to use quotation marks.
 - Dot is the decimal mark in R:  `2.5` is decimal number but `2,5` means a different thing!
 - Remember that `Ctrl + Enter` executes a single row.
 - You can use `str()` by putting the object name inside the parenthesis.
 
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{r}
+
 ```
 
-*** =sample_code
+`@sample_code`
 ```{r}
 # Create three objects with different data types
 my_character <-
@@ -132,7 +150,7 @@ my_logical <- FALSE
 
 ```
 
-*** =solution
+`@solution`
 ```{r}
 # Create three objects with different data types
 my_character <- "A.B.C."
@@ -146,7 +164,7 @@ str(my_logical)
 
 ```
 
-*** =sct
+`@sct`
 ```{r}
 test_object("my_character", eval=FALSE, incorrect_msg = "Did you assign your initials to `my_character`?")
 test_object("my_numeric", incorrect_msg = "Did you assign the correct value to `my_numeric`?")
@@ -163,28 +181,35 @@ test_error()
 success_msg("You're making great progress, well done!")
 ```
 
+---
 
---- type:NormalExercise lang:r xp:100 skills:1 key:9ee1ba578e
 ## Data types (2)
+
+```yaml
+type: NormalExercise
+key: 9ee1ba578e
+lang: r
+xp: 100
+skills: 1
+```
 
 One of R's data types is called factor. Factors contain numbers, but for every number there is a character value associated to it. A variable measured by the [Likert scale](https://en.wikipedia.org/wiki/Likert_scale) could for example be coded as a factor: the values are numbers from 1 to 5, but the numbers also have words attached to them such as:
 
 - "Strongly disagree" = 1
 - "Strongly agree" = 5
 
-In R is is also possible to create factors from numerical objects using the function `cut()`, which splits a variable into categories. It has a mandatory argument `breaks`, which defines the cutting points of the categories.  
+In R is is also possible to create factors from numerical objects using the function `cut()`, which splits a variable into categories. It has a mandatory argument `breaks`, which defines the cutting points of the categories.
 
-*** =instructions
+`@instructions`
 - Create objects `student_age` and `student_age_cut`
 - use `str()` to inspect `student_age_cut`
 - Use `head()` to print the first six values of `student_age`
 - Use `head()` to print the first six values of `student_age_cut`
 
-
-*** =hint
+`@hint`
 - Give the object `student_age_cut` as the first argument to `str()` and `head()`.
 
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{r}
 students2014 <- read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS-data.txt", sep="\t", header=TRUE)
 
@@ -203,7 +228,7 @@ students2014$pituus <- as.numeric(students2014$pituus)
 students2014$kenka <- as.numeric(students2014$kenka)
 ```
 
-*** =sample_code
+`@sample_code`
 ```{r}
 # students2014 is available
 
@@ -222,7 +247,7 @@ student_age_cut <- cut(student_age, breaks = c(15, 25, 35, 100))
 
 ```
 
-*** =solution
+`@solution`
 ```{r}
 # students2014 is available
 
@@ -242,7 +267,7 @@ head(student_age_cut)
 
 ```
 
-*** =sct
+`@sct`
 ```{r}
 
 test_function("str", args="object", incorrect_msg = "Did you use the `str()` to look at the object 'student_age_cut'?")
@@ -258,31 +283,40 @@ success_msg("Good work!")
 
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1 key:7cc56d2158
+---
+
 ## Vectors
+
+```yaml
+type: NormalExercise
+key: 7cc56d2158
+lang: r
+xp: 100
+skills: 1
+```
 
 A vector is an object containing multiple elements of the same data type. Vectors are quite important in R. The columns of a data frame (such as `student2014`) are vectors.
 
 You can create vectors by combining values of the same data type, using the function `c()`. 
 
 In this exercise you will learn how to create your own vector.
-*** =instructions
+
+`@instructions`
 - See and execute the examples on how to create a vector with `c()`.
 - Create a character vector `character_vector`.
 - Create a vector `logical_vector` with boolean values `TRUE, FALSE, TRUE, FALSE`.
 - Print the contents of `logical_vector`.
 
-*** =hint
+`@hint`
 - When creating boolean values, no quotation marks are needed.
 - You can print the contents of an object by typing it's name.
 
-
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{r}
+
 ```
 
-
-*** =sample_code
+`@sample_code`
 ```{r}
 # Here we create a vector with numeric elements
 c(2, 3, 4, 5)
@@ -299,7 +333,7 @@ character_vector <- c("a", "b", "c", "d")
 
 ```
 
-*** =solution
+`@solution`
 ```{r}
 # Here we create a vector with numeric elements
 c(2, 3, 4, 5)
@@ -316,7 +350,7 @@ logical_vector
 
 ```
 
-*** =sct
+`@sct`
 ```{r}
 
 test_object("logical_vector", incorrect_msg = "Did you create `logical_vector` with same values as instructed?")
@@ -328,8 +362,17 @@ success_msg("Great work!")
 
 ```
 
---- type:MultipleChoiceExercise lang:r xp:50 skills:1 key:3c0486635f
+---
+
 ## Data types and measurement scales
+
+```yaml
+type: MultipleChoiceExercise
+key: 3c0486635f
+lang: r
+xp: 50
+skills: 1
+```
 
 Data types and measurement scales are somewhat related. When asking simple "Yes / No " -questions logical values are useful but you would not use them for measuring heights. Here is a table for the data types and measuring scales:
 
@@ -342,23 +385,22 @@ Data types and measurement scales are somewhat related. When asking simple "Yes 
 
 Use the R Console to inspect the `students2014` data with the function `str()` and select the correct answer from below. The data is already loaded for you. Remember that in the console `Enter` executes lines.
 
-Choose one.  
+Choose one.
 
-*** =instructions
+`@possible_answers`
 - Variable `kone` is from ordinal scale.  
 - Variables `ika` and `pituus` are character values.  
 - You could use the logical data type for variables `ika` and `pituus`.  
 - Variable `kone` is from categorical scale.  
 - It is meaningful to use factors for variables from measurement scale.
 
-
-*** =hint
+`@hint`
 - There is no natural order in categorical scale. 
 - If you can put the values in a meaningful order, then it's ordinal scale. 
 - Using factors probably loses its purpose if the variable can have a lot of different values.
-- Character values have quotations marks. `chr` is short for character. 
+- Character values have quotations marks. `chr` is short for character.
 
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{r}
 students2014 <- read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS-data.txt", sep="\t", header=TRUE)
 
@@ -377,7 +419,7 @@ students2014$pituus <- as.numeric(students2014$pituus)
 students2014$kenka <- as.numeric(students2014$kenka)
 ```
 
-*** =sct
+`@sct`
 ```{r}
 msg1 = "Sorry, I know you feel like Mac is better than Windows put in this case there is no order. Try again!"
 msg2 = "I would use numbers to measure height and age. Try again!"
@@ -391,5 +433,3 @@ test_mc(correct = 4, feedback_msgs = c(msg1,msg2,msg3,msg4,msg5))
 success_msg("Good work!")
 
 ```
-
-

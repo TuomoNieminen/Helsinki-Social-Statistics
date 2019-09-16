@@ -1,9 +1,17 @@
 ---
-title       : Estimation
-description : Get your brackets ready for diving in the world of statistical inference!
+title: Estimation
+description: 'Get your brackets ready for diving in the world of statistical inference!'
+---
 
---- type:NormalExercise lang:r xp:100 skills:1 key:44d1f23e51
 ## Exploring estimation with R
+
+```yaml
+type: NormalExercise
+key: 44d1f23e51
+lang: r
+xp: 100
+skills: 1
+```
 
 Welcome to chapter 8: **Estimation**. In this chapter we will focus on point and interval estimation. Interval estimation is based on the important concept of the *sampling distribution*, which is a somewhat theoretical concept and therefore takes a while to get used to.
 
@@ -11,22 +19,22 @@ The sampling distribution is a kind of mind game: If we could collect our random
 
 It turns out that for a lot of important point estimates, the sampling distribution can be approximated with the normal distribution with certain known parameters! This is due to a fascinating phenomenom called the *central limit theorem*.
 
-To explore these concepts, we will start this chapter with some technical tools we will need for constructing *loops* and *simulations*. 
+To explore these concepts, we will start this chapter with some technical tools we will need for constructing *loops* and *simulations*.
 
-*** =instructions
+`@instructions`
 - Here in DataCamp, when a single expression continues over multiple rows, the whole chunk of code needs to be executed at once. This can be done by first painting (selecting) all the lines in the expression with a mouse and then pressing `Ctrl + Enter` as normal.
 - Execute the 3 rows long for-loop expression
 - Click submit answer to move on to the next exercise
 
-*** =hint
+`@hint`
 - If you cannot paint (select) the expression for some reason, you can just click submit answer instead.
 
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{r}
 # pre exercise code here
 ```
 
-*** =sample_code
+`@sample_code`
 ```{r}
 # Execute me!
 for(i in 1:6) {
@@ -38,7 +46,7 @@ for(i in 1:6) {
 
 ```
 
-*** =solution
+`@solution`
 ```{r}
 # Execute me!
 for(i in 1:6) {
@@ -50,38 +58,46 @@ for(i in 1:6) {
 
 ```
 
-*** =sct
+`@sct`
 ```{r}
 test_error()
 success_msg("Good work!")
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1 key:23abc9f934
+---
 
 ## Indices and brackets
+
+```yaml
+type: NormalExercise
+key: 23abc9f934
+lang: r
+xp: 100
+skills: 1
+```
 
 Vectors in R store multiple values of the same data type. The values in vectors have indices: the first value in a vector has a index `1`, the second value `2` and so on. 
 
 You can set or get a single value from a vector by using indices and brackets `[ ]`. Using an index number inside the brackets gives access to a single value from the vector. Using a vector of indices gives access to multiple values (another vector). 
 
-It is also possible to rearrange the values in a vector by using indices. Look at the example code to see how indices work. 
+It is also possible to rearrange the values in a vector by using indices. Look at the example code to see how indices work.
 
-*** =instructions
+`@instructions`
 - Create the `names` vector.
 - See how the indices work by executing the example lines.
 - Use brackets and indices on `names` to create a new vector `girls` with values "Liisa" and "Anna" (in that order).
 - Use brackets and indices on `names` to create a new vector `boys` with values "Pekka" and "Heikki" (in that order).
 
-*** =hint
+`@hint`
 - Note that space between the vector object and bracets produces an error.
 - Index vectors `c(1,2)` and `c(2,1)` do not produce the same outcome. The order of the values is different.
 
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{r}
+
 ```
 
-
-*** =sample_code
+`@sample_code`
 ```{r}
 # Let's create a vector
 names <- c("Matti", "Pekka", "Liisa", "Anna")
@@ -102,55 +118,40 @@ boys <-
 
   ```
 
-*** =solution
+```
+
+`@solution`
 ```{r}
-# Let's create a vector
-names <- c("Matti", "Pekka", "Liisa", "Anna")
-
-# Acess the first value of the vector
-names[1]
-
-# Change the first value of the vector
-names[1] <- "Heikki"
-
-# Acess the 1. and 3. value of the vector
-names[c(1, 3)]
-
-# Use indices and brackets to separate the names vector into two vectors of the specified ordering
-girls <- names[c(3, 4)]
-boys <- names[c(2, 1)]
 
 ```
 
-*** =sct
+`@sct`
 ```{r}
 
-test_object("girls", incorrect_msg = "Did you create `girls`?")
-test_object("boys", incorrect_msg = "Did you create `boys`? Are the values in the correct order?")
-
-test_error()
-
-# Final message the student will see upon completing the exercise
-success_msg("Such indices. Wow. Much intelligent.")
 
 ```
 
-
---- type:NormalExercise lang:r xp:100 skills:1 key:8e0ac16859
+---
 
 ## Easy vectors
+
+```yaml
+type: NormalExercise
+key: 8e0ac16859
+lang: r
+xp: 100
+skills: 1
+```
 
 Sometimes you need a very long index vector. In that case it would be a lot of work to create the vector by combining integer values with `c()`. Luckily, there are convenient ways to create long vectors in R.
 
 For integer values, a specially useful one is the method `start:end`, which creates an integer vector with all the values from start to end. The following two lines hence produce identical results
 
-```
 1:5  
 c(1,2,3,4,5)
 ```
 
-
-*** =instructions
+`@instructions`
 - Create an integer vector with values from 1 to 5.
 - Create an integer vector with even values from 2 to 10.
 - Create object `attitude` and give the values in it names matching the indices.
@@ -158,17 +159,16 @@ c(1,2,3,4,5)
 - Use `:` to create an integer vector with the values 1, 2, ..., 10
 - Access every second value of the `attitude` vector, starting from the 2. value until the 20th value. These values correspond to the even numbered indeces of the vector: 2, 4, .. , 20
 
-*** =hint
+`@hint`
 - First you will need an index vector with values 2, 4, .. , 20. The example shows how to create such a vector
 - You can then use the index vector together with brackets (`[ ]`) to complete the task
 
-
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{r}
 learning2014 <- read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/learning2014.txt", sep = "\t", header = TRUE)
 ```
 
-*** =sample_code
+`@sample_code`
 ```{r}
 # learning2014 is available
 
@@ -193,7 +193,7 @@ attitude[5:10]
 
 ```
 
-*** =solution
+`@solution`
 ```{r}
 # learning2014 is available
 
@@ -219,7 +219,7 @@ attitude[(1:10)*2]
 
 ```
 
-*** =sct
+`@sct`
 ```{r}
 # submission correctness tests
 
@@ -234,9 +234,17 @@ success_msg("Great work!")
 
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1 key:a26cc4ab51
+---
 
 ## Looping
+
+```yaml
+type: NormalExercise
+key: a26cc4ab51
+lang: r
+xp: 100
+skills: 1
+```
 
 In programming, often there is the need to repeat an action multiple times. In statistical programming you might for example have a theory you wish to explore by simulation.
 
@@ -253,26 +261,24 @@ The for-loop iterates trough the values of a vector by changing the value of the
 
 Inside the curly braces is the *body* of the loop, which can contain regular commands such as function calls. The current value of the counter can be used there. All the commands inside the body are repeated until the counter has taken all the values of the vector.
 
-
-*** =instructions
+`@instructions`
 - **Please note!** Here in DataCamp, executing a command over multiple lines is done by selecting (painting) the lines with a mouse first and then hitting `Ctrl+Enter` normally. Alternatively you could also click submit to execute the whole script.R
 - Loop though the character values using the examle code.  
 - Loop through integer values using the example code. 
 - In an honor of the legendary electronic duo *Daft Punk* and their 2001 album *Discovery*, construct a for-loop that prints out "One more time!" 27 times.
 - Hints: (1) Remember that `1:n` creates an integer vector of length n. (2) Inside the loop body you have to use the `print()` function to print.
 
-*** =hint
+`@hint`
 - It does not matter what name you give to your counter. You can for example use `i` as is done in the second example.
 - In this exercise you don't need to use the values of your counter.
 - Remember to use quotation marks to create and print characters.
 
-
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{r}
 # no pec
 ```
 
-*** =sample_code
+`@sample_code`
 ```{r}
 # Loop through and print the characters a, b, c, d
 for(letter in c("a","b","c","d")) {
@@ -292,7 +298,7 @@ for(i in 1:5) {
 
 ```
 
-*** =solution
+`@solution`
 ```{r}
 # loop through characters a,b,c,d
 for(letter in c("a","b","c","d")) {
@@ -312,7 +318,7 @@ for(i in 1:27) {
 
 ```
 
-*** =sct
+`@sct`
 ```{r}
 # submission correctness tests
 
@@ -326,11 +332,17 @@ success_msg("Excellent work! Repetition is the key to success :)")
 
 ```
 
-
-
---- type:NormalExercise lang:r xp:100 skills:1  key:78e301b70a
+---
 
 ## Point estimation
+
+```yaml
+type: NormalExercise
+key: 78e301b70a
+lang: r
+xp: 100
+skills: 1
+```
 
 Let us now get back to statistical analysis and estimation. When given a sample of data from a population, the goal of statistical analysis is to use that sample to draw conclusions about the population.  
 
@@ -345,28 +357,26 @@ population standard deviation $\sigma$  | sample standard deviation $s$
 
 <hr>
 
-In statistics, estimates are often denoted with a hat. So, for example, we also use the notation $\hat{\mu} = \bar{x}$, and refer to "mu_hat", respectively.  
+In statistics, estimates are often denoted with a hat. So, for example, we also use the notation $\hat{\mu} = \bar{x}$, and refer to "mu_hat", respectively.
 
-*** =instructions
+`@instructions`
 - Create object `points`
 - Estimate the expected value of `points`. If you can't remember the name of the R function you need, use your favourite search engine or take a hint.
 - Estimate the population standard deviation of `points`.
 - Combine the estimates to the `estimates` vector (replace `NA`). Notice how `c()` can be used to give names to the values.
 - Print out the `estimates` vector, with the values rounded to 2 digits.
 
-*** =hint
+`@hint`
 - The table above shows the relationships between the sample statistics and the population parameters.
 - Use the table to figure out which operation you could use to produce the estimate.
 - Mean can be computed with `mean()`
 
-
-
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{r}
 learning2014 <-  read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/learning2014.txt", sep = "\t", header = TRUE)
 ```
 
-*** =sample_code
+`@sample_code`
 ```{r}
 # learning2014 is available
 
@@ -387,7 +397,7 @@ round(estimates, digits = 2)
 
 ```
 
-*** =solution
+`@solution`
 ```{r}
 # learning2014 is available
 
@@ -407,7 +417,7 @@ round(estimates, digits = 2)
 
 ```
 
-*** =sct
+`@sct`
 ```{r}
 # submission correctness tests
 
@@ -424,10 +434,17 @@ success_msg("Very nice! You get full points for point estimation.")
 
 ```
 
-
---- type:NormalExercise lang:r xp:100 skills:1 key:1df061a41a
+---
 
 ## Interval estimation
+
+```yaml
+type: NormalExercise
+key: 1df061a41a
+lang: r
+xp: 100
+skills: 1
+```
 
 Clearly there is uncertainty involved in a single sample mean (our point estimate). But how much uncertainty? This is where we need statistical theory. 
 
@@ -443,8 +460,7 @@ is called the *standard error* of the sample mean $\bar{x}$.
 
 I know what you're thinking. It's confusing: where did the normal distribution come from and what's with all that $z_{\alpha/2}$ stuff? The answers lie in the **sampling distribution** which we will soon get to.
 
-
-*** =instructions
+`@instructions`
 - Create objects `points`, `n`, `mu_hat` and `s`
 - Adjust the code: Compute the standard error of `mu_hat` (the sample mean) and save t to object `error`. `sqrt()` computes the square root.
 - Compute the critical value z using a 99% confidence level (alpha = 0.01) and create object `z`
@@ -452,18 +468,16 @@ I know what you're thinking. It's confusing: where did the normal distribution c
 - Combine the point estimate and the lower and upper CI values to the object `interval_estimate`.
 - Print the values in `interval_estimate`, rounded to 1 digit (hint: `round()`)
 
-*** =hint
+`@hint`
 - The formula for the standard error is s/sqrt(n)
 
-
-
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{r}
 learning2014 <-  read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/learning2014.txt", sep = "\t", header = TRUE)
 
 ```
 
-*** =sample_code
+`@sample_code`
 ```{r}
 # learning2014 is available.
 
@@ -497,7 +511,7 @@ interval_estimate <- c("estimate" = mu_hat, "lower99%" = lower_ci, "upper99%" = 
 
 ```
 
-*** =solution
+`@solution`
 ```{r}
 # learning2014 is available.
 
@@ -532,7 +546,7 @@ round(interval_estimate, digits = 1)
 
 ```
 
-*** =sct
+`@sct`
 ```{r}
 # submission correctness tests
 test_object("error")
@@ -549,11 +563,17 @@ success_msg("You are awsome with 99% confidence!")
 
 ```
 
-
-
---- type:NormalExercise lang:r xp:100 skills:1 key:65d85c42aa
+---
 
 ## The sampling distribution
+
+```yaml
+type: NormalExercise
+key: 65d85c42aa
+lang: r
+xp: 100
+skills: 1
+```
 
 Remember that you can think of the sampling distribution as a kind of mind game:  If we could collect our random sample again and again and calculate a sample mean each time, the result would be the sampling distribution of the mean.  
 
@@ -565,8 +585,7 @@ In reality though, we can't produce this distribution, because we only have the 
 
 The resulting distribution of the multiple sample means satisfies the idea of the sampling distribution, meaning that we can actually simulate the distribution! This method (called [bootstrapping](https://en.wikipedia.org/wiki/Bootstrapping_(statistics))) is widely used in statistics.
 
-
-*** =instructions
+`@instructions`
 - Create `N` and `means` and print out the empty `means` vector
 - Execute the for-loop. What does it do?
 - Print out the `means` vector again
@@ -574,14 +593,12 @@ The resulting distribution of the multiple sample means satisfies the idea of th
 - Draw a histogram displaying the sampling disribution of the means
 - See the help page of the `hist()` function and make it a density histogram
 
-
-*** =hint
+`@hint`
 - `summary()` computes basic summary statistics
 - `hist()` draws a histogram and the argument `freq = F` can be used to draw a density histogram
 - ?hist opens the help page of `hist()`
 
-
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{r}
 learning2014 <-  read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/learning2014.txt", sep = "\t", header = TRUE)
 # give a seed value to the random number generator of R
@@ -589,7 +606,7 @@ set.seed(888)
 
 ```
 
-*** =sample_code
+`@sample_code`
 ```{r}
 # learning2014 is available
 
@@ -620,7 +637,7 @@ for(i in 1:N) {
 
 ```
 
-*** =solution
+`@solution`
 ```{r}
 # learning2014 is available
 
@@ -652,7 +669,7 @@ hist(means, freq = F)
 
 ```
 
-*** =sct
+`@sct`
 ```{r}
 # submission correctness tests
 
@@ -669,10 +686,17 @@ success_msg("Very good work!")
 
 ```
 
-
---- type:NormalExercise lang:r xp:100 skills:1 key:38bf66cd9c
+---
 
 ## The central limit theorem
+
+```yaml
+type: NormalExercise
+key: 38bf66cd9c
+lang: r
+xp: 100
+skills: 1
+```
 
 Let's now get back to the confidence interval for the population mean:
 
@@ -684,7 +708,7 @@ A mean is a scaled sum, so according to the [central limit theorem](https://en.w
 
 The confidence interval above is based on a normal approximation (for the sampling distribution of the sample mean) and it is a good approximation in theory, according to the CLT. In this exercise we'll explore if that approximation seems to work in practise.
 
-*** =instructions
+`@instructions`
 - Create object `n` and take a random sample of 50 students' exam points and create object `points_sample`
 - Create objects `mu_hat`, `s` and `error`
 - Print out `mu_hat` and it's standard error, rounded to 2 digits
@@ -693,12 +717,11 @@ The confidence interval above is based on a normal approximation (for the sampli
 - Execute the line with `hist()`  and `curve()`, which visualize (1) the previously simulated sampling distribution of the means, and (2) a normal approximation to that distribution based on the random sample of size 50. (Techically it's two lines of code: `;` is code for line change)
 - Does the normal approximation seem useful?
 
-*** =hint
+`@hint`
 - `mu_hat` is the sample mean (the estimate of the population mean)
 - `error` is the standard error of the sample mean
 
-
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{r}
 learning2014 <-  read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/learning2014.txt", sep = "\t", header = TRUE)
 set.seed(888)
@@ -721,7 +744,7 @@ hist(means, freq = F)
 
 ```
 
-*** =sample_code
+`@sample_code`
 ```{r}
 # learning214 and means are available
 
@@ -750,7 +773,7 @@ hist(means, freq = F); curve(dnorm(x, mean = NA, sd = NA), add = T)
 
 ```
 
-*** =solution
+`@solution`
 ```{r}
 # learning214 and means are available
 
@@ -778,7 +801,7 @@ hist(means, freq = F); curve(dnorm(x, mean = mu_hat, sd = error), add = T)
 
 ```
 
-*** =sct
+`@sct`
 ```{r}
 # submission correctness tests
 

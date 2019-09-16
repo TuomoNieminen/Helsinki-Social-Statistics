@@ -1,10 +1,17 @@
 ---
-title       : Regression
-description : Now, pick roles for the variables and start modeling. I predict you are good!
-
---- type:NormalExercise lang:r xp:100 skills:1  key:925dc7c1a6
+title: Regression
+description: 'Now, pick roles for the variables and start modeling. I predict you are good!'
+---
 
 ## Packages in R
+
+```yaml
+type: NormalExercise
+key: 925dc7c1a6
+lang: r
+xp: 100
+skills: 1
+```
 
 Welcome to chapter 10: **Regression**. We'll start with an important R feature - packages. 
 
@@ -19,7 +26,7 @@ If you have R in your own computer, you can install packages by calling   `insta
 
 To use installed packages, you need to access them. This is done by calling `library(name_of_the_package)`.
 
-*** =instructions
+`@instructions`
 - One of the most famous and used packages outside the basic R is `ggplot2`. The `ggplot2` packages is a plotting system for R, and it draws pretty pictures for you with small effort. 
 - The `ggplot2` package has a website [http://ggplot2.org/](http://ggplot2.org/) where you can see documentation about the package. 
 - Execute the access code for `ggplot2`.
@@ -27,16 +34,15 @@ To use installed packages, you need to access them. This is done by calling `lib
 - Create the `grades` object.
 - Do a plot of `grades` and `attitude`. Set `grades` as a legend.
 
-*** =hint
+`@hint`
 - Copy the code of the `qplot()` function. and change `gender` to `grades` and `points` to `attitude`. Remember to change the `fill` argument also.
 
-
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{r}
 learning2014 <-  read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/learning2014.txt", sep = "\t", header = TRUE)
 ```
 
-*** =sample_code
+`@sample_code`
 ```{r}
 # learning2014 is available 
 
@@ -54,7 +60,7 @@ grades <- cut(learning2014$points, breaks = c(0, 11, 15, 19, 23, 27, 33), includ
 
 ```
 
-*** =solution
+`@solution`
 ```{r}
 #learning2014 is available 
 
@@ -72,7 +78,7 @@ qplot(grades, attitude, data=learning2014, geom="boxplot", fill=grades)
 
 ```
 
-*** =sct
+`@sct`
 ```{r}
 # test_function("qplot", args=c("x", "y", "fill"), incorrect_msg = "Did you draw a plot of `grades` and `attitude`?")
 
@@ -83,15 +89,23 @@ success_msg("You have the keys do anything. Awesome!")
 
 ```
 
---- type:NormalExercise lang:r xp:150 skills:1  key:e2d130649d
+---
 
 ## Exploring the relationship of two variables
+
+```yaml
+type: NormalExercise
+key: e2d130649d
+lang: r
+xp: 100
+skills: 1
+```
 
 It is always a good idea to start with the simplest possible explorations before more complicated statistical analysis. A scatter plot is always a good starting point when analyzing the relationship between variables. Sample correlations are another useful tool.
 
 In the ggplot2 library, scatter plots can be drawn with the general `qplot()` function. `geom_smooth()` can be used to add a regression line to the plot. In base R `cor.test()` can be used to compute a correlation with a confidence interval.
 
-*** =instructions
+`@instructions`
 - Access the ggplot2 library, modify the learning2014 data and draw a scatter plot of `attitude` and `points`.
 - Adjust the scatter plot: Add code `+ geom_smooth()` after `qplot()`. Write the code to the same line and do not forget the plus sign. Execute the row.
 - Give the function `geom_smooth()` the argument `method = "lm"` and execute the line again. This adds a regression line along with a confidence interval.
@@ -99,18 +113,17 @@ In the ggplot2 library, scatter plots can be drawn with the general `qplot()` fu
 - Is a linear relationship between attitude and points plausible? 
 - How would you characterize the strength of that relationship?
 
-*** =hint
+`@hint`
 - Remember to add the `+` before the call to `geom_smooth()` on the same line as `qplot()`
 
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{r}
 # pre exercise code here
 learning2014 <- read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/learning2014.txt", sep = "\t", header = TRUE)
 
 ```
 
-
-*** =sample_code
+`@sample_code`
 ```{r}
 # learning2014 is available
 
@@ -132,7 +145,7 @@ qplot(attitude, points)
 
 ```
 
-*** =solution
+`@solution`
 ```{r}
 # learning2014 is available
 
@@ -154,7 +167,7 @@ cor.test(attitude, points)
 
 ```
 
-*** =sct
+`@sct`
 ```{r}
 
 # tests
@@ -170,9 +183,17 @@ success_msg("Nice work!")
 
 ```
 
---- type:NormalExercise lang:r xp:50 skills:1 key:930badee16
+---
 
 ## What is a linear model?
+
+```yaml
+type: NormalExercise
+key: 930badee16
+lang: r
+xp: 100
+skills: 1
+```
 
 Genrally, a [statistical model](https://en.wikipedia.org/wiki/Statistical_model) embodies a set of assumptions concerning the generation of the observed data and similar data from a larger population. A [linear model](https://en.wikipedia.org/wiki/Linear_regression) makes the following assumptions:
 
@@ -186,27 +207,24 @@ $$y = a + b \cdot x + errors$$
 
 where `a` and `b` are unknown parameters to be estimated (a is called the *intercept* and b the *regression coefficient*).
 
-*** =instructions
+`@instructions`
 - Create some toy data, choose the parameters, produce random errors and form the linear model between `x` and `y`
 - Draw a scatterplot of `x` and `y` using `plot()`.
 - Compute the correlation of `x` and `y`
 - The *coefficient of determination* (also called "R squared" - does not refer to the R program, however!) is the correlation squared. Compute it.
 - Change the parameter $b$ of the linear model to -1.5 and repeat the above computations.
 
-
-*** =hint
+`@hint`
 - The `plot()` function can be used to draw a scatter plot. The first two arguments should be the vectors of x and y values. Use `?plot` if you want more information.
 - A value or a vectors of values can be squared by either `^` or `**`.
 
-
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{r}
 # pre exercise code here
 
 ```
 
-
-*** =sample_code
+`@sample_code`
 ```{r}
 # Here we produce data from a linear model where we choose the parameters
 
@@ -233,7 +251,7 @@ y <- a + b*x + e
 
 ```
 
-*** =solution
+`@solution`
 ```{r}
 # Here we produce data from a linear model where we choose the parameters
 
@@ -260,7 +278,7 @@ cor(x, y)**2
 
 ```
 
-*** =sct
+`@sct`
 ```{r}
 
 # tests:
@@ -278,10 +296,17 @@ success_msg("Awsome work! You are making linear progress!")
 
 ```
 
-
---- type:NormalExercise lang:r xp:100 skills:1 key:261ae48c3e
+---
 
 ## Fitting a linear model
+
+```yaml
+type: NormalExercise
+key: 261ae48c3e
+lang: r
+xp: 100
+skills: 1
+```
 
 Regression analysis is based on a linear model of the form
 
@@ -295,15 +320,14 @@ where $x$ denotes the explanatory variable(s), $y$ the dependent variable and $a
 
 is a formula stating that `my_y` depends on `my_x`. The second argument of `lm()` is `data`, which defines the data frame where `my_x` and `my_y` are found. `lm()` returns an R object which contains information about the fitted model.
 
-*** =instructions
+`@instructions`
 - Adjust the code: replace both `1` and give the `lm()` function a formula where points is explained by attitude. Adjust the data argument to use the learning2014 data.frame
-- Use `summary()` to look at a summary of the fitted model. 
+- Use `summary()` to look at a summary of the fitted model.
 
-*** =hint
+`@hint`
 - To use the learning2014 data, replace `NULL` with the `learning2014` object
 
-
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{r}
 library(ggplot2)
 learning2014 <- read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/learning2014.txt", sep = "\t", header = TRUE)
@@ -320,8 +344,7 @@ qplot(attitude, points) + geom_smooth(method = "lm")
 
 ```
 
-
-*** =sample_code
+`@sample_code`
 ```{r}
 # learning2014 is available
 
@@ -336,7 +359,7 @@ my_fit <- lm(1 ~ 1, data = NULL)
 
 ```
 
-*** =solution
+`@solution`
 ```{r}
 # learning2014 is available
 
@@ -352,7 +375,7 @@ summary(my_fit)
 
 ```
 
-*** =sct
+`@sct`
 ```{r}
 
 # tests
@@ -369,26 +392,32 @@ success_msg("Great job, now let's interpret the results!")
 
 ```
 
-
---- type:MultipleChoiceExercise lang:r xp:100 skills:1 key:802e37215d
+---
 
 ## Interpreting a fitted model
+
+```yaml
+type: MultipleChoiceExercise
+key: 802e37215d
+lang: r
+xp: 50
+skills: 1
+```
 
 Now that we have estimated the parameters of our (simple) model, it is time to interpret the results! The focus is mainly on the regression coefficients and their p-values. Find the instructions of interpreting these (from a suitable web resource, for example).
 
 Type `summary(my_fit)` on the R console. Which of the following choices is correct?
 
-*** =instructions
+`@possible_answers`
 - When a students attitude increases by one unit, the expected increase of exam points is 11.6 units. The effect is statistically significant.
 - When a students attitude increases by one unit, the expected decrease of exam points is 3.5 units. The effect is statistically significant.
 - When a students attitude increases by one unit, the average increase of exam points is 3.5 units. The effect is statistically significant.
 - When a students attitude increases by one unit, the expected increase of exam points is 3.5 units. The effect is not statistically significant.
 
-*** =hint
+`@hint`
 - The first values on the right of `(Intercept)` and `attitude` are the parameter estimates.
 
-
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{r}
 library(ggplot2)
 learning2014 <- read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/learning2014.txt", sep = "\t", header = TRUE)
@@ -407,8 +436,7 @@ qplot(attitude, points) + geom_smooth(method = "lm")
 my_fit <- lm(points ~ attitude, data = learning2014)
 ```
 
-
-*** =sct
+`@sct`
 ```{r}
 
 # example tests:
@@ -427,9 +455,17 @@ success_msg("Awsome work!")
 
 ```
 
---- type:MultipleChoiceExercise lang:r xp:100 skills:1 key:dc8d2d08dd
+---
 
 ## Checking the validity of model assumptions
+
+```yaml
+type: MultipleChoiceExercise
+key: dc8d2d08dd
+lang: r
+xp: 50
+skills: 1
+```
 
 Let us now return to the <a href = "https://en.wikipedia.org/wiki/Linear_regression#Assumptions" target="_blank">assumptions</a> of our model. We started by looking at the plausibility of a linear relationship, which was the first assumption. We have two assumptions left unchecked:
 
@@ -442,17 +478,16 @@ Also the latter assumption can be studied graphically. A <a href="https://en.wik
 
 When a linear model object such as `my_fit` is given to the `plot()` function as the first argument, `plot()` draws multiple diagnostic plots related to the model. Type `plot(my_fit)` on the R console and choose the correct answer.
 
-*** =instructions
+`@possible_answers`
 - The scatter plot of fitted values and residuals shows that the values of the residuals depend on the fitted values, violating assumption 1. The q-q plot shows that the distribution of the residuals is approximately normal.
 - The scatter plot of fitted values and residuals shows that the values of the residuals do not depend on the fitted values. The q-q plot shows that the residuals and fitted values are independent.
 - The scatter plot of fitted values and residuals shows that the values of the residuals do not depend on the fitted values. The q-q plot shows that the distribution of the residuals is approximately normal.
 - The scatter plot of fitted values and residuals shows that the values of the residuals do not depend on the fitted values. The q-q plot shows that the distribution of the residuals is not approximately normal, violating assumption 2.
 
-*** =hint
+`@hint`
 - The first diagnostic plot shows the scatter plot of fitted values and residuals.
 
-
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{r}
 
 learning2014 <- read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/learning2014.txt", sep = "\t", header = TRUE)
@@ -465,8 +500,7 @@ my_fit <- lm(points ~ attitude, data = learning2014)
 
 ```
 
-
-*** =sct
+`@sct`
 ```{r}
 msg1 <- "The scatter plot of fitted values and residuals is the first plot. There seems to be no clear pattern to indicate that the residuals would depend on the fitted values"
 msg2 <- "The q-q plot is a graphical tool to check if an empirical distribution fits a theoretical distribution."
@@ -481,26 +515,33 @@ success_msg("Great work! You are really learning the linear models.")
 
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1 key:d44ed46dc6
+---
 
 ## Making predictions based on the model
+
+```yaml
+type: NormalExercise
+key: d44ed46dc6
+lang: r
+xp: 100
+skills: 1
+```
 
 Okey, so we have a linear model which seems to fit our standards. What can we do with it? 
 
 The model quantifies the relationship between the explanatory variable(s) (attitude) and the dependent variable (points). The model can also be used for predicting the dependent variable based on new observations of the explanatory variable(s).
 
-*** =instructions
+`@instructions`
 - Create object `my_fit` and `new_attitudes`
 - Adjust the code: Replace `NULL` with the new attitudes to create a new data frame with an attitude column
 - Print out the new data frame
 - Use the `predict()` function to predict the new students exam points based on their attitude. The argument `newdata` should be a data.frame with the new observations for the explanatory variable(s).
 
-*** =hint
+`@hint`
 - Type `attitude = new_attitudes` inside the `data.frame()` function.
 - Give the `new_data` data frame as the newdata argument for `predict()`
 
-
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{r}
 
 learning2014 <- read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/learning2014.txt", sep = "\t", header = TRUE)
@@ -512,8 +553,7 @@ learning2014 <- learning2014[learning2014$points != 0,]
 my_fit <- lm(points ~ attitude, data = learning2014)
 ```
 
-
-*** =sample_code
+`@sample_code`
 ```{r}
 # learning2014 is available
 
@@ -533,7 +573,7 @@ predict(my_fit, newdata = NULL)
 
 ```
 
-*** =solution
+`@solution`
 ```{r}
 ## learning2014 is available
 
@@ -554,7 +594,7 @@ predict(my_fit, newdata = new_data)
 
 ```
 
-*** =sct
+`@sct`
 ```{r}
 
 test_object("new_data")

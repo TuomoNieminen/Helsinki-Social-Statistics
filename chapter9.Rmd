@@ -1,10 +1,17 @@
 ---
-title       : Hypothesis testing
-description : We all might be statistically different, but maybe we are part of the 68%.
-
---- type:MultipleChoiceExercise lang:r xp:100 skills:1 key:ee77c10ab2
+title: 'Hypothesis testing'
+description: 'We all might be statistically different, but maybe we are part of the 68%.'
+---
 
 ## Statistical hypothesis testing
+
+```yaml
+type: MultipleChoiceExercise
+key: ee77c10ab2
+lang: r
+xp: 50
+skills: 1
+```
 
 Welcome to chapter 9: **Hypothesis testing**. In [statistical hypothesis testing](https://en.wikipedia.org/wiki/Statistical_hypothesis_testing) we want to test if a model or an assumption is supported by the data. To do a statistical test, you need to follow these steps:
 
@@ -15,29 +22,23 @@ Welcome to chapter 9: **Hypothesis testing**. In [statistical hypothesis testing
 - Interpret the results of the test
 
 
-Which of the following statements is true?  
+Which of the following statements is true?
 
-
-*** =instructions
+`@possible_answers`
 - A p-value measures the probability that the studied hypothesis is true  
 - A statistically significant result means that the result also has practical significance  
 - Even if an experiment is poorly designed, a statistically significant result means the results can be published  
-- P-values can indicate how incompatible the data are with a specified statistical model  
+- P-values can indicate how incompatible the data are with a specified statistical model
 
-
-*** =hint
+`@hint`
 - I you're uncertain, just try a plausible option and submit the answer: you will get feedback on your answer
 
-
-
-
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{r}
 
 ```
 
-
-*** =sct
+`@sct`
 ```{r}
 # submission correctness tests
 
@@ -53,9 +54,17 @@ success_msg("Good work!")
 
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1  key:ce010c22a3
+---
 
 ## Test statistics
+
+```yaml
+type: NormalExercise
+key: ce010c22a3
+lang: r
+xp: 100
+skills: 1
+```
 
 After setting the hypotheses, we can use the data we have and calculate a test statistic, which is a statistical summary of the data. What kind of test statistic to use, depends on the situation. 
 
@@ -65,10 +74,9 @@ $$z = \frac{\bar{x} - \mu_0}{\sigma / \sqrt{n}}$$
 
 where $\mu_0$ is the hypothesized expected value of $\bar{x}$, $\sigma$ is the population standard deviation and $n$ is the sample size. A $z$ test has limited practical use (because it assumes that the population standard deviation is known) but it demonstrates the idea of a test statistic well enough. The widely used *t-test* is very similar.
 
-Notice that if $\sigma$ is replaced by it's estimate $s$, then the denominator has the standard error of $\bar{x}$. 
+Notice that if $\sigma$ is replaced by it's estimate $s$, then the denominator has the standard error of $\bar{x}$.
 
-
-*** =instructions
+`@instructions`
 - Create objects `stra` and `n`
 - Set a null hypothesis that the expected value of strategic learning is 3 and create object `mu0`
 - Compute the sample mean and the standard error
@@ -77,12 +85,12 @@ Notice that if $\sigma$ is replaced by it's estimate $s$, then the denominator h
 - Visualize the distribution.
 - According to the picture and assuming that $Z \sim N(0,1)$, what is the probability that the test statistic $Z$ would take on a value even further away from it's expected value than the current value $z$? Save this probability to the object `p`.
 
-*** =hint
+`@hint`
 - Look at the visualization. How much probability in total is at the "tails"" of the distribution?
 - Remember that probability is measured between 0 and 1
 - |Z| is the absolute value of Z, meaning that $P(|Z| > z) = P(Z < -z) + P(Z > z)$
 
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{r}
 learning2014 <- read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/learning2014.txt", sep = "\t", header = TRUE)
 
@@ -110,8 +118,7 @@ polygon(c(min(x1),x1, max(x1), min(x2), x2, max(x2)),
 
 ```
 
-
-*** =sample_code
+`@sample_code`
 ```{r}
 # learning2014 is available
 
@@ -142,7 +149,7 @@ p <-
 
 ```
 
-*** =solution
+`@solution`
 ```{r}
 # learning2014 is available
 
@@ -175,7 +182,7 @@ p <- 0.14
 
 ```
 
-*** =sct
+`@sct`
 ```{r}
 # submission correctness tests
 
@@ -191,9 +198,17 @@ success_msg("Great work!")
 
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1  key:c5ba44e024
+---
 
 ## Peculiar p-values
+
+```yaml
+type: NormalExercise
+key: c5ba44e024
+lang: r
+xp: 100
+skills: 1
+```
 
 As you just saw, it is possible to calculate probabilities related to the test statistic if we assume that the null hypothesis is true. The **p-value** is defined as the probability of obtaining a result equal to or "more extreme" than what was actually observed, when the null hypothesis is true.
 
@@ -204,7 +219,7 @@ What exactly is considered "more extreme" depends on the alternative hypothesis.
 
 Then cases where the estimate of $\mu$ is higher than 3 are never critical to the null hypothesis no matter how far away from 3 they are.
 
-*** =instructions
+`@instructions`
 - Create objects `stra` and `n`
 - Compute the mean of strategic learning
 - Set the null hypothesis $H_0: \mu = 3$ and compute the z test statistic
@@ -212,13 +227,12 @@ Then cases where the estimate of $\mu$ is higher than 3 are never critical to th
 - Set the alternative hypothesis $H_1: \mu > 3$. Based on the plot, create object `p1` storing the p-value $P(Z > z)$. Use two decimals precision.
 - Set the alternative hypothesis $H_1: \mu \neq 3$. Based on the plot, create object `p2` storing the p-value $P(|Z| > z)$. Use two decimals precision.
 
-*** =hint
+`@hint`
 - Interpret the `p1` and `p2` from the plot.
 - Rememeber that probability is a measure between 0 and 1
 - |Z| is the absolute value of Z, meaning that $P(|Z| > z) = P(Z < -z) + P(Z > z)$
 
-
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{r}
 learning2014 <- read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/learning2014.txt", sep = "\t", header = TRUE)
 
@@ -254,7 +268,7 @@ zplot(z)
 
 ```
 
-*** =sample_code
+`@sample_code`
 ```{r}
 # learning2014 is available
 
@@ -280,7 +294,7 @@ p2 <-
 
 ```
 
-*** =solution
+`@solution`
 ```{r}
 # learning2014 is available
 
@@ -306,7 +320,7 @@ p2 <- 0.14
 
 ```
 
-*** =sct
+`@sct`
 ```{r}
 # submission correctness tests
 test_output_contains("z", incorrect_msg = "Please print out the value of the test statistic")
@@ -319,9 +333,17 @@ success_msg("Excellent work!")
 
 ```
 
---- type:MultipleChoiceExercise lang:r xp:100 skills:1  key:a4b47ea868
+---
 
 ## Alternative hypothesis: which way to go?!
+
+```yaml
+type: MultipleChoiceExercise
+key: a4b47ea868
+lang: r
+xp: 50
+skills: 1
+```
 
 The null hypothesis usually corresponds to the commonly or previously assumed state. The goal of hypothesis testing is usually to show that data does not support the null hypothesis.  
 
@@ -337,18 +359,17 @@ In cases above the null hypothesis would be *H0*: previous mean $=$ new mean.
 
 Alternative hypothesis also determine the rejection region of the test. Beside are three plots that visualize the rejection regions (with the significance level $\alpha$ = 0.05). Look at the plots and choose the correct claim below.
 
-*** =instructions
+`@possible_answers`
 - Plot 3 is related to a on-sided alternative hypothesis. 
 - The alternative hypothesis "*H1*: previous mean $>$ new mean" is related to plot 1.
 - The alternative hypothesis "*H1*: previous mean $\ne$ new mean" is related to plot 3.
 - Plot 1 is related to a two-sided alternative hypothesis.
 - The alternative hypothesis "*H1*: previous mean $<$ new mean" is related to plot 2.
 
-*** =hint
+`@hint`
 - If you're really uncertain, take a guess and read the feedback!
 
-
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{r}
 learning2014 <-  read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/learning2014.txt", sep = "\t", header = TRUE)
 
@@ -397,7 +418,7 @@ regions(a=a1, direction = 'm')
 
 ```
 
-*** =sct
+`@sct`
 ```{r}
 
 msg1 = "The rejection region indicates that the test is two-sided."
@@ -411,15 +432,23 @@ success_msg("Nicely done!")
 
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1 key:9b63d0cb6a
+---
 
 ## Meet the tests! (1)
+
+```yaml
+type: NormalExercise
+key: 9b63d0cb6a
+lang: r
+xp: 100
+skills: 1
+```
 
 T-test is very common statistical test. It can be used for example to test if the means of two groups differ from each other statistically. You can also test if the mean of some variable is statistically different from predetermined value. 
 
 The t-test is done in R with the `t.test()` function. The same function does one or two sided tests or a paired t-test. You can check the help page (use `?t.test`) of the function to see the arguments and options. By default, the alternative hypothesis is "two.sided".
 
-*** =instructions
+`@instructions`
 - Create subsets of the `learning2014` dataset: separate the dataset by gender. Save new subsets to `women` and `men` objects. Variable `gender` is a factor with two levels: 'N' and 'M'.
 - In the data there was variable `deep` which descripted the deep learning scores of the students. Maybe deep learning is different with women and men? Let's test that. 
 - But first it is important to look at the descriptive statistics. Do you remember a handy function called `summary()`? Look what the summaries say about variable `deep` on both sexes.
@@ -427,19 +456,18 @@ The t-test is done in R with the `t.test()` function. The same function does one
 - So there was no such difference in deep learning scores between genders (why we can make that conclusion?) but how about the strategic learning (variable `stra`) between genders? 
 - Look at the summaries of `stra` for women and men and to the t-test. Interpret the results from the test print.
 
-*** =hint
+`@hint`
 - To get the men's subset, you need to specify the gender to be 'M'. You need to have to equation marks (see chapter 6: Logical comparison).
 - `women` and `men` are data frames, and you can get the variables from data frame with $-mark. 
 - You can see the first six rows of data frame with the function `head()`.
 - Remember that dot is the decimal mark in R, not comma.
 
-
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{r}
 learning2014 <-  read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/learning2014.txt", sep = "\t", header = TRUE)
 ```
 
-*** =sample_code
+`@sample_code`
 ```{r}
 # Separate dataset by gender
 women <- subset(learning2014, gender == 'N')
@@ -462,7 +490,7 @@ t.test(women$deep, men$deep)
 
 ```
 
-*** =solution
+`@solution`
 ```{r}
 # Separate dataset by gender
 women <- subset(learning2014, gender == 'N')
@@ -484,7 +512,7 @@ t.test(women$stra, men$stra)
 
 ```
 
-*** =sct
+`@sct`
 ```{r}
 # submission correctness tests
 
@@ -500,9 +528,17 @@ success_msg("Good work!")
 
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1 key:c033eeaa78
+---
 
 ## Meet the tests! (2)
+
+```yaml
+type: NormalExercise
+key: c033eeaa78
+lang: r
+xp: 100
+skills: 1
+```
 
 There are many statistical tests for different purposes. So, there are many test functions in R. In the next exercises we will get familiar with couple of them.
 
@@ -510,27 +546,26 @@ The [chi-square](https://en.wikipedia.org/wiki/Chi-squared_test) test (also writ
 
 In R you can do the chi-squared test with the function `chisq.test()`. Start testing by looking at the example code!
 
-*** =instructions
+`@instructions`
 - Create object `grades` from the variable `points` from the learning2014 dataset with the `cut()` function. Set the break points with vector `c(0, 15, 19, 23, 27, 33)`. Use also the argument `include.lowest = TRUE` to take zero values into count.
 - Create a table of `gender` and `grades` and save it as `gender_grades_tbl`. Print the table.
 - Test the null hypothesis that grades are independent from gender. What could be the alternative hypothesis in this case? Let's use the 0.05 significance level.
 - Use the function `chisq.test()` to do the chi-squared test of independence. Give the table you created as an argument to the function.
 - See the print that the test function produces. What conclusions can you make?
 
-*** =hint
+`@hint`
 - You get variables from dataset with the $-mark, for example `learning2014$gender`.
 - the `cut()` function has an argument that tells where to break the values. Type `?cut` to console to see the help page of the function (or use google).
 - You can create a table with `table()`. Help page will help you if you do not remember how to use it. 
-- `chisq.test(gender_grades_tbl)` is the code needed to do the testing. 
+- `chisq.test(gender_grades_tbl)` is the code needed to do the testing.
 
-
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{r}
 # pre exercise code here
 learning2014 <-  read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/learning2014.txt", sep = "\t", header = TRUE)
 ```
 
-*** =sample_code
+`@sample_code`
 ```{r}
 # learning2014 is available
 
@@ -546,7 +581,7 @@ chisq.test(gender_grades_tbl)
 
 ```
 
-*** =solution
+`@solution`
 ```{r}
 # learning2014 is available
 
@@ -563,7 +598,7 @@ chisq.test(gender_grades_tbl)
 
 ```
 
-*** =sct
+`@sct`
 ```{r}
 # submission correctness tests
 test_object("grades", incorrect_msg = "Did you create `grades`?")
@@ -578,36 +613,42 @@ success_msg("Good work!")
 
 ```
 
---- type:NormalExercise lang:r xp:100 skills:1  key:1c1f8953e9
+---
 
 ## Create your own functions
+
+```yaml
+type: NormalExercise
+key: 1c1f8953e9
+lang: r
+xp: 100
+skills: 1
+```
 
 There are countless of ready-made functions for you in R. At this point of the course, we have used many functions, for example like `plot()`, `mean()` and `rnorm()`. But it is possible to create your own functions too. Now we will look at the definition of a simple function and learn how to use it (*call* it).
 
 A little recap of functions:
 Functions usually have one or more arguments, for which the user can define values when calling the function. Multiple arguments are separated with a comma. The arguments have names, which can (and often should) be used when specifying their values.
 
-
-*** =instructions
+`@instructions`
 - Look at the definition of the `apple_count()` function and execute the function call that is defined.
 - Create object `my_apples` by directly assigning the output of `apple_count()` to it. Call `apple_count()` with `new_apples = 10` and `apples_stock = 2`.  
 - Print `my_apples` to see the output of the function.
 - Some of the apples are gone bad! Worms! Create a function `good_apples_count` that takes two arguments: `apples` and `bad_apples` and returns the number of apples you have left after the count is **reduced** by an amout set by `bad_apples` (due to a worm attack). Set the number of bad apples to 4 by default.
 - Call your ` good_apples_count()` function on `my_apples` to find out how many good apples you have left.
 
-*** =hint
+`@hint`
 - The answer for `my_apples` is of the form: `my_apples <- apple_count(arg1 = ?, arg2 = ?)`
 - See how a new function is created by looking the code of `apple_count`. 
 - The amount of good apples is `apples` - `bad_apples`.
 - You can set the default value: `function(arg1, arg2 = *insert_default_value_here*) ...`
 
-
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{r}
 apple_count <- function(new_apples, apples_stock = 5) return(new_apples + apples_stock)
 ```
 
-*** =sample_code
+`@sample_code`
 ```{r}
 # Create a simple function with two arguments, of which 'apples_stock' has a default value (5)
 apple_count <- function(new_apples, apples_stock = 5) return(new_apples + apples_stock)
@@ -627,7 +668,7 @@ good_apples_count <-
   
 ```
 
-*** =solution
+`@solution`
 ```{r}
 # Create a simple function with two arguments, of which 'apples_stock' has a default value (5)
 apple_count <- function(new_apples, apples_stock = 5) return(new_apples + apples_stock)
@@ -647,7 +688,7 @@ good_apples_count(my_apples)
   
 ```
 
-*** =sct
+`@sct`
 ```{r}
 test_object("my_apples", incorrect_msg ="Did you save results of `apple_count()` to `my_apple`?")
 test_output_contains(" good_apples_count(my_apples)", incorrect_msg ="Did you use `good_apples_count()` to `my_apples`?")

@@ -1,10 +1,17 @@
 ---
-title       : Working across the data
-description : Cross-tabulations let you explore dependencies hidden deep within discrete variables.
-
---- type:NormalExercise lang:r xp:100 skills:1 key:e1b927030f
+title: 'Working across the data'
+description: 'Cross-tabulations let you explore dependencies hidden deep within discrete variables.'
+---
 
 ## Combining variables
+
+```yaml
+type: NormalExercise
+key: e1b927030f
+lang: r
+xp: 100
+skills: 1
+```
 
 Often in a survey there are many questions that measure the same phenomenon. The phenomenon could be for example trustfulness or prejudice of some sort. Single survey questions are nice, but they do not help us to see the big picture. 
 
@@ -12,19 +19,17 @@ To get a better outlook of a phenomenon, we can combine multiple questions into 
 
 Next we learn how to do that by ourselves with a little toy example. See the sample code!
 
-
-*** =instructions
+`@instructions`
 - In our toy example, the dataset is called `data`. Print out its contents.
 - On the rows are the dudes that answered in the survey. The columns are the items (questions). Let's say that all the items measure the same phenomenon.
 - Create `summamuuttuja` by calculating the row sums. Print the data again. Do you notice something new?
 - Create `summamuuttuja_2`. Notice that in the calculations, the row sums are divided by the number of variables (3). So actually `summamuuttuja_2` contains the row means.
 - Print the data yet again. Yau! You have successfully combined variables!
 
-*** =hint
+`@hint`
 - See how the combining of variables is done from the sample code.
 
-
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{r}
 Emma <- c(2, 3, 2)
 Pihla <- c(4, 5, 5)
@@ -35,8 +40,7 @@ data<-data.frame(rbind(Emma, Pihla, Marianne, Liisi, Petteri))
 colnames(data)<-c("Item_1", "Item_2", "Item_3")
 ```
 
-
-*** =sample_code
+`@sample_code`
 ```{r}
 # In our toy example, the dataset is called 'data'. Print out its contains.
 data
@@ -55,8 +59,7 @@ data$summamuuttuja_2 <- data$summamuuttuja / 3
 
 ```
 
-
-*** =solution
+`@solution`
 ```{r}
 # In our toy example, the dataset is called 'data'. Print out its contains.
 data
@@ -75,8 +78,7 @@ data
 
 ```
 
-
-*** =sct
+`@sct`
 ```{r}
 
 test_error()
@@ -85,10 +87,17 @@ success_msg("Summing those variables up pretty nicely!")
 
 ```
 
-
---- type:NormalExercise lang:r xp:100 skills:1 key:24b2372fff
+---
 
 ## Tables
+
+```yaml
+type: NormalExercise
+key: 24b2372fff
+lang: r
+xp: 100
+skills: 1
+```
 
 Cross tabulation is important form of presenting information. From tables one can see details that plots and pictures do not necessarily convey. Let's do couple of simple tables from the `students2014` data.
 
@@ -96,19 +105,18 @@ Maybe the most basic functions to do cross tabulations in R are `table()` and `p
 
 Function `prop.table()` prints out the proportional values of the table that is given as an argument. We can make the table output more reader friendly by converting the proportional values into percentages (%). This can be done by multiplying the proportional values by 100. For example the proportional value `0.153` is turned into percentages with calculation `0.153 * 100 = 15,3%`.
 
-*** =instructions
+`@instructions`
 - See from the sample code how to create a proportional table ( row 7).
 - Use the `table()` and `prop.table()` functions to create another proportional table of the variable `kone` from the `students2014` dataset. Save the table in `os_prop` object.
 - Turn the proportional values in `os_prop` into percentages. Note that you can multiply all of the tables values by multiplying the table object! 
 - There is a function `round()` used in the last line of code. Can you guess what it does to the table? (Hint: type `?round` to the console to see the help page of the function).
 
-*** =hint
+`@hint`
 - Remember to use the $-sign to access variables of the `students2014` dataset.
 - Remember to close the parenthesis of all function calls.
-- Function `prop.table()` needs output of the function `table()` as an argument to work correctly. 
+- Function `prop.table()` needs output of the function `table()` as an argument to work correctly.
 
-
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{r}
 students2014 <- read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS-data.txt", sep="\t", header=TRUE)
 
@@ -127,8 +135,7 @@ students2014$pituus <- as.numeric(students2014$pituus)
 students2014$kenka <- as.numeric(students2014$kenka)
 ```
 
-
-*** =sample_code
+`@sample_code`
 ```{r}
 # students2014 is available
 
@@ -146,8 +153,7 @@ round(os_prop*100, digits = 2)
 
 ```
 
-
-*** =solution
+`@solution`
 ```{r}
 # students2014 is available
 
@@ -165,8 +171,7 @@ round(os_prop*100, digits = 2)
 
 ```
 
-
-*** =sct
+`@sct`
 ```{r}
 # submission correctness tests
 
@@ -179,10 +184,17 @@ success_msg("Making progress, good work!")
 
 ```
 
-
---- type:MultipleChoiceExercise lang:r xp:50 skills:1 key:6fad9de433
+---
 
 ## Metadata of students2014
+
+```yaml
+type: MultipleChoiceExercise
+key: 6fad9de433
+lang: r
+xp: 50
+skills: 1
+```
 
 The `students2014` data is used in many of the exercises. The dataset was collected in 2014 from the students of the Faculty of Social Sciences in the University of Helsinki. This [questionnaire](http://www.helsinki.fi/~kvehkala/JYTmooc/ASSIST-2014-FI-0-20140903.pdf) was used to collect the information.
 
@@ -190,28 +202,25 @@ To use the collected data, you will have to put it in a digital form. The `stude
 
 The meta file for the `students2014` can be seen [here](http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS-meta.txt). Note that in the exercises we have used only few variables. From the metafile you can check what the questionnaire's answer options were and some other information.
 
-Open and read the meta file. What does `95` mean in the variable `opalku`?  
+Open and read the meta file. What does `95` mean in the variable `opalku`?
 
-*** =instructions
+`@possible_answers`
 - 95 is the number of persons who answered in the questionnaire  
 - It means that the answerer has started his/hers studies in 1995  
 - There were 95 questions in the questionnaire  
 - It is a bluff: 95 is not mentioned in the meta file  
-- The average of credits is 95 among the answerers  
+- The average of credits is 95 among the answerers
 
-
-*** =hint
+`@hint`
 - Did you open the [meta file](http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS-meta.txt)?  
-- If the link does not work, go to http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS-meta.txt  
+- If the link does not work, go to http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS-meta.txt
 
-
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{r}
 open_meta <- function() browseURL("http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS-meta.txt")
 ```
 
-
-*** =sct
+`@sct`
 ```{r}
 msg1 = "Sorry, that's not the right answer. Look again!"
 msg2 = "You are totally right! Proceed to the next exercise"
@@ -226,29 +235,35 @@ success_msg("Good work!")
 
 ```
 
-
---- type:NormalExercise lang:r xp:100 skills:1 key:a7f8986e45
+---
 
 ## Cross tabulations
+
+```yaml
+type: NormalExercise
+key: a7f8986e45
+lang: r
+xp: 100
+skills: 1
+```
 
 Tables get more interesting when there is more than one variable. You can find fascinating information by doing simple cross tabulations on different data variables. 
 
 The function `table()` can take more than one variable and produce more complex cross tabulations. When using `table()` with more than one variable, one needs to separate the variables with a comma (`,`). 
 
-You will also learn useful function `addmargins()` which calculates the margins of the table. Look at the sample code to see how `addmargins()` works. 
+You will also learn useful function `addmargins()` which calculates the margins of the table. Look at the sample code to see how `addmargins()` works.
 
-*** =instructions
+`@instructions`
 - Create object `gender_work_tbl` and see how the table of variable `sukup` and `toita` looks like. 
 - Look what happens when you use the `addmargins()` function on `gender_work_tbl`.
 - Create `gender_os_tbl` with variables `sukup` and `kone` from the `students2014`
 - Print `gender_os_tbl` and add margins to it.
 
-*** =hint
+`@hint`
 - Did you separate the variable names with comma (`,`) inside the `table()` function?
-- Function `addmargins()` needs a product of `table()` function as an argument to work correctly. 
+- Function `addmargins()` needs a product of `table()` function as an argument to work correctly.
 
-
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{r}
 students2014 <- read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS-data.txt", sep="\t", header=TRUE)
 
@@ -267,8 +282,7 @@ students2014$pituus <- as.numeric(students2014$pituus)
 students2014$kenka <- as.numeric(students2014$kenka)
 ```
 
-
-*** =sample_code
+`@sample_code`
 ```{r}
 # students2014 is available
 
@@ -290,8 +304,7 @@ gender_os_tbl <-
 
 ```
 
-
-*** =solution
+`@solution`
 ```{r}
 # students2014 is available
 
@@ -313,8 +326,7 @@ addmargins(gender_os_tbl)
   
 ```
 
-
-*** =sct
+`@sct`
 ```{r}
 test_object("gender_os_tbl")
 
@@ -328,29 +340,34 @@ success_msg("Great! Good work!")
 
 ```
 
-
---- type:NormalExercise lang:r xp:100 skills:1 key:242f06b715
+---
 
 ## Let's (bar)plot that table
+
+```yaml
+type: NormalExercise
+key: 242f06b715
+lang: r
+xp: 100
+skills: 1
+```
 
 Now we know how to create a table and next we want to visualize it. The basic functions to use when plotting tables are 
 `barplot()` and `plot()`. 
 
 The `barplot()` function has many arguments, and it is often useful to see the help page of the function with `help(barplot)` or `?barplot`. We will pay special attention to the arguments `beside` and `legend.text`. You will notice the difference in plots, see the example code!
 
-*** =instructions
+`@instructions`
 - Execute objects `gender_os_tbl`.
 - Plot barplot of `gender_os_tbl` when `beside` is `FALSE`.
 - Change `beside` to `TRUE`. Do you see the difference?
 - Do a better barplot of `gender_os_tbl` by adding a legend. You can add a legend with code `legend.text = rownames(gender_os_tbl)`. Note that the  `rownames()` is also a function, and it takes the table as an argument.
 
-
-*** =hint
+`@hint`
 - In functions multiple arguments are separated with comma. 
-- No quotation marks are needed with `FALSE` and `TRUE`. 
+- No quotation marks are needed with `FALSE` and `TRUE`.
 
-
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{r}
 students2014 <- read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS-data.txt", sep="\t", header=TRUE)
 
@@ -369,8 +386,7 @@ students2014$pituus <- as.numeric(students2014$pituus)
 students2014$kenka <- as.numeric(students2014$kenka)
 ```
 
-
-*** =sample_code
+`@sample_code`
 ```{r}
 # students2014 is available
 
@@ -382,8 +398,7 @@ barplot(gender_os_tbl, beside = FALSE)
 
 ```
 
-
-*** =solution
+`@solution`
 ```{r}
 # students2014 is available
 
@@ -395,8 +410,7 @@ barplot(gender_os_tbl, beside = TRUE, legend.text = rownames(gender_os_tbl))
 
 ```
 
-
-*** =sct
+`@sct`
 ```{r}
 
 test_function("barplot", args=c("height", "beside"), not_called_msg = "Did you use arguments `beside` and `legend` in the barplot?")
@@ -408,24 +422,31 @@ success_msg("You are doing very well!")
 
 ```
 
-
---- type:NormalExercise lang:r xp:100 skills:1 key:954e6d31e8
+---
 
 ## And then little more plotting
 
+```yaml
+type: NormalExercise
+key: 954e6d31e8
+lang: r
+xp: 100
+skills: 1
+```
+
 The `barplot()` function creates nice plots but sometimes, especially with proportional tables, you want to have a plot where you can see the ratios or proportions right away. R has default plot types for different kind of object, and when you use the function `plot()` where a table object is an argument, R produces a [mosaic plot](https://en.wikipedia.org/wiki/Mosaic_plot).
 
-Mosaic plots are good when you want see the proportions of a table with a quick look. Unlike in barplots, the bars in the mosaic plot have different widths. With different bar widths, you immediately notice the size differences between the cells of the table. 
+Mosaic plots are good when you want see the proportions of a table with a quick look. Unlike in barplots, the bars in the mosaic plot have different widths. With different bar widths, you immediately notice the size differences between the cells of the table.
 
-*** =instructions
+`@instructions`
 - Execute `gender_os_prop`.
 - Use the `plot()` function to create a plot of the `gender_os_prop`. Add a title `OS by gender` to the plot.
 
-*** =hint
+`@hint`
 - The `plot()` function can be used for many kinds of data. When there is a table object as an argument, `plot()` produces a mosaicplot.
 - You can add a title to the plot with the `main` argument.
 
-*** =pre_exercise_code
+`@pre_exercise_code`
 ```{r}
 students2014 <- read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS-data.txt", sep="\t", header=TRUE)
 
@@ -444,8 +465,7 @@ students2014$pituus <- as.numeric(students2014$pituus)
 students2014$kenka <- as.numeric(students2014$kenka)
 ```
 
-
-*** =sample_code
+`@sample_code`
 ```{r}
 # students2014 is available
 
@@ -457,8 +477,7 @@ gender_os_prop <- prop.table(table(students2014$kone, students2014$sukup))
 
 ```
 
-
-*** =solution
+`@solution`
 ```{r}
 # students2014 is available
 
@@ -471,8 +490,7 @@ plot(gender_os_prop, main = "OS by gender")
 
 ```
 
-
-*** =sct
+`@sct`
 ```{r}
 test_function("plot", args=c("main"), incorrect_msg = "Use the argument `main` in the `plot()` function to add a title.")
 
