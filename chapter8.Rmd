@@ -121,6 +121,23 @@ boys <-
 
 `@solution`
 ```{r}
+# Let's create a vector
+names <- c("Matti", "Pekka", "Liisa", "Anna")
+
+# Acess the first value of the vector
+names[1]
+
+# Change the first value of the vector
+names[1] <- "Heikki"
+
+# Acess the 1. and 3. value of the vector
+names[c(1, 3)]
+
+# Use indices and brackets to separate the names vector into two vectors of the specified ordering
+girls <- names[c(3, 4)]
+boys <- names[c(2, 1)]
+
+
 
 ```
 
