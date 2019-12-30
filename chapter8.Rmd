@@ -116,7 +116,6 @@ girls <-
 boys <-
 
 
-  ```
 
 ```
 
@@ -149,7 +148,6 @@ For integer values, a specially useful one is the method `start:end`, which crea
 
 1:5  
 c(1,2,3,4,5)
-```
 
 `@instructions`
 - Create an integer vector with values from 1 to 5.
